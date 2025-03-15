@@ -155,4 +155,192 @@ async function testApi() {
 testApi();
 ```
 
+## RESTful API Security Best Practices
+
+Security is a critical aspect of API design. Here are some best practices for securing your RESTful APIs:
+
+### Authentication and Authorization
+
+Implement robust authentication and authorization:
+
+```javascript
+// Example of JWT authentication middleware in Express
+const jwt = require('jsonwebtoken');
+
+function authenticateToken(req, res, next) {
+  const authHeader = req.headers['authorization'];
+  const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
+  
+  if (!token) {
+    return res.status(401).json({ error: "Unauthorized" });
+  }
+  
+  jwt.verify(token, process.env.JWT_SECRET, (err, user) => {
+    if (err) {
+      return res.status(403).json({ error: "Forbidden" });
+    }
+    
+    req.user = user;
+    next();
+  });
+}
+
+// Protected route
+router.get('/user/profile', authenticateToken, (req, res) => {
+  // Only accessible with valid JWT
+  res.json({ user: req.user });
+});
+```
+
+### HTTPS Everywhere
+
+Always use HTTPS to encrypt data in transit:
+
+```javascript
+// In your server setup (e.g., Node.js with Express)
+const https = require('https');
+const fs = require('fs');
+const express = require('express');
+const app = express();
+
+// SSL certificate options
+const options = {
+  key: fs.readFileSync('private-key.pem'),
+  cert: fs.readFileSync('certificate.pem')
+};
+
+// Create HTTPS server
+https.createServer(options, app).listen(443, () => {
+  console.log('HTTPS server running on port 443');
+});
+
+// Redirect HTTP to HTTPS
+const http = require('http');
+http.createServer((req, res) => {
+  res.writeHead(301, { "Location": "https://" + req.headers['host'] + req.url });
+  res.end();
+}).listen(80);
+```
+
+### Input Validation
+
+Always validate and sanitize input data:
+
+```javascript
+// Using a validation library like Joi
+const Joi = require('joi');
+
+// Schema validation for book creation
+const bookSchema = Joi.object({
+  title: Joi.string().min(1).max(100).required(),
+  author: Joi.string().min(1).max(100).required(),
+  year: Joi.number().integer().min(1000).max(new Date().getFullYear())
+});
+
+router.post('/books', (req, res) => {
+  // Validate request body
+  const validation = bookSchema.validate(req.body);
+  
+  if (validation.error) {
+    return res.status(400).json({ 
+      error: validation.error.details[0].message 
+    });
+  }
+  
+  // Proceed with creating the book...
+});
+```
+
+### Rate Limiting
+
+Protect your API from abuse with rate limiting:
+
+```javascript
+// Using Express Rate Limit middleware
+const rateLimit = require('express-rate-limit');
+
+// Create limiter middleware
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  message: {
+    error: "Too many requests, please try again after 15 minutes"
+  }
+});
+
+// Apply to all API endpoints
+app.use('/api/', apiLimiter);
+
+// Or apply to specific routes
+app.use('/api/auth/', rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 5, // 5 login attempts per hour
+  message: {
+    error: "Too many login attempts, please try again after an hour"
+  }
+}));
+```
+
+### API Documentation
+
+Document your API thoroughly using tools like Swagger/OpenAPI:
+
+```yaml
+# OpenAPI specification example (openapi.yaml)
+openapi: 3.0.0
+info:
+  title: Book API
+  description: API for managing books
+  version: 1.0.0
+paths:
+  /books:
+    get:
+      summary: Get all books
+      responses:
+        '200':
+          description: List of books
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Book'
+    post:
+      summary: Create a new book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookInput'
+      responses:
+        '201':
+          description: Book created
+components:
+  schemas:
+    Book:
+      type: object
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        author:
+          type: string
+        year:
+          type: integer
+    BookInput:
+      type: object
+      required:
+        - title
+        - author
+      properties:
+        title:
+          type: string
+        author:
+          type: string
+        year:
+          type: integer
+```
+
 RESTful APIs provide a standardized way for applications to communicate, making them essential for modern web and mobile application development. 

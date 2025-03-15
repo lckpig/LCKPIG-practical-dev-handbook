@@ -131,3 +131,86 @@ Here's a detailed comparison between the Number and String data types:
 | **Example Literals** | 42, 3.14, 1e6                            | "Hello", 'World', `Template ${var}`              |
 
 Numbers and strings form the basis of most data we work with in programming, from user input to calculation results to displayed output.
+
+## Best Practices for Working with Numbers and Strings
+
+When working with numbers and strings in your code, following these best practices can help avoid common pitfalls and make your code more maintainable.
+
+### For Numbers
+
+1. **Be Careful with Floating-Point Precision**
+
+```javascript
+// Avoid direct equality comparison with floating points
+// BAD
+if (0.1 + 0.2 === 0.3) { // This will be false!
+  console.log("Equal");
+}
+
+// GOOD
+const isEqual = Math.abs((0.1 + 0.2) - 0.3) < Number.EPSILON;
+console.log(isEqual); // true
+```
+
+2. **Use Numeric Separators for Readability**
+
+```javascript
+// Without separators
+const largeNumber = 1000000000;
+
+// With separators
+const largeNumberReadable = 1_000_000_000; // More readable
+```
+
+3. **Avoid NaN Bugs with Validation**
+
+```javascript
+// Check if a value is a valid number
+function safeMultiply(a, b) {
+  if (isNaN(a) || isNaN(b)) {
+    return 0; // Default value or throw an error
+  }
+  return a * b;
+}
+```
+
+### For Strings
+
+1. **Prefer Template Literals for Complex Strings**
+
+```javascript
+// Complex string concatenation
+const name = 'John';
+const items = ['apple', 'banana', 'orange'];
+
+// BAD
+const message = 'Hello, ' + name + '! You have ' + items.length + ' items: ' + items.join(', ') + '.';
+
+// GOOD
+const betterMessage = `Hello, ${name}! You have ${items.length} items: ${items.join(', ')}.`;
+```
+
+2. **Be Mindful of String Immutability**
+
+```javascript
+// Strings are immutable - methods return new strings
+let greeting = 'hello';
+greeting.toUpperCase(); // This doesn't change 'greeting'
+console.log(greeting); // Still 'hello'
+
+// You need to reassign
+greeting = greeting.toUpperCase();
+console.log(greeting); // Now 'HELLO'
+```
+
+3. **Use String Methods Instead of Regular Expressions When Possible**
+
+```javascript
+const sentence = 'The quick brown fox';
+
+// Simple operations are faster with string methods
+const hasWord = sentence.includes('fox'); // Cleaner than regex for simple searches
+const position = sentence.indexOf('quick'); // 4
+```
+
+Numbers and strings form the basis of most data we work with in programming, from user input to calculation results to displayed output.

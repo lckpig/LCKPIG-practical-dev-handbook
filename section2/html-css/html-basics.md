@@ -130,4 +130,136 @@ Modern HTML includes semantic elements that help describe the content's meaning:
 </footer>
 ```
 
+## HTML Accessibility Best Practices
+
+Creating accessible web content ensures that your websites can be used by people with disabilities. Here are some key HTML accessibility practices:
+
+### Semantic HTML for Accessibility
+
+Using semantic HTML properly improves accessibility significantly:
+
+```html
+<!-- BAD: Non-semantic markup -->
+<div class="header">Site Title</div>
+<div class="nav">
+  <div class="nav-item"><a href="/">Home</a></div>
+  <div class="nav-item"><a href="/about">About</a></div>
+</div>
+<div class="main-content">
+  <div class="article">
+    <div class="title">Article Title</div>
+    <div class="text">Article content...</div>
+  </div>
+</div>
+<div class="footer">Copyright 2023</div>
+
+<!-- GOOD: Semantic markup -->
+<header>
+  <h1>Site Title</h1>
+</header>
+<nav>
+  <ul>
+    <li><a href="/">Home</a></li>
+    <li><a href="/about">About</a></li>
+  </ul>
+</nav>
+<main>
+  <article>
+    <h2>Article Title</h2>
+    <p>Article content...</p>
+  </article>
+</main>
+<footer>Copyright 2023</footer>
+```
+
+### ARIA Attributes
+
+ARIA (Accessible Rich Internet Applications) attributes enhance accessibility when HTML semantics are insufficient:
+
+```html
+<!-- Menu button that controls a dropdown -->
+<button aria-expanded="false" aria-controls="dropdown-menu">
+  Menu
+</button>
+<ul id="dropdown-menu" aria-hidden="true">
+  <li><a href="/products">Products</a></li>
+  <li><a href="/services">Services</a></li>
+</ul>
+
+<!-- Progress indicator -->
+<div role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">
+  75% Complete
+</div>
+```
+
+### Accessible Forms
+
+Forms should be properly labeled and organized for accessibility:
+
+```html
+<form>
+  <div>
+    <!-- Label explicitly connected to input -->
+    <label for="name-input">Name:</label>
+    <input id="name-input" type="text" name="name" required aria-required="true">
+  </div>
+  
+  <div>
+    <!-- Fieldset groups related inputs -->
+    <fieldset>
+      <legend>Subscription Type</legend>
+      
+      <input id="sub-basic" type="radio" name="subscription" value="basic">
+      <label for="sub-basic">Basic</label>
+      
+      <input id="sub-premium" type="radio" name="subscription" value="premium">
+      <label for="sub-premium">Premium</label>
+    </fieldset>
+  </div>
+  
+  <!-- Error message with proper connection to field -->
+  <div role="alert" aria-live="assertive" id="email-error" class="error-message"></div>
+  
+  <button type="submit">Subscribe</button>
+</form>
+```
+
+### Keyboard Navigation Support
+
+Ensure interactive elements work with keyboard navigation:
+
+```html
+<!-- Ensure clickable elements are focusable -->
+<div tabindex="0" role="button" onclick="togglePanel()">Toggle Panel</div>
+
+<!-- Skip navigation link for keyboard users -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<!-- Content further down the page -->
+<main id="main-content">
+  <!-- Main content -->
+</main>
+```
+
+### Alternative Text for Images
+
+Always provide alternative text for images:
+
+```html
+<!-- Informative image -->
+<img src="chart-sales-2023.png" alt="Sales chart showing 20% growth in Q4 2023">
+
+<!-- Decorative image -->
+<img src="decorative-divider.png" alt="">
+
+<!-- Complex image with longer description -->
+<figure>
+  <img src="complex-diagram.png" alt="Simplified view of database architecture" 
+       aria-describedby="diagram-description">
+  <figcaption id="diagram-description">
+    This diagram illustrates our three-tier database architecture with load balancing,
+    primary and replica databases, and connection pooling.
+  </figcaption>
+</figure>
+```
+
 HTML forms the foundation of every web page. Mastering these basics will help you create well-structured, accessible web content that can then be styled with CSS and made interactive with JavaScript. 
