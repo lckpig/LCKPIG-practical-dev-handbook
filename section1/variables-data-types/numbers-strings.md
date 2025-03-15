@@ -110,4 +110,24 @@ age = 25
 message = f"Hello, my name is {name} and I am {age} years old."
 ```
 
+## Comparative Table: Numbers vs Strings
+
+Here's a detailed comparison between the Number and String data types:
+
+| Feature              | Numbers                                  | Strings                                          |
+| -------------------- | ---------------------------------------- | ------------------------------------------------ |
+| **Definition**       | Numeric values used for calculations     | Sequences of characters used for text            |
+| **Common Types**     | Integers, Floating-point, BigInt         | Single-line, Multi-line                          |
+| **Memory Usage**     | Typically 4-8 bytes for standard numbers | Variable (depends on string length)              |
+| **Operations**       | +, -, *, /, %, **, ++, --                | Concatenation, Slicing, Searching                |
+| **Methods**          | toFixed(), parseInt(), parseFloat()      | toUpperCase(), toLowerCase(), replace(), split() |
+| **Conversion**       | toString(), Number(), parseInt()         | parseInt(), parseFloat(), Number()               |
+| **Comparison**       | ==, ===, <, >, <=, >=                    | ==, ===, localeCompare()                         |
+| **Common Errors**    | Division by zero, Precision errors       | Encoding issues, Escape sequence errors          |
+| **Special Values**   | Infinity, -Infinity, NaN                 | Empty string ("")                                |
+| **Immutability**     | Immutable (primitive type)               | Immutable in most languages                      |
+| **Common Use Cases** | Calculations, Counting, Measurements     | User input, Text display, Data formatting        |
+| **Type Coercion**    | Automatic in loosely typed languages     | Can be coerced to numbers or booleans            |
+| **Example Literals** | 42, 3.14, 1e6                            | "Hello", 'World', `Template ${var}`              |
+
 Numbers and strings form the basis of most data we work with in programming, from user input to calculation results to displayed output. 
