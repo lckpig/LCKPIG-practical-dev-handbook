@@ -6,6 +6,8 @@ Arrays and objects are composite data types that allow you to store multiple val
 
 Arrays are ordered collections of values that can be accessed by their position (index).
 
+![Array Structure Visualization](https://i.ytimg.com/vi/55l-aZ7_F24/maxresdefault.jpg)
+
 ### Creating Arrays
 
 ```javascript
