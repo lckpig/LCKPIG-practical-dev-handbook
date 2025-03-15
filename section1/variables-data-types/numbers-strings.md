@@ -110,7 +110,7 @@ age = 25
 message = f"Hello, my name is {name} and I am {age} years old."
 ```
 
-## Comparative Table: Numbers vs Strings AAA
+## Comparative Table: Numbers vs Strings
 
 Here's a detailed comparison between the Number and String data types:
 
