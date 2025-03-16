@@ -1019,6 +1019,199 @@ This is another way to create expandable content using standard Markdown syntax.
 </details>
 ```
 
+<details>
+<summary>CSS</summary>
+
+```css
+/* Modern CSS with variables and responsive design */
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --text-color: #333;
+    --background-color: #f8f9fa;
+    --spacing-unit: 1rem;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color);
+    background-color: var(--background-color);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-unit);
+}
+
+/* Responsive navigation */
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--spacing-unit);
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+    }
+    
+    .nav-links {
+        margin-top: var(--spacing-unit);
+    }
+}
+```
+</details>
+
+<details>
+<summary>JavaScript</summary>
+
+```javascript
+// Modern JavaScript with ES6+ features
+class TaskManager {
+    constructor(username) {
+        this.username = username;
+        this.tasks = [];
+    }
+    
+    addTask(title, priority = 'medium') {
+        const newTask = {
+            id: Date.now(),
+            title,
+            priority,
+            completed: false,
+            createdAt: new Date()
+        };
+        
+        this.tasks.push(newTask);
+        return newTask;
+    }
+    
+    completeTask(taskId) {
+        const task = this.tasks.find(task => task.id === taskId);
+        if (task) {
+            task.completed = true;
+            return true;
+        }
+        return false;
+    }
+    
+    getPendingTasks() {
+        return this.tasks.filter(task => !task.completed);
+    }
+    
+    getTasksByPriority(priority) {
+        return this.tasks.filter(task => task.priority === priority);
+    }
+}
+
+// Using async/await with fetch API
+async function fetchUserData(userId) {
+    try {
+        const response = await fetch(`https://api.example.com/users/${userId}`);
+        
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+        return null;
+    }
+}
+```
+</details>
+
+<details>
+<summary>TypeScript</summary>
+
+```typescript
+// Angular component example
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserService } from '../../services/user.service';
+import { User } from '../../models/user.model';
+
+@Component({
+  selector: 'app-user-profile',
+  templateUrl: './user-profile.component.html',
+  styleUrls: ['./user-profile.component.scss']
+})
+export class UserProfileComponent implements OnInit {
+  @Input() userId: number;
+  @Output() userUpdated = new EventEmitter<User>();
+  
+  profileForm: FormGroup;
+  user: User | null = null;
+  isLoading = false;
+  errorMessage = '';
+  
+  constructor(
+    private fb: FormBuilder,
+    private userService: UserService
+  ) {
+    this.profileForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
+      bio: ['', Validators.maxLength(500)]
+    });
+  }
+  
+  ngOnInit(): void {
+    this.loadUserProfile();
+  }
+  
+  async loadUserProfile(): Promise<void> {
+    this.isLoading = true;
+    
+    try {
+      this.user = await this.userService.getUserById(this.userId);
+      if (this.user) {
+        this.profileForm.patchValue({
+          name: this.user.name,
+          email: this.user.email,
+          bio: this.user.bio
+        });
+      }
+    } catch (error) {
+      this.errorMessage = 'Failed to load user profile';
+    } finally {
+      this.isLoading = false;
+    }
+  }
+  
+  onSubmit(): void {
+    if (this.profileForm.valid && this.user) {
+      const updatedUser = {
+        ...this.user,
+        ...this.profileForm.value
+      };
+      
+      this.userService.updateUser(updatedUser)
+        .subscribe(
+          (result) => {
+            this.userUpdated.emit(result);
+          },
+          (error) => {
+            this.errorMessage = 'Failed to update profile';
+          }
+        );
+    }
+  }
+}
+```
+</details>
+
+
 ## Files
 
 {% file src="README.md" caption="README File" %}

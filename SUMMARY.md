@@ -6,7 +6,7 @@
 
 ## Section 1: Programming Fundamentals
 
-* [Programming Fundamentals](section1/README.md)
+* [Programmingg Fundamentals](section2/README.md)
   * [Variables and Data Types](section1/variables-data-types/README.md)
     * [Numbers and Strings](section1/variables-data-types/numbers-strings.md)
     * [Arrays and Objects](section1/variables-data-types/arrays-objects.md)
