@@ -3,18 +3,6 @@
 * [Introduction](README.md)
 * [Markdown Elements Guide](markdown-elements.md)
 
-## Technologies
-
-* [🐱 GitHub](section1/README.md)
-* [🌐 HTML](section1/README.md)
-* [🎨 CSS](section1/README.md)
-* [🇯 JavaScript](section1/README.md)
-* [🇹 TypeScript](section1/README.md)
-* [🅰️ Angular](section1/README.md)
-* [🅽 NestJS](section1/README.md)
-* [🐳 Docker](section1/README.md)
-* [✨ SOLID & Clean Code](section1/README.md)
-* [🧩 Design Patterns](section1/README.md)
 
 ## Section 1: Programming Fundamentals
 
