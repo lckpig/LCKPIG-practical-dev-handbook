@@ -1,7 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
-* [![](assets/docker-ico.svg) Markdown Elements Guide](markdown-elements.md)
+* [Markdown Elements Guide](markdown-elements.md)
 
 ## Technology Icons Test
 
@@ -15,6 +15,51 @@
 * [<i class="fa fa-docker"></i> Docker](README.md)
 * [<i class="fa fa-broom"></i> SOLID & Clean Code](README.md)
 * [<i class="fa fa-sitemap"></i> Design Patterns](README.md)
+
+## Emoji Icons Test
+
+* [📄 Introduction](README.md)
+* [🌐 Web Development](README.md)
+* [🖥️ Backend Development](README.md)
+* [📊 Databases](README.md)
+* [🔧 DevOps](README.md)
+* [🧪 Testing](README.md)
+* [🔒 Security](README.md)
+* [⚙️ Configuration](README.md)
+* [📚 Documentation](README.md)
+* [🧩 Design Patterns](README.md)
+
+## Image Icons Test
+
+* [![](assets/docker-ico.svg) Docker Icon](README.md)
+* [![Docker](assets/docker-ico.svg) Docker Named](README.md)
+* [<img src="assets/docker-ico.svg" width="16" height="16"> Small Docker](README.md)
+
+## Text Style Icons Test
+
+* [**[HTML]** HTML Basics](README.md)
+* [**[CSS]** CSS Styling](README.md)
+* [**[JS]** JavaScript](README.md)
+* [**[TS]** TypeScript](README.md)
+* [**[ANG]** Angular](README.md)
+* [**[REACT]** React](README.md)
+* [**[VUE]** Vue.js](README.md)
+* [**[NODE]** Node.js](README.md)
+* [**[DB]** Databases](README.md)
+* [**[DOCKER]** Docker](README.md)
+
+## Unicode Symbols Test
+
+* [⚛️ React](README.md)
+* [🅰️ Angular](README.md)
+* [🎯 Dart](README.md)
+* [☕ Java](README.md)
+* [🐍 Python](README.md)
+* [🔷 TypeScript](README.md)
+* [📦 npm](README.md)
+* [🐳 Docker](README.md)
+* [☁️ Cloud](README.md)
+* [🔐 Security](README.md)
 
 ## Section 1: Programming Fundamentals
 
