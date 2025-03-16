@@ -4,9 +4,9 @@ Welcome to the LCKPIG Practical Development Handbook! This guide provides practi
 
 ## About This Guide
 
-This handbook covers essential programming concepts, web development techniques, and backend development practices. Each section explores topics with hands-on examples and code snippets to help you master programming skills.
+This handbook covers essential programming concepts, web development techniques, and backend development practices. Each section explores topics with hands-on examples and code snippets to help you master programming skills. Vamos a meter cambios aqui.
 
-## How to Use This Guide
+## How to Use This Guide y Aqui tambien
 
 Navigate through the sections using the table of contents. Code examples are included throughout to help you apply concepts immediately in your projects.
 
