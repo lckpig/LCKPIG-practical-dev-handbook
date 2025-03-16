@@ -647,10 +647,65 @@ CMD ["node", "dist/main.js"]
 
 ## Images
 
-![Alt text](https://via.placeholder.com/150)
+![Alt text](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)
 
 ```
-![Alt text](https://via.placeholder.com/150)
+![Alt text](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)
+```
+
+### Imágenes en diferentes formatos
+
+#### Imagen JPG
+![Ejemplo JPG](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
+
+```
+![Ejemplo JPG](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
+```
+
+#### Imagen PNG (con transparencia)
+![Ejemplo PNG](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
+
+```
+![Ejemplo PNG](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
+```
+
+#### Imagen SVG
+![Ejemplo SVG](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
+
+```
+![Ejemplo SVG](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
+```
+
+#### Imagen GIF (animada)
+![Ejemplo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
+
+```
+![Ejemplo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
+```
+
+#### Imagen WebP
+![Ejemplo WebP](https://www.gstatic.com/webp/gallery/4.webp)
+
+```
+![Ejemplo WebP](https://www.gstatic.com/webp/gallery/4.webp)
+```
+
+### Ajustando el tamaño de las imágenes
+
+Las imágenes pueden ajustarse usando HTML:
+
+<img src="https://dummyimage.com/150x150/3498db/ffffff&text=Imagen" width="300" height="200" alt="Imagen redimensionada">
+
+```
+<img src="https://dummyimage.com/150x150/3498db/ffffff&text=Imagen" width="300" height="200" alt="Imagen redimensionada">
+```
+
+### Imágenes con enlace
+
+[![Imagen con enlace](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)](https://www.gitbook.com)
+
+```
+[![Imagen con enlace](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)](https://www.gitbook.com)
 ```
 
 ## Tables
