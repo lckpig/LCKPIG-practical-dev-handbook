@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [![](assets/docker-ico.svg) Markdown Elements Guide](markdown-elements.md)
 
 ## Section 1: Programming Fundamentals
 
