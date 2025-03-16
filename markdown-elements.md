@@ -1,10 +1,12 @@
-# Markdown Elements in GitBook
+# Markdown Elements Guide
+
+## Markdown Elements in GitBook
 
 This guide shows all Markdown elements you can use in GitBook.com, with examples and code to implement them.
 
-## Basic Text Formatting
+### Basic Text Formatting
 
-### Bold
+#### Bold
 
 **This text is bold**
 
@@ -12,7 +14,7 @@ This guide shows all Markdown elements you can use in GitBook.com, with examples
 **This text is bold**
 ```
 
-### Italic
+#### Italic
 
 _This text is italic_
 
@@ -20,7 +22,7 @@ _This text is italic_
 _This text is italic_
 ```
 
-### Strikethrough
+#### Strikethrough
 
 ~~This text is strikethrough~~
 
@@ -28,7 +30,7 @@ _This text is italic_
 ~~This text is strikethrough~~
 ```
 
-### Inline Code
+#### Inline Code
 
 `inline code`
 
@@ -36,14 +38,19 @@ _This text is italic_
 `inline code`
 ```
 
-## Headers
+### Headers
 
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
+## Heading 1
+
+### Heading 2
+
+#### Heading 3
+
+**Heading 4**
+
+**Heading 5**
+
+**Heading 6**
 
 ```
 # Heading 1
@@ -54,9 +61,9 @@ _This text is italic_
 ###### Heading 6
 ```
 
-## Links
+### Links
 
-### External Link
+#### External Link
 
 [Link to Google](https://www.google.com)
 
@@ -64,15 +71,15 @@ _This text is italic_
 [Link to Google](https://www.google.com)
 ```
 
-### Relative Link
+#### Relative Link
 
-[Link to README](README.md)
+[Link to README](<README (1).md>)
 
 ```
 [Link to README](README.md)
 ```
 
-### Email Link
+#### Email Link
 
 [Send email](mailto:example@email.com)
 
@@ -80,9 +87,9 @@ _This text is italic_
 [Send email](mailto:example@email.com)
 ```
 
-### Anchor Link (Internal Page Link)
+#### Anchor Link (Internal Page Link)
 
-[Go to Tables section](#tables)
+[Go to Tables section](markdown-elements.md#tables)
 
 ```
 [Go to Tables section](#tables)
@@ -90,23 +97,27 @@ _This text is italic_
 
 First, create a heading (which automatically creates an anchor), then link to it with `#heading-name` (lowercase with hyphens instead of spaces).
 
-### Page Link Block
+#### Page Link Block
 
 Page link blocks help create relations between pages in your space:
 
-{% content-ref url="README.md" %}
-[README.md](README.md)
+{% content-ref url="README (1).md" %}
+[README (1).md](<README (1).md>)
 {% endcontent-ref %}
 
 ```
-{% content-ref url="README.md" %}
+
+<div data-gb-custom-block data-tag="content-ref" data-url='README.md'>
+
 [README.md](README.md)
-{% endcontent-ref %}
+
+</div>
+
 ```
 
-## Lists
+### Lists
 
-### Unordered List
+#### Unordered List
 
 * Item 1
 * Item 2
@@ -124,15 +135,15 @@ Page link blocks help create relations between pages in your space:
 
 You can also use `-` instead of `*`:
 
-- Item A
-- Item B
+* Item A
+* Item B
 
 ```
 - Item A
 - Item B
 ```
 
-### Ordered List
+#### Ordered List
 
 1. First item
 2. Second item
@@ -148,20 +159,20 @@ You can also use `-` instead of `*`:
 3. Third item
 ```
 
-### Task List
+#### Task List
 
-- [ ] Pending task
-- [x] Completed task
+* [ ] Pending task
+* [x] Completed task
 
 ```
 - [ ] Pending task
 - [x] Completed task
 ```
 
-## Quotes
+### Quotes
 
 > This is a quote
-> 
+>
 > It can include multiple paragraphs
 
 ```
@@ -170,7 +181,7 @@ You can also use `-` instead of `*`:
 > It can include multiple paragraphs
 ```
 
-## Code Blocks
+### Code Blocks
 
 Code block without syntax highlighting:
 
@@ -204,9 +215,9 @@ function example() {
 ```
 ````
 
-## Extended Code Examples
+### Extended Code Examples
 
-### GitHub Workflow Example
+#### GitHub Workflow Example
 
 ```yaml
 name: CI/CD Pipeline
@@ -239,7 +250,7 @@ jobs:
       run: npm run build
 ```
 
-### HTML Example
+#### HTML Example
 
 ```html
 <!DOCTYPE html>
@@ -277,7 +288,7 @@ jobs:
 </html>
 ```
 
-### CSS Example
+#### CSS Example
 
 ```css
 /* Modern CSS with variables and responsive design */
@@ -326,7 +337,7 @@ nav {
 }
 ```
 
-### JavaScript Example
+#### JavaScript Example
 
 ```javascript
 // Modern JavaScript with ES6+ features
@@ -385,7 +396,7 @@ async function fetchUserData(userId) {
 }
 ```
 
-### TypeScript Example
+#### TypeScript Example
 
 ```typescript
 // TypeScript interface and class implementation
@@ -457,7 +468,7 @@ function createDataStore<T>(initialData: T[]): {
 }
 ```
 
-### Angular Example
+#### Angular Example
 
 ```typescript
 // Angular component example
@@ -535,7 +546,7 @@ export class UserProfileComponent implements OnInit {
 }
 ```
 
-### NestJS Example
+#### NestJS Example
 
 ```typescript
 // NestJS controller and service example
@@ -603,7 +614,7 @@ export class ProductsService {
 }
 ```
 
-### Docker Example
+#### Docker Example
 
 ```dockerfile
 # Multi-stage build example for a Node.js application
@@ -645,70 +656,75 @@ USER node
 CMD ["node", "dist/main.js"]
 ```
 
-## Images
+### Images
 
-![Alt text](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)
+![Alt text](https://dummyimage.com/150x150/3498db/ffffff\&text=Imagen)
 
 ```
 ![Alt text](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)
 ```
 
-### Imágenes en diferentes formatos
+#### Imágenes en diferentes formatos
 
-#### Imagen JPG
+**Imagen JPG**
+
 ![Ejemplo JPG](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
 
 ```
 ![Ejemplo JPG](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
 ```
 
-#### Imagen PNG (con transparencia)
+**Imagen PNG (con transparencia)**
+
 ![Ejemplo PNG](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
 
 ```
 ![Ejemplo PNG](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
 ```
 
-#### Imagen SVG
+**Imagen SVG**
+
 ![Ejemplo SVG](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
 
 ```
 ![Ejemplo SVG](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
 ```
 
-#### Imagen GIF (animada)
+**Imagen GIF (animada)**
+
 ![Ejemplo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
 
 ```
 ![Ejemplo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
 ```
 
-#### Imagen WebP
+**Imagen WebP**
+
 ![Ejemplo WebP](https://www.gstatic.com/webp/gallery/4.webp)
 
 ```
 ![Ejemplo WebP](https://www.gstatic.com/webp/gallery/4.webp)
 ```
 
-### Ajustando el tamaño de las imágenes
+#### Ajustando el tamaño de las imágenes
 
 Las imágenes pueden ajustarse usando HTML:
 
-<img src="https://dummyimage.com/150x150/3498db/ffffff&text=Imagen" width="300" height="200" alt="Imagen redimensionada">
+![Imagen redimensionada](https://dummyimage.com/150x150/3498db/ffffff\&text=Imagen)
 
 ```
 <img src="https://dummyimage.com/150x150/3498db/ffffff&text=Imagen" width="300" height="200" alt="Imagen redimensionada">
 ```
 
-### Imágenes con enlace
+#### Imágenes con enlace
 
-[![Imagen con enlace](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)](https://www.gitbook.com)
+[![Imagen con enlace](https://dummyimage.com/150x150/3498db/ffffff\&text=Imagen)](https://www.gitbook.com)
 
 ```
 [![Imagen con enlace](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)](https://www.gitbook.com)
 ```
 
-## Tables
+### Tables
 
 | Header 1 | Header 2 | Header 3 |
 | -------- | -------- | -------- |
@@ -722,24 +738,28 @@ Las imágenes pueden ajustarse usando HTML:
 | Cell 2,1 | Cell 2,2 | Cell 2,3 |
 ```
 
-## Horizontal Line
+### Horizontal Line
 
----
+***
 
 ```
 ---
 ```
 
-## Hints (Notes)
+### Hints (Notes)
 
 {% hint style="info" %}
 This is an information note.
 {% endhint %}
 
 ```
-{% hint style="info" %}
+
+<div data-gb-custom-block data-tag="hint" data-style='info'>
+
 This is an information note.
-{% endhint %}
+
+</div>
+
 ```
 
 {% hint style="warning" %}
@@ -747,9 +767,13 @@ This is a warning.
 {% endhint %}
 
 ```
-{% hint style="warning" %}
+
+<div data-gb-custom-block data-tag="hint" data-style='warning'>
+
 This is a warning.
-{% endhint %}
+
+</div>
+
 ```
 
 {% hint style="danger" %}
@@ -757,9 +781,13 @@ This is a danger alert.
 {% endhint %}
 
 ```
-{% hint style="danger" %}
+
+<div data-gb-custom-block data-tag="hint" data-style='danger'>
+
 This is a danger alert.
-{% endhint %}
+
+</div>
+
 ```
 
 {% hint style="success" %}
@@ -767,37 +795,55 @@ This is a success note.
 {% endhint %}
 
 ```
-{% hint style="success" %}
+
+<div data-gb-custom-block data-tag="hint" data-style='success'>
+
 This is a success note.
-{% endhint %}
+
+</div>
+
 ```
 
-## Tabs
+### Tabs
 
 {% tabs %}
 {% tab title="First Tab" %}
 Content of the first tab
 {% endtab %}
+
 {% tab title="Second Tab" %}
 Content of the second tab
 {% endtab %}
+
 {% tab title="Third Tab" %}
 Content of the third tab
 {% endtab %}
 {% endtabs %}
 
 ```
-{% tabs %}
-{% tab title="First Tab" %}
+
+<div data-gb-custom-block data-tag="tabs">
+
+<div data-gb-custom-block data-tag="tab" data-title='First Tab'>
+
 Content of the first tab
-{% endtab %}
-{% tab title="Second Tab" %}
+
+</div>
+
+<div data-gb-custom-block data-tag="tab" data-title='Second Tab'>
+
 Content of the second tab
-{% endtab %}
-{% tab title="Third Tab" %}
+
+</div>
+
+<div data-gb-custom-block data-tag="tab" data-title='Third Tab'>
+
 Content of the third tab
-{% endtab %}
-{% endtabs %}
+
+</div>
+
+</div>
+
 ```
 
 {% tabs %}
@@ -849,6 +895,7 @@ nav {
 }
 ```
 {% endtab %}
+
 {% tab title="JS" %}
 ```javascript
 // Modern JavaScript with ES6+ features
@@ -907,6 +954,7 @@ async function fetchUserData(userId) {
 }
 ```
 {% endtab %}
+
 {% tab title="TS" %}
 ```typescript
 // Angular component example
@@ -986,17 +1034,16 @@ export class UserProfileComponent implements OnInit {
 {% endtab %}
 {% endtabs %}
 
-
-## Expandable Content
-
-{% expand title="Click to expand" %}
-This content is hidden until the title is clicked.
-{% endexpand %}
+### Expandable Content
 
 ```
-{% expand title="Click to expand" %}
+
+<div data-gb-custom-block data-tag="expand" data-title='Click to expand'>
+
 This content is hidden until the title is clicked.
-{% endexpand %}
+
+</div>
+
 ```
 
 Alternative syntax:
@@ -1020,6 +1067,7 @@ This is another way to create expandable content using standard Markdown syntax.
 ```
 
 <details>
+
 <summary>CSS</summary>
 
 ```css
@@ -1068,9 +1116,11 @@ nav {
     }
 }
 ```
+
 </details>
 
 <details>
+
 <summary>JavaScript</summary>
 
 ```javascript
@@ -1129,9 +1179,11 @@ async function fetchUserData(userId) {
     }
 }
 ```
+
 </details>
 
 <details>
+
 <summary>TypeScript</summary>
 
 ```typescript
@@ -1209,38 +1261,44 @@ export class UserProfileComponent implements OnInit {
   }
 }
 ```
+
 </details>
 
+### Files
 
-## Files
-
-{% file src="README.md" caption="README File" %}
+{% file src="./" %}
+README File
+{% endfile %}
 
 ```
-{% file src="README.md" caption="README File" %}
+
+<div data-gb-custom-block data-tag="file" data-src='README.md' data-caption='README File'></div>
+
 ```
 
-## Cards
+### Cards
 
-{% card %}
+```
+
+<div data-gb-custom-block data-tag="card">
+
 This is a simple card.
-{% endcard %}
+
+</div>
 
 ```
-{% card %}
-This is a simple card.
-{% endcard %}
-```
 
-## Embedded URLs
+### Embedded URLs
 
 {% embed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" %}
 
 ```
-{% embed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" %}
+
+<div data-gb-custom-block data-tag="embed" data-url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'></div>
+
 ```
 
-## Math Formulas
+### Math Formulas
 
 Inline: $E=mc^2$
 
@@ -1260,11 +1318,9 @@ $$
 $$
 ```
 
-## Annotations (Footnotes)
+### Annotations (Footnotes)
 
 Here's a footnote reference[^1].
-
-[^1]: This is the footnote content.
 
 ```
 Here's a footnote reference[^1].
@@ -1272,39 +1328,49 @@ Here's a footnote reference[^1].
 [^1]: This is the footnote content.
 ```
 
-## Stepper
+### Stepper
 
 {% stepper %}
-{% step title="Step 1" %}
+{% step %}
 Content for step 1
 {% endstep %}
 
-{% step title="Step 2" %}
+{% step %}
 Content for step 2
 {% endstep %}
 
-{% step title="Step 3" %}
+{% step %}
 Content for step 3
 {% endstep %}
 {% endstepper %}
 
 ```
-{% stepper %}
-{% step title="Step 1" %}
+
+<div data-gb-custom-block data-tag="stepper">
+
+<div data-gb-custom-block data-tag="step" data-title='Step 1'>
+
 Content for step 1
-{% endstep %}
 
-{% step title="Step 2" %}
+</div>
+
+<div data-gb-custom-block data-tag="step" data-title='Step 2'>
+
 Content for step 2
-{% endstep %}
 
-{% step title="Step 3" %}
+</div>
+
+<div data-gb-custom-block data-tag="step" data-title='Step 3'>
+
 Content for step 3
-{% endstep %}
-{% endstepper %}
+
+</div>
+
+</div>
+
 ```
 
-## Emojis
+### Emojis
 
 You can insert emojis using the `:emoji_name:` syntax, for example: :smile: :heart: :rocket:
 
@@ -1312,7 +1378,7 @@ You can insert emojis using the `:emoji_name:` syntax, for example: :smile: :hea
 :smile: :heart: :rocket:
 ```
 
-## Drawings
+### Drawings
 
 GitBook supports drawing diagrams, which can be added using the diagram block:
 
@@ -1326,19 +1392,21 @@ graph TD;
 ```
 {% endcode %}
 
-```
-{% code title="Simple diagram example" %}
+````
+
+<div data-gb-custom-block data-tag="code" data-title='Simple diagram example'>
+
 ```mermaid
 graph TD;
     A-->B;
     A-->C;
     B-->D;
     C-->D;
-```
-{% endcode %}
-```
+````
 
-## Keyboard Keys
+\`\`\`
+
+### Keyboard Keys
 
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>
 
@@ -1346,38 +1414,35 @@ graph TD;
 <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>
 ```
 
-## Highlighting Text
+### Highlighting Text
 
-==This text is highlighted==
+\==This text is highlighted==
 
 ```
 ==This text is highlighted==
 ```
 
-## Definition Lists
+### Definition Lists
 
+TermDefinition of the termAnother termDefinition of another term
+
+```
 <dl>
   <dt>Term</dt>
   <dd>Definition of the term</dd>
   <dt>Another term</dt>
   <dd>Definition of another term</dd>
 </dl>
-
-```
-<dl>
-  <dt>Term</dt>
-  <dd>Definition of the term</dd>
-  <dt>Another term</dt>
-  <dd>Definition of another term</dd>
-</dl>
 ```
 
-## Superscript and Subscript
+### Superscript and Subscript
 
-Superscript: X<sup>2</sup>
-Subscript: H<sub>2</sub>O
+Superscript: X2\
+Subscript: H2O
 
 ```
 Superscript: X<sup>2</sup>
 Subscript: H<sub>2</sub>O
-``` 
+```
+
+[^1]: This is the footnote content.
