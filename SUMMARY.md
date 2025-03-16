@@ -3,6 +3,19 @@
 * [Introduction](README.md)
 * [![](assets/docker-ico.svg) Markdown Elements Guide](markdown-elements.md)
 
+## Technology Icons Test
+
+* [<i class="fa fa-github"></i> GitHub](README.md)
+* [<i class="fa fa-html5"></i> HTML](README.md)
+* [<i class="fa fa-css3"></i> CSS](README.md)
+* [<i class="fa fa-js"></i> JavaScript](README.md)
+* [<i class="fa fa-code"></i> TypeScript](README.md)
+* [<i class="fa fa-angular"></i> Angular](README.md)
+* [<i class="fa fa-feather"></i> NestJS](README.md)
+* [<i class="fa fa-docker"></i> Docker](README.md)
+* [<i class="fa fa-broom"></i> SOLID & Clean Code](README.md)
+* [<i class="fa fa-sitemap"></i> Design Patterns](README.md)
+
 ## Section 1: Programming Fundamentals
 
 * [Programming Fundamentals](section1/README.md)
