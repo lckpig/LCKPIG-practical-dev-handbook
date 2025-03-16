@@ -5,16 +5,16 @@
 
 ## Technologies
 
-* [🐙 GitHub](README.md)
-* [🌐 HTML](README.md)
-* [🎨 CSS](README.md)
-* [🟨 JavaScript](README.md)
-* [🔷 TypeScript](README.md)
-* [🅰️ Angular](README.md)
-* [🪶 NestJS](README.md)
-* [🐳 Docker](README.md)
-* [🧹 SOLID & Clean Code](README.md)
-* [🧩 Design Patterns](README.md)
+* [🐱 GitHub](section1/README.md)
+* [🌐 HTML](section1/README.md)
+* [🎨 CSS](section1/README.md)
+* [🇯 JavaScript](section1/README.md)
+* [🇹 TypeScript](section1/README.md)
+* [🅰️ Angular](section1/README.md)
+* [🅽 NestJS](section1/README.md)
+* [🐳 Docker](section1/README.md)
+* [✨ SOLID & Clean Code](section1/README.md)
+* [🧩 Design Patterns](section1/README.md)
 
 ## Section 1: Programming Fundamentals
 
