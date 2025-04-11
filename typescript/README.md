@@ -21,6 +21,7 @@
 ---
 
 ### **2. Instalación y Configuración del Entorno**
+## Acerca de Esta Guía
 
 - **Instalación de TypeScript**
     - Instalación global con `npm install -g typescript`
@@ -42,6 +43,7 @@
 ---
 
 ### **3. Tipos Básicos en TypeScript**
+## Acerca de Esta Guía 2
 
 - **Tipos primitivos en TypeScript**
     - `string`, `number`, `boolean`, `null`, `undefined`
@@ -66,7 +68,7 @@
 
 ---
 
-### **4. Inferencia y Anotaciones de Tipos**
+## **4. Inferencia y Anotaciones de Tipos**
 
 - **Inferencia de tipos en TypeScript**
     - Inferencia automática en variables (`let x = 10; // x es number`)
@@ -89,7 +91,7 @@
 
 ---
 
-### **5. Tipos Avanzados en TypeScript**
+### Tipos Avanzados en TypeScript**
 
 - **Unión de tipos (`Union Types`)**
     - Uso de `|` para permitir múltiples tipos (`let valor: string | number;`)
@@ -117,7 +119,7 @@
 
 ---
 
-### **6. Manejo de Tipos Utilitarios en TypeScript**
+## Manejo de Tipos Utilitarios en TypeScript**
 
 - **Tipos parciales y opcionales**
     - `Partial<T>`: Conversión de todas las propiedades a opcionales
