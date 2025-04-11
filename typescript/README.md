@@ -1,5 +1,5 @@
 {% hint style="info" %}
-[EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
+[EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript) **| ES**
 {% endhint %}
 
 <details>
