@@ -1,4 +1,4 @@
-EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
+EN - [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 
 <details>
 <summary>1. Introduction to TypeScript</summary>
