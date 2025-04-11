@@ -73,7 +73,7 @@ _This text is italic_
 
 #### Relative Link
 
-[Link to README](<README (1).md>)
+[Link to README](README.md)
 
 ```
 [Link to README](README.md)
@@ -89,7 +89,7 @@ _This text is italic_
 
 #### Anchor Link (Internal Page Link)
 
-[Go to Tables section](markdown-elements.md#tables)
+[Go to Tables section](#tables)
 
 ```
 [Go to Tables section](#tables)
@@ -101,8 +101,8 @@ First, create a heading (which automatically creates an anchor), then link to it
 
 Page link blocks help create relations between pages in your space:
 
-{% content-ref url="README (1).md" %}
-[README (1).md](<README (1).md>)
+{% content-ref url="README.md" %}
+[README.md](README.md)
 {% endcontent-ref %}
 
 ```

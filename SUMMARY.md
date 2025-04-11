@@ -1,6 +1,7 @@
 # Table of contents
 
 * [Introduction](README.md)
+* [Markdown Elements Guide](markdown-elements.md)
 * [TypeScript](typescript/README.md)
   * [TypeScript Fundamentals](typescript/fundamentals.md)
   * [Types and Interfaces](typescript/types-interfaces.md)
