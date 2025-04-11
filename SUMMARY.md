@@ -3,6 +3,7 @@
 * [Introduction](README.md)
 * [Markdown Elements Guide](markdown-elements.md)
 * [TypeScript](typescript/README.md)
+  * [Types in TypeScript](typescript/types.md)
   * [TypeScript Fundamentals](typescript/fundamentals.md)
   * [Types and Interfaces](typescript/types-interfaces.md)
   * [Classes and Inheritance](typescript/classes-inheritance.md)

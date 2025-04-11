@@ -3,6 +3,8 @@ START of the Practical TypeScript Guide
 EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript2)
 <!-- MULTILANGUAJE MENU END -->
 
+* [Types in TypeScript](types.md)
+
 **Comments about TYPESCRIPT**
 
 <details>
