@@ -2,7 +2,7 @@
 
 ## Markdown Elements in GitBook
 
-This guide shows all Markdown elements you can use in GitBook.com, with examples and code to implement them.
+This guide shows all the Markdown elements you can use in GitBook.com, with examples and code to implement them.
 
 ### Basic Text Formatting
 
@@ -40,25 +40,25 @@ _This text is italic_
 
 ### Headers
 
-## Heading 1
+## Header 1
 
-### Heading 2
+### Header 2
 
-#### Heading 3
+#### Header 3
 
-**Heading 4**
+**Header 4**
 
-**Heading 5**
+**Header 5**
 
-**Heading 6**
+**Header 6**
 
 ```
-# Heading 1
-## Heading 2
-### Heading 3
-#### Heading 4
-##### Heading 5
-###### Heading 6
+# Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
 ```
 
 ### Links
@@ -89,7 +89,7 @@ _This text is italic_
 
 #### Anchor Link (Internal Page Link)
 
-[Go to Tables section](#tables)
+[Go to Tables section](markdown-elements.md#tables)
 
 ```
 [Go to Tables section](#tables)
@@ -99,7 +99,7 @@ First, create a heading (which automatically creates an anchor), then link to it
 
 #### Page Link Block
 
-Page link blocks help create relations between pages in your space:
+Page link block helps create relationships between pages in your space:
 
 {% content-ref url="README.md" %}
 [README.md](README.md)
@@ -658,70 +658,70 @@ CMD ["node", "dist/main.js"]
 
 ### Images
 
-![Alt text](https://dummyimage.com/150x150/3498db/ffffff\&text=Imagen)
+![Alt text](https://dummyimage.com/150x150/3498db/ffffff\&text=Image)
 
 ```
-![Alt text](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)
+![Alt text](https://dummyimage.com/150x150/3498db/ffffff&text=Image)
 ```
 
-#### Imágenes en diferentes formatos
+#### Images in Different Formats
 
-**Imagen JPG**
+**JPG Image**
 
-![Ejemplo JPG](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
-
-```
-![Ejemplo JPG](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
-```
-
-**Imagen PNG (con transparencia)**
-
-![Ejemplo PNG](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
+![JPG Example](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
 
 ```
-![Ejemplo PNG](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
+![JPG Example](https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Image_created_with_a_mobile_phone.png/800px-Image_created_with_a_mobile_phone.png)
 ```
 
-**Imagen SVG**
+**PNG Image (with transparency)**
 
-![Ejemplo SVG](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
-
-```
-![Ejemplo SVG](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
-```
-
-**Imagen GIF (animada)**
-
-![Ejemplo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
+![PNG Example](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
 
 ```
-![Ejemplo GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
+![PNG Example](https://www.pngall.com/wp-content/uploads/5/Python-PNG-File.png)
 ```
 
-**Imagen WebP**
+**SVG Image**
 
-![Ejemplo WebP](https://www.gstatic.com/webp/gallery/4.webp)
-
-```
-![Ejemplo WebP](https://www.gstatic.com/webp/gallery/4.webp)
-```
-
-#### Ajustando el tamaño de las imágenes
-
-Las imágenes pueden ajustarse usando HTML:
-
-![Imagen redimensionada](https://dummyimage.com/150x150/3498db/ffffff\&text=Imagen)
+![SVG Example](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
 
 ```
-<img src="https://dummyimage.com/150x150/3498db/ffffff&text=Imagen" width="300" height="200" alt="Imagen redimensionada">
+![SVG Example](https://upload.wikimedia.org/wikipedia/commons/thumb/6/61/HTML5_logo_and_wordmark.svg/512px-HTML5_logo_and_wordmark.svg.png)
 ```
 
-#### Imágenes con enlace
+**GIF Image (animated)**
 
-[![Imagen con enlace](https://dummyimage.com/150x150/3498db/ffffff\&text=Imagen)](https://www.gitbook.com)
+![GIF Example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
 
 ```
-[![Imagen con enlace](https://dummyimage.com/150x150/3498db/ffffff&text=Imagen)](https://www.gitbook.com)
+![GIF Example](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmUwZWFwcGd3YW0yMzg0aGZiNnBmaWRnZHFidXliNXY5N2RhYmNrdiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/du3J3cXyzhj75IOgvA/giphy.gif)
+```
+
+**WebP Image**
+
+![WebP Example](https://www.gstatic.com/webp/gallery/4.webp)
+
+```
+![WebP Example](https://www.gstatic.com/webp/gallery/4.webp)
+```
+
+#### Adjusting Image Size
+
+Images can be resized using HTML:
+
+![Resized Image](https://dummyimage.com/150x150/3498db/ffffff\&text=Image)
+
+```
+<img src="https://dummyimage.com/150x150/3498db/ffffff&text=Image" width="300" height="200" alt="Resized Image">
+```
+
+#### Images with Links
+
+[![Image with Link](https://dummyimage.com/150x150/3498db/ffffff\&text=Image)](https://www.gitbook.com)
+
+```
+[![Image with Link](https://dummyimage.com/150x150/3498db/ffffff&text=Image)](https://www.gitbook.com)
 ```
 
 ### Tables
@@ -803,6 +803,7 @@ This is a success note.
 </div>
 
 ```
+
 {% hint style="info" %}
 
 ## This is a H2 heading
@@ -1045,7 +1046,7 @@ export class UserProfileComponent implements OnInit {
 {% endtab %}
 {% endtabs %}
 
-### Expandable Content
+### Content Expandable
 
 ```
 
@@ -1065,395 +1066,4 @@ Alternative syntax:
 
 This is another way to create expandable content using standard Markdown syntax.
 
-</details>
-
-```
-<details>
-
-<summary>Click to expand (alternative method)</summary>
-
-This is another way to create expandable content using standard Markdown syntax.
-
-</details>
-```
-
-<details>
-
-<summary>CSS</summary>
-
-```css
-/* Modern CSS with variables and responsive design */
-:root {
-    --primary-color: #3498db;
-    --secondary-color: #2ecc71;
-    --text-color: #333;
-    --background-color: #f8f9fa;
-    --spacing-unit: 1rem;
-}
-
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: var(--text-color);
-    background-color: var(--background-color);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: var(--spacing-unit);
-}
-
-/* Responsive navigation */
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: var(--spacing-unit);
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* Media query for mobile devices */
-@media (max-width: 768px) {
-    nav {
-        flex-direction: column;
-    }
-    
-    .nav-links {
-        margin-top: var(--spacing-unit);
-    }
-}
-```
-
-</details>
-
-<details>
-
-<summary>JavaScript</summary>
-
-```javascript
-// Modern JavaScript with ES6+ features
-class TaskManager {
-    constructor(username) {
-        this.username = username;
-        this.tasks = [];
-    }
-    
-    addTask(title, priority = 'medium') {
-        const newTask = {
-            id: Date.now(),
-            title,
-            priority,
-            completed: false,
-            createdAt: new Date()
-        };
-        
-        this.tasks.push(newTask);
-        return newTask;
-    }
-    
-    completeTask(taskId) {
-        const task = this.tasks.find(task => task.id === taskId);
-        if (task) {
-            task.completed = true;
-            return true;
-        }
-        return false;
-    }
-    
-    getPendingTasks() {
-        return this.tasks.filter(task => !task.completed);
-    }
-    
-    getTasksByPriority(priority) {
-        return this.tasks.filter(task => task.priority === priority);
-    }
-}
-
-// Using async/await with fetch API
-async function fetchUserData(userId) {
-    try {
-        const response = await fetch(`https://api.example.com/users/${userId}`);
-        
-        if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error fetching user data:', error);
-        return null;
-    }
-}
-```
-
-</details>
-
-<details>
-
-<summary>TypeScript</summary>
-
-```typescript
-// Angular component example
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserService } from '../../services/user.service';
-import { User } from '../../models/user.model';
-
-@Component({
-  selector: 'app-user-profile',
-  templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
-})
-export class UserProfileComponent implements OnInit {
-  @Input() userId: number;
-  @Output() userUpdated = new EventEmitter<User>();
-  
-  profileForm: FormGroup;
-  user: User | null = null;
-  isLoading = false;
-  errorMessage = '';
-  
-  constructor(
-    private fb: FormBuilder,
-    private userService: UserService
-  ) {
-    this.profileForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
-      email: ['', [Validators.required, Validators.email]],
-      bio: ['', Validators.maxLength(500)]
-    });
-  }
-  
-  ngOnInit(): void {
-    this.loadUserProfile();
-  }
-  
-  async loadUserProfile(): Promise<void> {
-    this.isLoading = true;
-    
-    try {
-      this.user = await this.userService.getUserById(this.userId);
-      if (this.user) {
-        this.profileForm.patchValue({
-          name: this.user.name,
-          email: this.user.email,
-          bio: this.user.bio
-        });
-      }
-    } catch (error) {
-      this.errorMessage = 'Failed to load user profile';
-    } finally {
-      this.isLoading = false;
-    }
-  }
-  
-  onSubmit(): void {
-    if (this.profileForm.valid && this.user) {
-      const updatedUser = {
-        ...this.user,
-        ...this.profileForm.value
-      };
-      
-      this.userService.updateUser(updatedUser)
-        .subscribe(
-          (result) => {
-            this.userUpdated.emit(result);
-          },
-          (error) => {
-            this.errorMessage = 'Failed to update profile';
-          }
-        );
-    }
-  }
-}
-```
-
-</details>
-
-### Files
-
-{% file src="./" %}
-README File
-{% endfile %}
-
-```
-
-<div data-gb-custom-block data-tag="file" data-src='README.md' data-caption='README File'></div>
-
-```
-
-### Cards
-
-
-
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>JavaScript</td><td><a href=".gitbook/assets/icons8-javascript.svg">icons8-javascript.svg</a></td><td><a href="section1/variables-data-types/arrays-objects.md">arrays-objects.md</a></td></tr><tr><td>TypeScript</td><td><a href=".gitbook/assets/icons8-mecanografiado.svg">icons8-mecanografiado.svg</a></td><td><a href="section-1-programming-fundamentals/section2/control-structures/conditionals.md">conditionals.md</a></td></tr><tr><td>Angular</td><td><a href=".gitbook/assets/angular-icon-svgrepo-com.svg">angular-icon-svgrepo-com.svg</a></td><td><a href="section-1-programming-fundamentals/section2/control-structures/loops.md">loops.md</a></td></tr><tr><td>NestJS</td><td><a href=".gitbook/assets/nestjs-svgrepo-com.svg">nestjs-svgrepo-com.svg</a></td><td><a href="section1/variables-data-types/numbers-strings.md">numbers-strings.md</a></td></tr><tr><td>Docker</td><td><a href=".gitbook/assets/docker-svgrepo-com.svg">docker-svgrepo-com.svg</a></td><td><a href="section2/">section2</a></td></tr></tbody></table>
-
-```
-
-<table data-view="cards"><thead><tr><th></th><th data-hidden data-card-cover data-type="files"></th><th data-hidden data-card-target data-type="content-ref"></th></tr></thead><tbody><tr><td>JavaScript</td><td><a href=".gitbook/assets/icons8-javascript.svg">icons8-javascript.svg</a></td><td><a href="section1/variables-data-types/arrays-objects.md">arrays-objects.md</a></td></tr><tr><td>TypeScript</td><td><a href=".gitbook/assets/icons8-mecanografiado.svg">icons8-mecanografiado.svg</a></td><td><a href="section-1-programming-fundamentals/section2/control-structures/conditionals.md">conditionals.md</a></td></tr><tr><td>Angular</td><td><a href=".gitbook/assets/angular-icon-svgrepo-com.svg">angular-icon-svgrepo-com.svg</a></td><td><a href="section-1-programming-fundamentals/section2/control-structures/loops.md">loops.md</a></td></tr><tr><td>NestJS</td><td><a href=".gitbook/assets/nestjs-svgrepo-com.svg">nestjs-svgrepo-com.svg</a></td><td><a href="section1/variables-data-types/numbers-strings.md">numbers-strings.md</a></td></tr><tr><td>Docker</td><td><a href=".gitbook/assets/docker-svgrepo-com.svg">docker-svgrepo-com.svg</a></td><td><a href="section2/">section2</a></td></tr></tbody></table>
-
-```
-
-### Embedded URLs
-
-{% embed url="https://www.youtube.com/watch?v=dQw4w9WgXcQ" %}
-
-```
-
-<div data-gb-custom-block data-tag="embed" data-url='https://www.youtube.com/watch?v=dQw4w9WgXcQ'></div>
-
-```
-
-### Math Formulas
-
-Inline: $E=mc^2$
-
-```
-$E=mc^2$
-```
-
-Block:
-
-$$
-\frac{n!}{k!(n-k)!} = \binom{n}{k}
-$$
-
-```
-$$
-\frac{n!}{k!(n-k)!} = \binom{n}{k}
-$$
-```
-
-### Annotations (Footnotes)
-
-Here's a footnote reference[^1].
-
-```
-Here's a footnote reference[^1].
-
-[^1]: This is the footnote content.
-```
-
-### Stepper
-
-{% stepper %}
-{% step %}
-Content for step 1
-{% endstep %}
-
-{% step %}
-Content for step 2
-{% endstep %}
-
-{% step %}
-Content for step 3
-{% endstep %}
-{% endstepper %}
-
-```
-
-<div data-gb-custom-block data-tag="stepper">
-
-<div data-gb-custom-block data-tag="step" data-title='Step 1'>
-
-Content for step 1
-
-</div>
-
-<div data-gb-custom-block data-tag="step" data-title='Step 2'>
-
-Content for step 2
-
-</div>
-
-<div data-gb-custom-block data-tag="step" data-title='Step 3'>
-
-Content for step 3
-
-</div>
-
-</div>
-
-```
-
-### Emojis
-
-You can insert emojis using the `:emoji_name:` syntax, for example: :smile: :heart: :rocket:
-
-```
-:smile: :heart: :rocket:
-```
-
-### Drawings
-
-GitBook supports drawing diagrams, which can be added using the diagram block:
-
-{% code title="Simple diagram example" %}
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-```
-{% endcode %}
-
-````
-
-<div data-gb-custom-block data-tag="code" data-title='Simple diagram example'>
-
-```mermaid
-graph TD;
-    A-->B;
-    A-->C;
-    B-->D;
-    C-->D;
-````
-
-\`\`\`
-
-### Keyboard Keys
-
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>
-
-```
-<kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>Del</kbd>
-```
-
-### Highlighting Text
-
-\==This text is highlighted==
-
-```
-==This text is highlighted==
-```
-
-### Definition Lists
-
-TermDefinition of the termAnother termDefinition of another term
-
-```
-<dl>
-  <dt>Term</dt>
-  <dd>Definition of the term</dd>
-  <dt>Another term</dt>
-  <dd>Definition of another term</dd>
-</dl>
-```
-
-### Superscript and Subscript
-
-Superscript: X2\
-Subscript: H2O
-
-```
-Superscript: X<sup>2</sup>
-Subscript: H<sub>2</sub>O
-```
-
-[^1]: This is the footnote content.
+</details> 
