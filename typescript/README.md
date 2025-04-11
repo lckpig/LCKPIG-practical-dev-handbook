@@ -1,5 +1,5 @@
 <details>
-<summary>## **1. Introducción a TypeScript**</summary>
+<summary>1. Introducción a TypeScript</summary>
 
 - **Historia y evolución de TypeScript**
     - Creación por Microsoft y motivaciones detrás de TypeScript
@@ -22,7 +22,7 @@
 </details>
 
 <details>
-<summary>## **2. Instalación y Configuración del Entorno**</summary>
+<summary>2. Instalación y Configuración del Entorno</summary>
 
 - **Instalación de TypeScript**
     - Instalación global con `npm install -g typescript`
@@ -44,7 +44,7 @@
 </details>
 
 <details>
-<summary>## **3. Tipos Básicos en TypeScript**</summary>
+<summary>3. Tipos Básicos en TypeScript</summary>
 
 - **Tipos primitivos en TypeScript**
     - `string`, `number`, `boolean`, `null`, `undefined`
@@ -70,7 +70,7 @@
 </details>
 
 <details>
-<summary>## **4. Inferencia y Anotaciones de Tipos**</summary>
+<summary>4. Inferencia y Anotaciones de Tipos</summary>
 
 - **Inferencia de tipos en TypeScript**
     - Inferencia automática en variables (`let x = 10; // x es number`)
@@ -94,7 +94,7 @@
 </details>
 
 <details>
-<summary>## **5. Tipos Avanzados en TypeScript**</summary>
+<summary>5. Tipos Avanzados en TypeScript</summary>
 
 - **Unión de tipos (`Union Types`)**
     - Uso de `|` para permitir múltiples tipos (`let valor: string | number;`)
@@ -123,7 +123,7 @@
 </details>
 
 <details>
-<summary>## **6. Manejo de Tipos Utilitarios en TypeScript**</summary>
+<summary>6. Manejo de Tipos Utilitarios en TypeScript</summary>
 
 - **Tipos parciales y opcionales**
     - `Partial<T>`: Conversión de todas las propiedades a opcionales
@@ -148,7 +148,7 @@
 </details>
 
 <details>
-<summary>## **7. Manejo de Tipos Genéricos en TypeScript**</summary>
+<summary>7. Manejo de Tipos Genéricos en TypeScript</summary>
 
 - **Introducción a los tipos genéricos**
     - Definición de funciones genéricas (`function identidad<T>(valor: T): T { return valor; }`)
@@ -173,7 +173,7 @@
 </details>
 
 <details>
-<summary>## **8. Manejo de Tipos Condicionales y Mapeados**</summary>
+<summary>8. Manejo de Tipos Condicionales y Mapeados</summary>
 
 - **Introducción a los tipos condicionales**
     - Sintaxis básica (`T extends U ? X : Y`)
@@ -197,7 +197,7 @@
 </details>
 
 <details>
-<summary>## **9. Manejo de Tipos Recursivos y Avanzados**</summary>
+<summary>9. Manejo de Tipos Recursivos y Avanzados</summary>
 
 - **Tipos recursivos en TypeScript**
     - Definición de estructuras recursivas (`type Nodo<T> = { valor: T; hijos?: Nodo<T>[] };`)
@@ -219,7 +219,7 @@
 </details>
 
 <details>
-<summary>## **10. Módulos y Namespaces**</summary>
+<summary>10. Módulos y Namespaces</summary>
 
 - **Manejo de módulos en TypeScript**
     - Diferencias entre `ES Modules` y `CommonJS`
@@ -242,7 +242,7 @@
 </details>
 
 <details>
-<summary>## **11. Programación Orientada a Objetos en TypeScript**</summary>
+<summary>11. Programación Orientada a Objetos en TypeScript</summary>
 
 - **Clases en TypeScript**
     - Declaración de clases (`class Persona {}`)
@@ -267,7 +267,7 @@
 </details>
 
 <details>
-<summary>## **12. Programación Funcional con TypeScript**</summary>
+<summary>12. Programación Funcional con TypeScript</summary>
 
 - **Principios de programación funcional en TypeScript**
     - Inmutabilidad y funciones puras
@@ -290,7 +290,7 @@
 </details>
 
 <details>
-<summary>## **13. TypeScript con JavaScript Asíncrono**</summary>
+<summary>13. TypeScript con JavaScript Asíncrono</summary>
 
 - **Manejo de Promesas en TypeScript**
     - Tipado de promesas (`Promise<T>`)
@@ -313,7 +313,7 @@
 </details>
 
 <details>
-<summary>## **14. Manipulación del DOM con TypeScript**</summary>
+<summary>14. Manipulación del DOM con TypeScript</summary>
 
 - **Acceso a elementos del DOM con TypeScript**
     - Tipado de `document.getElementById()`, `querySelector()` y `querySelectorAll()`
@@ -337,7 +337,7 @@
 </details>
 
 <details>
-<summary>## **15. Tipado Estricto y Estrategias de Seguridad**</summary>
+<summary>15. Tipado Estricto y Estrategias de Seguridad</summary>
 
 - **Activación del modo estricto en TypeScript**
     - Configuración de `strict: true` en `tsconfig.json`
@@ -362,7 +362,7 @@
 </details>
 
 <details>
-<summary>## **16. Manejo de Errores y Depuración**</summary>
+<summary>16. Manejo de Errores y Depuración</summary>
 
 - **Manejo de errores con `try...catch` en TypeScript**
     - Tipado de errores en bloques `catch` (`error: unknown`)
@@ -386,7 +386,7 @@
 </details>
 
 <details>
-<summary>## **17. Buenas Prácticas y Optimización de Código**</summary>
+<summary>17. Buenas Prácticas y Optimización de Código</summary>
 
 - **Estructura y organización del código**
     - Separación de lógica en módulos y archivos
@@ -410,7 +410,7 @@
 </details>
 
 <details>
-<summary>## **18. Decoradores en TypeScript**</summary>
+<summary>18. Decoradores en TypeScript</summary>
 
 - **Introducción a los decoradores**
     - ¿Qué son los decoradores y cómo funcionan en TypeScript?
@@ -436,7 +436,7 @@
 </details>
 
 <details>
-<summary>## **19. Integración de TypeScript con Angular**</summary>
+<summary>19. Integración de TypeScript con Angular</summary>
 
 - **Configuración del entorno de Angular con TypeScript**
     - Instalación de Angular CLI y generación de proyectos (`ng new`)
@@ -459,7 +459,7 @@
 </details>
 
 <details>
-<summary>## **20. Integración de TypeScript con NestJS**</summary>
+<summary>20. Integración de TypeScript con NestJS</summary>
 
 - **Configuración y estructura de un proyecto NestJS**
     - Instalación de NestJS y estructura de carpetas (`nest new`)
@@ -481,7 +481,7 @@
 </details>
 
 <details>
-<summary>## **21. Interoperabilidad con JavaScript y Migración de Código**</summary>
+<summary>21. Interoperabilidad con JavaScript y Migración de Código</summary>
 
 - **Compatibilidad entre TypeScript y JavaScript**
     - Uso de `allowJs` en `tsconfig.json` para mezclar archivos `.js` y `.ts`
@@ -505,7 +505,7 @@
 </details>
 
 <details>
-<summary>## **22. Configuración Avanzada de TypeScript (`tsconfig.json`)**</summary>
+<summary>22. Configuración Avanzada de TypeScript (`tsconfig.json`)</summary>
 
 - **Estructura y propósito de `tsconfig.json`**
     - ¿Qué es `tsconfig.json` y cómo afecta la compilación?
@@ -531,7 +531,7 @@
 </details>
 
 <details>
-<summary>## **23. Automatización y Testing en TypeScript**</summary>
+<summary>23. Automatización y Testing en TypeScript</summary>
 
 ### **Automatización en TypeScript**
 
