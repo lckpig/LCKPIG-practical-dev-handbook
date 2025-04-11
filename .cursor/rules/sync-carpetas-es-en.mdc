@@ -1,0 +1,15 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## Regla de Sincronización entre Carpetas `ES` y `EN`
+
+**Siempre se trabajará utilizando la carpeta `ES` del workspace como base.**
+
+- Cualquier acción realizada en la carpeta `ES` —ya sea **creación**, **modificación** o **eliminación** de contenido— deberá ser **replicada automaticamente en la carpeta `EN`**.
+- La replicación en la carpeta `EN` debe incluir una **traducción completa y fiel del contenido textual** de **castellano neutro a inglés**.
+- Los **nombres de archivos y carpetas** en ambas (`ES` y `EN`) deben ser **idénticos** y estar siempre redactados en **inglés**.
+- La **estructura de directorios** debe mantenerse sincronizada entre ambas carpetas.
+
+> Esta norma asegura la coherencia bilingüe del proyecto y permite mantener ambas versiones del contenido actualizadas, equivalentes y organizadas.

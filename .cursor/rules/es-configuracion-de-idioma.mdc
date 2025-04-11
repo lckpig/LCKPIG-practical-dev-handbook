@@ -1,0 +1,13 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## Regla de Lenguaje para la Carpeta `ES`
+
+- El idioma oficial de la carpeta `ES` será **castellano neutro**.
+- Todo el contenido escrito dentro de esta carpeta debe estar redactado en **castellano neutro**, sin excepciones.
+- **Ejemplos de código**: deben estar escritos en **inglés** (identificadores, nombres de variables, funciones, clases, etc.).
+- **Comentarios dentro del código**: deben estar escritos en **castellano neutro**.
+
+> Esta convención garantiza consistencia lingüística y claridad tanto en la documentación como en los fragmentos técnicos del proyecto.

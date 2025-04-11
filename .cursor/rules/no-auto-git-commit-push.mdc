@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+<!-- 
+## 🔒 Regla de Control de Versiones
+
+**Se permite realizar `git commit` y `git push` de forma automática, pero únicamente cuando el desarrollador lo solicite.**
+
+- Nunca debe ejecutarse `commit` ni `push` por iniciativa propia del sistema o herramienta.
+- La acción automatizada debe ocurrir solo tras una orden clara y directa del desarrollador (por ejemplo, mediante un comando o acción intencional como `push`).
+- En ausencia de dicha instrucción, el sistema debe permanecer inactivo respecto al control de versiones.
+
+> ⛔ No está permitido automatizar estas operaciones de forma autónoma.  
+> ✅ Sólo automatiza si el desarrollador lo ha indicado manualmente y de forma explícita. -->
