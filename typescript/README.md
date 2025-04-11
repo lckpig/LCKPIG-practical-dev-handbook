@@ -1,6 +1,9 @@
+INICIO de la guia Practica de TypeScript
 <!-- MULTILANGUAJE MENU START -->
-ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
+ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript2)
 <!-- MULTILANGUAJE MENU END -->
+
+**Comentarios sobre TYPESCRIPT**
 
 <details>
 <summary>1. Introducción a TypeScript</summary>
