@@ -1,6 +1,4 @@
-{% hint style="info" %}
 **EN |** [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
-{% endhint %}
 
 <details>
 <summary>1. Introduction to TypeScript</summary>
