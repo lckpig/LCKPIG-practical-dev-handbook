@@ -8,18 +8,37 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/css)
 
 CSS (Cascading Style Sheets) es un lenguaje de estilo utilizado para describir la presentación de un documento escrito en HTML o XML. CSS describe cómo los elementos deben ser renderizados en pantalla, en papel, o en otros medios.
 
-## Contenido de esta sección
+## Índice de contenidos
 
-En esta sección aprenderás:
-
-- Fundamentos de CSS y su sintaxis
-- Selectores y especificidad
-- Modelo de caja y posicionamiento
-- Flexbox y Grid para layouts modernos
-- Animaciones y transiciones
-- CSS Variables y funciones
-- Responsive Design con Media Queries
-- Buenas prácticas y optimización de CSS
+- [Fundamentos de CSS](fundamentals/README.md)
+  - [Sintaxis y estructura](fundamentals/syntax-and-structure.md)
+  - [Selectores y especificidad](fundamentals/selectors-and-specificity.md)
+  - [Cascada y herencia](fundamentals/cascade-and-inheritance.md)
+  - [Unidades y valores](fundamentals/units-and-values.md)
+- [Modelo de caja y layout](box-model/README.md)
+  - [Box model](box-model/box-model.md)
+  - [Posicionamiento](box-model/positioning.md)
+  - [Display y visibilidad](box-model/display-and-visibility.md)
+- [Layouts modernos](modern-layouts/README.md)
+  - [Flexbox](modern-layouts/flexbox.md)
+  - [CSS Grid](modern-layouts/css-grid.md)
+  - [Multi-columnas](modern-layouts/multi-columns.md)
+- [Responsive Design](responsive-design/README.md)
+  - [Media Queries](responsive-design/media-queries.md)
+  - [Imágenes responsivas](responsive-design/responsive-images.md)
+  - [Mobile-first approach](responsive-design/mobile-first-approach.md)
+- [Transformaciones y efectos](transformations/README.md)
+  - [Animaciones y transiciones](transformations/animations-and-transitions.md)
+  - [Transformaciones 2D/3D](transformations/2d-3d-transformations.md)
+  - [Filtros y efectos visuales](transformations/filters-and-visual-effects.md)
+- [CSS avanzado](advanced/README.md)
+  - [Variables CSS (Custom Properties)](advanced/css-variables.md)
+  - [Funciones](advanced/functions.md)
+  - [Metodologías (BEM, SMACSS, OOCSS)](advanced/methodologies.md)
+- [Optimización y rendimiento](optimization/README.md)
+  - [Buenas prácticas](optimization/best-practices.md)
+  - [Minificación y compresión](optimization/minification-and-compression.md)
+  - [Critical CSS](optimization/critical-css.md)
 
 ## ¿Por qué aprender CSS?
 
