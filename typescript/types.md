@@ -2,13 +2,13 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/types)
 <!-- MULTILANGUAJE MENU END -->
 
+ESTO ES NUEVO Y BONITO
 
 # Tipos en TypeScript
 
-PROBEMOS ESTE OTRO - lo cambiamos COCHE MUY RAPIDO
+Y ESTO TAMBIEN ES AZUL
 
 ## Introducción
-
 
 TypeScript es un lenguaje de programación que extiende JavaScript añadiendo tipos estáticos. Los tipos son una característica fundamental que nos permite definir la forma de los datos y mejorar la calidad del código.
 
