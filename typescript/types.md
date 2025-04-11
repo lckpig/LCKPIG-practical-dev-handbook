@@ -4,7 +4,11 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/types)
 
 # Types in TypeScript
 
+LET'S TRY THIS OTHER ONE - we changed it VERY FAST CAR
+
 ## Introduction
+
+HERE WE WILL ADD THIS PARAGRAPH TO TEST
 
 TypeScript is a programming language that extends JavaScript by adding static types. Types are a fundamental feature that allows us to define the shape of data and improve code quality.
 
