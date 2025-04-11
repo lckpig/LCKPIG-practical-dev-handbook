@@ -2,6 +2,7 @@
 
 * [Introduction](README.md)
 * [Markdown Elements Guide](markdown-elements.md)
+* [HTML](html/README.md)
 * [TypeScript](typescript/README.md)
   * [Types in TypeScript](typescript/types.md)
   * [TypeScript Fundamentals](typescript/fundamentals.md)
