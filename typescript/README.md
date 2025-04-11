@@ -1,4 +1,6 @@
-> [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
+{% hint style="info" %}
+[EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
+{% endhint %}
 
 <details>
 <summary>1. Introducción a TypeScript</summary>
