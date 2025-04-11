@@ -1,3 +1,7 @@
+<!-- MULTILANGUAJE MENU START -->
+EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/)
+<!-- MULTILANGUAJE MENU END -->
+
 # Introduction
 
 Welcome to the LCKPIG Practical Development Handbook! This guide provides practical programming knowledge for developers at all levels.

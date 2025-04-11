@@ -1,4 +1,6 @@
-EN - [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
+<!-- MULTILANGUAJE MENU START -->
+EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
+<!-- MULTILANGUAJE MENU END -->
 
 <details>
 <summary>1. Introduction to TypeScript</summary>
