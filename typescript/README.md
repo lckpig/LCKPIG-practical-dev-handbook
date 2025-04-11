@@ -1,7 +1,8 @@
-### **1. Introduction to TypeScript**
+<details>
+<summary>1. Introduction to TypeScript</summary>
 
 - **History and evolution of TypeScript**
-    - Created by Microsoft and motivations behind TypeScript
+    - Creation by Microsoft and motivations behind TypeScript
     - Key differences between TypeScript and JavaScript
     - Notable versions and improvements introduced in each
 - **Advantages and main features of TypeScript**
@@ -18,9 +19,10 @@
     - Interfaces and type aliases
     - Compatibility with modules and namespaces
 
----
+</details>
 
-### **2. Installation and Environment Setup**
+<details>
+<summary>2. Installation and Environment Setup</summary>
 
 - **Installing TypeScript**
     - Global installation with `npm install -g typescript`
@@ -39,9 +41,10 @@
     - Integration with ESLint and Prettier for code formatting
     - Recommended extensions in Visual Studio Code
 
----
+</details>
 
-### **3. Basic Types in TypeScript**
+<details>
+<summary>3. Basic Types in TypeScript</summary>
 
 - **Primitive types in TypeScript**
     - `string`, `number`, `boolean`, `null`, `undefined`
@@ -64,9 +67,10 @@
     - Using tuples (`[string, number]`)
     - Labeled tuples (`[id: number, name: string]`)
 
----
+</details>
 
-### **4. Type Inference and Annotations**
+<details>
+<summary>4. Type Inference and Annotations</summary>
 
 - **Type inference in TypeScript**
     - Automatic inference in variables (`let x = 10; // x is number`)
@@ -87,9 +91,10 @@
     - When to use `as` and `<Type>` and their differences
     - Risks and best practices in `Type Assertions`
 
----
+</details>
 
-### **5. Advanced Types in TypeScript**
+<details>
+<summary>5. Advanced Types in TypeScript</summary>
 
 - **Union Types**
     - Using `|` to allow multiple types (`let value: string | number;`)
@@ -115,9 +120,10 @@
     - `typeof` in combination with `keyof`
     - The `in` operator for property validations
 
----
+</details>
 
-### **6. Utility Types in TypeScript**
+<details>
+<summary>6. Utility Types in TypeScript</summary>
 
 - **Partial and optional types**
     - `Partial<T>`: Converting all properties to optional
@@ -139,9 +145,10 @@
     - `InstanceType<T>`: Inferring the type of a class instance
     - `ThisParameterType<T>`: Extracting the `this` type in a function
 
----
+</details>
 
-### **7. Generic Types in TypeScript**
+<details>
+<summary>7. Generic Types in TypeScript</summary>
 
 - **Introduction to generic types**
     - Definition of generic functions (`function identity<T>(value: T): T { return value; }`)
@@ -163,9 +170,10 @@
     - Automatic inference with `infer` (`ReturnType<T>`)
     - Using `Mapped Types` to transform structures
 
----
+</details>
 
-### **8. Conditional and Mapped Types**
+<details>
+<summary>8. Conditional and Mapped Types</summary>
 
 - **Introduction to conditional types**
     - Basic syntax (`T extends U ? X : Y`)
@@ -186,9 +194,10 @@
     - Implementing filters and transformations at compile time
     - Creating `DeepPartial<T>` to make nested types optional
 
----
+</details>
 
-### **9. Recursive and Advanced Types**
+<details>
+<summary>9. Recursive and Advanced Types</summary>
 
 - **Recursive types in TypeScript**
     - Definition of recursive structures (`type Node<T> = { value: T; children?: Node<T>[] };`)
@@ -207,9 +216,10 @@
     - Implementing type validations at compile time
     - Using `IsNever<T>` and `IsUnknown<T>` for type flow control
 
----
+</details>
 
-### **10. Modules and Namespaces**
+<details>
+<summary>10. Modules and Namespaces</summary>
 
 - **Managing modules in TypeScript**
     - Differences between `ES Modules` and `CommonJS`
@@ -229,9 +239,10 @@
     - Configuration in Webpack, Rollup, and Vite
     - Integration with Node.js and `ts-node`
 
----
+</details>
 
-### **11. Object-Oriented Programming in TypeScript**
+<details>
+<summary>11. Object-Oriented Programming in TypeScript</summary>
 
 - **Classes in TypeScript**
     - Class declaration (`class Person {}`)
@@ -251,11 +262,12 @@
     - Accessing methods without instantiating the class
 - **Design patterns applied in TypeScript**
     - Using `Singleton`, `Factory`, `Decorator`
-    - Implementation of `Strategy` and `Observer` in TypeScript
+    - Implementing `Strategy` and `Observer` in TypeScript
 
----
+</details>
 
-### **12. Functional Programming with TypeScript**
+<details>
+<summary>12. Functional Programming with TypeScript</summary>
 
 - **Principles of functional programming in TypeScript**
     - Immutability and pure functions
@@ -265,7 +277,7 @@
     - Creating higher-order functions
 - **Closures and currying in TypeScript**
     - Using closures to encapsulate data
-    - Implementing currying to partially apply functions
+    - Implementing currying for partial function application
 - **Using generic types in functional functions**
     - Creating generic functions (`function process<T>(value: T): T {}`)
     - Applications of `Partial<T>`, `Readonly<T>`, `Pick<T, K>` in functional programming
@@ -275,31 +287,33 @@
 - **Using `ReadonlyArray<T>` and `ReadonlyMap<K, V>`**
     - Avoiding mutations in lists and data structures
 
----
+</details>
 
-### **13. TypeScript with Asynchronous JavaScript**
+<details>
+<summary>13. TypeScript with Asynchronous JavaScript</summary>
 
-- **Handling Promises in TypeScript**
+- **Managing Promises in TypeScript**
     - Typing promises (`Promise<T>`)
     - Returning typed promises in functions
 - **Using `async/await` in TypeScript**
-    - Declaring asynchronous functions with `async`
+    - Declaring async functions with `async`
     - Awaiting promises with `await`
-- **Typing asynchronous functions**
+- **Typing async functions**
     - Explicit typing of `async` functions (`async function getData(): Promise<string>`)
-    - Error typing in `try...catch`
+    - Typing errors in `try...catch`
 - **`Promise.all()`, `Promise.race()`, `Promise.allSettled()`**
-    - Advanced typing and usage in concurrency
+    - Typing and advanced use in concurrency
 - **AbortController and Promise cancellation**
     - Implementing `AbortController` in `fetch`
     - Using `signal` to cancel HTTP requests
-- **Error handling in asynchronous code**
+- **Error handling in async code**
     - Using `catch` in Promises
     - Strategies with `try...catch` in `async` functions
 
----
+</details>
 
-### **14. DOM Manipulation with TypeScript**
+<details>
+<summary>14. DOM Manipulation with TypeScript</summary>
 
 - **Accessing DOM elements with TypeScript**
     - Typing `document.getElementById()`, `querySelector()` and `querySelectorAll()`
@@ -316,46 +330,48 @@
 - **Event delegation and typed `event.target`**
     - Implementing event delegation in dynamic lists
     - Safe use of `event.target` with `as HTMLElement`
-- **Using `MutationObserver` to detect changes in the DOM**
+- **Using `MutationObserver` to detect DOM changes**
     - Implementing `MutationObserver`
     - Use cases in dynamic applications
 
----
+</details>
 
-### **15. Strict Typing and Security Strategies**
+<details>
+<summary>15. Strict Typing and Security Strategies</summary>
 
-- **Activating strict mode in TypeScript**
+- **Enabling strict mode in TypeScript**
     - Configuring `strict: true` in `tsconfig.json`
     - Effects of `strictNullChecks`, `noImplicitAny`, `strictFunctionTypes`
-- **Safely handling null and optional values**
+- **Safe handling of null and optional values**
     - Using `strictNullChecks` to avoid `null` or `undefined` values
     - Optional chaining operator (`?.`)
     - Nullish coalescing operator (`??`)
 - **Using `unknown` instead of `any`**
     - Differences and best practices with `unknown`
-    - Usage restrictions and validation needs
+    - Usage constraints and need for validations
 - **Security in data and API handling**
     - Input validation with `typeof` and `instanceof`
     - Using `never` to ensure exhaustiveness in `switch`
 - **Protection against errors in objects and classes**
     - Implementing `Readonly<T>` to prevent mutations
     - Safe typing with `Partial<T>` and `Required<T>`
-- **Avoiding problems in typing dynamic structures**
+- **Avoiding problems in dynamic structure typing**
     - Strategies for handling JSON structures in APIs (`Record<string, unknown>`)
     - Strict typing of `fetch()` responses
 
----
+</details>
 
-### **16. Error Handling and Debugging**
+<details>
+<summary>16. Error Handling and Debugging</summary>
 
 - **Error handling with `try...catch` in TypeScript**
     - Typing errors in `catch` blocks (`error: unknown`)
     - Using `instanceof` to verify error type
-- **Errors in asynchronous code**
+- **Errors in async code**
     - Catching errors in `async/await` with `try...catch`
     - Typing failed responses in Promises
 - **Debugging with `console.log()` and `console.error()`**
-    - Efficient use of `console.table()` to visualize objects
+    - Efficient use of `console.table()` for object visualization
     - `debugger` in browser DevTools
 - **Integration with debugging tools**
     - Using `tsc --watch` to detect errors during development
@@ -363,39 +379,41 @@
 - **Error handling in classes and functions**
     - Creating custom error classes (`class CustomError extends Error`)
     - Controlled error throwing with `throw`
-- **Error prevention in TypeScript**
+- **Preventing errors in TypeScript**
     - Using `strictNullChecks` and `noImplicitAny`
     - Strategies to avoid `any` and ensure safe typing
 
----
+</details>
 
-### **17. Best Practices and Code Optimization**
+<details>
+<summary>17. Best Practices and Code Optimization</summary>
 
 - **Code structure and organization**
     - Separating logic into modules and files
     - Proper use of `interfaces` and `types`
 - **Writing maintainable code**
-    - Naming conventions for variables and functions
-    - Using `readonly` and `const` to prevent accidental modifications
+    - Naming conventions in variables and functions
+    - Using `readonly` and `const` to avoid accidental modifications
 - **Performance optimization in TypeScript**
     - Avoiding unnecessary type conversions (`as any`)
     - Efficient use of data structures (`Map`, `Set`, `Record<K, T>`)
 - **Reducing complexity in functions and classes**
     - Applying the **DRY** principle (Don't Repeat Yourself)
     - Using pure functions and modularization
-- **Preventing errors at compile time**
+- **Preventing compilation time errors**
     - Enabling `strict` in `tsconfig.json`
     - Using `unknown` instead of `any`
 - **Compatibility and scalability in large projects**
     - Using `namespace` vs. `modules`
     - Implementing `Abstract Classes` to facilitate extensibility
 
----
+</details>
 
-### **18. Decorators in TypeScript**
+<details>
+<summary>18. Decorators in TypeScript</summary>
 
 - **Introduction to decorators**
-    - What are decorators and how do they work in TypeScript?
+    - What are decorators and how they work in TypeScript?
     - Configuring `experimentalDecorators` in `tsconfig.json`
 - **Types of decorators in TypeScript**
     - **Class decorators** (`@ClassDecorator`)
@@ -410,22 +428,23 @@
     - Creating custom decorators with `Reflect.metadata()`
 - **Composition and chaining of decorators**
     - Applying multiple decorators to the same entity
-    - Execution order of decorators in classes
+    - Order of decorator execution in classes
 - **Decorators with parameters and dynamic configuration**
     - Decorators that accept arguments (`@MyDecorator(config)`)
     - Using `factory functions` in decorators
 
----
+</details>
 
-### **19. Integrating TypeScript with Angular**
+<details>
+<summary>19. TypeScript Integration with Angular</summary>
 
-- **Setting up the Angular environment with TypeScript**
+- **Configuring the Angular environment with TypeScript**
     - Installing Angular CLI and generating projects (`ng new`)
     - Configuring `tsconfig.json` in Angular
 - **Typing and structure in Angular**
     - Typing components, services, and directives
     - Using interfaces and classes in Angular
-    - Handling `strictPropertyInitialization` in components
+    - Managing `strictPropertyInitialization` in components
 - **Dependency injection and services**
     - Typing `Injectable` and `providers`
     - Using `HttpClient` with safe typing
@@ -437,9 +456,10 @@
     - Using `OnPush` and `trackBy` in `ngFor`
     - Avoiding `any` in state management
 
----
+</details>
 
-### **20. Integrating TypeScript with NestJS**
+<details>
+<summary>20. TypeScript Integration with NestJS</summary>
 
 - **Configuration and structure of a NestJS project**
     - Installing NestJS and folder structure (`nest new`)
@@ -450,17 +470,18 @@
     - Using DTOs (`Data Transfer Objects`) with type validations
 - **Dependency injection in NestJS**
     - Using `@Injectable()` and `@Inject()` for typed dependencies
-    - Handling `Providers` with interfaces and `useClass`, `useFactory`, `useValue`
+    - Managing `Providers` with interfaces and `useClass`, `useFactory`, `useValue`
 - **Database management with TypeORM and Prisma**
     - Typing entities with `@Entity()`, `@Column()`, `@PrimaryGeneratedColumn()`
     - Using `Repository<T>` for typed database access
-- **Handling WebSockets and GraphQL in NestJS with TypeScript**
+- **WebSocket and GraphQL handling in NestJS with TypeScript**
     - Typing `@WebSocketGateway()`, `@SubscribeMessage()`
     - Using `@Resolver()`, `@Query()`, `@Mutation()` in GraphQL
 
----
+</details>
 
-### **21. Interoperability with JavaScript and Code Migration**
+<details>
+<summary>21. Interoperability with JavaScript and Code Migration</summary>
 
 - **Compatibility between TypeScript and JavaScript**
     - Using `allowJs` in `tsconfig.json` to mix `.js` and `.ts` files
@@ -476,44 +497,46 @@
     - Declaring untyped modules with `declare module "package"`
 - **Converting dynamic objects and `any` to safe types**
     - Using `unknown` instead of `any` in migrated structures
-    - Implementing validations with `typeof`, `instanceof`, and `asserts`
+    - Implementing validations with `typeof`, `instanceof` and `asserts`
 - **Best practices in hybrid projects (JS + TS)**
     - Gradual refactoring in large projects
     - Using `strict: true` and progressive elimination of `any`
 
----
+</details>
 
-### **22. Advanced TypeScript Configuration (`tsconfig.json`)**
+<details>
+<summary>22. Advanced TypeScript Configuration (`tsconfig.json`)</summary>
 
 - **Structure and purpose of `tsconfig.json`**
-    - What is `tsconfig.json` and how does it affect compilation?
+    - What is `tsconfig.json` and how it affects compilation?
     - Automatic generation with `tsc --init`
 - **Essential configurations in `compilerOptions`**
-    - `target`: Specifying the ECMAScript version
-    - `module`: Configuring the module system (`ESNext`, `CommonJS`)
-    - `strict`: Activating strict mode for greater security
-- **Directory control and file output**
+    - `target`: ECMAScript version specification
+    - `module`: Module system configuration (`ESNext`, `CommonJS`)
+    - `strict`: Enabling strict mode for greater security
+- **Directory and output file control**
     - `rootDir` and `outDir`: Organization of source and compiled files
-    - `include`, `exclude`, and `files`: Defining files in compilation
+    - `include`, `exclude` and `files`: Definition of files in compilation
 - **Optimization and performance in compilation**
     - `incremental`: Incremental compilation to reduce times
     - `noEmitOnError`: Avoiding code generation if there are errors
-    - `sourceMap`: Creating source code maps for debugging
-- **Handling type files (`@types` and `declaration`)**
+    - `sourceMap`: Creating source maps for debugging
+- **Handling typing files (`@types` and `declaration`)**
     - `declaration`: Generating `.d.ts` files for libraries
     - `typeRoots` and `types`: Control of external type definitions
 - **Advanced configurations in large projects**
     - `paths` and `baseUrl` for module aliases
     - `composite` and `references` for modular projects
 
----
+</details>
 
-### **23. Automation and Testing in TypeScript**
+<details>
+<summary>23. Automation and Testing in TypeScript</summary>
 
 ### **Automation in TypeScript**
 
 - **Using `npm scripts` to run tasks**
-    - Configuring scripts in `package.json`
+    - Script configuration in `package.json`
     - Running compilation and cleanup (`tsc`, `rimraf dist`)
 - **Automation with bundling tools**
     - Configuring `Webpack` and `Vite` with TypeScript
@@ -531,11 +554,11 @@
 - **Integration testing in NestJS and Angular**
     - Testing services in NestJS with `TestingModule`
     - Testing in Angular with `TestBed` and `ComponentFixture`
-- **End-to-end (E2E) testing with Cypress and Playwright**
+- **End-to-end testing (E2E) with Cypress and Playwright**
     - Configuring Cypress in TypeScript projects
     - Creating UI tests (`cy.visit()`, `cy.get()`, `cy.click()`)
 - **Code coverage and report generation**
     - Using `jest --coverage` for test metrics
     - Configuring `nyc` for coverage analysis
 
----
+</details>
