@@ -804,6 +804,18 @@ This is a success note.
 
 ```
 
+{% hint style="info" %}
+
+## This is a H2 heading
+
+This is a line
+
+This is an inline <img src=".gitbook/assets/notification.png" alt="" data-size="line"> image
+
+- This is a second <mark style="color:orange;background-color:purple;">line using an unordered list and color</mark>
+{% endhint %}
+
+
 ### Tabs
 
 {% tabs %}
