@@ -10,12 +10,37 @@ CSS (Cascading Style Sheets) es un lenguaje utilizado para describir la presenta
 
 Esta sección cubre los siguientes temas relacionados con CSS:
 
-- Fundamentos de CSS
-- Selectores
-- Box Model
-- Flexbox y Grid
-- Responsive Design
-- Animaciones y transiciones
-- Mejores prácticas
+- **[Fundamentos de CSS](fundamentals/README.md)**
+  - Sintaxis y estructura
+  - Selectores y especificidad
+  - El modelo de caja
+  - Unidades y valores
+  - Cascada y herencia
 
-Explora los recursos y tutoriales para dominar el uso de CSS en tus proyectos web. 
+- **[Diseño y Layout](layout/README.md)**
+  - Posicionamiento
+  - Flexbox
+  - CSS Grid
+  - Diseño responsive
+  - Media queries
+
+- **[Estilos Visuales](visual/README.md)**
+  - Tipografía y textos
+  - Colores y degradados
+  - Bordes y sombras
+  - Fondos e imágenes
+  - Transformaciones y animaciones
+
+- **[CSS Moderno](modern/README.md)**
+  - Variables CSS (Custom Properties)
+  - Funciones calc(), min(), max()
+  - Metodologías (BEM, SMACSS, OOCSS)
+  - CSS-in-JS
+  - Preprocesadores (SASS, LESS)
+
+- **[Optimización y Rendimiento](performance/README.md)**
+  - Estrategias de carga
+  - Reducción de especificidad
+  - CSS crítico
+  - Debugging y herramientas
+  - Buenas prácticas
