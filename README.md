@@ -1,28 +1,6 @@
-# 🌐 Menú Multilenguaje
-
-| Idioma             | Language           |
-| ------------------ | ------------------ |
-| [ES](ES/README.md) | [EN](EN/README.md) |
-
-## 📚 Contenido / Content
-
-### 📖 Documentación / Documentation
-- [Introducción](ES/README.md) | [Introduction](EN/README.md)
-- [Guía de Instalación](ES/installation.md) | [Installation Guide](EN/installation.md)
-- [Configuración](ES/configuration.md) | [Configuration](EN/configuration.md)
-
-### 🛠️ Recursos / Resources
-- [Ejemplos](ES/examples.md) | [Examples](EN/examples.md)
-- [API](ES/api.md) | [API](EN/api.md)
-- [FAQ](ES/faq.md) | [FAQ](EN/faq.md)
-
----
-
-> 💡 **Nota**: Este menú se actualiza automáticamente con la estructura del proyecto.  
-> 💡 **Note**: This menu is automatically updated with the project structure.
-
-
-
+<!-- MULTILANGUAJE MENU START -->
+ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/)
+<!-- MULTILANGUAJE MENU END -->
 
 # LCKPIG Manual Práctico de Desarrollo
 
