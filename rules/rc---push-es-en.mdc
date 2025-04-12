@@ -59,6 +59,17 @@ Cuando se ejecuta el comando `rcpush`, se debe realizar un proceso completo de g
    - Añadir cambios con `git add -A`
    - Realizar commit con el mismo mensaje usado en `_ES` pero traducido al Ingles
    - Push con `git push`
+ 
+### Si el proceso en `_EN` es exitoso, proceder con la carpeta `.cursor`:
+
+1. **Repetir el mismo proceso en la carpeta `.cursor`**
+   - Comprobar estado con `git status`
+   - Añadir cambios con `git add -A`
+   - **Analizar los cambios para generar automáticamente un mensaje de commit relevante y conciso**:
+     - Crear un mensaje breve que describa el propósito o la esencia de los cambios
+     - El mensaje debe ser descriptivo pero conciso (máximo 50-72 caracteres para la línea principal)
+   - Ejecutar `git commit -m "mensaje"` con el mensaje generado 
+   - Push con `git push`
 
 ### Finalizar el proceso:
 
