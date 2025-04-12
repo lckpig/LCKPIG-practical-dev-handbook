@@ -11,8 +11,8 @@ CSS (Cascading Style Sheets) es un lenguaje de estilo utilizado para describir l
 ## Índice de contenidos
 
 - [Fundamentos de CSS](/css/fundamentals/)
-  - [Sintaxis y estructura](/css/fundamentals/syntax-and-structure/)
-  - [Selectores y especificidad](/css/fundamentals/selectors-and-specificity/)
+  - [Sintaxis y estructura](/css/fundamentals/syntax-and-structure.md)
+  - [Selectores y especificidad](/css/fundamentals/selectors-and-specificity.md)
   - [Cascada y herencia](/css/fundamentals/cascade-and-inheritance.md)
   - [Unidades y valores](/css/fundamentals/units-and-values.md)
 - [Modelo de caja y layout](/css/box-model/)
