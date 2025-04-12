@@ -1,0 +1,123 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Regla de nomenclatura en inglés para archivos y carpetas
+alwaysApply: true
+---
+
+## Regla de Nomenclatura de Archivos y Carpetas
+
+### Principio Fundamental
+- **Nombres en Inglés**: Todas las carpetas y archivos DEBEN nombrarse en inglés, independientemente de si estamos trabajando en `_ES` o `_EN`.
+- **Contenido según Carpeta**: El contenido debe estar en español en `_ES` y en inglés en `_EN`.
+- **Referencias Internas**: Las rutas y referencias solo deben apuntar a archivos dentro de su carpeta correspondiente.
+- **Rutas en Contenido**: Todas las rutas mencionadas o creadas dentro del contenido (enlaces, referencias, etc.) DEBEN usar nomenclatura en inglés.
+
+### Convenciones de Estructura de Rutas
+
+#### 1. En `SUMMARY.md`
+- **Formato**:
+  ```markdown
+  * Título en idioma correspondiente + (ruta/absoluta/desde/raiz.md)
+  ```
+- **Reglas**:
+  - Usar siempre rutas absolutas desde la raíz del proyecto
+  - Mantener consistencia entre el título y el idioma del contenido
+  - Ejemplo real:
+    ```markdown
+    * Fundamentos de CSS + (css/fundamentals/README.md)
+    ```
+
+#### 2. En `README.md` raíz
+- **Formato**:
+  ```markdown
+  Enlace + (/ruta/absoluta/desde/raiz.md)
+  ```
+- **Reglas**:
+  - Usar `/` inicial para indicar ruta absoluta
+  - Enlazar a secciones principales del proyecto
+  - Ejemplo real:
+    ```markdown
+    - Modelo de caja y layout + (/css/box-model/)
+    ```
+
+#### 3. En `README.md` de subcarpetas
+- **Para archivos del mismo nivel**:
+  ```markdown
+  Enlace relativo + (archivo-hermano.md)
+  ```
+  - Ejemplo:
+    ```markdown
+    - Sintaxis y estructura + (syntax-and-structure.md)
+    ```
+
+- **Para otras secciones**:
+  ```markdown
+  Enlace absoluto + (/ruta/completa/desde/raiz.md)
+  ```
+  - Ejemplo:
+    ```markdown
+    - Flexbox + (/css/modern-layouts/flexbox.md)
+    ```
+
+#### 4. Estructura jerárquica
+```plaintext
+parent-folder/
+├─ subfolder/
+│  ├─ README.md          # Usa rutas relativas para archivos hermanos
+│  └─ child-file.md 
+├─ sibling-file.md       # Referenciado desde parent/README.md con ruta absoluta
+└─ README.md             # Usa rutas absolutas para todas las referencias
+```
+
+#### 5. Reglas adicionales
+- **Minúsculas obligatorias**:
+  ```markdown
+  # Correcto
+  Ejemplo + (/ruta/correcta/archivo.md)
+  
+  # Incorrecto
+  Ejemplo + (/Ruta/Con/Mayusculas.md)
+  ```
+- **Prohibido navegación hacia atrás**:
+  ```markdown
+  # Prohibido
+  Enlace inválido + (../ruta/padre.md)
+  ```
+- **Validación física**:
+  - Todas las rutas en `SUMMARY.md` deben existir físicamente
+  - Los enlaces entre archivos deben resolverse correctamente
+
+### Verificación Obligatoria
+Toda operación que implique creación o modificación de archivos o carpetas debe verificarse contra:
+1. Nombres de carpetas en inglés
+2. Nombres de archivos en inglés 
+3. Rutas y enlaces en contenido en inglés
+4. Consistencia entre rutas en SUMMARY.md y READMEs
+5. Existencia física de rutas referenciadas
+6. Cumplimiento de estructura jerárquica
+
+> Esta convención garantiza consistencia en la estructura del proyecto y facilita el mantenimiento y la navegación entre archivos.
+
+### Ejemplo de Implementación
+**En `_ES/SUMMARY.md`**:
+```markdown
+* CSS + (css/README.md)
+  * Fundamentos + (css/fundamentals/README.md)
+    * Sintaxis + (css/fundamentals/syntax-and-structure.md)
+```
+
+**En `_ES/css/README.md`**:
+```markdown
+- Fundamentos + (/css/fundamentals/)
+```
+
+**En `_ES/css/fundamentals/README.md`**:
+```markdown
+- Sintaxis y estructura + (syntax-and-structure.md)
+```
+
+Esta estructura mantiene coherencia entre todos los archivos y permite navegación predecible.

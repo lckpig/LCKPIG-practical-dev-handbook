@@ -1,0 +1,16 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+## Regla sobre Commits Automáticos
+
+**No realices un `git commit` automáticamente cada vez que se realice una acción (creación, modificación, actualización o eliminación).**
+
+- No debe haber commits automáticos tras cada cambio individual.
+- Debes **esperar siempre a que el desarrollador lo solicite directamente** antes de ejecutar un `commit`.
+- Las acciones en el proyecto NO deben disparar ningún tipo de control de versiones sin autorización explícita.
+
+> SIEMPRE Evita automatizar commits tras cualquier acción.  
+> Sólo realiza un commit cuando lo indique expresamente el desarrollador.
+

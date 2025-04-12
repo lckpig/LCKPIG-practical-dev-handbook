@@ -1,0 +1,207 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+---
+description: Reglas de sincronización entre carpetas _ES y _EN
+alwaysApply: true
+---
+## Regla de Sincronización entre Carpetas `_ES` y `_EN`
+
+> **Importante**: Esta regla se refiere exclusivamente a la sincronización local del contenido entre las carpetas `_ES` y `_EN`. No tiene ninguna relación con el control de versiones git, que se maneja de forma independiente según otras reglas específicas.
+
+### 1. Principio Fundamental
+
+- **Fuente Única de Verdad**: La carpeta `_ES` es la única fuente de verdad para todo el contenido.
+- **Unidireccionalidad**: La sincronización SIEMPRE será de `_ES` hacia `_EN`.
+- **Prohibición de Cambios Directos**: No se permiten modificaciones directas en `_EN`. Cualquier cambio debe originarse en `_ES`.
+> ⚠️ **CRÍTICO**: SIEMPRE se debe Verificar existencia de archivos en ambas carpetas (`_ES` y `_EN`) y Reconstruir en `_EN` cualquier archivo que exista en `_ES` pero no en `_EN` 
+
+### 1.1 Relación con Otras Reglas
+- **Respeto a @rc---no-auto-git-commit-push.mdc**:
+  - Durante cualquier operación de sincronización (automática o manual vía `rcsync`):
+    - NO se realizarán operaciones git (commit/push) automáticamente
+    - Cualquier modificación en `_ES` o `_EN` resultante de la sincronización:
+      - Quedará como cambio pendiente en el working directory
+      - Solo se commiteará/pusheara cuando el desarrollador lo solicite explícitamente
+  - El proceso de sincronización y el control de versiones son flujos independientes que deben manejarse por separado
+
+### 2. Reglas de Sincronización
+
+#### 2.1 Estructura y Nomenclatura
+- **Estructura de Directorios**: Debe ser idéntica en ambas carpetas y estar SIEMPRE en inglés.
+- **Nombres de Archivos**: Deben ser idénticos y estar SIEMPRE en inglés.
+- La **estructura de directorios y archivos** debe mantenerse sincronizada SIEMPRE entre ambas carpetas.
+- **Rutas Internas**: 
+  - En `_ES`: deben referenciar solo archivos dentro de `_ES`
+  - En `_EN`: deben referenciar solo archivos dentro de `_EN`
+  - Nunca enlazar archivos entre carpetas
+
+### 2.2 Optimización de Rendimiento
+- **Detección de cambios mejorada**:
+  - Reconstruir primero todos los archivos faltantes en `_EN` comparando recursivamente ambos directorios
+  - Para archivos existentes en ambas carpetas:
+    - Calcular hash MD5 del contenido en `_ES` y `_EN`
+    - Comparar hashes para detectar cambios reales
+  - Usar sistema de caché con timestamps de última modificación
+  - Ignorar node_modules y carpetas de dependencias
+
+- **Proceso de análisis**:
+  1. Listar todos los archivos en `_ES` usando `find . -type f`
+  2. Filtrar por extensión (.md, .ts, etc.)
+  3. Para cada archivo:
+     - Si no existe en `_EN`: reconstrucción inmediata
+     - Si existe: comparar hash + última modificación
+     - Si difiere: marcar para sincronización
+
+### 2.3 Sistema de Buffer de Acciones
+- **Registro de operaciones**:
+  - Todo cambio en `_ES` (creación, modificación, eliminación) debe generar una entrada en `.syncbuffer/history.log`
+  - Formato de registro:
+    ```json
+    {
+      "id": "uuidv4",
+      "timestamp": "ISO8601",
+      "action": "create|update|delete",
+      "path": "ruta/relativa/archivo.md",
+      "checksum": "md5(content)",
+      "status": "pending|applied|failed"
+    }
+    ```
+- **Prioridad de ejecución**:
+  1. Operaciones de eliminación
+  2. Actualizaciones de contenido
+  3. Creaciones de nuevos archivos
+
+### 2.4 Protocolo de Eliminación Estricta
+- **Detección de elementos huérfanos en _EN**:
+  - Cualquier archivo/carpeta presente en _EN que no exista en _ES DEBE considerarse huérfano
+  - Los elementos huérfanos DEBEN eliminarse automáticamente de _EN durante la sincronización
+  - Excepción: Archivos en `.gitignore` o listados en `.syncbuffer/allowlist.json`
+ 
+### 3. Proceso de Sincronización
+
+#### 3.1 Sincronización Automática
+- Se activa con cualquier cambio en `_ES` (creación, modificación, actualización, eliminación)
+- Proceso:
+  1. Reconstrucción de archivos inexistentes
+  2. Identificar archivos modificados
+  3. Comparar contenido actualizado
+  4. Traducir contenido nuevo
+  5. Eliminar contenido removido
+  6. Preservar formato y estructura
+
+### 3.1.1 Proceso de Sincronización Automática Modificado
+1. **Fase de limpieza (prioridad máxima)**:
+   ```bash
+   # Pseudocódigo para eliminación
+   find _EN -type f | while read -r file_en; do
+       file_es="${file_en/_EN/_ES}"
+       if [ ! -f "$file_es" ]; then
+           rm "$file_en"
+       fi
+   done
+   ```
+
+#### 3.2 Sincronización Manual
+- Comando: `rcsync`
+- Útil para forzar sincronización completa
+- Sigue el mismo proceso que la sincronización automática
+
+### 3.3 Proceso de Sincronización Modificado
+1. **Captura de cambios**:
+   - Monitorear sistema de archivos con `chokidar`
+   - Registrar cambios en el buffer con estado `pending`
+
+2. **Ejecución en `_EN`**:
+   ```typescript
+   class SyncBuffer {
+     private queue: SyncOperation[] = [];
+     
+     addOperation(op: SyncOperation) {
+       this.queue.push(op);
+       this.processQueue();
+     }
+     
+     private async processQueue() {
+       while (this.queue.length > 0) {
+         const op = this.queue.shift();
+         try {
+           await this.applyOperation(op);
+           op.status = 'applied';
+         } catch (error) {
+           op.status = 'failed';
+           op.retries++;
+           if (op.retries < 3) this.queue.unshift(op);
+         }
+       }
+     }
+   }
+   ```
+
+### 4. Manejo de Contenido Especial
+
+#### 4.1 Menú Multilenguaje
+- **Excepción**: SIEMPRE se ignora en la sincronizacion y NO se traduce el contenido entre:
+  ```html
+  <!-- MULTILANGUAJE MENU START -->
+  contenido del menú
+  <!-- MULTILANGUAJE MENU END -->
+  ```
+- **Importancia**: Mantener intacto para evitar problemas de enlaces
+
+#### 4.2 Nuevos Archivos Markdown
+1. **Creación**:
+   - Crear en `_ES` nombrando SIEMPRE carpetas y archivos en inglés
+   - Replicar en `_EN` con mismo nombre
+
+2. **Inserción del Menú Multilenguaje**
+   - En el archivo de `_ES`:
+     - Insertar al inicio del archivo el snippet de menú multilenguaje para ES ubicado en `.cursor/snippets/multilanguaje-menu-es.md`
+     - Reemplazar `<file-path>` con la ruta relativa del archivo desde la raíz de `_ES`. Si el archivo se llama `README.md` eliminar el nombre del archivo y la extension de la ruta.
+   - En el archivo de `_EN`:
+     - Insertar al inicio del archivo el snippet de menú multilenguaje para EN ubicado en `.cursor/snippets/multilanguaje-menu-en.md`
+     - Reemplazar `<file-path>` con la ruta relativa del archivo desde la raíz de `_EN`. Si el archivo se llama `README.md` eliminar el nombre del archivo y la extension de la ruta.
+   - **Excepción**: Si un archivo `.md` se crea directamente en `_EN` (aunque no sea la práctica recomendada), DEBE incluir el menú multilenguaje siguiendo el mismo proceso.
+
+> ⚠️ **Nota**: Aunque se permite la inserción del menú en archivos creados directamente en `_EN`, se recomienda encarecidamente seguir el flujo normal de creación en `_ES` y posterior sincronización.
+
+### 4.3 Cláusula de Inmutabilidad de _EN
+- **Prohibición absoluta**:
+  ```diff
+  - Se permiten modificaciones directas en _EN
+  + BLOQUEO: Cualquier creación/modificación en _EN que no venga de _ES se considera violación crítica
+  ```
+
+### 5. Validación y Verificación
+
+#### 5.1 Verificación de Eliminaciones
+- Prioridad máxima en la eliminación de contenido
+- Verificación línea por línea
+- Eliminación de espacios en blanco innecesarios
+- Confirmación de estructura intacta
+
+#### 5.2 Manejo de Errores
+- Reintentar operaciones fallidas
+- Verificar contenido circundante
+- Asegurar eliminación completa
+
+### 5.3 Verificación de Integridad
+- **Chequeo pre-sincronización**:
+  ```bash
+  diff -rq _ES _EN | grep -v '.syncbuffer'
+  ```
+- **Recuperación de errores**:
+  - Reintentos automáticos con backoff exponencial
+  - Notificaciones de fallos persistentes via `system-notifications.md`
+
+### 5.4 Verificación de Huérfanos
+- **Comando obligatorio pre-sincronización**:
+  ```powershell
+  Compare-Object (Get-ChildItem _ES -Recurse) (Get-ChildItem _EN -Recurse) | 
+    Where-Object {$_.SideIndicator -eq "=>"}
+  ```
+  - Si hay resultados: Eliminar elementos en _EN antes de continuar
+
+> ⚠️ **CRÍTICO**: La violación de estas reglas puede causar inconsistencias graves en el contenido. SIEMPRE mantener `_ES` como única fuente de verdad y seguir el proceso de sincronización establecido.
