@@ -119,5 +119,3 @@ Toda operación que implique creación o modificación de archivos o carpetas de
 ```markdown
 - Sintaxis y estructura + (syntax-and-structure.md)
 ```
-
-Esta estructura mantiene coherencia entre todos los archivos y permite navegación predecible.

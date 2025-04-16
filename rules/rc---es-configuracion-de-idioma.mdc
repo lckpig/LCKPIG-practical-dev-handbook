@@ -10,4 +10,3 @@ alwaysApply: true
 - **Ejemplos de código**: deben estar escritos en **inglés** (identificadores, nombres de variables, funciones, clases, etc.).
 - **Comentarios dentro del código**: deben estar escritos en **castellano neutro**.
 
-> Esta convención garantiza consistencia lingüística y claridad tanto en la documentación como en los fragmentos técnicos del proyecto.
