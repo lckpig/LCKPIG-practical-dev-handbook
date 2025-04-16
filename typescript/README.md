@@ -7,20 +7,20 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>1. Introducción a TypeScript</summary>
 
-- **Historia y evolución de TypeScript**
+- [**Historia y evolución de TypeScript**](introduction/history-evolution.md)
     - Creación por Microsoft y motivaciones detrás de TypeScript
     - Diferencias clave entre TypeScript y JavaScript
     - Versiones destacadas y mejoras introducidas en cada una
-- **Ventajas y características principales de TypeScript**
+- [**Ventajas y características principales de TypeScript**](introduction/advantages-features.md)
     - Tipado estático y detección temprana de errores
     - Compatibilidad con JavaScript y transpilación a ES5/ES6+
     - Soporte para programación orientada a objetos y genéricos
     - Integración con editores de código y herramientas de desarrollo
-- **Cómo funciona TypeScript internamente**
+- [**Cómo funciona TypeScript internamente**](introduction/how-it-works.md)
     - Proceso de transpilación (`tsc`)
     - Conversión de código TypeScript a JavaScript estándar
     - Archivos de definición de tipos (`.d.ts`)
-- **Diferencias clave entre TypeScript y JavaScript**
+- [**Diferencias clave entre TypeScript y JavaScript**](introduction/key-differences.md)
     - Tipado estático vs. tipado dinámico
     - Interfaces y alias de tipos
     - Compatibilidad con módulos y namespaces
