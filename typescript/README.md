@@ -1,5 +1,5 @@
 <!-- MULTILANGUAJE MENU START -->
-[ES](https://lckpig.gitbook.io/practical-dev-handbook/typescript) | EN
+EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <!-- MULTILANGUAJE MENU END -->
 
 <details>
