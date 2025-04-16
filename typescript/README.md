@@ -2,8 +2,6 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <!-- MULTILANGUAJE MENU END -->
 
-* [Tipos en TypeScript](types.md)
-
 <details>
 <summary>1. Introducción a TypeScript</summary>
 
