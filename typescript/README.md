@@ -28,19 +28,19 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>2. Instalación y Configuración del Entorno</summary>
 
-- **Instalación de TypeScript**
+- [**Instalación de TypeScript**](installation-configuration/installation.md)
     - Instalación global con `npm install -g typescript`
     - Instalación en un proyecto con `npm install --save-dev typescript`
     - Verificación de la instalación con `tsc --version`
-- **Configuración básica del compilador (`tsconfig.json`)**
+- [**Configuración básica del compilador (`tsconfig.json`)**](installation-configuration/compiler-config.md)
     - Generación de `tsconfig.json` con `tsc --init`
     - Parámetros esenciales (`target`, `module`, `strict`, `outDir`, `rootDir`)
     - Compilación incremental con `incremental: true`
-- **Ejecución de código TypeScript**
+- [**Ejecución de código TypeScript**](installation-configuration/code-execution.md)
     - Compilación manual con `tsc archivo.ts`
     - Compilación automática con `tsc --watch`
     - Uso de `ts-node` para ejecutar TypeScript sin compilar (`npx ts-node archivo.ts`)
-- **Configuración en editores y herramientas de desarrollo**
+- [**Configuración en editores y herramientas de desarrollo**](installation-configuration/editor-setup.md)
     - Configuración en VS Code con soporte para TypeScript
     - Integración con ESLint y Prettier para formateo de código
     - Extensiones recomendadas en Visual Studio Code

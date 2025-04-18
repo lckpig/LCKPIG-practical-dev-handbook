@@ -38,3 +38,8 @@
     * [Ventajas y características](typescript/introduction/advantages-features.md)
     * [Funcionamiento interno](typescript/introduction/how-it-works.md)
     * [Diferencias clave](typescript/introduction/key-differences.md)
+  * [Instalación y Configuración](typescript/installation-configuration/README.md)
+    * [Instalación de TypeScript](typescript/installation-configuration/installation.md)
+    * [Configuración del compilador](typescript/installation-configuration/compiler-config.md)
+    * [Ejecución de código](typescript/installation-configuration/code-execution.md)
+    * [Configuración de editores](typescript/installation-configuration/editor-setup.md)
