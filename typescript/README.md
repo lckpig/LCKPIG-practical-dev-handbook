@@ -76,21 +76,21 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>4. Type Inference and Annotations</summary>
 
-- **Type inference in TypeScript**
+- [**Type inference in TypeScript**](type-inference-annotations/type-inference.md)
     - Automatic inference in variables (`let x = 10; // x is number`)
     - Inference in functions (`function sum(a, b) { return a + b; }`)
     - Contextual inference based on value usage
-- **Type annotations in variables and functions**
+- [**Type annotations in variables and functions**](type-inference-annotations/type-annotations.md)
     - Manual type specification (`let name: string = "TypeScript";`)
     - Annotations in function parameters (`function greet(name: string) {}`)
     - Explicit function returns (`function add(a: number, b: number): number {}`)
-- **Using `unknown` as a safe alternative to `any`**
+- [**Using `unknown` as a safe alternative to `any`**](type-inference-annotations/unknown-vs-any.md)
     - Differences between `unknown` and `any`
     - `unknown` restrictions to prevent typing errors
-- **Typing functions and function expressions**
+- [**Typing functions and function expressions**](type-inference-annotations/function-typing.md)
     - Function declaration with input and output types
     - Using `type` and `interface` to define reusable functions
-- **Type Assertions (`as` and `<Type>`)**
+- [**Type Assertions (`as` and `<Type>`)**](type-inference-annotations/type-assertions.md)
     - Type conversion at compile time
     - When to use `as` and `<Type>` and their differences
     - Risks and best practices in `Type Assertions`
@@ -100,26 +100,26 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>5. Advanced Types in TypeScript</summary>
 
-- **Union Types**
+- [**Union Types**](advanced-types/union-types.md)
     - Using `|` to allow multiple types (`let value: string | number;`)
     - Validations in functions with union types
-- **Intersection Types**
+- [**Intersection Types**](advanced-types/intersection-types.md)
     - Combining multiple types with `&`
     - Use cases in complex data structures
-- **The `unknown` type vs `any`**
+- [**The `unknown` type vs `any` (Advanced)**](advanced-types/unknown-vs-any-advanced.md)
     - Differences and when to use each one
     - `unknown` restrictions in operations
-- **The `never` type and its application**
+- [**The `never` type and its application (Advanced)**](advanced-types/never-type-advanced.md)
     - Functions that never return a value (`throw new Error()`)
     - Use in exhaustive validations
-- **Literal Types and Enums**
+- [**Literal Types and Enums**](advanced-types/literal-enums.md)
     - Literal types (`type Color = "red" | "green" | "blue"`)
     - Definition and use of `enum` (`enum Status { Active, Inactive }`)
     - Enums with numeric and string values
-- **The `typeof` operator in TypeScript**
+- [**The `typeof` operator in TypeScript**](advanced-types/typeof-operator.md)
     - Type inference based on existing values
     - Use in generic functions
-- **`keyof`, `typeof` and `in` in TypeScript**
+- [**`keyof`, `typeof` and `in` in TypeScript**](advanced-types/keyof-typeof-in.md)
     - Using `keyof` to access an object's keys
     - `typeof` in combination with `keyof`
     - The `in` operator for property validations
@@ -129,23 +129,23 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>6. Utility Types in TypeScript</summary>
 
-- **Partial and optional types**
+- [**Partial and optional types**](utility-types/partial-required.md)
     - `Partial<T>`: Converting all properties to optional
     - `Required<T>`: Converting all properties to required
-- **Object manipulation with `Pick`, `Omit` and `Record`**
+- [**Object manipulation with `Pick`, `Omit` and `Record`**](utility-types/pick-omit-record.md)
     - `Pick<T, K>`: Selecting specific properties from a type
     - `Omit<T, K>`: Excluding properties from a type
     - `Record<K, T>`: Creating a type with specific keys and values
-- **The `Readonly<T>` type and its application**
+- [**The `Readonly<T>` type and its application**](utility-types/readonly-type.md)
     - Preventing modifications in objects with `Readonly<T>`
     - Use cases in immutable structures
-- **`Extract<T, U>` and `Exclude<T, U>`**
+- [**`Extract<T, U>` and `Exclude<T, U>`**](utility-types/extract-exclude.md)
     - `Extract<T, U>`: Extracting only matching types
     - `Exclude<T, U>`: Removing specific types
-- **`NonNullable<T>` and `ReturnType<T>`**
+- [**`NonNullable<T>` and `ReturnType<T>`**](utility-types/nonnullable-returntype.md)
     - `NonNullable<T>`: Removing `null` and `undefined` from a type
     - `ReturnType<T>`: Inferring a function's return type
-- **Using `InstanceType<T>` and `ThisParameterType<T>`**
+- [**Using `InstanceType<T>` and `ThisParameterType<T>`**](utility-types/instancetype-thisparametertype.md)
     - `InstanceType<T>`: Inferring the type of a class instance
     - `ThisParameterType<T>`: Extracting the `this` type in a function
 
