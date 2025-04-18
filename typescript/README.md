@@ -50,23 +50,23 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>3. Tipos Básicos en TypeScript</summary>
 
-- **Tipos primitivos en TypeScript**
+- [**Tipos primitivos en TypeScript**](basic-types/primitive-types.md)
     - `string`, `number`, `boolean`, `null`, `undefined`
     - Diferencias entre `null` y `undefined`
     - Uso de `bigint` para operaciones con grandes números
-- **Tipado en variables y constantes**
+- [**Tipado en variables y constantes**](basic-types/variable-typing.md)
     - Declaración con `let`, `const` y su relación con los tipos
     - Inferencia de tipos vs. anotaciones explícitas
-- **El tipo `any` y su impacto en el código**
+- [**El tipo `any` y su impacto en el código**](basic-types/any-type.md)
     - Cuándo usar `any` y sus riesgos
     - Alternativas seguras con `unknown`
-- **El tipo `void` y su uso en funciones**
+- [**El tipo `void` y su uso en funciones**](basic-types/void-type.md)
     - Diferencias entre `void` y `undefined` en retornos
     - Uso en funciones sin retorno explícito
-- **El tipo `never` para funciones que no devuelven valores**
+- [**El tipo `never` para funciones que no devuelven valores**](basic-types/never-type.md)
     - Funciones que arrojan errores (`throw`)
     - Funciones que nunca terminan (`while (true) {}`)
-- **Arrays y Tuplas en TypeScript**
+- [**Arrays y Tuplas en TypeScript**](basic-types/arrays-tuples.md)
     - Declaración de arrays (`number[]`, `Array<string>`)
     - Uso de tuplas (`[string, number]`)
     - Tuplas con etiquetas (`[id: number, nombre: string]`)
