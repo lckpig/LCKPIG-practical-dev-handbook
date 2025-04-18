@@ -179,22 +179,22 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>8. Manejo de Tipos Condicionales y Mapeados</summary>
 
-- **Introducción a los tipos condicionales**
+- [**Introducción a los tipos condicionales**](conditional-mapped-types/introduction.md)
     - Sintaxis básica (`T extends U ? X : Y`)
     - Casos de uso en validaciones de tipos dinámicos
-- **Uso de `infer` en tipos condicionales**
+- [**Uso de `infer` en tipos condicionales**](conditional-mapped-types/using-infer.md)
     - Extraer tipos internos con `infer` (`ReturnType<T>`)
     - Aplicaciones avanzadas con inferencia automática
-- **Tipos mapeados (`Mapped Types`)**
+- [**Tipos mapeados (`Mapped Types`)**](conditional-mapped-types/mapped-types.md)
     - Transformación de propiedades de un objeto
     - Uso de `as` en `Mapped Types` para cambiar claves
-- **Modificación de propiedades con `Readonly<T>`, `Partial<T>` y `Required<T>`**
+- [**Modificación de propiedades con `Readonly<T>`, `Partial<T>` y `Required<T>`**](conditional-mapped-types/modifying-properties.md)
     - Creación de tipos derivados a partir de estructuras existentes
     - Restricción y expansión de propiedades
-- **Uso de `Record<K, T>` en la creación de estructuras dinámicas**
+- [**Uso de `Record<K, T>` en la creación de estructuras dinámicas**](conditional-mapped-types/using-record.md)
     - Creación de objetos tipados con claves y valores específicos
     - Casos de uso en estructuras de configuración
-- **Ejemplos avanzados de tipos condicionales**
+- [**Ejemplos avanzados de tipos condicionales**](conditional-mapped-types/advanced-examples.md)
     - Implementación de filtros y transformaciones en tiempo de compilación
     - Creación de `DeepPartial<T>` para hacer tipos anidados opcionales
 
