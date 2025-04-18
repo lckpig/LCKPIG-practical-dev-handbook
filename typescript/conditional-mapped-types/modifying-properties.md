@@ -4,4 +4,5 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/conditi
 
 # Modifying properties with `Readonly<T>`, `Partial<T>`, and `Required<T>`
 
-Content pending. 
+- Creating derived types from existing structures
+- Restricting and expanding properties 

@@ -4,4 +4,5 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/conditi
 
 # Advanced examples of conditional types
 
-Content pending. 
+- Implementing compile-time type validations and transformations
+- Creating `DeepPartial<T>` to make nested types optional 

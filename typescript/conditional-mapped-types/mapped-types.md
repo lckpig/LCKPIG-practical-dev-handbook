@@ -4,4 +4,5 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/conditi
 
 # Mapped Types
 
-Content pending. 
+- Transforming object properties
+- Using `as` in Mapped Types to change keys 

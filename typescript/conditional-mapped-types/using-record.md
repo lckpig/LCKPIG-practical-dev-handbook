@@ -4,4 +4,5 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/conditi
 
 # Using `Record<K, T>` in creating dynamic structures
 
-Content pending. 
+- Creating typed objects with specific keys and values
+- Use cases in configuration structures 

@@ -4,4 +4,5 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/conditi
 
 # Using `infer` in conditional types
 
-Content pending. 
+- Extracting internal types with `infer` (`ReturnType<T>`)
+- Advanced applications with automatic inference 

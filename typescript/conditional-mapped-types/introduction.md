@@ -4,4 +4,5 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/conditi
 
 # Introduction to conditional types
 
-Content pending. 
+- Basic syntax (`T extends U ? X : Y`)
+- Use cases in dynamic type validations 
