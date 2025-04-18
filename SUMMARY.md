@@ -1,4 +1,4 @@
-# Table of contents
+# Table of Contents
 
 * [Introduction](README.md)
 * [Markdown Elements Guide](markdown-elements.md)
@@ -9,7 +9,7 @@
     * [Cascade and Inheritance](css/fundamentals/cascade-and-inheritance.md)
     * [Units and Values](css/fundamentals/units-and-values.md)
   * [Box Model and Layout](css/box-model/README.md)
-    * [Box Model](css/box-model/box-model.md)
+    * [Box model](css/box-model/box-model.md)
     * [Positioning](css/box-model/positioning.md)
     * [Display and Visibility](css/box-model/display-and-visibility.md)
   * [Modern Layouts](css/modern-layouts/README.md)
@@ -34,7 +34,12 @@
     * [Critical CSS](css/optimization/critical-css.md)
 * [TypeScript](typescript/README.md)
   * [Introduction to TypeScript](typescript/introduction/README.md)
-    * [History and evolution](typescript/introduction/history-evolution.md)
-    * [Advantages and features](typescript/introduction/advantages-features.md)
-    * [How it works internally](typescript/introduction/how-it-works.md)
-    * [Key differences](typescript/introduction/key-differences.md)
+    * [History and Evolution](typescript/introduction/history-evolution.md)
+    * [Advantages and Features](typescript/introduction/advantages-features.md)
+    * [How it Works Internally](typescript/introduction/how-it-works.md)
+    * [Key Differences](typescript/introduction/key-differences.md)
+  * [Installation and Configuration](typescript/installation-configuration/README.md)
+    * [TypeScript Installation](typescript/installation-configuration/installation.md)
+    * [Compiler Configuration](typescript/installation-configuration/compiler-config.md)
+    * [Code Execution](typescript/installation-configuration/code-execution.md)
+    * [Editor Setup](typescript/installation-configuration/editor-setup.md)

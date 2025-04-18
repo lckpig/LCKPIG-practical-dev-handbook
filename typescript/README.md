@@ -8,7 +8,7 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 - [**History and evolution of TypeScript**](introduction/history-evolution.md)
     - Creation by Microsoft and motivations behind TypeScript
     - Key differences between TypeScript and JavaScript
-    - Notable versions and improvements introduced in each one
+    - Highlighted versions and improvements introduced in each
 - [**Advantages and main features of TypeScript**](introduction/advantages-features.md)
     - Static typing and early error detection
     - Compatibility with JavaScript and transpilation to ES5/ES6+
@@ -28,19 +28,19 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>2. Installation and Environment Setup</summary>
 
-- **TypeScript Installation**
+- [**TypeScript Installation**](installation-configuration/installation.md)
     - Global installation with `npm install -g typescript`
     - Project installation with `npm install --save-dev typescript`
-    - Verifying installation with `tsc --version`
-- **Basic compiler configuration (`tsconfig.json`)**
-    - Generating `tsconfig.json` with `tsc --init`
+    - Verify installation with `tsc --version`
+- [**Basic Compiler Configuration (`tsconfig.json`)**](installation-configuration/compiler-config.md)
+    - Generate `tsconfig.json` with `tsc --init`
     - Essential parameters (`target`, `module`, `strict`, `outDir`, `rootDir`)
     - Incremental compilation with `incremental: true`
-- **Running TypeScript code**
+- [**Executing TypeScript Code**](installation-configuration/code-execution.md)
     - Manual compilation with `tsc file.ts`
     - Automatic compilation with `tsc --watch`
     - Using `ts-node` to run TypeScript without compiling (`npx ts-node file.ts`)
-- **Configuration in editors and development tools**
+- [**Setup in Editors and Development Tools**](installation-configuration/editor-setup.md)
     - VS Code configuration with TypeScript support
     - Integration with ESLint and Prettier for code formatting
     - Recommended extensions in Visual Studio Code
