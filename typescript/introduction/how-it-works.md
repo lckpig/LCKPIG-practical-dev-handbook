@@ -4,7 +4,6 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/introdu
 
 # How TypeScript works internally
 
-## Main content
 - Transpilation process (`tsc`)
 - Conversion of TypeScript code to standard JavaScript
 - Type definition files (`.d.ts`) 

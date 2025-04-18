@@ -50,23 +50,23 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>3. Basic Types in TypeScript</summary>
 
-- **Primitive types in TypeScript**
+- [**Primitive types in TypeScript**](basic-types/primitive-types.md)
     - `string`, `number`, `boolean`, `null`, `undefined`
     - Differences between `null` and `undefined`
     - Using `bigint` for operations with large numbers
-- **Typing in variables and constants**
+- [**Typing Variables and Constants**](basic-types/variable-typing.md)
     - Declaration with `let`, `const` and their relationship with types
     - Type inference vs. explicit annotations
-- **The `any` type and its impact on code**
+- [**The `any` Type and its Impact on Code**](basic-types/any-type.md)
     - When to use `any` and its risks
     - Safe alternatives with `unknown`
-- **The `void` type and its use in functions**
+- [**The `void` Type and its Use in Functions**](basic-types/void-type.md)
     - Differences between `void` and `undefined` in returns
     - Use in functions without explicit return
-- **The `never` type for functions that don't return values**
+- [**The `never` Type for Functions That Don't Return Values**](basic-types/never-type.md)
     - Functions that throw errors (`throw`)
     - Functions that never terminate (`while (true) {}`)
-- **Arrays and Tuples in TypeScript**
+- [**Arrays and Tuples in TypeScript**](basic-types/arrays-tuples.md)
     - Array declaration (`number[]`, `Array<string>`)
     - Using tuples (`[string, number]`)
     - Labeled tuples (`[id: number, name: string]`)
