@@ -4,7 +4,6 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/introducti
 
 # Cómo funciona TypeScript internamente
 
-## Contenido principal
 - Proceso de transpilación (`tsc`)
 - Conversión de código TypeScript a JavaScript estándar
 - Archivos de definición de tipos (`.d.ts`) 
