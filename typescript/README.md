@@ -76,21 +76,21 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>4. Inferencia y Anotaciones de Tipos</summary>
 
-- **Inferencia de tipos en TypeScript**
+- [**Inferencia de tipos en TypeScript**](type-inference-annotations/type-inference.md)
     - Inferencia automática en variables (`let x = 10; // x es number`)
     - Inferencia en funciones (`function suma(a, b) { return a + b; }`)
     - Inferencia contextual basada en el uso de valores
-- **Anotaciones de tipos en variables y funciones**
+- [**Anotaciones de tipos en variables y funciones**](type-inference-annotations/type-annotations.md)
     - Especificación manual de tipos (`let nombre: string = "TypeScript";`)
     - Anotaciones en parámetros de funciones (`function saludar(nombre: string) {}`)
     - Retorno explícito de funciones (`function sumar(a: number, b: number): number {}`)
-- **El uso de `unknown` como alternativa segura a `any`**
+- [**El uso de `unknown` como alternativa segura a `any`**](type-inference-annotations/unknown-vs-any.md)
     - Diferencias entre `unknown` y `any`
     - Restricciones de `unknown` para evitar errores de tipado
-- **Tipado de funciones y expresiones de función**
+- [**Tipado de funciones y expresiones de función**](type-inference-annotations/function-typing.md)
     - Declaración de funciones con tipos de entrada y salida
     - Uso de `type` y `interface` para definir funciones reutilizables
-- **Type Assertions (`as` y `<Type>`)**
+- [**Type Assertions (`as` y `<Type>`)**](type-inference-annotations/type-assertions.md)
     - Conversión de tipos en tiempo de compilación
     - Cuándo usar `as` y `<Type>` y sus diferencias
     - Riesgos y mejores prácticas en `Type Assertions`
@@ -100,26 +100,26 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>5. Tipos Avanzados en TypeScript</summary>
 
-- **Unión de tipos (`Union Types`)**
+- [**Unión de tipos (`Union Types`)**](advanced-types/union-types.md)
     - Uso de `|` para permitir múltiples tipos (`let valor: string | number;`)
     - Validaciones en funciones con unión de tipos
-- **Intersección de tipos (`Intersection Types`)**
+- [**Intersección de tipos (`Intersection Types`)**](advanced-types/intersection-types.md)
     - Combinación de múltiples tipos con `&`
     - Casos de uso en estructuras de datos complejas
-- **El tipo `unknown` vs `any`**
+- [**El tipo `unknown` vs `any` (Avanzado)**](advanced-types/unknown-vs-any-advanced.md)
     - Diferencias y cuándo usar cada uno
     - Restricciones de `unknown` en operaciones
-- **El tipo `never` y su aplicación**
+- [**El tipo `never` y su aplicación (Avanzado)**](advanced-types/never-type-advanced.md)
     - Funciones que nunca devuelven un valor (`throw new Error()`)
     - Uso en validaciones exhaustivas
-- **Literal Types y Enums**
+- [**Literal Types y Enums**](advanced-types/literal-enums.md)
     - Tipos literales (`type Color = "rojo" | "verde" | "azul"`)
     - Definición y uso de `enum` (`enum Estado { Activo, Inactivo }`)
     - Enums con valores numéricos y de cadena
-- **El operador `typeof` en TypeScript**
+- [**El operador `typeof` en TypeScript**](advanced-types/typeof-operator.md)
     - Inferencia de tipos basada en valores existentes
     - Uso en funciones genéricas
-- **`keyof`, `typeof` y `in` en TypeScript**
+- [**`keyof`, `typeof` y `in` en TypeScript**](advanced-types/keyof-typeof-in.md)
     - Uso de `keyof` para acceder a las claves de un objeto
     - `typeof` en combinación con `keyof`
     - El operador `in` para validaciones de propiedades
@@ -129,23 +129,23 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>6. Manejo de Tipos Utilitarios en TypeScript</summary>
 
-- **Tipos parciales y opcionales**
+- [**Tipos parciales y opcionales**](utility-types/partial-required.md)
     - `Partial<T>`: Conversión de todas las propiedades a opcionales
     - `Required<T>`: Conversión de todas las propiedades a obligatorias
-- **Manipulación de objetos con `Pick`, `Omit` y `Record`**
+- [**Manipulación de objetos con `Pick`, `Omit` y `Record`**](utility-types/pick-omit-record.md)
     - `Pick<T, K>`: Seleccionar propiedades específicas de un tipo
     - `Omit<T, K>`: Excluir propiedades de un tipo
     - `Record<K, T>`: Creación de un tipo con claves y valores específicos
-- **El tipo `Readonly<T>` y su aplicación**
+- [**El tipo `Readonly<T>` y su aplicación**](utility-types/readonly-type.md)
     - Evitar modificaciones en objetos con `Readonly<T>`
     - Casos de uso en estructuras inmutables
-- **`Extract<T, U>` y `Exclude<T, U>`**
+- [**`Extract<T, U>` y `Exclude<T, U>`**](utility-types/extract-exclude.md)
     - `Extract<T, U>`: Extraer solo los tipos coincidentes
     - `Exclude<T, U>`: Remover tipos específicos
-- **`NonNullable<T>` y `ReturnType<T>`**
+- [**`NonNullable<T>` y `ReturnType<T>`**](utility-types/nonnullable-returntype.md)
     - `NonNullable<T>`: Eliminación de `null` y `undefined` en un tipo
     - `ReturnType<T>`: Inferencia del tipo de retorno de una función
-- **Uso de `InstanceType<T>` y `ThisParameterType<T>`**
+- [**Uso de `InstanceType<T>` y `ThisParameterType<T>`**](utility-types/instancetype-thisparametertype.md)
     - `InstanceType<T>`: Inferir el tipo de una instancia de clase
     - `ThisParameterType<T>`: Extraer el tipo de `this` en una función
 
@@ -154,22 +154,22 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>7. Manejo de Tipos Genéricos en TypeScript</summary>
 
-- **Introducción a los tipos genéricos**
+- [**Introducción a los tipos genéricos**](generic-types/introduction.md)
     - Definición de funciones genéricas (`function identidad<T>(valor: T): T { return valor; }`)
     - Beneficios de los tipos genéricos en reutilización de código
-- **Genéricos en funciones y métodos**
+- [**Genéricos en funciones y métodos**](generic-types/generics-functions-methods.md)
     - Uso de `<T>` en parámetros de funciones
     - Aplicación de restricciones (`extends`) en genéricos
-- **Genéricos en interfaces y tipos personalizados**
+- [**Genéricos en interfaces y tipos personalizados**](generic-types/generics-interfaces-types.md)
     - Creación de interfaces genéricas (`interface Caja<T> { contenido: T; }`)
     - Tipos con múltiples parámetros genéricos
-- **Genéricos en clases**
+- [**Genéricos en clases**](generic-types/generics-classes.md)
     - Implementación de clases genéricas (`class Repositorio<T>`)
     - Casos de uso en modelos de datos
-- **Uso de `keyof` y `typeof` en genéricos**
+- [**Uso de `keyof` y `typeof` en genéricos**](generic-types/keyof-typeof-generics.md)
     - Acceso a claves dinámicamente con `keyof`
     - Inferencia de tipos basada en objetos con `typeof`
-- **Manipulación avanzada de genéricos**
+- [**Manipulación avanzada de genéricos**](generic-types/advanced-manipulation.md)
     - Tipos condicionales con `extends` (`T extends U ? X : Y`)
     - Inferencia automática con `infer` (`ReturnType<T>`)
     - Uso de `Mapped Types` para transformar estructuras
@@ -394,175 +394,4 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 
 - **Estructura y organización del código**
     - Separación de lógica en módulos y archivos
-    - Uso adecuado de `interfaces` y `types`
-- **Escritura de código mantenible**
-    - Convenciones de nombres en variables y funciones
-    - Uso de `readonly` y `const` para evitar modificaciones accidentales
-- **Optimización del rendimiento en TypeScript**
-    - Evitar conversiones innecesarias de tipos (`as any`)
-    - Uso eficiente de estructuras de datos (`Map`, `Set`, `Record<K, T>`)
-- **Reducción de complejidad en funciones y clases**
-    - Aplicación del principio **DRY** (Don't Repeat Yourself)
-    - Uso de funciones puras y modularización
-- **Prevención de errores en tiempo de compilación**
-    - Habilitación de `strict` en `tsconfig.json`
-    - Uso de `unknown` en lugar de `any`
-- **Compatibilidad y escalabilidad en proyectos grandes**
-    - Uso de `namespace` vs. `modules`
-    - Implementación de `Abstract Classes` para facilitar extensibilidad
-
-</details>
-
-<details>
-<summary>18. Decoradores en TypeScript</summary>
-
-- **Introducción a los decoradores**
-    - ¿Qué son los decoradores y cómo funcionan en TypeScript?
-    - Configuración de `experimentalDecorators` en `tsconfig.json`
-- **Tipos de decoradores en TypeScript**
-    - **Decoradores de clase** (`@ClaseDecorator`)
-    - **Decoradores de propiedad** (`@PropiedadDecorator`)
-    - **Decoradores de método** (`@MetodoDecorator`)
-    - **Decoradores de parámetros** (`@ParametroDecorator`)
-- **Uso de decoradores en Angular**
-    - `@Component()`, `@Injectable()`, `@Directive()`, `@Pipe()`
-    - Personalización de decoradores en servicios y módulos
-- **Uso de decoradores en NestJS**
-    - `@Controller()`, `@Get()`, `@Post()`, `@Param()`, `@Body()`
-    - Creación de decoradores personalizados con `Reflect.metadata()`
-- **Composición y encadenamiento de decoradores**
-    - Aplicación de múltiples decoradores en una misma entidad
-    - Orden de ejecución de los decoradores en clases
-- **Decoradores con parámetros y configuración dinámica**
-    - Decoradores que aceptan argumentos (`@MiDecorator(config)`)
-    - Uso de `factory functions` en decoradores
-
-</details>
-
-<details>
-<summary>19. Integración de TypeScript con Angular</summary>
-
-- **Configuración del entorno de Angular con TypeScript**
-    - Instalación de Angular CLI y generación de proyectos (`ng new`)
-    - Configuración de `tsconfig.json` en Angular
-- **Tipado y estructura en Angular**
-    - Tipado de componentes, servicios y directivas
-    - Uso de interfaces y clases en Angular
-    - Manejo de `strictPropertyInitialization` en componentes
-- **Inyección de dependencias y servicios**
-    - Tipado de `Injectable` y `providers`
-    - Uso de `HttpClient` con tipado seguro
-    - Uso de `Subject<T>` y `BehaviorSubject<T>` en servicios reactivos
-- **Manejo de formularios en Angular con TypeScript**
-    - Tipado de `FormGroup`, `FormControl`, `FormArray`
-    - Validaciones con `Validators` y `AbstractControl`
-- **Optimización del rendimiento en Angular con TypeScript**
-    - Uso de `OnPush` y `trackBy` en `ngFor`
-    - Evitar `any` en la gestión de estados
-
-</details>
-
-<details>
-<summary>20. Integración de TypeScript con NestJS</summary>
-
-- **Configuración y estructura de un proyecto NestJS**
-    - Instalación de NestJS y estructura de carpetas (`nest new`)
-    - Configuración de `tsconfig.json` en NestJS
-- **Tipado en controladores y servicios**
-    - Tipado de `@Controller()`, `@Get()`, `@Post()`, `@Put()`
-    - Tipado de `@Body()`, `@Param()`, `@Query()` en rutas
-    - Uso de DTOs (`Data Transfer Objects`) con validaciones de tipo
-- **Inyección de dependencias en NestJS**
-    - Uso de `@Injectable()` y `@Inject()` para dependencias tipadas
-    - Manejo de `Providers` con interfaces y `useClass`, `useFactory`, `useValue`
-- **Gestión de bases de datos con TypeORM y Prisma**
-    - Tipado de entidades con `@Entity()`, `@Column()`, `@PrimaryGeneratedColumn()`
-    - Uso de `Repository<T>` para acceso tipado a la base de datos
-- **Manejo de WebSockets y GraphQL en NestJS con TypeScript**
-    - Tipado de `@WebSocketGateway()`, `@SubscribeMessage()`
-    - Uso de `@Resolver()`, `@Query()`, `@Mutation()` en GraphQL
-
-</details>
-
-<details>
-<summary>21. Interoperabilidad con JavaScript y Migración de Código</summary>
-
-- **Compatibilidad entre TypeScript y JavaScript**
-    - Uso de `allowJs` en `tsconfig.json` para mezclar archivos `.js` y `.ts`
-    - Beneficios de TypeScript en proyectos JavaScript existentes
-- **Migración progresiva de JavaScript a TypeScript**
-    - Estrategia de migración incremental (`ts-check` y `@ts-nocheck`)
-    - Conversión de archivos `.js` a `.ts` y detección de errores
-- **Tipado de librerías JavaScript en TypeScript**
-    - Uso de archivos de definición de tipos (`@types/paquete`)
-    - Creación manual de `.d.ts` para bibliotecas sin tipado oficial
-- **Uso de `declare` para extender JavaScript sin modificar código fuente**
-    - Creación de tipos personalizados para bibliotecas externas
-    - Declaración de módulos sin tipado con `declare module "paquete"`
-- **Conversión de objetos dinámicos y `any` a tipos seguros**
-    - Uso de `unknown` en lugar de `any` en estructuras migradas
-    - Implementación de validaciones con `typeof`, `instanceof` y `asserts`
-- **Buenas prácticas en proyectos híbridos (JS + TS)**
-    - Refactorización gradual en grandes proyectos
-    - Uso de `strict: true` y eliminación progresiva de `any`
-
-</details>
-
-<details>
-<summary>22. Configuración Avanzada de TypeScript (`tsconfig.json`)</summary>
-
-- **Estructura y propósito de `tsconfig.json`**
-    - ¿Qué es `tsconfig.json` y cómo afecta la compilación?
-    - Generación automática con `tsc --init`
-- **Configuraciones esenciales en `compilerOptions`**
-    - `target`: Especificación de la versión de ECMAScript
-    - `module`: Configuración del sistema de módulos (`ESNext`, `CommonJS`)
-    - `strict`: Activación del modo estricto para mayor seguridad
-- **Control de directorios y salida de archivos**
-    - `rootDir` y `outDir`: Organización de archivos fuente y compilados
-    - `include`, `exclude` y `files`: Definición de archivos en la compilación
-- **Optimización y rendimiento en la compilación**
-    - `incremental`: Compilación incremental para reducir tiempos
-    - `noEmitOnError`: Evitar generación de código si hay errores
-    - `sourceMap`: Creación de mapas de código fuente para depuración
-- **Manejo de archivos de tipado (`@types` y `declaration`)**
-    - `declaration`: Generación de archivos `.d.ts` para librerías
-    - `typeRoots` y `types`: Control de definición de tipos externos
-- **Configuraciones avanzadas en proyectos grandes**
-    - `paths` y `baseUrl` para alias de módulos
-    - `composite` y `references` para proyectos modulares
-
-</details>
-
-<details>
-<summary>23. Automatización y Testing en TypeScript</summary>
-
-### **Automatización en TypeScript**
-
-- **Uso de `npm scripts` para ejecutar tareas**
-    - Configuración de scripts en `package.json`
-    - Ejecución de compilación y limpieza (`tsc`, `rimraf dist`)
-- **Automatización con herramientas de bundling**
-    - Configuración de `Webpack` y `Vite` con TypeScript
-    - Uso de `esbuild` para compilaciones rápidas
-- **Linting y formateo de código**
-    - Configuración de `ESLint` con TypeScript (`@typescript-eslint`)
-    - Integración con `Prettier` para formateo automático
-
-### **Testing en TypeScript**
-
-- **Testing unitario con Jest y Vitest**
-    - Configuración de Jest en TypeScript (`ts-jest`)
-    - Creación de pruebas con `describe()`, `test()`, `expect()`
-    - Uso de mocks (`jest.mock()`, `jest.fn()`, `spyOn()`)
-- **Testing de integración en NestJS y Angular**
-    - Pruebas de servicios en NestJS con `TestingModule`
-    - Pruebas en Angular con `TestBed` y `ComponentFixture`
-- **Pruebas end-to-end (E2E) con Cypress y Playwright**
-    - Configuración de Cypress en proyectos TypeScript
-    - Creación de pruebas de UI (`cy.visit()`, `cy.get()`, `cy.click()`)
-- **Cobertura de código y generación de reportes**
-    - Uso de `jest --coverage` para métricas de test
-    - Configuración de `nyc` para análisis de cobertura
-
-</details>
+    - Uso adecuado de `
