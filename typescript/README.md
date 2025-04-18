@@ -179,22 +179,22 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>8. Handling Conditional and Mapped Types</summary>
 
-- **Introduction to conditional types**
+- [**Introduction to conditional types**](conditional-mapped-types/introduction.md)
     - Basic syntax (`T extends U ? X : Y`)
     - Use cases in dynamic type validations
-- **Using `infer` in conditional types**
+- [**Using `infer` in conditional types**](conditional-mapped-types/using-infer.md)
     - Extracting internal types with `infer` (`ReturnType<T>`)
     - Advanced applications with automatic inference
-- **Mapped Types**
+- [**Mapped Types**](conditional-mapped-types/mapped-types.md)
     - Transforming object properties
     - Using `as` in Mapped Types to change keys
-- **Modifying properties with `Readonly<T>`, `Partial<T>`, and `Required<T>`**
+- [**Modifying properties with `Readonly<T>`, `Partial<T>`, and `Required<T>`**](conditional-mapped-types/modifying-properties.md)
     - Creating derived types from existing structures
     - Restricting and expanding properties
-- **Using `Record<K, T>` in creating dynamic structures**
+- [**Using `Record<K, T>` in creating dynamic structures**](conditional-mapped-types/using-record.md)
     - Creating typed objects with specific keys and values
     - Use cases in configuration structures
-- **Advanced examples of conditional types**
+- [**Advanced examples of conditional types**](conditional-mapped-types/advanced-examples.md)
     - Implementing compile-time type validations and transformations
     - Creating `DeepPartial<T>` to make nested types optional
 
