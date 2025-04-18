@@ -4,4 +4,5 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/conditiona
 
 # Introducción a los tipos condicionales
 
-Contenido pendiente. 
+- Sintaxis básica (`T extends U ? X : Y`)
+- Casos de uso en validaciones de tipos dinámicos 

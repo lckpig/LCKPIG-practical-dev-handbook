@@ -4,4 +4,5 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/conditiona
 
 # Modificación de propiedades con `Readonly<T>`, `Partial<T>` y `Required<T>`
 
-Contenido pendiente. 
+- Creación de tipos derivados a partir de estructuras existentes
+- Restricción y expansión de propiedades 

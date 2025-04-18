@@ -4,4 +4,5 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/conditiona
 
 # Tipos mapeados (`Mapped Types`)
 
-Contenido pendiente. 
+- Transformación de propiedades de un objeto
+- Uso de `as` en `Mapped Types` para cambiar claves 

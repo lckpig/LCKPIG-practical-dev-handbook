@@ -4,4 +4,5 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/conditiona
 
 # Uso de `infer` en tipos condicionales
 
-Contenido pendiente. 
+- Extraer tipos internos con `infer` (`ReturnType<T>`)
+- Aplicaciones avanzadas con inferencia automática 

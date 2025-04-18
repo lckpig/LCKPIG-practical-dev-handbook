@@ -4,4 +4,5 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/conditiona
 
 # Uso de `Record<K, T>` en la creación de estructuras dinámicas
 
-Contenido pendiente. 
+- Creación de objetos tipados con claves y valores específicos
+- Casos de uso en estructuras de configuración 
