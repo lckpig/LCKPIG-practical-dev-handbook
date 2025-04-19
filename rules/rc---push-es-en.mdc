@@ -7,7 +7,7 @@ alwaysApply: true
 
 ### Restricción importante sobre comandos
 
-- **Ejecutar comandos individualmente**: Cada comando de consola debe ejecutarse de forma independiente, individual y secuencial, sin utilizar operadores de concatenación (`&&`).
+- **Ejecutar comandos individualmente**: Cada comando de consola debe ejecutarse de forma independiente, individual y secuencial, sin utilizar operadores de concatenación (`&&`) ni tuberia (`|`).
 - **Formato correcto**: 
   ```bash
   cd _ES
@@ -19,7 +19,7 @@ alwaysApply: true
   ```bash
   cd _ES && git status
   ```
-- Esta restricción es crítica ya que el operador `&&` no funciona correctamente en la consola del sistema y generará errores.
+- Esta restricción es crítica ya que el operador `&&` y la tuberia `|` no funcionan correctamente en la consola del sistema y generará errores.
 - 
 Cuando se ejecuta el comando `rcpush`, se debe realizar un proceso completo de git en ambas carpetas siguiendo estos pasos:
 
