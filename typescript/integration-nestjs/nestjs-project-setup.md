@@ -3,6 +3,6 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/integratio
 <!-- MULTILANGUAJE MENU END -->
 
 # Configuración y estructura de un proyecto NestJS
-
+ 
 - Instalación de NestJS y estructura de carpetas (`nest new`)
 - Configuración de `tsconfig.json` en NestJS 
