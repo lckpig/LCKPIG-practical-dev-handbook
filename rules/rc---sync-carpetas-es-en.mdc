@@ -159,10 +159,10 @@ alwaysApply: true
 2. **Inserción del Menú Multilenguaje**
    - En el archivo de `_ES`:
      - Insertar al inicio del archivo el snippet de menú multilenguaje para ES ubicado en `.cursor/snippets/multilanguaje-menu-es.md`
-     - Reemplazar `<file-path>` con la ruta relativa del archivo desde la raíz de `_ES`. Si el archivo se llama `README.md` eliminar el nombre del archivo y la extension de la ruta.
+     - Reemplazar `<file-path>` con la ruta relativa del archivo desde la raíz de `_ES`, sin incluir la extension del archivo. Si el archivo se llama `README.md` eliminar el nombre del archivo y la extension de la ruta.
    - En el archivo de `_EN`:
      - Insertar al inicio del archivo el snippet de menú multilenguaje para EN ubicado en `.cursor/snippets/multilanguaje-menu-en.md`
-     - Reemplazar `<file-path>` con la ruta relativa del archivo desde la raíz de `_EN`. Si el archivo se llama `README.md` eliminar el nombre del archivo y la extension de la ruta.
+     - Reemplazar `<file-path>` con la ruta relativa del archivo desde la raíz de `_EN`, sin incluir la extension del archivo. Si el archivo se llama `README.md` eliminar el nombre del archivo y la extension de la ruta.
    - **Excepción**: Si un archivo `.md` se crea directamente en `_EN` (aunque no sea la práctica recomendada), DEBE incluir el menú multilenguaje siguiendo el mismo proceso.
 
 > ⚠️ **Nota**: Aunque se permite la inserción del menú en archivos creados directamente en `_EN`, se recomienda encarecidamente seguir el flujo normal de creación en `_ES` y posterior sincronización.
