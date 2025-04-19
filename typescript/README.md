@@ -203,20 +203,20 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>9. Manejo de Tipos Recursivos y Avanzados</summary>
 
-- **Tipos recursivos en TypeScript**
+- [**Tipos recursivos en TypeScript**](recursive-advanced-types/recursive-types.md)
     - Definición de estructuras recursivas (`type Nodo<T> = { valor: T; hijos?: Nodo<T>[] };`)
     - Uso en estructuras de datos como árboles y listas anidadas
-- **`DeepPartial<T>` y `DeepReadonly<T>`**
+- [**`DeepPartial<T>` y `DeepReadonly<T>`**](recursive-advanced-types/deep-partial-readonly.md)
     - Transformación de estructuras anidadas a opcionales (`DeepPartial<T>`)
     - Aplicación de inmutabilidad en niveles profundos con `DeepReadonly<T>`
-- **Manipulación de tuplas y arrays avanzados**
+- [**Manipulación de tuplas y arrays avanzados**](recursive-advanced-types/advanced-tuples-arrays.md)
     - Uso de `T[number]` para extraer valores de arrays tipados
     - Concatenación y manipulación de tuplas (`[...T, U]`)
     - Creación de tuplas dinámicas con `Extract<T, U>`
-- **Inferencia avanzada con `infer` y `keyof`**
+- [**Inferencia avanzada con `infer` y `keyof`**](recursive-advanced-types/advanced-inference.md)
     - Uso de `infer` en la desestructuración de tipos
     - Creación de utilitarios personalizados con `keyof` y `Mapped Types`
-- **Ejemplos prácticos de tipos avanzados**
+- [**Ejemplos prácticos de tipos avanzados**](recursive-advanced-types/practical-examples.md)
     - Implementación de validaciones de tipo en tiempo de compilación
     - Uso de `IsNever<T>` y `IsUnknown<T>` para control de flujo de tipos
 
