@@ -225,21 +225,21 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>10. Modules and Namespaces</summary>
 
-- **Handling modules in TypeScript**
+- [**Handling modules in TypeScript**](modules-namespaces/handling-modules.md)
     - Differences between `ES Modules` and `CommonJS`
     - Imports and exports (`import { something } from './file'`, `export function something()`)
     - Default exports vs. named exports
-- **Organizing code with modules**
+- [**Organizing code with modules**](modules-namespaces/code-organization.md)
     - Using `index.ts` to centralize exports
     - Separation of responsibilities into reusable modules
-- **Namespaces in TypeScript**
+- [**Namespaces in TypeScript**](modules-namespaces/namespaces.md)
     - Defining a `namespace` (`namespace MyNamespace { export class MyClass {} }`)
     - Importing elements from a `namespace` (`MyNamespace.MyClass`)
     - Differences between `namespace` and `module` in modern TypeScript
-- **Configuring modules in `tsconfig.json`**
+- [**Module configuration in `tsconfig.json`**](modules-namespaces/module-config.md)
     - Parameters `module`, `moduleResolution`, `baseUrl`, `paths`
     - Module aliases with `paths` and `baseUrl`
-- **Using modules with bundlers and frameworks**
+- [**Using modules with bundlers and frameworks**](modules-namespaces/bundlers-frameworks.md)
     - Configuration in Webpack, Rollup, and Vite
     - Integration with Node.js and `ts-node`
 
@@ -248,23 +248,23 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>11. Object-Oriented Programming in TypeScript</summary>
 
-- **Classes in TypeScript**
+- [**Classes in TypeScript**](object-oriented-programming/classes.md)
     - Class declaration (`class Person {}`)
     - Public, private, and protected properties and methods
     - Constructors and constructor overloading
-- **Inheritance and superclasses**
+- [**Inheritance and superclasses**](object-oriented-programming/inheritance.md)
     - Using `extends` to inherit from another class
     - Calling the parent constructor with `super()`
-- **Interfaces and abstract classes**
+- [**Interfaces and abstract classes**](object-oriented-programming/interfaces-abstract-classes.md)
     - Differences between `interface` and `abstract class`
     - Implementing interfaces in classes with `implements`
-- **Access modifiers and encapsulation**
+- [**Access modifiers and encapsulation**](object-oriented-programming/access-modifiers.md)
     - `public`, `private`, `protected`, `readonly`
     - `get` and `set` methods for property access control
-- **Static methods and properties**
+- [**Static methods and properties**](object-oriented-programming/static-members.md)
     - Declaration with `static`
     - Accessing methods without instantiating the class
-- **Design patterns applied in TypeScript**
+- [**Design patterns applied in TypeScript**](object-oriented-programming/design-patterns.md)
     - Using `Singleton`, `Factory`, `Decorator`
     - Implementing `Strategy` and `Observer` in TypeScript
 
@@ -554,6 +554,4 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
     - Creating UI tests (`cy.visit()`, `cy.get()`, `cy.click()`)
 - **Code coverage and report generation**
     - Using `jest --coverage` for test metrics
-    - Configuring `nyc` for coverage analysis
-
-</details> 
+    - Configuring `
