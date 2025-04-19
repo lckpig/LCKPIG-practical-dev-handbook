@@ -368,22 +368,22 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>16. Manejo de Errores y Depuración</summary>
 
-- **Manejo de errores con `try...catch` en TypeScript**
+- [**Manejo de errores con `try...catch` en TypeScript**](error-handling-debugging/try-catch-handling.md)
     - Tipado de errores en bloques `catch` (`error: unknown`)
     - Uso de `instanceof` para verificar el tipo de error
-- **Errores en código asíncrono**
+- [**Errores en código asíncrono**](error-handling-debugging/async-error-handling.md)
     - Captura de errores en `async/await` con `try...catch`
     - Tipado de respuestas fallidas en Promesas
-- **Depuración con `console.log()` y `console.error()`**
+- [**Depuración con `console.log()` y `console.error()`**](error-handling-debugging/debugging-tools.md)
     - Uso eficiente de `console.table()` para visualizar objetos
     - `debugger` en DevTools del navegador
-- **Integración con herramientas de depuración**
+- [**Integración con herramientas de depuración**](error-handling-debugging/debugging-integration.md)
     - Uso de `tsc --watch` para detectar errores en tiempo de desarrollo
     - Depuración en VS Code con `launch.json`
-- **Manejo de errores en clases y funciones**
+- [**Manejo de errores en clases y funciones**](error-handling-debugging/class-function-errors.md)
     - Creación de clases de error personalizadas (`class CustomError extends Error`)
     - Lanzamiento controlado de errores con `throw`
-- **Prevención de errores en TypeScript**
+- [**Prevención de errores en TypeScript**](error-handling-debugging/error-prevention.md)
     - Uso de `strictNullChecks` y `noImplicitAny`
     - Estrategias para evitar `any` y garantizar tipado seguro
 
@@ -392,22 +392,22 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>17. Buenas Prácticas y Optimización de Código</summary>
 
-- **Estructura y organización del código**
+- [**Estructura y organización del código**](best-practices-optimization/code-structure-organization.md)
     - Separación de lógica en módulos y archivos
-    - Uso adecuado de ` `interfaces` y `types`
-- **Escritura de código mantenible**
+    - Uso adecuado de `interfaces` y `types`
+- [**Escritura de código mantenible**](best-practices-optimization/maintainable-code.md)
     - Convenciones de nombres en variables y funciones
     - Uso de `readonly` y `const` para evitar modificaciones accidentales
-- **Optimización del rendimiento en TypeScript**
+- [**Optimización del rendimiento en TypeScript**](best-practices-optimization/performance-optimization.md)
     - Evitar conversiones innecesarias de tipos (`as any`)
     - Uso eficiente de estructuras de datos (`Map`, `Set`, `Record<K, T>`)
-- **Reducción de complejidad en funciones y clases**
+- [**Reducción de complejidad en funciones y clases**](best-practices-optimization/complexity-reduction.md)
     - Aplicación del principio **DRY** (Don't Repeat Yourself)
     - Uso de funciones puras y modularización
-- **Prevención de errores en tiempo de compilación**
+- [**Prevención de errores en tiempo de compilación**](best-practices-optimization/compile-time-error-prevention.md)
     - Habilitación de `strict` en `tsconfig.json`
     - Uso de `unknown` en lugar de `any`
-- **Compatibilidad y escalabilidad en proyectos grandes**
+- [**Compatibilidad y escalabilidad en proyectos grandes**](best-practices-optimization/compatibility-scalability.md)
     - Uso de `namespace` vs. `modules`
     - Implementación de `Abstract Classes` para facilitar extensibilidad
 
