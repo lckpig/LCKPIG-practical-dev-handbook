@@ -296,21 +296,21 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>13. TypeScript with Asynchronous JavaScript</summary>
 
-- **Handling Promises in TypeScript**
+- [**Handling Promises in TypeScript**](async-javascript/handling-promises.md)
     - Typing promises (`Promise<T>`)
     - Returning typed promises in functions
-- **Using `async/await` in TypeScript**
+- [**Using `async/await` in TypeScript**](async-javascript/async-await.md)
     - Declaring asynchronous functions with `async`
     - Awaiting promises with `await`
-- **Typing asynchronous functions**
+- [**Typing asynchronous functions**](async-javascript/typing-async-functions.md)
     - Explicit typing of `async` functions (`async function fetchData(): Promise<string>`)
     - Typing errors in `try...catch`
-- **`Promise.all()`, `Promise.race()`, `Promise.allSettled()`**
+- [**`Promise.all()`, `Promise.race()`, `Promise.allSettled()`**](async-javascript/advanced-promises.md)
     - Typing and advanced usage in concurrency
-- **AbortController and Promise cancellation**
+- [**AbortController and Promise cancellation**](async-javascript/abort-controller.md)
     - Implementing `AbortController` in `fetch`
     - Using `signal` to cancel HTTP requests
-- **Error handling in asynchronous code**
+- [**Error handling in asynchronous code**](async-javascript/error-handling-async.md)
     - Using `catch` in Promises
     - Strategies with `try...catch` in `async` functions
 
@@ -319,22 +319,22 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>14. DOM Manipulation with TypeScript</summary>
 
-- **Accessing DOM elements with TypeScript**
+- [**Accessing DOM elements with TypeScript**](dom-manipulation/accessing-dom-elements.md)
     - Typing `document.getElementById()`, `querySelector()`, and `querySelectorAll()`
     - Using `HTMLElement`, `HTMLInputElement`, `HTMLButtonElement`, and other specific types
-- **Modifying elements in the DOM**
+- [**Modifying elements in the DOM**](dom-manipulation/modifying-dom-elements.md)
     - Changing content with `textContent` and `innerHTML`
     - Manipulating attributes with `setAttribute()` and `getAttribute()`
-- **Events in TypeScript**
+- [**Events in TypeScript**](dom-manipulation/handling-events.md)
     - Typing events (`MouseEvent`, `KeyboardEvent`, `Event`)
     - Handling `addEventListener()` with specific types
-- **Creating and removing elements**
+- [**Creating and removing elements**](dom-manipulation/creating-removing-elements.md)
     - `document.createElement()`, `appendChild()`, `removeChild()`
     - Using `insertAdjacentHTML()` to insert dynamic content
-- **Event delegation and typed `event.target`**
+- [**Event delegation and typed `event.target`**](dom-manipulation/event-delegation.md)
     - Implementing event delegation in dynamic lists
     - Safe usage of `event.target` with `as HTMLElement`
-- **Using `MutationObserver` to detect DOM changes**
+- [**Using `MutationObserver` to detect DOM changes**](dom-manipulation/mutation-observer.md)
     - Implementing `MutationObserver`
     - Use cases in dynamic applications
 
@@ -343,23 +343,23 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>15. Strict Typing and Security Strategies</summary>
 
-- **Enabling strict mode in TypeScript**
+- [**Enabling strict mode in TypeScript**](strict-typing-security/enabling-strict-mode.md)
     - Configuring `strict: true` in `tsconfig.json`
     - Effects of `strictNullChecks`, `noImplicitAny`, `strictFunctionTypes`
-- **Safe handling of null and optional values**
+- [**Safe handling of null and optional values**](strict-typing-security/handling-null-optional.md)
     - Using `strictNullChecks` to avoid `null` or `undefined` values
     - Optional chaining operator (`?.`)
     - Nullish coalescing operator (`??`)
-- **Using `unknown` instead of `any`**
+- [**Using `unknown` instead of `any`**](strict-typing-security/unknown-vs-any-security.md)
     - Differences and best practices with `unknown`
     - Usage restrictions and the need for validation
-- **Security in data handling and APIs**
+- [**Security in data handling and APIs**](strict-typing-security/data-api-security.md)
     - Input validation with `typeof` and `instanceof`
     - Using `never` to ensure exhaustiveness in `switch`
-- **Protecting against errors in objects and classes**
+- [**Protecting against errors in objects and classes**](strict-typing-security/object-class-protection.md)
     - Implementing `Readonly<T>` to prevent mutations
     - Safe typing with `Partial<T>` and `Required<T>`
-- **Avoiding typing problems in dynamic structures**
+- [**Avoiding typing problems in dynamic structures**](strict-typing-security/dynamic-structure-typing.md)
     - Strategies for handling JSON structures in APIs (`Record<string, unknown>`)
     - Strict typing of `fetch()` responses
 
