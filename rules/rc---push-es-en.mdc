@@ -41,8 +41,8 @@ Cuando se ejecuta el comando `rcpush`, se debe realizar un proceso completo de g
      - Crear un mensaje breve que describa el propósito o la esencia de los cambios
      - El mensaje debe ser descriptivo pero conciso (máximo 50-72 caracteres para la línea principal) -->
    - **Analizar los cambios para generar automáticamente un mensaje de commit relevante y conciso**:
-     - Crear un mensaje breve ( en castellano neutro ) que describa el propósito o la esencia de los cambios en base a los archivos y carpetas creados o modificados para tener más contexto
-     - El mensaje debe ser descriptivo pero conciso (máximo 50-72 caracteres para la línea principal)
+     - Crear un mensaje breve ( en castellano neutro ) que describa el propósito o la esencia de los cambios en base al resumen de los archivos y carpetas creados o modificados para tener más contexto
+     - El mensaje debe ser descriptivo pero conciso y no básico (máximo 50-72 caracteres para la línea principal),MUY IMPORTANTE tampoco puede ser siempre el mismo mensaje en todos los commits, esto generaria problemas con github
    <!-- - Alternativamente, preguntar al usuario por un mensaje si lo prefiere -->
    <!-- - Ejecutar `git commit -m "mensaje"` con el mensaje generado o proporcionado -->
    - Ejecutar `git commit -m "mensaje"` con el mensaje generado
