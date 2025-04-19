@@ -174,6 +174,44 @@ alwaysApply: true
   + BLOQUEO: Cualquier creación/modificación en _EN que no venga de _ES se considera violación crítica
   ```
 
+### 4.4 Preservación de elementos entre backticks
+- **Regla estricta**:
+  - Todo contenido entre `backticks` (el carácter `` ` ``) debe conservarse intacto durante la traducción, incluyendo:
+    - El símbolo `` ` `` mismo
+    - Sintaxis (backticks presentes en ambas versiones)
+    - Contenido técnico (nombres de variables, tipos, etc.)
+  - Excepción aplicable solo cuando:
+    - El texto entre backticks es español coloquial (no técnico)
+    - Su traducción al inglés requiere cambio pero manteniendo los backticks
+
+- **Ejemplo de flujo correcto**:
+  ```markdown
+  # Versión ES
+  Para tipos personalizados usa `type MiTipo = ...`
+  
+  # Versión EN después de sincronización
+  For custom types use `type MyType = ...`
+  ```
+
+- **Mecanismo de validación**:
+  1. Pre-sincronización:
+     ```bash
+     # Contar backticks en archivo ES
+     ES_TICKS=$(grep -o '`' _ES/file.md | wc -l)
+     ```
+  2. Post-sincronización:
+     ```bash
+     # Contar backticks en archivo EN
+     EN_TICKS=$(grep -o '`' _EN/file.md | wc -l)
+     test $ES_TICKS -eq $EN_TICKS || echo "ERROR: Backticks discrepancy"
+     ```
+
+- **Protocolo de error**:
+  - Si hay diferencia en cantidad de backticks:
+    - Revertir cambios en _EN
+    - Generar alerta en `.syncbuffer/errors.log`
+    - Notificar al usuario via sistema de notificaciones
+
 ### 5. Validación y Verificación
 
 #### 5.1 Verificación de Eliminaciones
