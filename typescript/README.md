@@ -554,4 +554,6 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
     - Creating UI tests (`cy.visit()`, `cy.get()`, `cy.click()`)
 - **Code coverage and report generation**
     - Using `jest --coverage` for test metrics
-    - Configuring `
+    - Configuring `nyc` for coverage analysis
+
+</details> 
