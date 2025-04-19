@@ -487,22 +487,22 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>21. Interoperability with JavaScript and Code Migration</summary>
 
-- **Compatibility between TypeScript and JavaScript**
+- [**Compatibility between TypeScript and JavaScript**](/typescript/interoperability-migration/compatibility-js-ts.md)
     - Using `allowJs` in `tsconfig.json` to mix `.js` and `.ts` files
     - Benefits of TypeScript in existing JavaScript projects
-- **Progressive migration from JavaScript to TypeScript**
+- [**Progressive migration from JavaScript to TypeScript**](/typescript/interoperability-migration/progressive-migration.md)
     - Incremental migration strategy (`ts-check` and `@ts-nocheck`)
     - Converting `.js` files to `.ts` and error detection
-- **Typing JavaScript libraries in TypeScript**
+- [**Typing JavaScript libraries in TypeScript**](/typescript/interoperability-migration/typing-js-libraries.md)
     - Using type definition files (`@types/package`)
     - Manual creation of `.d.ts` for libraries without official typing
-- **Using `declare` to extend JavaScript without modifying source code**
+- [**Using `declare` to extend JavaScript**](/typescript/interoperability-migration/using-declare.md)
     - Creating custom types for external libraries
     - Declaring untyped modules with `declare module "package"`
-- **Converting dynamic objects and `any` to safe types**
+- [**Converting dynamic objects and `any` to safe types**](/typescript/interoperability-migration/converting-dynamic-any.md)
     - Using `unknown` instead of `any` in migrated structures
     - Implementing validations with `typeof`, `instanceof` and `asserts`
-- **Best practices in hybrid projects (JS + TS)**
+- [**Best practices in hybrid projects (JS + TS)**](/typescript/interoperability-migration/hybrid-project-best-practices.md)
     - Gradual refactoring in large projects
     - Using `strict: true` and progressive elimination of `any`
 
@@ -511,24 +511,24 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>22. Advanced TypeScript Configuration (`tsconfig.json`)</summary>
 
-- **Structure and purpose of `tsconfig.json`**
+- [**Structure and purpose of `tsconfig.json`**](/typescript/advanced-tsconfig-configuration/tsconfig-structure-purpose.md)
     - What is `tsconfig.json` and how does it affect compilation?
     - Automatic generation with `tsc --init`
-- **Essential configurations in `compilerOptions`**
+- [**Essential configurations in `compilerOptions`**](/typescript/advanced-tsconfig-configuration/essential-compiler-options.md)
     - `target`: Specifying ECMAScript version
     - `module`: Configuring the module system (`ESNext`, `CommonJS`)
     - `strict`: Activating strict mode for greater security
-- **Directory control and file output**
+- [**Directory control and file output**](/typescript/advanced-tsconfig-configuration/directory-output-control.md)
     - `rootDir` and `outDir`: Organizing source and compiled files
     - `include`, `exclude` and `files`: Defining files in compilation
-- **Optimization and performance in compilation**
+- [**Optimization and performance in compilation**](/typescript/advanced-tsconfig-configuration/compilation-optimization-performance.md)
     - `incremental`: Incremental compilation to reduce times
     - `noEmitOnError`: Preventing code generation if there are errors
     - `sourceMap`: Creating source code maps for debugging
-- **Handling type files (`@types` and `declaration`)**
+- [**Handling type files (`@types` and `declaration`)**](/typescript/advanced-tsconfig-configuration/handling-type-files.md)
     - `declaration`: Generating `.d.ts` files for libraries
     - `typeRoots` and `types`: Control of external type definitions
-- **Advanced configurations in large projects**
+- [**Advanced configurations in large projects**](/typescript/advanced-tsconfig-configuration/advanced-large-project-config.md)
     - `paths` and `baseUrl` for module aliases
     - `composite` and `references` for modular projects
 
@@ -537,31 +537,31 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>23. Automation and Testing in TypeScript</summary>
 
-### **Automation in TypeScript**
+### Automation in TypeScript
 
-- **Using `npm scripts` to run tasks**
+- [**Using `npm scripts` to run tasks**](/typescript/automation-testing/npm-scripts-automation.md)
     - Configuring scripts in `package.json`
     - Running compilation and cleaning (`tsc`, `rimraf dist`)
-- **Automation with bundling tools**
+- [**Automation with bundling tools**](/typescript/automation-testing/bundling-tools-automation.md)
     - Configuring `Webpack` and `Vite` with TypeScript
     - Using `esbuild` for fast compilations
-- **Linting and code formatting**
+- [**Linting and code formatting**](/typescript/automation-testing/linting-formatting.md)
     - Configuring `ESLint` with TypeScript (`@typescript-eslint`)
     - Integration with `Prettier` for automatic formatting
 
-### **Testing in TypeScript**
+### Testing in TypeScript
 
-- **Unit testing with Jest and Vitest**
+- [**Unit testing with Jest and Vitest**](/typescript/automation-testing/unit-testing-jest-vitest.md)
     - Configuring Jest in TypeScript (`ts-jest`)
     - Creating tests with `describe()`, `test()`, `expect()`
     - Using mocks (`jest.mock()`, `jest.fn()`, `spyOn()`)
-- **Integration testing in NestJS and Angular**
+- [**Integration testing in NestJS and Angular**](/typescript/automation-testing/integration-testing-nestjs-angular.md)
     - Testing services in NestJS with `TestingModule`
-    - Tests in Angular with `TestBed` and `ComponentFixture`
-- **End-to-end (E2E) testing with Cypress and Playwright**
+    - Testing in Angular with `TestBed` and `ComponentFixture`
+- [**End-to-end (E2E) testing with Cypress and Playwright**](/typescript/automation-testing/e2e-testing-cypress-playwright.md)
     - Configuring Cypress in TypeScript projects
     - Creating UI tests (`cy.visit()`, `cy.get()`, `cy.click()`)
-- **Code coverage and report generation**
+- [**Code coverage and report generation**](/typescript/automation-testing/code-coverage-reports.md)
     - Using `jest --coverage` for test metrics
     - Configuring `nyc` for coverage analysis
 
