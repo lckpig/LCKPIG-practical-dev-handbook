@@ -465,20 +465,20 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>20. TypeScript Integration with NestJS</summary>
 
-- **Configuring and structuring a NestJS project**
+- [**Configuring and structuring a NestJS project**](/typescript/integration-nestjs/nestjs-project-setup.md)
     - Installing NestJS and folder structure (`nest new`)
     - Configuring `tsconfig.json` in NestJS
-- **Typing in controllers and services**
+- [**Typing in controllers and services**](/typescript/integration-nestjs/nestjs-typing-controllers-services.md)
     - Typing `@Controller()`, `@Get()`, `@Post()`, `@Put()`
     - Typing `@Body()`, `@Param()`, `@Query()` in routes
     - Using DTOs (`Data Transfer Objects`) with type validations
-- **Dependency injection in NestJS**
+- [**Dependency injection in NestJS**](/typescript/integration-nestjs/nestjs-dependency-injection.md)
     - Using `@Injectable()` and `@Inject()` for typed dependencies
     - Handling `Providers` with interfaces and `useClass`, `useFactory`, `useValue`
-- **Database management with TypeORM and Prisma**
+- [**Database management with TypeORM and Prisma**](/typescript/integration-nestjs/nestjs-database-management.md)
     - Typing entities with `@Entity()`, `@Column()`, `@PrimaryGeneratedColumn()`
     - Using `Repository<T>` for typed database access
-- **Handling WebSockets and GraphQL in NestJS with TypeScript**
+- [**Handling WebSockets and GraphQL in NestJS with TypeScript**](/typescript/integration-nestjs/nestjs-websockets-graphql.md)
     - Typing `@WebSocketGateway()`, `@SubscribeMessage()`
     - Using `@Resolver()`, `@Query()`, `@Mutation()` in GraphQL
 
