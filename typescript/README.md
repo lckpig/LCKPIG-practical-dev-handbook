@@ -273,22 +273,22 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>12. Programación Funcional con TypeScript</summary>
 
-- **Principios de programación funcional en TypeScript**
+- [**Principios de programación funcional en TypeScript**](functional-programming/functional-programming-principles.md)
     - Inmutabilidad y funciones puras
     - Evitar efectos secundarios en funciones
-- **Funciones de orden superior y callbacks**
+- [**Funciones de orden superior y callbacks**](functional-programming/higher-order-functions-callbacks.md)
     - Paso de funciones como argumentos (`map()`, `filter()`, `reduce()`)
     - Creación de funciones de orden superior
-- **Closures y currying en TypeScript**
+- [**Closures y currying en TypeScript**](functional-programming/closures-currying.md)
     - Uso de closures para encapsular datos
     - Implementación de currying para parcializar funciones
-- **Uso de tipos genéricos en funciones funcionales**
+- [**Uso de tipos genéricos en funciones funcionales**](functional-programming/generics-functional-functions.md)
     - Creación de funciones genéricas (`function procesar<T>(valor: T): T {}`)
     - Aplicaciones de `Partial<T>`, `Readonly<T>`, `Pick<T, K>` en programación funcional
-- **Composición de funciones y `pipe`**
+- [**Composición de funciones y `pipe`**](functional-programming/function-composition-pipe.md)
     - Encadenamiento de funciones con composición (`f(g(x))`)
     - Implementación del patrón `pipe()`
-- **Uso de `ReadonlyArray<T>` y `ReadonlyMap<K, V>`**
+- [**Uso de `ReadonlyArray<T>` y `ReadonlyMap<K, V>`**](functional-programming/readonly-collections.md)
     - Evitar mutaciones en listas y estructuras de datos
 
 </details>
@@ -345,4 +345,4 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 
 - **Activación del modo estricto en TypeScript**
     - Configuración de `strict: true` en `tsconfig.json`
-    - Efectos de `
+    - Efectos de `strict: true` en el compilador
