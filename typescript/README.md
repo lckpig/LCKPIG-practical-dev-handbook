@@ -296,21 +296,21 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>13. TypeScript con JavaScript Asíncrono</summary>
 
-- **Manejo de Promesas en TypeScript**
+- [**Manejo de Promesas en TypeScript**](async-javascript/handling-promises.md)
     - Tipado de promesas (`Promise<T>`)
     - Retorno de promesas tipadas en funciones
-- **Uso de `async/await` en TypeScript**
+- [**Uso de `async/await` en TypeScript**](async-javascript/async-await.md)
     - Declaración de funciones asíncronas con `async`
     - Espera de promesas con `await`
-- **Tipado de funciones asíncronas**
+- [**Tipado de funciones asíncronas**](async-javascript/typing-async-functions.md)
     - Tipado explícito de funciones `async` (`async function obtenerDatos(): Promise<string>`)
     - Tipado de errores en `try...catch`
-- **`Promise.all()`, `Promise.race()`, `Promise.allSettled()`**
+- [**`Promise.all()`, `Promise.race()`, `Promise.allSettled()`**](async-javascript/advanced-promises.md)
     - Tipado y uso avanzado en concurrencia
-- **AbortController y cancelación de Promesas**
+- [**AbortController y cancelación de Promesas**](async-javascript/abort-controller.md)
     - Implementación de `AbortController` en `fetch`
     - Uso de `signal` para cancelar peticiones HTTP
-- **Manejo de errores en código asíncrono**
+- [**Manejo de errores en código asíncrono**](async-javascript/error-handling-async.md)
     - Uso de `catch` en Promesas
     - Estrategias con `try...catch` en funciones `async`
 
@@ -319,22 +319,22 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>14. Manipulación del DOM con TypeScript</summary>
 
-- **Acceso a elementos del DOM con TypeScript**
+- [**Acceso a elementos del DOM con TypeScript**](dom-manipulation/accessing-dom-elements.md)
     - Tipado de `document.getElementById()`, `querySelector()` y `querySelectorAll()`
     - Uso de `HTMLElement`, `HTMLInputElement`, `HTMLButtonElement` y otros tipos específicos
-- **Modificación de elementos en el DOM**
+- [**Modificación de elementos en el DOM**](dom-manipulation/modifying-dom-elements.md)
     - Cambio de contenido con `textContent` y `innerHTML`
     - Manipulación de atributos con `setAttribute()` y `getAttribute()`
-- **Eventos en TypeScript**
+- [**Eventos en TypeScript**](dom-manipulation/handling-events.md)
     - Tipado de eventos (`MouseEvent`, `KeyboardEvent`, `Event`)
     - Manejo de `addEventListener()` con tipos específicos
-- **Creación y eliminación de elementos**
+- [**Creación y eliminación de elementos**](dom-manipulation/creating-removing-elements.md)
     - `document.createElement()`, `appendChild()`, `removeChild()`
     - Uso de `insertAdjacentHTML()` para insertar contenido dinámico
-- **Delegación de eventos y `event.target` tipado**
+- [**Delegación de eventos y `event.target` tipado**](dom-manipulation/event-delegation.md)
     - Implementación de delegación de eventos en listas dinámicas
     - Uso seguro de `event.target` con `as HTMLElement`
-- **Uso de `MutationObserver` para detectar cambios en el DOM**
+- [**Uso de `MutationObserver` para detectar cambios en el DOM**](dom-manipulation/mutation-observer.md)
     - Implementación de `MutationObserver`
     - Casos de uso en aplicaciones dinámicas
 
@@ -343,23 +343,23 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>15. Tipado Estricto y Estrategias de Seguridad</summary>
 
-- **Activación del modo estricto en TypeScript**
+- [**Activación del modo estricto en TypeScript**](strict-typing-security/enabling-strict-mode.md)
     - Configuración de `strict: true` en `tsconfig.json`
     - Efectos de `strictNullChecks`, `noImplicitAny`, `strictFunctionTypes`
-- **Manejo seguro de valores nulos y opcionales**
+- [**Manejo seguro de valores nulos y opcionales**](strict-typing-security/handling-null-optional.md)
     - Uso de `strictNullChecks` para evitar valores `null` o `undefined`
     - Operador de encadenamiento opcional (`?.`)
     - Operador de coalescencia nula (`??`)
-- **Uso de `unknown` en lugar de `any`**
+- [**Uso de `unknown` en lugar de `any`**](strict-typing-security/unknown-vs-any-security.md)
     - Diferencias y mejores prácticas con `unknown`
     - Restricciones de uso y necesidad de validaciones
-- **Seguridad en el manejo de datos y APIs**
+- [**Seguridad en el manejo de datos y APIs**](strict-typing-security/data-api-security.md)
     - Validación de entradas con `typeof` y `instanceof`
     - Uso de `never` para asegurar exhaustividad en `switch`
-- **Protección contra errores en objetos y clases**
+- [**Protección contra errores en objetos y clases**](strict-typing-security/object-class-protection.md)
     - Implementación de `Readonly<T>` para prevenir mutaciones
     - Tipado seguro con `Partial<T>` y `Required<T>`
-- **Evitar problemas en tipado de estructuras dinámicas**
+- [**Evitar problemas en tipado de estructuras dinámicas**](strict-typing-security/dynamic-structure-typing.md)
     - Estrategias para manejar estructuras JSON en APIs (`Record<string, unknown>`)
     - Tipado estricto de respuestas de `fetch()`
 
