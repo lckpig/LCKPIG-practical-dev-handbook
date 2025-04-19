@@ -416,24 +416,24 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>18. Decoradores en TypeScript</summary>
 
-- **Introducción a los decoradores**
+- [**Introducción a los decoradores**](decorators/introduction.md)
     - ¿Qué son los decoradores y cómo funcionan en TypeScript?
     - Configuración de `experimentalDecorators` en `tsconfig.json`
-- **Tipos de decoradores en TypeScript**
+- [**Tipos de decoradores en TypeScript**](decorators/decorator-types.md)
     - **Decoradores de clase** (`@ClaseDecorator`)
     - **Decoradores de propiedad** (`@PropiedadDecorator`)
     - **Decoradores de método** (`@MetodoDecorator`)
     - **Decoradores de parámetros** (`@ParametroDecorator`)
-- **Uso de decoradores en Angular**
+- [**Uso de decoradores en Angular**](decorators/decorators-angular.md)
     - `@Component()`, `@Injectable()`, `@Directive()`, `@Pipe()`
     - Personalización de decoradores en servicios y módulos
-- **Uso de decoradores en NestJS**
+- [**Uso de decoradores en NestJS**](decorators/decorators-nestjs.md)
     - `@Controller()`, `@Get()`, `@Post()`, `@Param()`, `@Body()`
     - Creación de decoradores personalizados con `Reflect.metadata()`
-- **Composición y encadenamiento de decoradores**
+- [**Composición y encadenamiento de decoradores**](decorators/composition-chaining.md)
     - Aplicación de múltiples decoradores en una misma entidad
     - Orden de ejecución de los decoradores en clases
-- **Decoradores con parámetros y configuración dinámica**
+- [**Decoradores con parámetros y configuración dinámica**](decorators/parameterized-decorators.md)
     - Decoradores que aceptan argumentos (`@MiDecorator(config)`)
     - Uso de `factory functions` en decoradores
 
@@ -442,21 +442,21 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript)
 <details>
 <summary>19. Integración de TypeScript con Angular</summary>
 
-- **Configuración del entorno de Angular con TypeScript**
+- [**Configuración del entorno de Angular con TypeScript**](integration-angular/environment-setup.md)
     - Instalación de Angular CLI y generación de proyectos (`ng new`)
     - Configuración de `tsconfig.json` en Angular
-- **Tipado y estructura en Angular**
+- [**Tipado y estructura en Angular**](integration-angular/typing-structure.md)
     - Tipado de componentes, servicios y directivas
     - Uso de interfaces y clases en Angular
     - Manejo de `strictPropertyInitialization` en componentes
-- **Inyección de dependencias y servicios**
+- [**Inyección de dependencias y servicios**](integration-angular/dependency-injection.md)
     - Tipado de `Injectable` y `providers`
     - Uso de `HttpClient` con tipado seguro
     - Uso de `Subject<T>` y `BehaviorSubject<T>` en servicios reactivos
-- **Manejo de formularios en Angular con TypeScript**
+- [**Manejo de formularios en Angular con TypeScript**](integration-angular/form-handling.md)
     - Tipado de `FormGroup`, `FormControl`, `FormArray`
     - Validaciones con `Validators` y `AbstractControl`
-- **Optimización del rendimiento en Angular con TypeScript**
+- [**Optimización del rendimiento en Angular con TypeScript**](integration-angular/performance-optimization.md)
     - Uso de `OnPush` y `trackBy` en `ngFor`
     - Evitar `any` en la gestión de estados
 
