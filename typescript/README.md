@@ -416,24 +416,24 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>18. Decorators in TypeScript</summary>
 
-- **Introduction to decorators**
+- [**Introduction to decorators**](decorators/introduction.md)
     - What are decorators and how do they work in TypeScript?
     - Configuring `experimentalDecorators` in `tsconfig.json`
-- **Types of decorators in TypeScript**
+- [**Types of decorators in TypeScript**](decorators/decorator-types.md)
     - **Class decorators** (`@ClassDecorator`)
     - **Property decorators** (`@PropertyDecorator`)
     - **Method decorators** (`@MethodDecorator`)
     - **Parameter decorators** (`@ParameterDecorator`)
-- **Using decorators in Angular**
+- [**Using decorators in Angular**](decorators/decorators-angular.md)
     - `@Component()`, `@Injectable()`, `@Directive()`, `@Pipe()`
     - Customizing decorators in services and modules
-- **Using decorators in NestJS**
+- [**Using decorators in NestJS**](decorators/decorators-nestjs.md)
     - `@Controller()`, `@Get()`, `@Post()`, `@Param()`, `@Body()`
     - Creating custom decorators with `Reflect.metadata()`
-- **Composition and chaining of decorators**
+- [**Composition and chaining of decorators**](decorators/composition-chaining.md)
     - Applying multiple decorators to the same entity
     - Order of execution of decorators in classes
-- **Decorators with parameters and dynamic configuration**
+- [**Decorators with parameters and dynamic configuration**](decorators/parameterized-decorators.md)
     - Decorators that accept arguments (`@MyDecorator(config)`)
     - Using `factory functions` in decorators
 
@@ -442,21 +442,21 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>19. TypeScript Integration with Angular</summary>
 
-- **Configuring the Angular environment with TypeScript**
+- [**Configuring the Angular environment with TypeScript**](integration-angular/environment-setup.md)
     - Installing Angular CLI and generating projects (`ng new`)
     - Configuring `tsconfig.json` in Angular
-- **Typing and structure in Angular**
+- [**Typing and structure in Angular**](integration-angular/typing-structure.md)
     - Typing components, services, and directives
     - Using interfaces and classes in Angular
     - Handling `strictPropertyInitialization` in components
-- **Dependency injection and services**
+- [**Dependency injection and services**](integration-angular/dependency-injection.md)
     - Typing `Injectable` and `providers`
     - Using `HttpClient` with safe typing
     - Using `Subject<T>` and `BehaviorSubject<T>` in reactive services
-- **Handling forms in Angular with TypeScript**
+- [**Handling forms in Angular with TypeScript**](integration-angular/form-handling.md)
     - Typing `FormGroup`, `FormControl`, `FormArray`
     - Validations with `Validators` and `AbstractControl`
-- **Performance optimization in Angular with TypeScript**
+- [**Performance optimization in Angular with TypeScript**](integration-angular/performance-optimization.md)
     - Using `OnPush` and `trackBy` in `ngFor`
     - Avoiding `any` in state management
 
