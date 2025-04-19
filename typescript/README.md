@@ -129,9 +129,9 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>6. Handling Utility Types in TypeScript</summary>
 
-- [**Partial and optional types**](utility-types/partial-required.md)
+- [**Partial and required types**](utility-types/partial-required.md)
     - `Partial<T>`: Converting all properties to optional
-    - `Required<T>`: Converting all properties to mandatory
+    - `Required<T>`: Converting all properties to required
 - [**Manipulating objects with `Pick`, `Omit`, and `Record`**](utility-types/pick-omit-record.md)
     - `Pick<T, K>`: Selecting specific properties of a type
     - `Omit<T, K>`: Excluding properties from a type
@@ -195,7 +195,7 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
     - Creating typed objects with specific keys and values
     - Use cases in configuration structures
 - [**Advanced examples of conditional types**](conditional-mapped-types/advanced-examples.md)
-    - Implementing compile-time type validations and transformations
+    - Implementing compile-time filters and transformations
     - Creating `DeepPartial<T>` to make nested types optional
 
 </details>
@@ -303,7 +303,7 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
     - Declaring asynchronous functions with `async`
     - Awaiting promises with `await`
 - [**Typing asynchronous functions**](async-javascript/typing-async-functions.md)
-    - Explicit typing of `async` functions (`async function fetchData(): Promise<string>`)
+    - Explicit typing of `async` functions (`async function getData(): Promise<string>`)
     - Typing errors in `try...catch`
 - [**`Promise.all()`, `Promise.race()`, `Promise.allSettled()`**](async-javascript/advanced-promises.md)
     - Typing and advanced usage in concurrency
@@ -368,22 +368,22 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>16. Error Handling and Debugging</summary>
 
-- **Error handling with `try...catch` in TypeScript**
+- [**Error handling with `try...catch` in TypeScript**](error-handling-debugging/try-catch-handling.md)
     - Typing errors in `catch` blocks (`error: unknown`)
     - Using `instanceof` to check error type
-- **Errors in asynchronous code**
+- [**Errors in asynchronous code**](error-handling-debugging/async-error-handling.md)
     - Catching errors in `async/await` with `try...catch`
     - Typing failed responses in Promises
-- **Debugging with `console.log()` and `console.error()`**
+- [**Debugging with `console.log()` and `console.error()`**](error-handling-debugging/debugging-tools.md)
     - Efficient use of `console.table()` to visualize objects
     - `debugger` in browser DevTools
-- **Integration with debugging tools**
+- [**Integration with debugging tools**](error-handling-debugging/debugging-integration.md)
     - Using `tsc --watch` to detect errors during development
     - Debugging in VS Code with `launch.json`
-- **Error handling in classes and functions**
+- [**Error handling in classes and functions**](error-handling-debugging/class-function-errors.md)
     - Creating custom error classes (`class CustomError extends Error`)
     - Controlled error throwing with `throw`
-- **Error prevention in TypeScript**
+- [**Error prevention in TypeScript**](error-handling-debugging/error-prevention.md)
     - Using `strictNullChecks` and `noImplicitAny`
     - Strategies to avoid `any` and ensure safe typing
 
@@ -392,86 +392,95 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>17. Best Practices and Code Optimization</summary>
 
-- **Code structure and organization**
+- [**Code structure and organization**](best-practices-optimization/code-structure-organization.md)
     - Separating logic into modules and files
-    - Proper use of namespaces and modules
-- **Naming conventions and style guide**
-    - Consistent use of `camelCase`, `PascalCase`
-    - Following community style guides (e.g., Airbnb, Google)
-- **Writing clean and readable code**
-    - Use of comments only when necessary
-    - Short functions and single responsibility principle
-- **Performance optimization**
-    - Minimizing `any` usage
-    - Efficient use of utility types
-- **TypeScript integration with testing tools**
-    - Configuration with Jest, Mocha, Jasmine
-    - Writing unit and integration tests with types
-- **Code documentation with TSDoc**
-    - Using TSDoc comments for functions, classes, and interfaces
-    - Generating documentation automatically
+    - Proper use of `interfaces` and `types`
+- [**Writing maintainable code**](best-practices-optimization/maintainable-code.md)
+    - Naming conventions in variables and functions
+    - Using `readonly` and `const` to prevent accidental modifications
+- [**Performance optimization in TypeScript**](best-practices-optimization/performance-optimization.md)
+    - Avoiding unnecessary type conversions (`as any`)
+    - Efficient use of data structures (`Map`, `Set`, `Record<K, T>`)
+- [**Reducing complexity in functions and classes**](best-practices-optimization/complexity-reduction.md)
+    - Applying the **DRY** (Don't Repeat Yourself) principle
+    - Using pure functions and modularization
+- [**Compile-time error prevention**](best-practices-optimization/compile-time-error-prevention.md)
+    - Enabling `strict` in `tsconfig.json`
+    - Using `unknown` instead of `any`
+- [**Compatibility and scalability in large projects**](best-practices-optimization/compatibility-scalability.md)
+    - Using `namespace` vs. `modules`
+    - Implementing `Abstract Classes` to facilitate extensibility
 
 </details>
 
 <details>
-<summary>18. Real-World Projects and Case Studies</summary>
+<summary>18. Decorators in TypeScript</summary>
 
-- **Example 1: Building a REST API with Node.js and TypeScript**
-    - Project setup with Express and TypeScript
-    - Definition of routes and controllers with types
-    - Database integration with TypeORM or Prisma
-- **Example 2: Creating a frontend application with Angular/React/Vue and TypeScript**
-    - Component structuring with types
-    - State management with Redux/NgRx/Vuex and TypeScript
-    - Interaction with backend APIs using typed services
-- **Example 3: Developing a library/package with TypeScript**
-    - Configuration for library publishing
-    - Definition of public API with types
-    - Testing and documentation generation
-- **Case Study: Migration from JavaScript to TypeScript**
-    - Incremental migration strategies
-    - Challenges and benefits observed
-- **Case Study: Using TypeScript in large-scale projects**
-    - Team collaboration strategies
-    - Impact on code maintainability and scalability
-
-</details>
-
-<details>
-<summary>19. Advanced Topics and Future of TypeScript</summary>
-
-- **Decorators in TypeScript**
-    - Using decorators for classes, methods, properties, and parameters
-    - Custom decorator implementation
-    - Use cases in frameworks like Angular and NestJS
-- **Advanced inference and type manipulation**
-    - Deep dive into conditional types and `infer`
-    - Complex mapped types and template literal types
-- **Integration with WebAssembly**
-    - Using AssemblyScript (a subset of TypeScript) to compile to Wasm
-    - Interoperability between TypeScript and WebAssembly
-- **TypeScript in Deno**
-    - Native TypeScript support in Deno
-    - Differences from Node.js environment
-- **Future trends and upcoming features**
-    - Overview of proposals in TC39 and their potential impact on TypeScript
-    - Evolution of the type system and tooling
+- **Introduction to decorators**
+    - What are decorators and how do they work in TypeScript?
+    - Configuring `experimentalDecorators` in `tsconfig.json`
+- **Types of decorators in TypeScript**
+    - **Class decorators** (`@ClassDecorator`)
+    - **Property decorators** (`@PropertyDecorator`)
+    - **Method decorators** (`@MethodDecorator`)
+    - **Parameter decorators** (`@ParameterDecorator`)
+- **Using decorators in Angular**
+    - `@Component()`, `@Injectable()`, `@Directive()`, `@Pipe()`
+    - Customizing decorators in services and modules
+- **Using decorators in NestJS**
+    - `@Controller()`, `@Get()`, `@Post()`, `@Param()`, `@Body()`
+    - Creating custom decorators with `Reflect.metadata()`
+- **Composition and chaining of decorators**
+    - Applying multiple decorators to the same entity
+    - Order of execution of decorators in classes
+- **Decorators with parameters and dynamic configuration**
+    - Decorators that accept arguments (`@MyDecorator(config)`)
+    - Using `factory functions` in decorators
 
 </details>
 
 <details>
-<summary>20. Community and Resources</summary>
+<summary>19. TypeScript Integration with Angular</summary>
 
-- **Official TypeScript documentation and resources**
-    - Handbook, tutorials, playground
-- **Relevant blogs, tutorials, and online courses**
-    - Recommended sites and learning platforms
-- **Key community members and influencers**
-    - Developers and educators to follow
-- **Conferences and events related to TypeScript**
-    - Major events in the ecosystem
-- **How to contribute to TypeScript and its ecosystem**
-    - GitHub repository, contributing guidelines
+- **Configuring the Angular environment with TypeScript**
+    - Installing Angular CLI and generating projects (`ng new`)
+    - Configuring `tsconfig.json` in Angular
+- **Typing and structure in Angular**
+    - Typing components, services, and directives
+    - Using interfaces and classes in Angular
+    - Handling `strictPropertyInitialization` in components
+- **Dependency injection and services**
+    - Typing `Injectable` and `providers`
+    - Using `HttpClient` with safe typing
+    - Using `Subject<T>` and `BehaviorSubject<T>` in reactive services
+- **Handling forms in Angular with TypeScript**
+    - Typing `FormGroup`, `FormControl`, `FormArray`
+    - Validations with `Validators` and `AbstractControl`
+- **Performance optimization in Angular with TypeScript**
+    - Using `OnPush` and `trackBy` in `ngFor`
+    - Avoiding `any` in state management
+
+</details>
+
+<details>
+<summary>20. TypeScript Integration with NestJS</summary>
+
+- **Configuring and structuring a NestJS project**
+    - Installing NestJS and folder structure (`nest new`)
+    - Configuring `tsconfig.json` in NestJS
+- **Typing in controllers and services**
+    - Typing `@Controller()`, `@Get()`, `@Post()`, `@Put()`
+    - Typing `@Body()`, `@Param()`, `@Query()` in routes
+    - Using DTOs (`Data Transfer Objects`) with type validations
+- **Dependency injection in NestJS**
+    - Using `@Injectable()` and `@Inject()` for typed dependencies
+    - Handling `Providers` with interfaces and `useClass`, `useFactory`, `useValue`
+- **Database management with TypeORM and Prisma**
+    - Typing entities with `@Entity()`, `@Column()`, `@PrimaryGeneratedColumn()`
+    - Using `Repository<T>` for typed database access
+- **Handling WebSockets and GraphQL in NestJS with TypeScript**
+    - Typing `@WebSocketGateway()`, `@SubscribeMessage()`
+    - Using `@Resolver()`, `@Query()`, `@Mutation()` in GraphQL
 
 </details>
 
