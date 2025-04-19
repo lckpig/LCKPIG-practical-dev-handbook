@@ -203,20 +203,20 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>9. Handling Recursive and Advanced Types</summary>
 
-- **Recursive types in TypeScript**
-    - Defining recursive structures (`type Node<T> = { value: T; children?: Node<T>[] };`)
+- [**Recursive types in TypeScript**](recursive-advanced-types/recursive-types.md)
+    - Definition of recursive structures (`type Node<T> = { value: T; children?: Node<T>[] };`)
     - Use in data structures like trees and nested lists
-- **`DeepPartial<T>` and `DeepReadonly<T>`**
+- [**`DeepPartial<T>` and `DeepReadonly<T>`**](recursive-advanced-types/deep-partial-readonly.md)
     - Transforming nested structures to optional (`DeepPartial<T>`)
     - Applying immutability at deep levels with `DeepReadonly<T>`
-- **Advanced manipulation of tuples and arrays**
+- [**Advanced manipulation of tuples and arrays**](recursive-advanced-types/advanced-tuples-arrays.md)
     - Using `T[number]` to extract values from typed arrays
     - Concatenation and manipulation of tuples (`[...T, U]`)
     - Creating dynamic tuples with `Extract<T, U>`
-- **Advanced inference with `infer` and `keyof`**
+- [**Advanced inference with `infer` and `keyof`**](recursive-advanced-types/advanced-inference.md)
     - Using `infer` in type destructuring
-    - Creating custom utilities with `keyof` and Mapped Types
-- **Practical examples of advanced types**
+    - Creating custom utilities with `keyof` and `Mapped Types`
+- [**Practical examples of advanced types**](recursive-advanced-types/practical-examples.md)
     - Implementing compile-time type validations
     - Using `IsNever<T>` and `IsUnknown<T>` for type flow control
 
