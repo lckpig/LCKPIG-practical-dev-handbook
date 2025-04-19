@@ -1,5 +1,5 @@
 <!-- MULTILANGUAJE MENU START -->
-EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/access-modifiers.md)
+EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/access-modifiers)
 <!-- MULTILANGUAJE MENU END -->
 
 # Access Modifiers and Encapsulation

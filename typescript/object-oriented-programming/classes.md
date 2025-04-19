@@ -1,6 +1,5 @@
 <!-- MULTILANGUAJE MENU START -->
-EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/classes.md)
-[ES](https://lckpig.gitbook.io/practical-dev-handbook/es/typescript/object-oriented-programming/classes) | EN
+EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/classes)
 <!-- MULTILANGUAJE MENU END -->
 
 # Classes in TypeScript

@@ -1,5 +1,5 @@
 <!-- MULTILANGUAJE MENU START -->
-EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/design-patterns.md)
+EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/design-patterns)
 <!-- MULTILANGUAJE MENU END -->
 
 # Design Patterns in TypeScript

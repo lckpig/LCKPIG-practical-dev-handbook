@@ -1,5 +1,5 @@
 <!-- MULTILANGUAJE MENU START -->
-EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/inheritance.md)
+EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/object-oriented-programming/inheritance)
 <!-- MULTILANGUAJE MENU END -->
 
 # Inheritance and Superclasses

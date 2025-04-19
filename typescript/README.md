@@ -273,22 +273,22 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript)
 <details>
 <summary>12. Functional Programming with TypeScript</summary>
 
-- **Principles of functional programming in TypeScript**
+- [**Principles of functional programming in TypeScript**](functional-programming/functional-programming-principles.md)
     - Immutability and pure functions
     - Avoiding side effects in functions
-- **Higher-order functions and callbacks**
+- [**Higher-order functions and callbacks**](functional-programming/higher-order-functions-callbacks.md)
     - Passing functions as arguments (`map()`, `filter()`, `reduce()`)
     - Creating higher-order functions
-- **Closures and currying in TypeScript**
+- [**Closures and currying in TypeScript**](functional-programming/closures-currying.md)
     - Using closures to encapsulate data
     - Implementing currying to partially apply functions
-- **Using generic types in functional functions**
+- [**Using generic types in functional functions**](functional-programming/generics-functional-functions.md)
     - Creating generic functions (`function process<T>(value: T): T {}`)
     - Applications of `Partial<T>`, `Readonly<T>`, `Pick<T, K>` in functional programming
-- **Function composition and `pipe`**
+- [**Function composition and `pipe`**](functional-programming/function-composition-pipe.md)
     - Chaining functions with composition (`f(g(x))`)
     - Implementing the `pipe()` pattern
-- **Using `ReadonlyArray<T>` and `ReadonlyMap<K, V>`**
+- [**Using `ReadonlyArray<T>` and `ReadonlyMap<K, V>`**](functional-programming/readonly-collections.md)
     - Preventing mutations in lists and data structures
 
 </details>
