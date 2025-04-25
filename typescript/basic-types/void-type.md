@@ -4,93 +4,195 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 
 <!--
 # El tipo `void` y su uso en funciones
-
 - Diferencias entre `void` y `undefined` en retornos
-- Uso en funciones sin retorno explícito 
+- Uso en funciones sin retorno explícito
 -->
 
 # El tipo `void` y su uso en funciones
 
+En TypeScript, el tipo `void` representa la ausencia de valor. Se utiliza principalmente para indicar que una función no devuelve ningún valor. Comprender `void` y sus diferencias con `undefined` es crucial para escribir código TypeScript claro y robusto, especialmente al trabajar con funciones.
+
+---
+
 ## Diferencias entre `void` y `undefined` en retornos
 
-El tipo `void` en TypeScript se utiliza principalmente para indicar que una función no retorna ningún valor útil. Aunque en JavaScript el valor de retorno por defecto de una función sin `return` explícito es `undefined`, en TypeScript existe una distinción semántica importante entre ambos conceptos. Comprender esta diferencia es fundamental para escribir código más claro y seguro, especialmente en proyectos donde la tipificación estricta es relevante.
+Aunque a primera vista `void` y `undefined` puedan parecer similares cuando se trata de funciones que no retornan valor, existen diferencias sutiles pero importantes en su significado y uso en TypeScript.
 
-Cuando se declara una función con tipo de retorno `void`, se está indicando que el propósito de la función no es devolver un resultado, sino ejecutar una acción. Por el contrario, el tipo `undefined` puede utilizarse para señalar explícitamente que una función retorna el valor `undefined`, lo cual puede ser útil en casos donde se requiere distinguir entre la ausencia de valor y otros posibles resultados.
+### `void`: Ausencia intencional de valor
 
-### Consideraciones técnicas y semánticas
+- **Significado**: `void` indica explícitamente que una función está diseñada para *no* retornar un valor. Su propósito es realizar una acción, como modificar el estado, imprimir en consola o realizar una llamada de red, sin devolver un resultado directo.
+- **Contexto de uso**: Es el tipo de retorno preferido para funciones que completan su ejecución sin un `return` explícito o que tienen un `return;` sin valor.
+- **Asignabilidad**: Una función declarada con retorno `void` puede, técnicamente, retornar `undefined` (o `null` si `strictNullChecks` está desactivado), pero esto generalmente se considera una mala práctica o un descuido, ya que contradice la intención explícita de no retornar nada.
 
-- `void` restringe el uso de valores de retorno, permitiendo únicamente `undefined` o la ausencia de valor.
-- `undefined` es un valor concreto en JavaScript y puede ser retornado explícitamente por una función.
-- Utilizar `void` en la firma de una función comunica la intención de que el resultado no debe ser utilizado.
-
-#### Ejemplo de función con retorno `void`
+#### Ejemplo
 
 ```typescript
+// Función que realiza una acción pero no devuelve nada
 function logMessage(message: string): void {
-  // Esta función solo imprime un mensaje y no retorna ningún valor
   console.log(message);
+  // No hay sentencia 'return' explícita
 }
+
+// Llamada a la función
+logMessage("Hola Mundo");
+
+// Aunque 'result' técnicamente contendrá 'undefined' en tiempo de ejecución,
+// TypeScript nos advierte si intentamos usarlo como si tuviera un valor distinto de 'undefined' o 'null'.
+const result = logMessage("Test");
+// console.log(result.toUpperCase()); // Error: 'result' is possibly 'undefined'. (si strictNullChecks está activado)
 ```
 
-#### Ejemplo de función con retorno `undefined`
+### `undefined`: Valor no definido o ausente
+
+- **Significado**: `undefined` es tanto un *tipo* como un *valor* en TypeScript (y JavaScript). Como tipo, representa variables que no han sido inicializadas. Como valor, indica que una variable ha sido declarada pero no se le ha asignado un valor, o que una función retorna explícitamente `undefined`.
+- **Contexto de uso**: Se usa para indicar que un valor podría no estar presente o no ser aplicable en un momento dado. En el contexto de retornos de función, retornar `undefined` explícitamente puede indicar que la función *podría* retornar un valor en algunos casos, pero en la situación actual, no hay un valor válido para devolver. Sin embargo, si la intención es *nunca* devolver un valor, `void` es más apropiado.
+- **Asignabilidad**: Las funciones que pueden retornar `undefined` deben declararlo explícitamente en su tipo de retorno, por ejemplo `string | undefined`, si también pueden retornar otro tipo.
+
+#### Ejemplo
 
 ```typescript
-function returnUndefined(): undefined {
-  // Retorna explícitamente el valor undefined
+// Función que puede devolver un string o undefined
+function findUser(id: number): string | undefined {
+  if (id === 1) {
+    return "Alice";
+  }
+  // Retorna undefined explícitamente si el usuario no se encuentra
   return undefined;
 }
+
+const user1 = findUser(1); // user1 es de tipo 'string | undefined' y contiene "Alice"
+const user2 = findUser(2); // user2 es de tipo 'string | undefined' y contiene undefined
+
+if (user2) {
+  console.log(user2.toUpperCase());
+} else {
+  console.log("Usuario no encontrado");
+}
 ```
 
-### Casos de uso diferenciados
+### Consideraciones importantes
 
-- Utilizar `void` es recomendable en funciones de tipo callback, controladores de eventos o cualquier función cuyo resultado no deba ser aprovechado por el llamador.
-- El tipo `undefined` puede ser útil en APIs donde se requiere distinguir entre un valor retornado y la ausencia explícita de valor.
+- **Claridad de intención**: Usar `void` comunica claramente que la función no tiene la intención de devolver un valor útil. Usar `undefined` como tipo de retorno sugiere que `undefined` es un valor de retorno *posible* y significativo dentro del dominio de la función.
+- **`strictNullChecks`**: Con la opción `strictNullChecks` activada (recomendado), `undefined` (y `null`) no son asignables a otros tipos por defecto. Esto refuerza la diferencia: `void` se trata de manera especial para funciones sin retorno, mientras que `undefined` requiere un manejo explícito.
+- **Funciones callback**: Al definir tipos para funciones callback que no deben devolver valor, usar `void` es crucial. Si se usara `undefined`, se permitiría al callback retornar `undefined` explícitamente, lo cual podría ser interpretado erróneamente por el código que llama al callback.
 
 {% hint style="info" %}
-Aunque en la práctica ambos enfoques pueden parecer equivalentes, el uso correcto de `void` y `undefined` mejora la legibilidad y la intención del código, facilitando el mantenimiento y la detección de errores.
+En resumen: usa `void` para funciones que *nunca* retornan un valor por diseño. Usa `| undefined` en el tipo de retorno si la función *puede* retornar un valor de un tipo específico o `undefined` dependiendo de la lógica interna.
 {% endhint %}
-
-### Buenas y malas prácticas
-
-- **Buena práctica:** Utilizar `void` en funciones que solo ejecutan efectos secundarios y no retornan información relevante.
-- **Mala práctica:** Retornar valores desde funciones tipadas como `void`, ya que puede generar confusión y advertencias del compilador.
 
 ---
 
 ## Uso en funciones sin retorno explícito
 
-En TypeScript, si una función no especifica un tipo de retorno y no incluye una instrucción `return` con valor, el compilador infiere automáticamente el tipo de retorno como `void`. Esto es común en funciones que realizan acciones, como imprimir en consola, modificar el estado de una variable global o interactuar con el entorno, pero no devuelven información al llamador.
+El uso más común y fundamental del tipo `void` es en la declaración de funciones que no tienen una sentencia `return` que devuelva un valor, o que usan `return;` para salir prematuramente. TypeScript infiere automáticamente el tipo `void` para estas funciones si no se especifica un tipo de retorno.
 
-### Ejemplo de función sin retorno explícito
+### Inferencia automática de `void`
+
+Si no anotas el tipo de retorno de una función y esta no devuelve ningún valor explícitamente, TypeScript inferirá `void`.
+
+#### Ejemplo
 
 ```typescript
-function updateCounter(): void {
-  // Incrementa un contador global, no retorna ningún valor
-  globalCounter++;
+// TypeScript infiere el tipo de retorno como 'void'
+function greet(name: string) {
+  console.log(`¡Hola, ${name}!`);
+}
+
+// La función 'greet' tiene el tipo (name: string) => void
+```
+
+### Declaración explícita de `void`
+
+Aunque la inferencia funciona, es una buena práctica declarar explícitamente `: void` como tipo de retorno para mejorar la legibilidad y la claridad de la intención del código. Esto deja claro a otros desarrolladores (y a ti mismo en el futuro) que la función está diseñada específicamente para no devolver nada.
+
+#### Ejemplo
+
+```typescript
+// Declaración explícita de void para mayor claridad
+function processData(data: any): void {
+  // Lógica para procesar los datos...
+  console.log("Datos procesados.");
+  // No hay retorno de valor
 }
 ```
 
-### Casos de uso habituales
+### `void` en expresiones de función y tipos de función
 
-- Funciones de logging, notificación o auditoría.
-- Controladores de eventos en interfaces gráficas o aplicaciones web.
-- Callbacks en métodos como `forEach`, donde el valor de retorno es ignorado.
+`void` también se utiliza al definir tipos para variables que almacenarán funciones o al definir interfaces/tipos para callbacks.
+
+#### Ejemplo: Tipo de función
+
+```typescript
+// Definimos un tipo para una función que acepta un número y no devuelve nada
+type NumberConsumer = (n: number) => void;
+
+const printNumber: NumberConsumer = (num) => {
+  console.log(`El número es: ${num}`);
+};
+
+const alertNumber: NumberConsumer = (num) => {
+  // alert(`Número: ${num}`); // Suponiendo entorno de navegador
+  console.log(`Alerta simulada para: ${num}`);
+};
+
+printNumber(42);
+alertNumber(100);
+```
+
+#### Ejemplo: Callback en una interfaz
+
+```typescript
+interface ButtonConfig {
+  text: string;
+  onClick: () => void; // Callback que no debe devolver valor
+}
+
+function createButton(config: ButtonConfig): void {
+  console.log(`Creando botón con texto: "${config.text}"`);
+  // Lógica para crear un botón real...
+  // Simular clic para llamar al callback
+  console.log("Simulando clic...");
+  config.onClick();
+}
+
+createButton({
+  text: "Enviar",
+  onClick: () => {
+    console.log("Botón 'Enviar' pulsado!");
+    // Este callback no devuelve nada, coincide con '() => void'
+  }
+});
+
+// Ejemplo de lo que void previene (si onClick fuera () => undefined):
+/*
+createButton({
+  text: "Cancelar",
+  onClick: () => {
+    console.log("Operación cancelada.");
+    return undefined; // Permitido si fuera () => undefined, pero confuso
+  }
+});
+*/
+```
 
 ### Consideraciones importantes
 
-- Si se intenta retornar un valor distinto de `undefined` en una función declarada como `void`, TypeScript generará un error de compilación.
-- El uso de `void` ayuda a documentar la intención de la función y previene errores por mal uso del valor de retorno.
+- **Ignorando el valor de retorno**: Una característica interesante de `void` en el contexto de tipos de función es que permite que una función que *sí* retorna un valor sea asignada a un tipo que espera `void`. El valor retornado simplemente se ignora. Esto es útil para funciones como `Array.prototype.forEach`, que espera un callback de tipo `(value: T, index: number, array: T[]) => void`, pero puedes pasarle una función que retorne algo (como `Array.prototype.push`, que retorna la nueva longitud).
 
-{% hint style="warning" %}
-No abuses de funciones con tipo de retorno `void` para operaciones que realmente deberían devolver un resultado. Esto puede ocultar errores de diseño y dificultar la depuración.
+  ```typescript
+  const numbers = [1, 2, 3];
+  const newNumbers: number[] = [];
+
+  // forEach espera un callback de tipo (value: number, ...) => void
+  // Le pasamos una función que llama a push, la cual retorna un número (la nueva longitud)
+  // El valor retornado por push (4, 5, 6) es ignorado por forEach.
+  numbers.forEach(num => newNumbers.push(num * 2));
+
+  console.log(newNumbers); // Salida: [2, 4, 6]
+  ```
+
+- **Evitar confusión**: Usar `void` explícitamente ayuda a evitar la confusión sobre si una función *olvidó* retornar un valor o si intencionalmente no lo hace.
+
+{% hint style="success" %}
+Declarar `void` explícitamente en funciones sin retorno mejora la mantenibilidad y la comprensión del código, dejando clara la intención del diseño de la función.
 {% endhint %}
-
-### Errores comunes y trampas habituales
-
-- Olvidar especificar el tipo de retorno en funciones que deberían devolver un valor puede llevar a errores sutiles, especialmente en proyectos grandes.
-- Utilizar `void` en funciones que, en realidad, necesitan retornar información relevante puede dificultar la comprensión y el mantenimiento del código.
-
-### Buenas y malas prácticas
-
-- **Buena práctica:** Declarar explícitamente el tipo de retorno `void` en funciones que no retornan valor, para mejorar la claridad del código.
-- **Mala práctica:** Ignorar el tipo de retorno y permitir que el compilador lo infiera en funciones complejas, ya que puede llevar a malentendidos sobre el propósito de la función. 

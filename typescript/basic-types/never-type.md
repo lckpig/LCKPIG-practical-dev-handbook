@@ -2,122 +2,122 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-types/never-type)
 <!-- MULTILANGUAJE MENU END -->
 
-<!--
+<!-- 
 # El tipo `never` para funciones que no devuelven valores
 
 - Funciones que arrojan errores (`throw`)
 - Funciones que nunca terminan (`while (true) {}`)
--->
+ -->
 
 # El tipo `never` para funciones que no devuelven valores
 
-El tipo `never` en TypeScript representa el tipo de valor que nunca ocurre. Es fundamental para describir funciones que no retornan ningún valor porque terminan abruptamente, ya sea lanzando una excepción o ejecutándose indefinidamente. Comprender el uso correcto de `never` permite escribir código más seguro, robusto y expresivo, facilitando la detección de errores y el control exhaustivo de flujos en aplicaciones complejas.
+El tipo `never` en TypeScript representa el tipo de valores que nunca ocurren. Se utiliza principalmente en dos escenarios clave: para indicar que una función nunca retorna (o más precisamente, que nunca completa su ejecución normalmente) y en análisis de flujo de control para representar estados inalcanzables.
+
+A diferencia de `void`, que indica que una función no retorna un valor *útil* (retorna `undefined` implícitamente), `never` significa que la función *nunca* llega al punto de retorno.
+
+---
 
 ## Funciones que arrojan errores (`throw`)
 
-Las funciones que lanzan una excepción y nunca retornan un valor utilizan el tipo `never` como tipo de retorno. Esto es útil para indicar explícitamente que, tras la ejecución de la función, el flujo del programa no continuará normalmente.
+Una función que siempre lanza una excepción antes de poder retornar un valor tiene un tipo de retorno inferido o explícito de `never`. Esto se debe a que la ejecución normal de la función se interrumpe abruptamente por el error.
 
-### Contexto y motivación
+### Definición y utilidad
 
-En aplicaciones reales, es común definir funciones utilitarias para validar datos, manejar errores o implementar aserciones. Cuando estas funciones detectan una condición inválida, suelen lanzar una excepción y nunca devuelven un valor. Declarar el tipo de retorno como `never` ayuda a que el compilador detecte usos incorrectos y mejora la legibilidad del código.
+Cuando una función está diseñada para detener la ejecución del programa o una parte específica de él mediante un error, el tipo `never` comunica claramente esta intención. Indica a otros desarrolladores y al propio compilador de TypeScript que cualquier código que siga a la llamada de esta función en el mismo bloque de ejecución es, en teoría, inalcanzable (siempre que la excepción no sea capturada).
 
-#### Ejemplo básico de función que arroja un error
+#### Ejemplo
 
 ```typescript
 function throwError(message: string): never {
-  // Esta función siempre lanza una excepción y nunca retorna
-  throw new Error(message);
+  // Lanza siempre una excepción, nunca retorna un valor
+  throw new Error(message); 
 }
-```
 
-En este ejemplo, el compilador sabe que cualquier llamada a `throwError` interrumpe el flujo de ejecución.
-
-#### Caso de uso real: validación de parámetros
-
-Supongamos que queremos validar parámetros de entrada en una función. Si el parámetro es inválido, lanzamos un error:
-
-```typescript
-function validatePositiveNumber(value: number): void {
-  if (value <= 0) {
-    throwError('El valor debe ser un número positivo');
+function processInput(input: string | number) {
+  if (typeof input === 'string') {
+    console.log(`Processing string: ${input}`);
+  } else if (typeof input === 'number') {
+    console.log(`Processing number: ${input}`);
+  } else {
+    // En este punto, 'input' tiene tipo 'never' porque
+    // teóricamente, todas las posibilidades (string, number)
+    // ya han sido cubiertas. Si llegara aquí, sería un error lógico.
+    // Lanzar un error aquí es una forma de manejar este estado inesperado.
+    throwError("Tipo de entrada inválido e inesperado."); 
   }
-  // Resto de la lógica...
 }
 ```
 
-Aquí, `throwError` garantiza que, si se detecta un valor inválido, la ejecución se detiene inmediatamente.
+### Casos de uso reales y recomendables
+
+- **Validación estricta**: Funciones que validan datos críticos y lanzan un error si la validación falla, deteniendo el proceso.
+- **Manejo de estados imposibles**: Como en el ejemplo anterior, usar `never` para señalar ramas de código que lógicamente no deberían alcanzarse.
+- **Funciones de utilidad para errores**: Crear funciones reutilizables que centralicen el lanzamiento de errores específicos de la aplicación.
 
 ### Consideraciones importantes
 
-- El tipo `never` permite al compilador detectar ramas de código inalcanzables, mejorando la seguridad.
-- Es útil en funciones de aserción, validaciones y utilidades de manejo de errores.
-- Si una función puede retornar en algún caso, su tipo de retorno no debe ser `never`.
+- **Captura de excepciones**: Aunque una función retorne `never` porque lanza un error, este error puede ser capturado por un bloque `try...catch`. En ese caso, el flujo del programa puede continuar después del bloque `catch`. El tipo `never` se refiere a la ruta de ejecución *normal* de la función.
+- **Claridad del código**: Usar `never` explícitamente mejora la legibilidad y la intención del código, dejando claro que la función está diseñada para no retornar.
 
 ### Buenas prácticas
 
-- Utilizar `never` solo cuando la función realmente nunca retorna.
-- Documentar claramente el propósito de la función y el motivo por el que nunca retorna.
-- Evitar abusar de funciones que lanzan errores como mecanismo de control de flujo general.
+- Anotar explícitamente `: never` en funciones diseñadas para siempre lanzar errores, aunque TypeScript pueda inferirlo.
+- Utilizar funciones que retornan `never` para manejar casos imposibles en lógica condicional o `switch` exhaustivos.
 
 ### Malas prácticas
 
-- Declarar `never` en funciones que pueden retornar en algún caso.
-- Utilizar excepciones para controlar flujos normales del programa.
-
-### Errores comunes
-
-- Olvidar declarar el tipo `never` en funciones que solo lanzan errores puede dificultar la comprensión del código y la detección de errores en tiempo de compilación.
+- Usar `never` en funciones que *podrían* retornar bajo ciertas condiciones. Si hay alguna ruta de ejecución que permite un retorno normal, `never` no es el tipo adecuado (podría ser `void` u otro tipo).
+- Capturar errores de funciones `never` y continuar como si nada sin un manejo adecuado, ya que esto podría ocultar problemas graves en la lógica.
 
 ---
 
 ## Funciones que nunca terminan (`while (true) {}`)
 
-Otra situación en la que se utiliza el tipo `never` es en funciones que entran en bucles infinitos y nunca finalizan su ejecución de forma normal. Este patrón es menos frecuente, pero resulta útil en ciertos contextos como servidores, listeners o procesos que deben permanecer activos indefinidamente.
+El segundo escenario principal para `never` es en funciones que contienen un bucle infinito o alguna forma de lógica que impide que la función llegue a su fin.
 
-### Contexto y motivación
+### Definición y utilidad
 
-En sistemas que requieren procesos en ejecución continua, como servidores HTTP, listeners de eventos o demonios, es habitual implementar funciones que nunca retornan. Declarar el tipo de retorno como `never` comunica claramente esta intención y ayuda a evitar errores de lógica.
+Estas funciones están diseñadas para ejecutarse indefinidamente. Un ejemplo clásico es un bucle `while (true)` que no tiene una condición de salida (`break`) alcanzable dentro del contexto de la función. El tipo `never` indica que la función, por diseño, no completará su ejecución.
 
-#### Ejemplo básico de función con bucle infinito
+#### Ejemplo
 
 ```typescript
 function infiniteLoop(): never {
-  while (true) {
-    // Proceso que nunca termina
+  // Este bucle se ejecuta indefinidamente
+  while (true) { 
+    console.log("Ejecutando...");
+    // Aquí podría haber lógica que se repite, como escuchar eventos,
+    // procesar tareas en segundo plano, etc.
+    // Importante: No hay 'break' ni 'return' alcanzables.
   }
 }
+
+// Ejemplo de uso en un servidor o proceso de fondo
+// console.log("Iniciando servidor...");
+// infiniteLoop(); // El programa se quedaría aquí
+// console.log("Servidor detenido."); // Esta línea nunca se alcanzaría
 ```
 
-#### Caso de uso real: servidor que escucha conexiones
+### Casos de uso reales y recomendables
 
-```typescript
-function startServer(): never {
-  while (true) {
-    // Lógica para aceptar y manejar conexiones
-    // Por ejemplo, en un servidor TCP
-  }
-}
-```
-
-En estos casos, el compilador entiende que la función nunca retorna y puede optimizar el análisis de flujo.
+- **Servicios o demonios**: Procesos de fondo que deben ejecutarse continuamente, como servidores web, listeners de eventos o tareas programadas que se reinician internamente.
+- **Bucles principales de juegos**: En el desarrollo de juegos, el bucle principal que actualiza el estado y renderiza la pantalla a menudo se ejecuta indefinidamente hasta que el juego se cierra.
+- **Sistemas embebidos o de bajo nivel**: Donde un proceso principal debe mantenerse activo constantemente.
 
 ### Consideraciones importantes
 
-- El uso de `never` en bucles infinitos debe estar justificado y documentado.
-- Es fundamental asegurar que no existen condiciones de escape no controladas.
-- Utilizar este patrón solo cuando sea estrictamente necesario.
+- **Bloqueo del hilo**: Una función que nunca termina bloqueará el hilo de ejecución en el que se ejecuta (en JavaScript/Node.js, generalmente el hilo principal), a menos que se maneje específicamente con concurrencia (Workers, etc.). Esto es crucial en entornos como Node.js o navegadores, donde bloquear el hilo principal puede congelar la aplicación.
+- **Propósito claro**: Deben usarse con un propósito muy específico y generalmente en contextos donde la ejecución continua es el comportamiento deseado y esperado.
 
 ### Buenas prácticas
 
-- Documentar claramente la razón por la que la función nunca termina.
-- Utilizar mecanismos de control externo para detener el proceso si es necesario (por ejemplo, señales del sistema operativo).
+- Reservar funciones `never` de bucle infinito para puntos de entrada de procesos o tareas que deben ejecutarse continuamente.
+- Asegurarse de que el bloqueo del hilo (si ocurre) sea intencional y no afecte negativamente a la capacidad de respuesta de la aplicación (especialmente en entornos de un solo hilo como JavaScript).
+- Documentar claramente por qué la función está diseñada para nunca terminar.
 
 ### Malas prácticas
 
-- Implementar bucles infinitos sin justificación clara.
-- No prever mecanismos de parada o control externo cuando sea necesario.
-
-### Errores comunes
-
-- Olvidar documentar el comportamiento infinito de la función puede llevar a malentendidos y errores de mantenimiento.
-- No manejar adecuadamente los recursos dentro de bucles infinitos puede provocar fugas de memoria o bloqueos. 
+- Crear bucles infinitos accidentalmente sin una condición de salida adecuada.
+- Usar una función `never` de bucle infinito donde una función de larga duración pero finita sería más apropiada.
+- Bloquear el hilo principal en aplicaciones interactivas (como una aplicación web) con un bucle infinito, impidiendo que la interfaz de usuario responda.
+- No considerar las implicaciones de recursos (CPU, memoria) de un bucle que se ejecuta continuamente.

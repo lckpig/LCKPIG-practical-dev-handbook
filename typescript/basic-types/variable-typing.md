@@ -1,7 +1,6 @@
 <!-- MULTILANGUAJE MENU START -->
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-types/variable-typing)
 <!-- MULTILANGUAJE MENU END -->
-
 <!--
 # Tipado en variables y constantes
 
@@ -9,107 +8,194 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 - Inferencia de tipos vs. anotaciones explícitas
 -->
 
-# Tipado en variables y constantes
+# Tipado en Variables y Constantes en TypeScript
 
-## Declaración con `let`, `const` y su relación con los tipos
+TypeScript introduce un sistema de tipado estático sobre JavaScript, lo que significa que podemos definir explícitamente los tipos de datos que nuestras variables y constantes almacenarán. Esto mejora la robustez del código, facilita la detección temprana de errores y mejora la legibilidad y el mantenimiento.
 
-La declaración de variables y constantes en TypeScript se realiza principalmente utilizando las palabras clave `let` y `const`. La elección entre ambas no solo afecta la mutabilidad del valor almacenado, sino que también tiene implicaciones directas en el tipado y en la seguridad del código.
-
-Cuando se utiliza `let`, se declara una variable cuyo valor puede cambiar a lo largo del tiempo. Por defecto, TypeScript infiere el tipo a partir del valor inicial, pero es posible especificar el tipo explícitamente para mayor claridad o para restringir el tipo permitido.
-
-Por otro lado, `const` se emplea para declarar constantes, es decir, identificadores cuyo valor no puede ser reasignado después de su inicialización. Sin embargo, es importante destacar que si el valor es un objeto o un array, sus propiedades o elementos sí pueden modificarse, aunque la referencia no pueda cambiar.
-
-El uso adecuado de `let` y `const` contribuye a la robustez del código, ya que permite al compilador detectar intentos de reasignación indebida y ayuda a los desarrolladores a expresar de forma clara la intención de inmutabilidad o mutabilidad de los datos.
-
-### Consideraciones importantes sobre el tipado
-
-- Cuando se declara una variable con `let` o `const` y se le asigna un valor inicial, TypeScript infiere automáticamente el tipo a partir de ese valor. Esto reduce la necesidad de anotaciones explícitas, pero puede llevar a errores si el valor inicial no representa todos los posibles valores futuros.
-- Es recomendable utilizar `const` siempre que sea posible, ya que favorece la inmutabilidad y reduce la probabilidad de errores relacionados con reasignaciones accidentales.
-- En el caso de objetos y arrays declarados con `const`, solo la referencia es inmutable; sus propiedades o elementos pueden seguir siendo modificables.
-
-#### Ejemplo de declaración con `let` y `const`
-
-```typescript
-// Declaración mutable con let
-let userName: string = "Alice"; // Puede ser reasignado posteriormente
-userName = "Bob"; // Válido
-
-// Declaración inmutable con const
-const userAge: number = 30; // No puede ser reasignado
-// userAge = 31; // Error: no se puede reasignar una constante
-
-// Objeto declarado con const
-const user = { name: "Alice", age: 30 };
-user.age = 31; // Permitido: se modifica una propiedad, no la referencia
-// user = { name: "Bob", age: 25 }; // Error: no se puede cambiar la referencia
-```
-
-### Casos de uso recomendados
-
-Utilizar `const` para todas las variables cuyo valor no deba cambiar tras su inicialización es una buena práctica ampliamente aceptada. Esto facilita la lectura del código y permite a los desarrolladores identificar rápidamente qué valores son inmutables. Por ejemplo, las configuraciones, claves de acceso, rutas o cualquier valor que no deba modificarse durante la ejecución del programa deben declararse con `const`.
-
-En cambio, `let` debe reservarse para variables cuyo valor pueda cambiar, como contadores en bucles, acumuladores o valores que dependan de condiciones dinámicas.
-
-### Buenas y malas prácticas
-
-- **Buena práctica:** Declarar con `const` por defecto y solo usar `let` cuando sea necesario.
-- **Mala práctica:** Declarar todas las variables con `let` sin considerar la inmutabilidad, lo que puede llevar a errores difíciles de detectar.
-- **Buena práctica:** Especificar el tipo explícitamente cuando la inferencia no es suficiente o puede inducir a error.
-- **Mala práctica:** Modificar las propiedades de objetos declarados con `const` sin tener en cuenta las implicaciones de la mutabilidad interna.
-
-### Errores comunes y advertencias
-
-Uno de los errores más frecuentes es asumir que declarar un objeto con `const` lo hace completamente inmutable. En realidad, solo la referencia es inmutable, pero las propiedades internas pueden cambiar. Para lograr inmutabilidad total, es necesario utilizar técnicas adicionales como la congelación de objetos (`Object.freeze`) o el uso de librerías especializadas.
-
-{% hint style="warning" %}
-No confíes en `const` para garantizar la inmutabilidad profunda de objetos o arrays. Si necesitas estructuras realmente inmutables, considera patrones funcionales o utilidades específicas.
-{% endhint %}
+Comprender cómo TypeScript maneja el tipado en la declaración de variables (`let`) y constantes (`const`) es fundamental para aprovechar al máximo sus capacidades. Además, TypeScript ofrece mecanismos como la inferencia de tipos y las anotaciones explícitas, que nos permiten elegir el nivel de detalle que queremos en nuestras declaraciones.
 
 ---
 
-## Inferencia de tipos vs. anotaciones explícitas
+## Declaración con `let`, `const` y su relación con los tipos
 
-TypeScript ofrece un sistema de inferencia de tipos muy potente que permite deducir el tipo de una variable a partir de su valor inicial. Esto simplifica el código y reduce la necesidad de anotaciones explícitas, pero también puede ocultar errores si no se utiliza con precaución.
+En JavaScript moderno (y por extensión, en TypeScript), utilizamos `let` para declarar variables cuyo valor puede cambiar y `const` para declarar constantes cuyo valor no cambiará una vez asignado. TypeScript extiende esta funcionalidad permitiendo asociar tipos específicos a estas declaraciones.
 
-La anotación explícita de tipos consiste en indicar de forma directa el tipo de la variable, lo que aporta mayor claridad y control, especialmente en situaciones donde el valor inicial no refleja todos los posibles valores futuros o cuando se desea restringir el tipo aceptado.
+### `let`: Variables con Tipado
 
-### Ventajas y desventajas de la inferencia y la anotación explícita
+Cuando declaras una variable con `let`, puedes especificar su tipo explícitamente. Si no lo haces, TypeScript intentará inferir el tipo basándose en el valor inicial asignado.
 
-La inferencia de tipos agiliza la escritura del código y mejora la legibilidad, pero puede llevar a situaciones ambiguas si el valor inicial es demasiado genérico o si la variable debe aceptar valores de diferentes tipos en el futuro.
-
-La anotación explícita, por su parte, aporta mayor seguridad y claridad, aunque puede resultar más verbosa. Es especialmente útil en funciones, parámetros y estructuras complejas donde la inferencia no es suficiente.
-
-#### Ejemplo de inferencia y anotación explícita
+#### Ejemplo de `let` con anotación explícita
 
 ```typescript
-// Inferencia de tipo
-let city = "Madrid"; // TypeScript infiere que city es string
-city = "Barcelona"; // Válido
-// city = 123; // Error: no se puede asignar un número a un string
+let age: number; // Declaramos una variable 'age' de tipo 'number'
+age = 30;       // Correcto: asignamos un número
+// age = "treinta"; // Error: No se puede asignar un string a un tipo 'number'
 
-// Anotación explícita de tipo
-let country: string = "España";
-country = "Francia"; // Válido
-// country = 42; // Error: no se puede asignar un número a un string
+let username: string = "lckpig"; // Declaración e inicialización con tipo explícito
+username = "john.doe"; // Correcto: podemos reasignar otro string
+// username = 123; // Error: No se puede asignar un número a un tipo 'string'
 ```
 
-### Casos de uso recomendados
+### `const`: Constantes con Tipado
 
-- Utilizar la inferencia de tipos para variables locales y valores cuyo tipo es evidente y no cambiará.
-- Emplear anotaciones explícitas en interfaces públicas, parámetros de funciones, valores retornados y estructuras complejas donde la claridad y la seguridad sean prioritarias.
-- En proyectos grandes o colaborativos, es recomendable ser más explícito con los tipos para evitar ambigüedades y facilitar el mantenimiento.
+Las constantes declaradas con `const` también pueden tener tipos explícitos o inferidos. La principal diferencia es que su valor no puede ser reasignado después de la inicialización. Además, TypeScript puede inferir tipos más específicos para las constantes.
 
-### Buenas y malas prácticas
+#### Ejemplo de `const` con anotación explícita
 
-- **Buena práctica:** Aprovechar la inferencia de tipos para reducir la verbosidad, pero sin sacrificar la claridad.
-- **Mala práctica:** Omitir la anotación de tipos en contextos donde la inferencia puede ser ambigua o insuficiente.
-- **Buena práctica:** Documentar las decisiones de tipado, especialmente en APIs públicas o librerías.
-- **Mala práctica:** Forzar la inferencia en situaciones donde la anotación explícita aportaría mayor seguridad y comprensión.
+```typescript
+const pi: number = 3.14159; // Constante de tipo 'number'
+// pi = 3.14; // Error: No se puede reasignar una constante
 
-### Errores comunes y advertencias
+const appName: string = "MyApp"; // Constante de tipo 'string'
+// appName = "AnotherApp"; // Error: No se puede reasignar
+```
 
-Un error habitual es confiar excesivamente en la inferencia de tipos, lo que puede llevar a aceptar valores no deseados o a perder el control sobre la evolución del tipo de una variable. También es frecuente olvidar actualizar la anotación de tipo cuando cambian los requisitos del código.
+### Consideraciones Importantes
+
+-   **Inmutabilidad con `const`**: Usar `const` por defecto mejora la predictibilidad del código. Declara una variable con `let` solo si sabes que necesitarás reasignar su valor.
+-   **Tipos más específicos con `const`**: Cuando TypeScript infiere el tipo de una constante, a menudo utiliza un *tipo literal*. Por ejemplo, si `const city = "Madrid"`, el tipo inferido no es `string`, sino `"Madrid"` (un tipo literal string). Esto puede ser útil para un tipado más preciso.
+    ```typescript
+    const city = "Madrid"; // Tipo inferido: "Madrid"
+    let currentCity: string = city; // Correcto: "Madrid" es asignable a 'string'
+    // let anotherCity: "Barcelona" = city; // Error: "Madrid" no es asignable a "Barcelona"
+    ```
+-   **`const` con objetos y arrays**: Es importante recordar que `const` previene la reasignación de la variable, pero no hace que el valor en sí sea inmutable si es un objeto o un array. Las propiedades del objeto o los elementos del array pueden modificarse.
+    ```typescript
+    const person = { name: "Alice", age: 25 };
+    person.age = 26; // Correcto: Modificar una propiedad del objeto
+    // person = { name: "Bob", age: 30 }; // Error: Reasignar la constante
+
+    const numbers = [1, 2, 3];
+    numbers.push(4); // Correcto: Modificar el array
+    // numbers = [5, 6]; // Error: Reasignar la constante
+    ```
+    Para lograr inmutabilidad en objetos y arrays, se necesitan técnicas adicionales como `Readonly` o `as const`.
+
+### Buenas Prácticas
+
+-   **Prefiere `const` sobre `let`**: Usa `const` siempre que sea posible para indicar que una variable no será reasignada. Esto hace el código más fácil de seguir y menos propenso a errores por reasignaciones inesperadas.
+-   **Sé explícito cuando sea necesario**: Aunque la inferencia de tipos es potente, añade anotaciones de tipo explícitas si mejora la claridad o si TypeScript no puede inferir el tipo deseado (por ejemplo, en parámetros de función sin valor por defecto).
+
+### Malas Prácticas
+
+-   **Usar `let` innecesariamente**: Declarar con `let` variables que nunca se reasignan puede llevar a confusión sobre la intención del código.
+-   **Ignorar los tipos literales de `const`**: No aprovechar los tipos literales inferidos por `const` cuando podrían proporcionar un tipado más seguro y expresivo.
+-   **Confundir `const` con inmutabilidad profunda**: Asumir que `const` hace inmutables los contenidos de objetos o arrays.
+
+---
+
+## Inferencia de Tipos vs. Anotaciones Explícitas
+
+TypeScript ofrece dos maneras principales de asignar tipos a las variables y constantes: la inferencia de tipos y las anotaciones explícitas. La elección entre una y otra depende del contexto y de la claridad que se quiera lograr.
+
+### Inferencia de Tipos
+
+La inferencia de tipos es el proceso mediante el cual TypeScript determina automáticamente el tipo de una variable basándose en el valor con el que se inicializa. Es una característica muy conveniente que reduce la verbosidad del código.
+
+#### Ejemplo de Inferencia de Tipos
+
+```typescript
+let message = "Hola Mundo"; // TypeScript infiere 'string'
+// message = 100; // Error: 'message' es de tipo 'string'
+
+const count = 0; // TypeScript infiere 'number' (tipo primitivo)
+// count = 1; // Error: 'count' es una constante
+
+const isActive = true; // TypeScript infiere 'boolean'
+
+const user = { id: 1, name: "Admin" }; // TypeScript infiere { id: number; name: string; }
+
+let data; // TypeScript infiere 'any' porque no hay inicialización ni anotación
+data = 10; // Correcto
+data = "texto"; // Correcto
+data = false; // Correcto
+```
 
 {% hint style="info" %}
-La inferencia de tipos es una herramienta poderosa, pero debe utilizarse con criterio. Evalúa siempre si la claridad y la seguridad del código se benefician más de la inferencia o de la anotación explícita en cada caso.
-{% endhint %} 
+Cuando una variable se declara sin inicialización ni tipo explícito (`let data;`), TypeScript infiere el tipo `any`. Esto desactiva la comprobación de tipos para esa variable, lo cual suele ser desaconsejable. Es mejor ser explícito o inicializarla.
+{% endhint %}
+
+### Anotaciones Explícitas
+
+Las anotaciones explícitas consisten en declarar manualmente el tipo de una variable o constante usando la sintaxis `: Type`. Se utilizan cuando queremos ser específicos sobre el tipo, cuando TypeScript no puede inferir el tipo deseado, o para mejorar la legibilidad del código.
+
+#### Ejemplo de Anotaciones Explícitas
+
+```typescript
+let score: number; // Anotación explícita, sin inicialización
+score = 100;
+
+let email: string | null = null; // Anotación explícita con un tipo unión
+email = "test@example.com";
+
+// Útil en parámetros de función y valores de retorno
+function greet(name: string): string {
+  return `Hello, ${name}!`;
+}
+
+// Cuando se trabaja con objetos complejos o interfaces
+interface Product {
+  id: number;
+  name: string;
+  price?: number; // Propiedad opcional
+}
+
+let product: Product;
+product = { id: 1, name: "Laptop" }; // 'price' es opcional
+```
+
+### Cuándo usar cada una
+
+#### Usa Inferencia de Tipos cuando:
+
+-   El tipo es obvio por el valor de inicialización (`let name = "Alice";`).
+-   Se busca reducir la verbosidad sin sacrificar la seguridad de tipos.
+-   En variables locales simples donde el contexto es claro.
+
+#### Usa Anotaciones Explícitas cuando:
+
+-   **Declaras una variable sin inicializarla**: `let value: number;`
+-   **La inferencia no es suficiente o es demasiado amplia**: Por ejemplo, si quieres un tipo unión y la inicialización solo cubre uno de los casos: `let status: 'active' | 'inactive' = 'active';`
+-   **Defines parámetros de función y tipos de retorno**: Es esencial para la claridad y el contrato de la función: `function add(a: number, b: number): number { return a + b; }`
+-   **Trabajas con estructuras de datos complejas (objetos, arrays)** donde quieres asegurar una forma específica: `let users: { id: number; name: string }[] = [];`
+-   **Quieres mejorar la legibilidad**: A veces, una anotación explícita, aunque redundante, puede hacer el código más fácil de entender a primera vista, especialmente en código complejo o APIs públicas.
+
+### Consideraciones Importantes
+
+-   **Balance entre verbosidad y claridad**: Demasiadas anotaciones explícitas pueden hacer el código verboso (`let name: string = "Bob";` es a menudo redundante). Muy pocas pueden ocultar la intención o llevar a tipos `any` implícitos.
+-   **Tipos `any` implícitos**: Si TypeScript no puede inferir un tipo (por ejemplo, una variable sin inicialización ni anotación) y la opción de compilador `noImplicitAny` está desactivada, inferirá `any`. Es una buena práctica activar `noImplicitAny` en la configuración de TypeScript (`tsconfig.json`) para evitar esto.
+    ```json
+    // tsconfig.json
+    {
+      "compilerOptions": {
+        "noImplicitAny": true
+        // ... otras opciones
+      }
+    }
+    ```
+-   **Contextual Typing**: En ciertos contextos, como en callbacks o asignaciones, TypeScript puede inferir tipos basándose en la ubicación de la variable o función.
+    ```typescript
+    const numbers = [1, 2, 3];
+    // TypeScript infiere que 'n' es de tipo 'number' por el contexto del array
+    numbers.forEach(n => {
+      console.log(n.toFixed(2));
+    });
+    ```
+
+### Buenas Prácticas
+
+-   **Activa `noImplicitAny`**: Es fundamental para asegurar un tipado robusto en todo el proyecto.
+-   **Confía en la inferencia para tipos simples**: Deja que TypeScript infiera tipos para inicializaciones obvias (strings, numbers, booleans).
+-   **Sé explícito en las "fronteras"**: Usa anotaciones explícitas en parámetros de función, tipos de retorno y propiedades de objetos exportados o complejos para definir contratos claros.
+-   **Usa tipos unión explícitos**: Si una variable puede tener múltiples tipos, decláralo explícitamente: `let result: number | string;`
+
+### Malas Prácticas
+
+-   **Anotar tipos obvios**: Escribir `let name: string = "Alice";` añade ruido visual sin aportar valor sobre `let name = "Alice";`.
+-   **Depender de `any` implícito**: Permitir que TypeScript infiera `any` desactiva la comprobación de tipos y reduce los beneficios de usar TypeScript.
+-   **No anotar parámetros de función**: Dejar los parámetros sin tipo explícito a menudo resulta en `any` implícito si `noImplicitAny` está desactivado, o en un error si está activado.
+-   **Usar `any` explícito innecesariamente**: Recurrir a `: any` como solución rápida en lugar de definir el tipo correcto o usar `unknown` cuando la seguridad de tipos es importante.
+
+{% hint style="warning" %}
+El uso excesivo de `any` (implícito o explícito) anula muchas de las ventajas de TypeScript. Debe evitarse siempre que sea posible, prefiriendo tipos más específicos o el tipo `unknown` cuando el tipo exacto no se conoce de antemano pero se quiere mantener la seguridad.
+{% endhint %}
