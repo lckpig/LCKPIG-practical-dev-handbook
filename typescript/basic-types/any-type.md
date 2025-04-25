@@ -11,106 +11,135 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 
 # El tipo `any` y su impacto en el código
 
-El tipo `any` en TypeScript representa una herramienta poderosa pero peligrosa, ya que permite desactivar el sistema de tipos y trabajar con valores de cualquier tipo sin restricciones. Aunque puede parecer una solución rápida ante problemas de tipado, su uso indiscriminado puede acarrear consecuencias graves en la mantenibilidad, robustez y calidad del código. A continuación, se desarrollan en profundidad los aspectos clave relacionados con el uso de `any`, sus riesgos, alternativas y buenas prácticas.
-
 ## Cuándo usar `any` y sus riesgos
 
-El tipo `any` debería considerarse únicamente como último recurso, reservado para situaciones excepcionales donde no es posible determinar el tipo de un valor en tiempo de desarrollo, o cuando se está migrando código JavaScript heredado a TypeScript y se requiere una transición gradual.
+El tipo `any` en TypeScript representa una vía de escape del sistema de tipos, permitiendo que cualquier valor sea asignado a una variable sin restricciones ni comprobaciones en tiempo de compilación. Aunque puede parecer útil en situaciones donde la tipificación estricta resulta un obstáculo, su uso indiscriminado puede acarrear graves problemas de mantenibilidad, fiabilidad y seguridad en el código.
 
-### Ejemplo de uso de `any` en migraciones
+El uso de `any` suele justificarse en escenarios como la migración de proyectos JavaScript a TypeScript, la integración con librerías externas sin tipado o cuando se manipulan datos de origen desconocido. Sin embargo, recurrir a `any` elimina las ventajas clave de TypeScript, como la detección temprana de errores y el autocompletado inteligente.
+
+### Riesgos y consecuencias de abusar de `any`
+
+- **Pérdida de seguridad de tipos:** Al utilizar `any`, el compilador deja de advertir sobre posibles errores de tipo, permitiendo operaciones peligrosas y propensas a fallos en tiempo de ejecución.
+- **Dificultad en el mantenimiento:** El código con variables `any` es más difícil de entender y refactorizar, ya que no existe información fiable sobre los tipos esperados.
+- **Propagación de errores:** Un valor `any` puede contaminar otras partes del código, propagando la inseguridad de tipos y dificultando la localización de errores.
+- **Limitación de herramientas:** Se pierde la ayuda de autocompletado, refactorización segura y navegación por tipos que ofrece el ecosistema TypeScript.
+
+#### Ejemplo de uso problemático de `any`
+
 ```typescript
-// Migración de código JavaScript antiguo
-function processData(data: any) {
-  // Se permite cualquier operación sobre data
-  return data.value ? data.value : null;
-}
+// Se permite cualquier operación, aunque sea incorrecta
+declare function fetchData(): any;
+
+const result = fetchData();
+// No hay advertencias, aunque la propiedad no exista
+document.body.innerHTML = result.nonExistentProperty;
 ```
-// En este caso, el uso de `any` puede ser temporal mientras se identifican los tipos reales.
-```
 
-Sin embargo, abusar de `any` elimina las ventajas principales de TypeScript: la verificación de tipos y la detección temprana de errores. El uso excesivo de `any` puede provocar:
-- Pérdida de seguridad de tipos, permitiendo errores en tiempo de ejecución difíciles de detectar.
-- Dificultad para refactorizar el código, ya que el compilador no puede advertir sobre incompatibilidades.
-- Reducción de la autocompletación y ayuda contextual en los editores.
+En este ejemplo, el uso de `any` impide detectar que `nonExistentProperty` no existe realmente, lo que puede provocar errores en tiempo de ejecución difíciles de depurar.
 
-### Caso real: error silencioso por uso de `any`
-```typescript
-function calculateTotal(order: any) {
-  // Se asume que order tiene una propiedad amount
-  return order.amount * 1.21; // Si order.amount es undefined, el resultado será NaN
-}
-```
-// Si el objeto recibido no tiene la estructura esperada, el error pasará desapercibido hasta tiempo de ejecución.
+### Casos en los que puede ser aceptable usar `any`
 
-#### Consideraciones importantes
-- El uso de `any` puede ser necesario en integraciones con librerías externas sin tipado, pero siempre debe documentarse y limitarse a la menor superficie posible.
-- Es recomendable encapsular el uso de `any` en funciones o módulos específicos, evitando su propagación por todo el proyecto.
+- Prototipado rápido o migración inicial de código JavaScript.
+- Interacción con APIs externas sin definiciones de tipos disponibles.
+- Manipulación de datos dinámicos donde el tipo es realmente desconocido y no se puede inferir razonablemente.
 
-#### Buenas prácticas
-- Utilizar `any` solo cuando no exista una alternativa viable.
-- Documentar claramente los motivos de su uso y planificar su eliminación progresiva.
-- Preferir tipos más restrictivos o genéricos (`unknown`, `Record<string, unknown>`, etc.) cuando sea posible.
+{% hint style="warning" %}
+El uso de `any` debe ser siempre una decisión consciente y justificada, nunca una solución por defecto ante problemas de tipado.
+{% endhint %}
 
-#### Malas prácticas
-- Declarar variables, parámetros o propiedades como `any` por comodidad o desconocimiento del tipo real.
-- Permitir que el uso de `any` se extienda sin control, comprometiendo la calidad del código.
+---
 
 ## Alternativas seguras con `unknown`
 
-El tipo `unknown` es una alternativa más segura a `any`, ya que obliga a realizar comprobaciones de tipo antes de manipular el valor. Esto permite mantener la flexibilidad sin renunciar a la seguridad de tipos.
+El tipo `unknown` es una alternativa más segura a `any` cuando se necesita flexibilidad sin renunciar a la seguridad de tipos. A diferencia de `any`, `unknown` obliga a realizar comprobaciones explícitas antes de manipular el valor, evitando así errores accidentales.
 
-### Ejemplo de uso de `unknown`
-```typescript
-function handleInput(input: unknown) {
-  // Es necesario comprobar el tipo antes de operar
-  if (typeof input === 'string') {
-    // input es string en este bloque
-    return input.toUpperCase();
-  }
-  // Otros casos de uso
-  return null;
-}
-```
-// Este enfoque previene errores al obligar a validar el tipo antes de acceder a propiedades o métodos.
+### Diferencias clave entre `any` y `unknown`
 
-### Caso de uso: integración con APIs externas
-Cuando se reciben datos de una API cuyo formato puede variar, es preferible tipar la respuesta como `unknown` y validar su estructura antes de utilizarla:
+Antes de manipular un valor de tipo `unknown`, TypeScript exige que se realicen comprobaciones de tipo, lo que añade una capa de seguridad y reduce la probabilidad de errores en tiempo de ejecución.
+
+#### Ejemplo de uso seguro con `unknown`
 
 ```typescript
-async function fetchData(): Promise<unknown> {
-  const response = await fetch('https://api.example.com/data');
-  return response.json();
-}
+// La función puede devolver cualquier tipo de dato
+declare function fetchData(): unknown;
 
-async function processData() {
-  const data = await fetchData();
-  if (typeof data === 'object' && data !== null && 'value' in data) {
-    // Se puede acceder a data.value de forma segura
-    return (data as { value: number }).value;
-  }
-  // Manejo de error o estructura inesperada
-  return null;
+const result = fetchData();
+// Error: no se puede acceder a propiedades sin comprobar el tipo
+// document.body.innerHTML = result.nonExistentProperty;
+
+if (typeof result === 'object' && result !== null && 'nonExistentProperty' in result) {
+  // Ahora es seguro acceder a la propiedad
+  document.body.innerHTML = (result as any).nonExistentProperty;
 }
 ```
 
-#### Consideraciones importantes
-- `unknown` fuerza a los desarrolladores a pensar en los posibles tipos y a validar explícitamente los datos, reduciendo errores.
-- Es especialmente útil en librerías, utilidades genéricas y validación de datos dinámicos.
+En este caso, TypeScript obliga a comprobar el tipo antes de acceder a propiedades, lo que previene errores comunes y mejora la robustez del código.
 
-#### Buenas prácticas
-- Utilizar `unknown` como tipo de retorno en funciones que pueden recibir datos de fuentes no confiables.
-- Implementar validaciones exhaustivas antes de realizar conversiones de tipo (type assertions).
+### Ventajas de `unknown` sobre `any`
 
-#### Malas prácticas
-- Convertir inmediatamente un valor `unknown` a un tipo concreto sin validación previa.
-- Usar `unknown` como sustituto de un tipado adecuado cuando sí es posible definirlo.
+- **Mayor seguridad:** Obliga a validar el tipo antes de operar sobre el valor.
+- **Mejor mantenibilidad:** Facilita la comprensión y el refactorizado del código.
+- **Prevención de errores:** Reduce la probabilidad de fallos en tiempo de ejecución.
+
+### Buenas prácticas y recomendaciones
+
+- **Prefiere `unknown` sobre `any` siempre que sea posible.**
+- **Limita el uso de `any` a zonas muy acotadas y documentadas del código.**
+- **Utiliza utilidades de TypeScript como type guards, assertions y tipos personalizados para refinar el tipo de los datos dinámicos.**
+
+#### Ejemplo de type guard personalizado
+
+```typescript
+// Type guard para comprobar si un valor es de tipo User
+interface User {
+  id: number;
+  name: string;
+}
+
+function isUser(value: unknown): value is User {
+  return (
+    typeof value === 'object' &&
+    value !== null &&
+    'id' in value &&
+    'name' in value
+  );
+}
+
+const data: unknown = fetchData();
+if (isUser(data)) {
+  // Aquí TypeScript sabe que data es User
+  console.log(data.name);
+}
+```
+
+### Malas prácticas a evitar
+
+- Utilizar `any` como solución rápida ante errores de tipado sin analizar el problema de fondo.
+- Propagar variables de tipo `any` a lo largo del código, contaminando otras funciones y módulos.
+- Omitir comprobaciones de tipo al trabajar con datos dinámicos o externos.
+
+{% hint style="danger" %}
+El abuso de `any` puede anular por completo los beneficios de TypeScript y convertir el código en una base tan frágil como JavaScript puro.
+{% endhint %}
 
 ### Errores comunes y trampas habituales
-- Asumir que `any` y `unknown` son equivalentes: `any` desactiva el sistema de tipos, mientras que `unknown` lo refuerza.
-- Olvidar validar los datos antes de operar con valores `unknown`, lo que puede llevar a errores en tiempo de ejecución.
-- No planificar la eliminación progresiva de `any` tras una migración, dejando el código indefinidamente sin tipado.
 
-### Recomendaciones finales sobre el uso de `any`
-- Limitar su uso a casos estrictamente necesarios y documentados.
-- Priorizar siempre alternativas más seguras y robustas.
-- Revisar periódicamente el código para identificar y eliminar usos innecesarios de `any`. 
+- Asumir que el uso de `any` es inocuo en pequeñas partes del código; estos focos de inseguridad tienden a expandirse y dificultar el mantenimiento.
+- No revisar ni refactorizar variables `any` tras una migración inicial a TypeScript.
+- Olvidar documentar los motivos por los que se recurre a `any` en casos excepcionales.
+
+### Comparativa entre `any` y `unknown`
+
+A continuación se muestra una tabla comparativa entre ambos tipos para clarificar sus diferencias y usos recomendados:
+
+### Diferencias entre `any` y `unknown`
+
+Antes de la tabla, es importante entender que aunque ambos tipos permiten flexibilidad, solo `unknown` preserva la seguridad de tipos.
+
+| Característica     | any                          | unknown                         |
+| ------------------ | ---------------------------- | ------------------------------- |
+| Seguridad de tipos | No hay comprobación          | Requiere comprobación explícita |
+| Autocompletado     | No disponible                | Disponible tras comprobación    |
+| Refactorización    | Difícil, propaga inseguridad | Más sencilla, mantiene tipado   |
+| Uso recomendado    | Casos muy excepcionales      | Datos dinámicos o externos      |
+| Riesgo de errores  | Alto                         | Bajo                            |
