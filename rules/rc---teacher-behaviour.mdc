@@ -33,25 +33,31 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - Analiza el contenido actual y **extrae el índice o la estructura de secciones** (títulos, subtítulos, apartados).
    - **Debe ceñirse estrictamente a este índice o estructura** para la generación del contenido ampliado.
 
-2. **Tratamiento del menú multilenguaje y del índice guía**
+2. **Tratamiento del menú multilenguaje, ToC interno e índice guía**
    - Si el archivo contiene un bloque de menú multilenguaje delimitado por:
      ```
      <!-- MULTILANGUAJE MENU START -->
      ... (contenido del menú) ...
      <!-- MULTILANGUAJE MENU END -->
      ```
-     este bloque **debe preservarse íntegramente y sin modificaciones**.
+     este bloque **debe preservarse íntegramente y sin modificaciones al inicio del archivo**.
+
+   - **Inmediatamente después del menú multilenguaje**, debe generarse e insertarse un **menú interno de la página (Tabla de Contenidos - ToC)**.
+     - Este ToC debe enlazar a todos los encabezados relevantes (`##` y `###`) del contenido que se generará posteriormente.
+     - Debe utilizar listas anidadas si es necesario para reflejar la jerarquía del contenido.
+     - Los enlaces deben seguir la sintaxis de GitBook para enlaces de anclaje internos.
 
    - ⚠️ **ATENCIÓN CRÍTICA: Conservación del índice guía inicial**
      - Si el archivo contiene un **índice guía inicial** (por ejemplo, una lista de secciones o estructura preliminar), **NUNCA debe eliminarse**.
      - **Debe ser comentado** usando sintaxis Markdown de comentario `<!-- ... -->`.
      - Dentro de este comentario debe incluirse tanto el **título de la página** como el **índice guía inicial**.
-     - El comentario con el título y el índice **siempre** debe colocarse **al inicio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado**.
+     - El comentario con el título y el índice **siempre** debe colocarse **inmediatamente después del ToC interno y antes del título principal H1**.
      - **Esta acción es OBLIGATORIA** para conservar la referencia histórica y facilitar futuras revisiones.
-   - El resto del contenido del archivo será sobrescrito por el nuevo contenido generado.
+
+   - El resto del contenido del archivo (excepto el menú multilenguaje y el ToC interno) será sobrescrito por el nuevo contenido generado.
 
 3. **Generación del contenido ampliado**
-   - La página debe **iniciar siempre con el título de la página** utilizando el encabezado de nivel `#` (H1).
+   - **Inmediatamente después del índice guía comentado**, la página debe **iniciar siempre con el título de la página** utilizando el encabezado de nivel `#` (H1).
    - El contenido generado debe estar **organizado de manera coherente y progresiva**, facilitando el aprendizaje y la comprensión del tema por parte del lector.
    - Para cada sección del índice extraído (o del índice guía comentado), el agente debe:
      - Redactar **definiciones claras, precisas y bien argumentadas**, proporcionando contexto, motivación, utilidad práctica y explicando la relevancia de cada concepto en el desarrollo profesional y en situaciones reales.
@@ -74,6 +80,7 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - **Nunca** utilizar `//` para crear citas (blockquotes); debe usarse la sintaxis estándar de Markdown `>`.
      - **Nunca** duplicar bloques de almohadillas (`#`) en los encabezados de cualquier nivel; está estrictamente prohibido. Siempre debe revisarse y corregirse si ocurre.  
        Ejemplo incorrecto: `#### ####` — Ejemplo correcto: `####`
+   - **Una vez generado todo el contenido principal, el agente debe asegurarse de que el ToC interno creado en el paso 2 enlaza correctamente a los encabezados `##` y `###` generados.**
 
 4. **Redacción y estilo**
    - Todo el contenido debe estar en **castellano neutro** (excepto el código, que irá en inglés).
@@ -91,15 +98,39 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - El nivel `####` (H4) se reserva **únicamente** para los encabezados de apartados de "Ejemplos" (ya sean ejemplos básicos o de cualquier otro tipo). **Nunca** debe utilizarse `####` para ningún encabezado que no sea de ejemplo.
      - **ATENCIÓN CRÍTICA:** Tras un encabezado de ejemplo (`####`), todos los subencabezados siguientes de la sección deben volver a utilizar **siempre** el nivel `###` (H3), salvo que sean también encabezados de ejemplo. No debe mantenerse el nivel `####` para otros apartados, ya que esto rompe la jerarquía y la coherencia del documento.
      - El agente debe mantener esta jerarquía de forma estricta y homogénea en todo el contenido generado.
-   - El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector. **Nunca** para grandes bloques de contenido, **siempre** sólo para puntos especificos.
+   <!-- - El agente debe poner especial atención en **no abusar del uso de citas (quotes)** y solo emplearlas cuando realmente corresponda según el contexto y el sentido didáctico. **No debe añadir citas en lugares donde no sean apropiadas**, ya que un uso excesivo o incorrecto de las mismas puede estropear el formato y dificultar la lectura. -->
+	- El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector. **Nunca** para grandes bloques de contenido, **siempre** sólo para puntos especificos.
      - Por ejemplo, puede utilizar los hints de estilo `warning` o `danger` en contextos de malas prácticas, errores, consideraciones importantes o trampas habituales, **reservándolos únicamente para los puntos de especial importancia o aquellos que requieran atención crítica** dentro de dichos contextos, y no para cualquier aspecto con connotación negativa.
      - Los hints de estilo `success` e `info` deben emplearse en contextos de recomendaciones, buenas prácticas, información relevante o tips útiles sobre el tema tratado, **reservándolos únicamente para los aspectos más destacados o beneficiosos que merezcan especial atención por parte del lector dentro de dichos contextos.**
-   - El agente debe poner especial atención en **no abusar del uso de citas (quotes)** y solo emplearlas cuando realmente corresponda según el contexto y el sentido didáctico. **No debe añadir citas en lugares donde no sean apropiadas**, ya que un uso excesivo o incorrecto de las mismas puede estropear el formato y dificultar la lectura.
+   - Al utilizar bloques `hint` de GitBook, deben seguirse **estrictamente** las siguientes reglas de formato para evitar errores de renderizado:
+     - **Siempre** debe haber una línea en blanco (vacía) inmediatamente antes de la línea de apertura `{% hint ... %}`.
+     - Ni las líneas de apertura (`{% hint ... %}`) y cierre (`{% endhint %}`) del hint, ni ninguna línea del contenido dentro del hint deben estar indentadas (tabuladas). Todo debe estar alineado al margen izquierdo.
+
+     **Ejemplo de formato correcto:**
+
+     ```markdown
+
+     {% hint style="info" %}
+     Este es un ejemplo correcto.
+     La línea anterior al hint está en blanco.
+     Ninguna de estas líneas está indentada.
+     {% endhint %}
+     ```
+
+     **Ejemplo de formato INCORRECTO (NO USAR):**
+
+     ```markdown
+     {% hint style="warning" %}  <-- Falta línea en blanco antes
+       Este contenido está indentado, lo cual es incorrecto. <-- Indentación incorrecta
+     {% endhint %}
+     ```
 
 5. **Resultado**
-   - El archivo resultante debe contener únicamente:
+   - El archivo resultante debe contener únicamente, en este orden:
      - El menú multilenguaje original (si existe), **sin alteraciones**.
-     - El **índice guía inicial comentado** (si existía), colocado al principio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado.
+     - **El ToC interno generado**, enlazando a las secciones principales del contenido.
+     - El **índice guía inicial comentado** (si existía).
+     - El título principal de la página (`# H1`).
      - El contenido ampliado, estructurado y desarrollado según el índice extraído o el índice guía comentado, cumpliendo todas las exigencias de profundidad, claridad, ejemplos, casos de uso, buenas y malas prácticas, y demás requisitos de esta regla.
    - El contenido debe ser extenso, didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
    - **No debe quedar ningún contenido residual del archivo original, salvo el menú multilenguaje y el índice guía comentado.**
@@ -154,27 +185,4 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
   | push()     | Añade un elemento al final   | numbers.push(5)     |
   | pop()      | Elimina el último elemento   | numbers.pop()       |
   ```
-- **Nunca debe colocarse una tabla directamente después de un encabezado de sección principal (`##`) o de subsección (`###`), salvo el propio encabezado de la tabla (importante tener esto en cuenta para que no haya un conflicto que no permita crear tablas)** Siempre debe haber una explicación, introducción o contenido relevante entre el encabezado de la sección y la tabla, para evitar la aparición de dos encabezados seguidos y asegurar la correcta estructura del documento.
-- Si lo considera necesario para organizar mejor el contenido, el agente puede utilizar el elemento `tabs` de GitBook para agrupar información relacionada en pestañas. Por ejemplo:
-
-  ```markdown
-  {% tabs %}
-  {% tab title="First Tab" %}
-  Contenido de la primera pestaña
-  {% endtab %}
-
-  {% tab title="Second Tab" %}
-  Contenido de la segunda pestaña
-  {% endtab %}
-
-  {% tab title="Third Tab" %}
-  Contenido de la tercera pestaña
-  {% endtab %}
-  {% endtabs %}
-  ```
-
-
-
-
-
-
+- **Nunca debe colocarse una tabla directamente después de un encabezado de sección principal (`
