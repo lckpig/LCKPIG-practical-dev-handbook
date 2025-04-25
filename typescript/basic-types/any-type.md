@@ -2,6 +2,12 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-types/any-type)
 <!-- MULTILANGUAJE MENU END -->
 
+<!-- 
+# El tipo `any` y su impacto en el código
+- Cuándo usar `any` y sus riesgos
+- Alternativas seguras con `unknown`
+-->
+
 <details>
 <summary>Índice de contenidos</summary>
 
@@ -20,12 +26,6 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
   - [Consideraciones importantes y buenas prácticas con `unknown`](#consideraciones-importantes-y-buenas-practicas-con-unknown)
 
 </details>
-
-<!-- 
-# El tipo `any` y su impacto en el código
-- Cuándo usar `any` y sus riesgos
-- Alternativas seguras con `unknown`
--->
 
 # El tipo `any` y su impacto en el código
 

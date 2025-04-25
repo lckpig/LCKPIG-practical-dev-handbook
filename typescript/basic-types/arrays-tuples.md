@@ -2,6 +2,13 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-types/arrays-tuples)
 <!-- MULTILANGUAJE MENU END -->
 
+<!--
+# Arrays y Tuplas en TypeScript
+- Declaración de arrays (`number[]`, `Array<string>`)
+- Uso de tuplas (`[string, number]`)
+- Tuplas con etiquetas (`[id: number, nombre: string]`)
+-->
+
 <details>
 <summary>Índice de contenidos</summary>
 
@@ -24,13 +31,6 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
   - [Definición y Sintaxis](#definicion-y-sintaxis-2)
   - [Ventajas y Casos de Uso](#ventajas-y-casos-de-uso)
 </details>
-
-<!--
-# Arrays y Tuplas en TypeScript
-- Declaración de arrays (`number[]`, `Array<string>`)
-- Uso de tuplas (`[string, number]`)
-- Tuplas con etiquetas (`[id: number, nombre: string]`)
--->
 
 # Arrays y Tuplas en TypeScript
 
@@ -165,9 +165,11 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
     console.log(nombres[2]); // undefined (sin error de compilación)
     // console.log(nombres[2].toUpperCase()); // TypeError en ejecución!
     ```
-    {% hint style="warning" %}
-    Activar la opción `noUncheckedIndexedAccess` en `tsconfig.json` puede ayudar. Con esta opción, el acceso a un índice de array o tipo de objeto se considera potencialmente `undefined` (`string | undefined`), forzando su manejo explícito.
-    {% endhint %}
+	 
+{% hint style="warning" %}
+Activar la opción `noUncheckedIndexedAccess` en `tsconfig.json` puede ayudar. Con esta opción, el acceso a un índice de array o tipo de objeto se considera potencialmente `undefined` (`string | undefined`), forzando su manejo explícito.
+{% endhint %}
+
 *   **Mutación por Referencia:** Cuando asignas un array a otra variable (`let copia = original;`), ambas variables apuntan al *mismo* array en memoria. Modificar `copia` también afectará a `original` y viceversa. Para crear una copia independiente (superficial), usa el operador spread (`[...original]`) o `slice()` (`original.slice()`).
     ```typescript
     let original = [1, 2];
