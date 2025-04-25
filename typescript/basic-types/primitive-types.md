@@ -2,49 +2,6 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-types/primitive-types)
 <!-- MULTILANGUAJE MENU END -->
 
-<details><summary>Tabla de Contenidos</summary>
-
-- [Tipos Primitivos en TypeScript](#tipos-primitivos-en-typescript)
-	- [Tipos Primitivos Fundamentales (`string`, `number`, `boolean`)](#tipos-primitivos-fundamentales-string-number-boolean)
-		- [`string`](#string)
-			- [Definición y Utilidad](#definición-y-utilidad)
-			- [Ejemplos Básicos](#ejemplos-básicos)
-			- [Casos de Uso Reales y Recomendables](#casos-de-uso-reales-y-recomendables)
-			- [Consideraciones Importantes](#consideraciones-importantes)
-			- [Buenas Prácticas](#buenas-prácticas)
-			- [Malas Prácticas](#malas-prácticas)
-		- [`number`](#number)
-			- [Definición y Utilidad](#definición-y-utilidad-1)
-			- [Ejemplos Básicos](#ejemplos-básicos-1)
-			- [Casos de Uso Reales y Recomendables](#casos-de-uso-reales-y-recomendables-1)
-			- [Consideraciones Importantes](#consideraciones-importantes-1)
-			- [Buenas Prácticas](#buenas-prácticas-1)
-			- [Malas Prácticas](#malas-prácticas-1)
-		- [`boolean`](#boolean)
-			- [Definición y Utilidad](#definición-y-utilidad-2)
-			- [Ejemplos Básicos](#ejemplos-básicos-2)
-			- [Casos de Uso Reales y Recomendables](#casos-de-uso-reales-y-recomendables-2)
-			- [Consideraciones Importantes](#consideraciones-importantes-2)
-			- [Buenas Prácticas](#buenas-prácticas-2)
-			- [Malas Prácticas](#malas-prácticas-2)
-	- [Ausencia de Valor (`null` y `undefined`)](#ausencia-de-valor-null-y-undefined)
-		- [Definición y Utilidad](#definición-y-utilidad-3)
-			- [Ejemplos Ilustrativos](#ejemplos-ilustrativos)
-		- [Diferencias Clave Resumidas](#diferencias-clave-resumidas)
-			- [Tabla Comparativa](#tabla-comparativa)
-		- [Casos de Uso Reales y Recomendables](#casos-de-uso-reales-y-recomendables-3)
-		- [Consideraciones Importantes](#consideraciones-importantes-3)
-		- [Buenas Prácticas](#buenas-prácticas-3)
-		- [Malas Prácticas](#malas-prácticas-3)
-	- [`bigint`](#bigint)
-		- [Definición y Utilidad](#definición-y-utilidad-4)
-			- [Ejemplos de Creación y Operación](#ejemplos-de-creación-y-operación)
-			- [Casos de Uso Reales y Recomendables](#casos-de-uso-reales-y-recomendables-4)
-		- [Consideraciones Importantes](#consideraciones-importantes-4)
-		- [Buenas Prácticas](#buenas-prácticas-4)
-		- [Malas Prácticas](#malas-prácticas-4)
-
-</details>
 
 # Tipos Primitivos en TypeScript
 
