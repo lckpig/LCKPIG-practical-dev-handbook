@@ -33,31 +33,25 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - Analiza el contenido actual y **extrae el índice o la estructura de secciones** (títulos, subtítulos, apartados).
    - **Debe ceñirse estrictamente a este índice o estructura** para la generación del contenido ampliado.
 
-2. **Tratamiento del menú multilenguaje, ToC interno e índice guía**
+2. **Tratamiento del menú multilenguaje y del índice guía**
    - Si el archivo contiene un bloque de menú multilenguaje delimitado por:
      ```
      <!-- MULTILANGUAJE MENU START -->
      ... (contenido del menú) ...
      <!-- MULTILANGUAJE MENU END -->
      ```
-     este bloque **debe preservarse íntegramente y sin modificaciones al inicio del archivo**.
-
-   - **Inmediatamente después del menú multilenguaje**, debe generarse e insertarse un **menú interno de la página (Tabla de Contenidos - ToC)**.
-     - Este ToC debe enlazar a todos los encabezados relevantes (`##` y `###`) del contenido que se generará posteriormente.
-     - Debe utilizar listas anidadas si es necesario para reflejar la jerarquía del contenido.
-     - Los enlaces deben seguir la sintaxis de GitBook para enlaces de anclaje internos.
+     este bloque **debe preservarse íntegramente y sin modificaciones**.
 
    - ⚠️ **ATENCIÓN CRÍTICA: Conservación del índice guía inicial**
      - Si el archivo contiene un **índice guía inicial** (por ejemplo, una lista de secciones o estructura preliminar), **NUNCA debe eliminarse**.
      - **Debe ser comentado** usando sintaxis Markdown de comentario `<!-- ... -->`.
      - Dentro de este comentario debe incluirse tanto el **título de la página** como el **índice guía inicial**.
-     - El comentario con el título y el índice **siempre** debe colocarse **inmediatamente después del ToC interno y antes del título principal H1**.
+     - El comentario con el título y el índice **siempre** debe colocarse **al inicio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado**.
      - **Esta acción es OBLIGATORIA** para conservar la referencia histórica y facilitar futuras revisiones.
-
-   - El resto del contenido del archivo (excepto el menú multilenguaje y el ToC interno) será sobrescrito por el nuevo contenido generado.
+   - El resto del contenido del archivo será sobrescrito por el nuevo contenido generado.
 
 3. **Generación del contenido ampliado**
-   - **Inmediatamente después del índice guía comentado**, la página debe **iniciar siempre con el título de la página** utilizando el encabezado de nivel `#` (H1).
+   - La página debe **iniciar siempre con el título de la página** utilizando el encabezado de nivel `#` (H1).
    - El contenido generado debe estar **organizado de manera coherente y progresiva**, facilitando el aprendizaje y la comprensión del tema por parte del lector.
    - Para cada sección del índice extraído (o del índice guía comentado), el agente debe:
      - Redactar **definiciones claras, precisas y bien argumentadas**, proporcionando contexto, motivación, utilidad práctica y explicando la relevancia de cada concepto en el desarrollo profesional y en situaciones reales.
@@ -80,7 +74,6 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - **Nunca** utilizar `//` para crear citas (blockquotes); debe usarse la sintaxis estándar de Markdown `>`.
      - **Nunca** duplicar bloques de almohadillas (`#`) en los encabezados de cualquier nivel; está estrictamente prohibido. Siempre debe revisarse y corregirse si ocurre.  
        Ejemplo incorrecto: `#### ####` — Ejemplo correcto: `####`
-   - **Una vez generado todo el contenido principal, el agente debe asegurarse de que el ToC interno creado en el paso 2 enlaza correctamente a los encabezados `##` y `###` generados.**
 
 4. **Redacción y estilo**
    - Todo el contenido debe estar en **castellano neutro** (excepto el código, que irá en inglés).
@@ -98,7 +91,6 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - El nivel `####` (H4) se reserva **únicamente** para los encabezados de apartados de "Ejemplos" (ya sean ejemplos básicos o de cualquier otro tipo). **Nunca** debe utilizarse `####` para ningún encabezado que no sea de ejemplo.
      - **ATENCIÓN CRÍTICA:** Tras un encabezado de ejemplo (`####`), todos los subencabezados siguientes de la sección deben volver a utilizar **siempre** el nivel `###` (H3), salvo que sean también encabezados de ejemplo. No debe mantenerse el nivel `####` para otros apartados, ya que esto rompe la jerarquía y la coherencia del documento.
      - El agente debe mantener esta jerarquía de forma estricta y homogénea en todo el contenido generado.
-   <!-- - El agente debe poner especial atención en **no abusar del uso de citas (quotes)** y solo emplearlas cuando realmente corresponda según el contexto y el sentido didáctico. **No debe añadir citas en lugares donde no sean apropiadas**, ya que un uso excesivo o incorrecto de las mismas puede estropear el formato y dificultar la lectura. -->
 	- El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector. **Nunca** para grandes bloques de contenido, **siempre** sólo para puntos especificos.
      - Por ejemplo, puede utilizar los hints de estilo `warning` o `danger` en contextos de malas prácticas, errores, consideraciones importantes o trampas habituales, **reservándolos únicamente para los puntos de especial importancia o aquellos que requieran atención crítica** dentro de dichos contextos, y no para cualquier aspecto con connotación negativa.
      - Los hints de estilo `success` e `info` deben emplearse en contextos de recomendaciones, buenas prácticas, información relevante o tips útiles sobre el tema tratado, **reservándolos únicamente para los aspectos más destacados o beneficiosos que merezcan especial atención por parte del lector dentro de dichos contextos.**
@@ -125,12 +117,20 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      {% endhint %}
      ```
 
-5. **Resultado**
-   - El archivo resultante debe contener únicamente, en este orden:
+5. **Generación del ToC**
+   - Inmediatamente después del menú multilenguaje (si existe) y antes del título principal de la página, **debe añadirse siempre una tabla de contenidos (ToC) interna**. Esta ToC debe cumplir **siempre** los siguientes requisitos:
+     - Debe estar contenida dentro de un elemento desplegable `<details>` con el resumen (summary) "Índice de contenidos".
+     - **No debe incluirse nunca** un enlace al título principal de la página (`#`/H1) en la ToC.
+     - Debe listar y enlazar a todos los encabezados relevantes de nivel `##` (H2) y `###` (H3) del contenido de la página.
+     - Puede usar listas anidadas (sublistas) para reflejar la jerarquía, pero con un **máximo de dos niveles de profundidad**.
+     - Los enlaces deben ser anclas internas (formato `#heading-id`) siguiendo las convenciones de GitBook.
+     - **CRÍTICO:** Los identificadores de anclaje (`#heading-id`) generados para los enlaces **NUNCA deben incluir tildes ni caracteres especiales**, deben estar en minúsculas y usar guiones para separar palabras.
+      
+6. **Resultado**
+   - El archivo resultante debe contener únicamente:
      - El menú multilenguaje original (si existe), **sin alteraciones**.
-     - **El ToC interno generado**, enlazando a las secciones principales del contenido.
-     - El **índice guía inicial comentado** (si existía).
-     - El título principal de la página (`# H1`).
+     - El **índice guía inicial comentado** (si existía), colocado al principio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado.
+     - La **tabla de contenidos (ToC) interna**, ubicada inmediatamente después del menú multilenguaje (o al inicio si no hay menú) y antes del título H1, formateada correctamente con enlaces funcionales dentro de un `<details>` y sin incluir el H1.
      - El contenido ampliado, estructurado y desarrollado según el índice extraído o el índice guía comentado, cumpliendo todas las exigencias de profundidad, claridad, ejemplos, casos de uso, buenas y malas prácticas, y demás requisitos de esta regla.
    - El contenido debe ser extenso, didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
    - **No debe quedar ningún contenido residual del archivo original, salvo el menú multilenguaje y el índice guía comentado.**
@@ -154,35 +154,3 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
 - **Nunca** se debe modificar el menú multilenguaje ni su formato.
 - **Nunca** se debe alterar el contenido de `_EN` directamente.
 - El contenido generado debe ser único, relevante y adaptado al contexto del archivo objetivo.
-- Además de las notas estándar, el agente puede y debe utilizar los bloques `hint` de GitBook para resaltar información relevante según el tipo de contenido. Los estilos disponibles son:
-
-  ```markdown
-  {% hint style="info" %}
-  Esta es una nota informativa.
-  {% endhint %}
-
-  {% hint style="warning" %}
-  Esta es una advertencia.
-  {% endhint %}
-
-  {% hint style="danger" %}
-  Esta es una alerta de peligro.
-  {% endhint %}
-
-  {% hint style="success" %}
-  Esta es una nota de éxito.
-  {% endhint %}
-  ```
-
-- El agente debe elegir el tipo de `hint` más adecuado para cada caso, siguiendo la intención y el contexto del contenido a resaltar.
-- El agente puede y debe siempre que sea relevante utilizar **tablas en formato Markdown** para realizar comparativas, resúmenes u otros casos donde la organización tabular aporte claridad o valor al contenido. **Todas las tablas deben llevar siempre un título o encabezado descriptivo inmediatamente antes de la tabla, utilizando el nivel de encabezado adecuado según la jerarquía del documento. Nunca pueden ir dos tablas seguidas sin encabezado.** Ejemplo de tabla formateada:
-
-  ```markdown
-  ### Comparativa de métodos de arrays
-
-  | Método     | Descripción                  | Ejemplo de uso      |
-  | ---------- | ---------------------------- | ------------------- |
-  | push()     | Añade un elemento al final   | numbers.push(5)     |
-  | pop()      | Elimina el último elemento   | numbers.pop()       |
-  ```
-- **Nunca debe colocarse una tabla directamente después de un encabezado de sección principal (`
