@@ -22,7 +22,7 @@ Esta regla está diseñada exclusivamente para generar o actualizar la Tabla de 
 
 1.  **Análisis del archivo:**
     - El agente debe analizar el contenido completo del archivo Markdown objetivo.
-    - Debe identificar todos los encabezados de nivel `##` (H2) y `###` (H3) presentes en el documento.
+    - Debe identificar todos los encabezados de nivel `##` (H2) y `###` (H3) presentes en el documento. **Los encabezados de nivel H4, H5 y H6 deben ser ignorados**.
 
 2.  **Generación/Actualización del ToC:**
     - Basándose en los encabezados H2 y H3 identificados, el agente generará la estructura de la ToC.
@@ -40,23 +40,33 @@ Esta regla está diseñada exclusivamente para generar o actualizar la Tabla de 
 
 La ToC generada debe cumplir **estrictamente** los siguientes requisitos:
 
-- **Contenedor:** Debe estar contenida dentro de un elemento desplegable `<details>` con el resumen (summary) "Índice de contenidos".
+- **Contenedor y Estructura Inicial:** Debe estar contenida dentro de un elemento desplegable `<details>` con el resumen (summary) "Índice de contenidos". Inmediatamente después de la etiqueta `</summary>`, debe incluirse:
+  1.  Una línea en blanco.
+  2.  En la línea siguiente, el comentario HTML `<!-- no toc -->`. Esto es importante para evitar conflictos con extensiones como "Markdown All in One" que pueden intentar generar su propio ToC.
+  3.  La lista de enlaces del ToC (generada según los puntos siguientes) comenzará en la línea posterior al comentario.
   ```html
   <details>
   <summary>Índice de contenidos</summary>
   
-  <!-- Aquí va la lista del ToC -->
-  
+  <!-- no toc -->
+  <!-- La lista real del ToC comienza aquí -->
+
   </details>
   ```
-- **Contenido:** Debe listar y enlazar a todos los encabezados relevantes de nivel `##` (H2) y `###` (H3) del contenido de la página.
-- **Jerarquía:** Puede usar listas anidadas (sublistas) para reflejar la jerarquía entre H2 y H3, pero con un **máximo de dos niveles de profundidad** (Nivel 1 para H2, Nivel 2 para H3).
+- **Contenido:** Debe listar y enlazar a todos los encabezados relevantes de nivel `##` (H2) y `###` (H3) del contenido de la página. Se debe usar `- ` para cada elemento de la lista.
+- **Jerarquía:** Puede usar listas anidadas (sublistas con indentación) para reflejar la jerarquía entre H2 y H3, pero con un **máximo de dos niveles de profundidad**: un primer nivel (para H2) y sólo un segundo subnivel (para H3), nada más.
 - **Enlaces:** Los enlaces deben ser anclas internas (formato `#heading-id`) siguiendo las convenciones de GitBook.
-- **Formato de Anclas (CRÍTICO):**
-  - Los identificadores de anclaje (`#heading-id`) generados para los enlaces **NUNCA deben incluir tildes ni caracteres especiales** (como `ñ`, `ç`, acentos, etc.).
-  - Deben estar siempre en **minúsculas**.
-  - Deben usar **guiones (`-`)** para separar palabras.
-  - Deben ser únicos y corresponder exactamente al texto del encabezado transformado según estas reglas.
+- **Formato de Anclas (CRÍTICO):** Los identificadores de anclaje (`#heading-id`) generados para los enlaces deben seguir estas reglas de transformación **aplicadas al texto del encabezado en el idioma del archivo actual**:
+    - Convertir todo a **minúsculas**.
+    - **Eliminar tildes y diacríticos**: `á`->`a`, `é`->`e`, `í`->`i`, `ó`->`o`, `ú`->`u`, `ü`->`u`.
+    - **Reemplazar caracteres especiales**: `ñ`->`n`, `ç`->`c`.
+    - **Reemplazar espacios y múltiples guiones por un solo guion (`-`)**.
+    - **Eliminar cualquier otro carácter no alfanumérico** (excepto los guiones resultantes).
+      - Ejemplo (ES): `## ¿Cómo Funciona?` -> `#como-funciona`
+      - Ejemplo (EN): `## How does it work?` -> `#how-does-it-work`
+    - **Unicidad:** Si la transformación produce identificadores duplicados dentro del mismo archivo, se deben añadir sufijos numéricos (`-1`, `-2`, etc.) para garantizar la unicidad. 
+      - Ejemplo (ES): `#mi-seccion`, `#mi-seccion-1`, `#mi-seccion-2`.
+      - Ejemplo (EN): `#my-section`, `#my-section-1`, `#my-section-2`.
 - **Exclusión del Título H1:** **No debe incluirse nunca** un enlace al título principal de la página (`#`/H1) en la ToC.
 
 ---
@@ -69,5 +79,8 @@ La ToC generada debe cumplir **estrictamente** los siguientes requisitos:
 
 ---
 
-**Nota:** Esta regla debe aplicarse *después* de que el contenido principal del archivo (incluidos los encabezados H2 y H3) haya sido generado o modificado, para asegurar que el ToC refleje la estructura final del documento.
+## Consideraciones Adicionales
+
+- **Sincronización `_ES` / `_EN`:** Aunque esta regla opera sobre un archivo individual, la sincronización de contenido principal (gestionada por `rc---sync-carpetas-es-en`) debe asegurar que la estructura de encabezados sea coherente entre las versiones en español e inglés, resultando en ToCs estructuralmente equivalentes.
+- **Timing:** Esta regla debe aplicarse *después* de que el contenido principal del archivo (incluidos los encabezados H2 y H3) haya sido generado o modificado, para asegurar que el ToC refleje la estructura final del documento.
 

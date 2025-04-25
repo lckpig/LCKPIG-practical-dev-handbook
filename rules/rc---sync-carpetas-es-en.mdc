@@ -216,6 +216,14 @@ alwaysApply: true
 
 - Todas las URLs presentes en el contenido deben mantenerse exactamente igual en ambas versiones (`_ES` y `_EN`). Bajo ninguna circunstancia se deben traducir, modificar ni adaptar las URLs externas durante el proceso de sincronización o traducción. Solo el texto visible del enlace puede traducirse; la URL debe permanecer intacta.
 
+### 4.6 Sincronización de Tabla de Contenidos (ToC)
+
+- **Gestión Separada**: La generación y actualización de la Tabla de Contenidos (ToC) interna de cada archivo Markdown se rige por la regla específica `@rc---toc-creation.mdc`. El proceso de sincronización entre `_ES` y `_EN` **no** genera ni modifica directamente el contenido del ToC.
+- **Sincronización del Contenedor**: El bloque `<details><summary>Índice de contenidos</summary>...</details>` que contiene el ToC **sí** debe ser sincronizado como cualquier otro contenido. Si un archivo en `_ES` tiene un ToC, su correspondiente archivo en `_EN` también debe tenerlo tras la sincronización (y viceversa, asegurando la eliminación si se quita de `_ES`).
+- **Contenido Dependiente del Idioma**: El contenido interno del ToC (los enlaces y la estructura de la lista) depende de los encabezados (`##`, `###`) presentes en cada archivo específico (`_ES` o `_EN`).
+- **Aplicación Post-Sincronización**: La regla `@rc---toc-creation.mdc` debe aplicarse *después* de que el contenido principal del archivo (incluyendo encabezados) haya sido sincronizado y traducido a `_EN`, para asegurar que el ToC refleje la estructura correcta del documento en su idioma correspondiente.
+- **Ubicación**: El proceso de sincronización debe respetar la ubicación del bloque ToC según se define en `@rc---toc-creation.mdc` (generalmente, después del menú multilenguaje y antes del titulo principal).
+
 ### 5. Validación y Verificación
 
 #### 5.1 Verificación de Eliminaciones
