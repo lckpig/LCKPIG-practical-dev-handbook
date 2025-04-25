@@ -255,6 +255,7 @@ Para poder utilizar un valor `unknown`, debes convencer a TypeScript de su tipo 
     console.log(obtenerLongitud([1, 2, 3])); // 3
     // console.log(obtenerLongitud({})); // ¡ERROR EN TIEMPO DE EJECUCIÓN! Cannot read properties of undefined (reading 'length') si no se controla bien
     ```
+	 
     {% hint style="warning" %}
     Las aserciones de tipo (`as Type`) son una "mentira" al compilador. Desactivan la comprobación de tipos para esa operación específica. Úsalas como último recurso absoluto, preferiblemente encapsuladas en funciones de validación seguras (type guards). Abusar de ellas introduce la misma inseguridad que `any`.
     {% endhint %}
