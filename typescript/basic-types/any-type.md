@@ -2,6 +2,25 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-types/any-type)
 <!-- MULTILANGUAJE MENU END -->
 
+<details>
+<summary>Índice de contenidos</summary>
+
+<!-- no toc -->
+- [Cuándo usar `any` y sus riesgos](#cuando-usar-any-y-sus-riesgos)
+  - [Definición, Contexto y Motivación](#definicion-contexto-y-motivacion)
+  - [Casos de uso reales y recomendables (con extrema precaución)](#casos-de-uso-reales-y-recomendables-con-extrema-precaucion)
+  - [Consideraciones importantes y rendimiento](#consideraciones-importantes-y-rendimiento)
+  - [Buenas prácticas (si es inevitable usar `any`)](#buenas-practicas-si-es-inevitable-usar-any)
+  - [Malas prácticas a evitar](#malas-practicas-a-evitar)
+  - [Errores comunes y trampas habituales](#errores-comunes-y-trampas-habituales)
+- [Alternativas seguras con `unknown`](#alternativas-seguras-con-unknown)
+  - [Explicación detallada de `unknown`](#explicacion-detallada-de-unknown)
+  - [Uso seguro de `unknown`: Estrechamiento de Tipos (Type Narrowing)](#uso-seguro-de-unknown-estrechamiento-de-tipos-type-narrowing)
+  - [Casos de uso reales y recomendables para `unknown`](#casos-de-uso-reales-y-recomendables-para-unknown)
+  - [Consideraciones importantes y buenas prácticas con `unknown`](#consideraciones-importantes-y-buenas-practicas-con-unknown)
+
+</details>
+
 <!-- 
 # El tipo `any` y su impacto en el código
 - Cuándo usar `any` y sus riesgos

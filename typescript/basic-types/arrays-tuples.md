@@ -2,6 +2,29 @@
 ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-types/arrays-tuples)
 <!-- MULTILANGUAJE MENU END -->
 
+<details>
+<summary>Índice de contenidos</summary>
+
+<!-- no toc -->
+- [Declaración de Arrays (`number[]`, `Array<string>`)](#declaracion-de-arrays-number-arraystring)
+  - [Definición y Sintaxis](#definicion-y-sintaxis)
+  - [Casos de Uso Reales y Recomendables](#casos-de-uso-reales-y-recomendables)
+  - [Consideraciones Importantes](#consideraciones-importantes)
+  - [Buenas Prácticas](#buenas-practicas)
+  - [Malas Prácticas](#malas-practicas)
+  - [Errores Comunes y Trampas](#errores-comunes-y-trampas)
+- [Uso de Tuplas (`[string, number]`)](#uso-de-tuplas-string-number)
+  - [Definición y Sintaxis](#definicion-y-sintaxis-1)
+  - [Casos de Uso Reales y Recomendables](#casos-de-uso-reales-y-recomendables-1)
+  - [Consideraciones Importantes](#consideraciones-importantes-1)
+  - [Buenas Prácticas](#buenas-practicas-1)
+  - [Malas Prácticas](#malas-practicas-1)
+  - [Errores Comunes y Trampas](#errores-comunes-y-trampas-1)
+- [Tuplas con Etiquetas (`[id: number, nombre: string]`)](#tuplas-con-etiquetas-id-number-nombre-string)
+  - [Definición y Sintaxis](#definicion-y-sintaxis-2)
+  - [Ventajas y Casos de Uso](#ventajas-y-casos-de-uso)
+</details>
+
 <!--
 # Arrays y Tuplas en TypeScript
 - Declaración de arrays (`number[]`, `Array<string>`)
