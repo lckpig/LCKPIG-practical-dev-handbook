@@ -290,9 +290,10 @@ Para poder utilizar un valor `unknown`, debes convencer a TypeScript de su tipo 
         }
     }
     ```
-    {% hint style="info" %}
-    Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar datos `unknown` de forma declarativa y segura, simplificando enormemente este proceso.
-    {% endhint %}
+
+{% hint style="info" %}
+Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar datos `unknown` de forma declarativa y segura, simplificando enormemente este proceso.
+{% endhint %}
 
 2.  **Funciones Genéricas de Alto Nivel:** Funciones que operan sobre diversos tipos de datos pero necesitan inspeccionarlos de forma segura.
 3.  **Contenedores de Tipos Mixtos (con Precaución):** Si necesitas una estructura que pueda contener valores de tipos muy diferentes, `unknown[]` o `Record<string, unknown>` son más seguros que `any[]` o `Record<string, any>`, ya que obligan a verificar el tipo al extraer un elemento.
