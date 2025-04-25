@@ -255,10 +255,10 @@ Para poder utilizar un valor `unknown`, debes convencer a TypeScript de su tipo 
     console.log(obtenerLongitud([1, 2, 3])); // 3
     // console.log(obtenerLongitud({})); // ¡ERROR EN TIEMPO DE EJECUCIÓN! Cannot read properties of undefined (reading 'length') si no se controla bien
     ```
-	 
-    {% hint style="warning" %}
-    Las aserciones de tipo (`as Type`) son una "mentira" al compilador. Desactivan la comprobación de tipos para esa operación específica. Úsalas como último recurso absoluto, preferiblemente encapsuladas en funciones de validación seguras (type guards). Abusar de ellas introduce la misma inseguridad que `any`.
-    {% endhint %}
+
+{% hint style="warning" %}
+Las aserciones de tipo (`as Type`) son una "mentira" al compilador. Desactivan la comprobación de tipos para esa operación específica. Úsalas como último recurso absoluto, preferiblemente encapsuladas en funciones de validación seguras (type guards). Abusar de ellas introduce la misma inseguridad que `any`.
+{% endhint %}
 
 ### Casos de uso reales y recomendables para `unknown`
 
@@ -306,10 +306,6 @@ Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar 
 -   **Implementar Validaciones Robustas:** La utilidad de `unknown` depende directamente de la calidad de las comprobaciones de tipo (type guards, `typeof`, `instanceof`). Sé exhaustivo.
 -   **Evitar Aserciones de Tipo (`as`) como Atajo:** Resiste la tentación de usar `as Tipo` para silenciar errores de `unknown`. Esto anula el propósito de usar `unknown`. Invierte tiempo en escribir type guards correctos.
 -   **Combinar con Genéricos:** En funciones, a menudo se puede usar genéricos (`<T>`) en lugar de `unknown` si la función debe operar sobre un tipo específico pero desconocido *a priori*, preservando el tipo original. `unknown` es mejor cuando realmente no sabes nada del tipo o necesitas manejar múltiples posibilidades explícitamente.
-
-{% hint style="info" %}
-Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar datos `unknown` de forma declarativa y segura, simplificando enormemente este proceso.
-{% endhint %}
 
 {% hint style="success" %}
 Adoptar `unknown` en lugar de `any` representa un cambio fundamental hacia una programación TypeScript más segura y explícita. Te obliga a confrontar la incertidumbre de los tipos de manera controlada, resultando en un código más fiable, predecible y fácil de mantener a largo plazo.
