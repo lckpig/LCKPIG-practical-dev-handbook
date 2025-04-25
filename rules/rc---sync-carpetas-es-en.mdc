@@ -176,8 +176,8 @@ alwaysApply: true
 
 ### 4.4 Preservación de elementos entre backticks
 - **Regla estricta**:
-  - Todo contenido entre `backticks` (el carácter `` ` ``) debe conservarse intacto durante la traducción, incluyendo:
-    - El símbolo `` ` `` mismo
+  - Todo contenido entre `backticks` debe conservarse intacto durante la traducción, incluyendo:
+    - El símbolo backtick mismo
     - Sintaxis (backticks presentes en ambas versiones)
     - Contenido técnico (nombres de variables, tipos, etc.)
   - Excepción aplicable solo cuando:
@@ -224,6 +224,65 @@ alwaysApply: true
 - **Aplicación Post-Sincronización**: La regla `@rc---toc-creation.mdc` debe aplicarse *después* de que el contenido principal del archivo (incluyendo encabezados) haya sido sincronizado y traducido a `_EN`, para asegurar que el ToC refleje la estructura correcta del documento en su idioma correspondiente.
 - **Ubicación**: El proceso de sincronización debe respetar la ubicación del bloque ToC según se define en `@rc---toc-creation.mdc` (generalmente, después del menú multilenguaje y antes del titulo principal).
 
+### 4.7 Sincronización de Maquetación Markdown (Tablas, Citas, Advertencias)
+
+- **Preservación Estructural**: Elementos de maquetación como tablas Markdown, bloques de cita (`>`) y advertencias/hints (usando la sintaxis `{% hint style="..." %}`) deben mantener su estructura y sintaxis intactas durante la sincronización de `_ES` a `_EN`.
+  - **Formato Crítico de Hints**: Es **obligatorio** respetar el formato exacto de los hints de GitBook: línea vacía antes de `{% hint %}`, línea vacía después de `{% endhint %}` y **sin indentación** en ninguna línea del bloque, como se detalla en `@rc---teacher-behaviour.mdc`.
+- **Traducción del Contenido**: El *contenido textual* dentro de estos elementos (texto en celdas de tablas, texto en citas, texto en advertencias) SÍ debe ser traducido al inglés.
+- **Consistencia Visual**: El objetivo es que la presentación visual y la estructura de estos elementos sean idénticas en ambas versiones lingüísticas, cambiando únicamente el idioma del texto interno.
+- **Ejemplo Tabla**:
+  ```markdown
+  <!-- _ES version -->
+  | Encabezado 1 | Encabezado 2 |
+  |--------------|--------------|
+  | Celda ES 1   | Celda ES 2   |
+
+  <!-- _EN version after sync -->
+  | Header 1     | Header 2     |
+  |--------------|--------------|
+  | Cell EN 1    | Cell EN 2    |
+  ```
+- **Ejemplo Cita**:
+  ```markdown
+  <!-- _ES version -->
+  > Este es un texto importante en una cita.
+
+  <!-- _EN version after sync -->
+  > This is important text within a quote.
+  ```
+- **Ejemplo Advertencia**:
+  ```markdown
+  <!-- _ES version -->
+
+  {% hint style="warning" %}
+  Texto de advertencia en español.
+  {% endhint %}
+
+  <!-- _EN version after sync -->
+
+  {% hint style="warning" %}
+  Warning text in English.
+  {% endhint %}
+
+  ```
+- **Validación**: Se debe verificar que la sintaxis Markdown que define estos elementos (pipes `|`, guiones `-` para tablas; `>` para citas; `{% hint style="..." %}` para advertencias) no se altere durante la traducción del contenido.
+
+#### 4.8 Sincronización de Comentarios Markdown
+
+- **Inclusión en Traducción**: Los comentarios estándar de Markdown (`<!-- ... -->`) presentes en los archivos de `_ES` DEBEN ser considerados parte del contenido a sincronizar y traducir a sus equivalentes en inglés en la carpeta `_EN`.
+- **Propósito**: Asegurar que las notas o aclaraciones importantes dejadas como comentarios en español también estén disponibles y sean comprensibles en la versión en inglés del documento.
+- **Proceso**: Durante la sincronización, el texto dentro de `<!--` y `-->` se tratará como cualquier otro texto y se traducirá, manteniendo la sintaxis del comentario intacta.
+- **Ejemplo**:
+  ```markdown
+  <!-- _ES version -->
+  <!-- TODO: Revisar esta sección sobre variables -->
+  Algún contenido...
+
+  <!-- _EN version after sync -->
+  <!-- TODO: Review this section about variables -->
+  Some content...
+  ```
+
 ### 5. Validación y Verificación
 
 #### 5.1 Verificación de Eliminaciones
@@ -237,7 +296,7 @@ alwaysApply: true
 - Verificar contenido circundante
 - Asegurar eliminación completa
 
-### 5.3 Verificación de Integridad
+#### 5.3 Verificación de Integridad
 - **Chequeo pre-sincronización**:
   ```bash
   diff -rq _ES _EN | grep -v '.syncbuffer'
@@ -246,7 +305,7 @@ alwaysApply: true
   - Reintentos automáticos con backoff exponencial
   - Notificaciones de fallos persistentes via `system-notifications.md`
 
-### 5.4 Verificación de Huérfanos
+#### 5.4 Verificación de Huérfanos
 - **Comando obligatorio pre-sincronización**:
   ```powershell
   Compare-Object (Get-ChildItem _ES -Recurse) (Get-ChildItem _EN -Recurse) | 

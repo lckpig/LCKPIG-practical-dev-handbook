@@ -1,10 +1,10 @@
 
 ---- INDICE GENERACION DE ARCHIVOS ----
 
-// gemini-2.5-prox-exp-03-25
+// Agente - gemini-2.5-prox-exp-03-25
 procede ahora con la seccion XXX de @README.md de typescript en @_ES, recuerda crear las carpetas y archivos correctamente en base a @rc---files-and-folders-naming-convention.mdc , rellenarlos correctamente con su contenido como has hecho con secciones anteriores, ojo que el menu multilenguaje este correctamente implementado, y enlazalos correctamente en @README.md de typescript y a @SUMMARY.md. Despues cuando termines correctamente, replicar todo este proceso completo en @_EN siguiendo @rc---sync-carpetas-es-en.mdc
 
-// gemini-2.5-prox-exp-03-25
+// Agente - gemini-2.5-prox-exp-03-25
 ahora realiza el mismo proceso completo con la seccion XXX
 
 
@@ -21,6 +21,15 @@ corrige los bloques de # duplicados segun la restriccion de @rc---teacher-behavi
 
 // Agente - gemini-2.5-prox-exp-03-25
 corrige las restricciones respecto a los hints segun @rc---teacher-behaviour.mdc
+
+
+---- SINCRINIZACION DE CONTENIDO ENTRE _ES y _EN ----
+
+// Agente - gemini-2.5-prox-exp-03-25
+rcsync = SYNCRONIZACION COMPLETA ENTRE _ES y _EN USANDO LA REGLA rc---sync-carpetas-es-en.mdc
+
+// Agente - gemini-2.5-prox-exp-03-25
+procede con la sincronizacion de contenido aplicando @rc---sync-carpetas-es-en.mdc 
 
 ---- AUTOMATIZACION CONTROL DE VERSIONES ----
 
