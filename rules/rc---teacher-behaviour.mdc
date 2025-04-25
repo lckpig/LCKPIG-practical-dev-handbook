@@ -72,7 +72,6 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - **Nunca** incluir frases motivacionales, de ánimo, de cierre o similares.
      - **Nunca** utilizar iconos, emojis o símbolos decorativos innecesarios o ridículos.
      - **Nunca** utilizar `//` para crear citas (blockquotes); debe usarse la sintaxis estándar de Markdown `>`.
-     - **Nunca** incluir `backticks` dentro de los hints de gitbook, no funciona, en caso de necesitarlo dentro del hint utiliza comilla simple.
      - **Nunca** duplicar bloques de almohadillas (`#`) en los encabezados de cualquier nivel; está estrictamente prohibido. Siempre debe revisarse y corregirse si ocurre.  
        Ejemplo incorrecto: `#### ####` — Ejemplo correcto: `####`
 
@@ -95,7 +94,6 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector. **Nunca** para grandes bloques de contenido, **siempre** sólo para puntos especificos.
      - Por ejemplo, puede utilizar los hints de estilo `warning` o `danger` en contextos de malas prácticas, errores, consideraciones importantes o trampas habituales, **reservándolos únicamente para los puntos de especial importancia o aquellos que requieran atención crítica** dentro de dichos contextos, y no para cualquier aspecto con connotación negativa.
      - Los hints de estilo `success` e `info` deben emplearse en contextos de recomendaciones, buenas prácticas, información relevante o tips útiles sobre el tema tratado, **reservándolos únicamente para los aspectos más destacados o beneficiosos que merezcan especial atención por parte del lector dentro de dichos contextos.**
-     - **Nunca** incluir `backticks` dentro de los hints de gitbook, no funciona, en caso de necesitarlo dentro del hint utiliza comilla simple.
    - El agente debe poner especial atención en **no abusar del uso de citas (quotes)** y solo emplearlas cuando realmente corresponda según el contexto y el sentido didáctico. **No debe añadir citas en lugares donde no sean apropiadas**, ya que un uso excesivo o incorrecto de las mismas puede estropear el formato y dificultar la lectura.
 
 5. **Resultado**
