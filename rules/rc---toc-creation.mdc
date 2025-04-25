@@ -1,0 +1,73 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+---
+description: "Regla para generar o actualizar la Tabla de Contenidos (ToC) interna en archivos Markdown."
+globs:
+  - "**/*.md"
+alwaysApply: false
+---
+
+# Regla de Creación/Actualización de Tabla de Contenidos (ToC)
+
+## Propósito
+
+Esta regla está diseñada exclusivamente para generar o actualizar la Tabla de Contenidos (ToC) interna de un archivo Markdown, asegurando que refleje correctamente la estructura de encabezados del documento y cumpla con las convenciones de formato de GitBook.
+
+---
+
+## Flujo de trabajo
+
+1.  **Análisis del archivo:**
+    - El agente debe analizar el contenido completo del archivo Markdown objetivo.
+    - Debe identificar todos los encabezados de nivel `##` (H2) y `###` (H3) presentes en el documento.
+
+2.  **Generación/Actualización del ToC:**
+    - Basándose en los encabezados H2 y H3 identificados, el agente generará la estructura de la ToC.
+    - Si ya existe una ToC previa (contenida dentro de `<details><summary>Índice de contenidos</summary>...</details>`), esta **será reemplazada** por la nueva ToC generada.
+    - Si no existe una ToC previa, la nueva ToC se **insertará** en la ubicación correcta.
+
+3.  **Ubicación del ToC:**
+    - La ToC **siempre** debe ubicarse inmediatamente después del bloque de menú multilenguaje (delimitado por `<!-- MULTILANGUAJE MENU START -->` y `<!-- MULTILANGUAJE MENU END -->`), si existe.
+    - Si no hay menú multilenguaje, la ToC debe ubicarse al principio del archivo.
+    - En cualquier caso, la ToC debe estar **antes** del título principal de la página (encabezado `#` / H1).
+
+---
+
+## Requisitos del ToC
+
+La ToC generada debe cumplir **estrictamente** los siguientes requisitos:
+
+- **Contenedor:** Debe estar contenida dentro de un elemento desplegable `<details>` con el resumen (summary) "Índice de contenidos".
+  ```html
+  <details>
+  <summary>Índice de contenidos</summary>
+  
+  <!-- Aquí va la lista del ToC -->
+  
+  </details>
+  ```
+- **Contenido:** Debe listar y enlazar a todos los encabezados relevantes de nivel `##` (H2) y `###` (H3) del contenido de la página.
+- **Jerarquía:** Puede usar listas anidadas (sublistas) para reflejar la jerarquía entre H2 y H3, pero con un **máximo de dos niveles de profundidad** (Nivel 1 para H2, Nivel 2 para H3).
+- **Enlaces:** Los enlaces deben ser anclas internas (formato `#heading-id`) siguiendo las convenciones de GitBook.
+- **Formato de Anclas (CRÍTICO):**
+  - Los identificadores de anclaje (`#heading-id`) generados para los enlaces **NUNCA deben incluir tildes ni caracteres especiales** (como `ñ`, `ç`, acentos, etc.).
+  - Deben estar siempre en **minúsculas**.
+  - Deben usar **guiones (`-`)** para separar palabras.
+  - Deben ser únicos y corresponder exactamente al texto del encabezado transformado según estas reglas.
+- **Exclusión del Título H1:** **No debe incluirse nunca** un enlace al título principal de la página (`#`/H1) en la ToC.
+
+---
+
+## Ejecución
+
+- Una vez generado o actualizado el ToC siguiendo esta regla, **el agente debe aplicar la actualización directamente sobre el archivo objetivo**.
+- **No debe solicitar confirmación manual al usuario antes de modificar el archivo**.
+- Esta acción es **crítica** para el correcto funcionamiento del flujo.
+
+---
+
+**Nota:** Esta regla debe aplicarse *después* de que el contenido principal del archivo (incluidos los encabezados H2 y H3) haya sido generado o modificado, para asegurar que el ToC refleje la estructura final del documento.
+

@@ -51,7 +51,7 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - El resto del contenido del archivo será sobrescrito por el nuevo contenido generado.
 
 3. **Generación del contenido ampliado**
-   - La página debe **iniciar siempre con el título de la página** utilizando el encabezado de nivel `#` (H1).
+   - La página debe **iniciar siempre con el título de la página** utilizando el encabezado de nivel `#` (H1), inmediatamente después del menú multilenguaje (si existe) y el índice comentado (si existe).
    - El contenido generado debe estar **organizado de manera coherente y progresiva**, facilitando el aprendizaje y la comprensión del tema por parte del lector.
    - Para cada sección del índice extraído (o del índice guía comentado), el agente debe:
      - Redactar **definiciones claras, precisas y bien argumentadas**, proporcionando contexto, motivación, utilidad práctica y explicando la relevancia de cada concepto en el desarrollo profesional y en situaciones reales.
@@ -117,26 +117,17 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      {% endhint %}
      ```
 
-5. **Generación del ToC**
-   - Inmediatamente después del menú multilenguaje (si existe) y antes del título principal de la página, **debe añadirse siempre una tabla de contenidos (ToC) interna**. Esta ToC debe cumplir **siempre** los siguientes requisitos:
-     - Debe estar contenida dentro de un elemento desplegable `<details>` con el resumen (summary) "Índice de contenidos".
-     - **No debe incluirse nunca** un enlace al título principal de la página (`#`/H1) en la ToC.
-     - Debe listar y enlazar a todos los encabezados relevantes de nivel `##` (H2) y `###` (H3) del contenido de la página.
-     - Puede usar listas anidadas (sublistas) para reflejar la jerarquía, pero con un **máximo de dos niveles de profundidad**.
-     - Los enlaces deben ser anclas internas (formato `#heading-id`) siguiendo las convenciones de GitBook.
-     - **CRÍTICO:** Los identificadores de anclaje (`#heading-id`) generados para los enlaces **NUNCA deben incluir tildes ni caracteres especiales**, deben estar en minúsculas y usar guiones para separar palabras.
-      
-6. **Resultado**
+5. **Resultado**
    - El archivo resultante debe contener únicamente:
      - El menú multilenguaje original (si existe), **sin alteraciones**.
      - El **índice guía inicial comentado** (si existía), colocado al principio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado.
-     - La **tabla de contenidos (ToC) interna**, ubicada inmediatamente después del menú multilenguaje (o al inicio si no hay menú) y antes del título H1, formateada correctamente con enlaces funcionales dentro de un `<details>` y sin incluir el H1.
      - El contenido ampliado, estructurado y desarrollado según el índice extraído o el índice guía comentado, cumpliendo todas las exigencias de profundidad, claridad, ejemplos, casos de uso, buenas y malas prácticas, y demás requisitos de esta regla.
    - El contenido debe ser extenso, didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
    - **No debe quedar ningún contenido residual del archivo original, salvo el menú multilenguaje y el índice guía comentado.**
    - La estructura y el formato del archivo deben ser correctos, sin errores de formato, enlaces rotos ni secciones vacías.
-   - **Nunca debe haber duplicación de bloques de almohadillas (`#`) en los encabezados de cualquier nivel; si se detecta, debe corregirse para que solo quede un único bloque de almohadillas por encabezado.**
    - **El documento no debe terminar con un separador horizontal (`---`). Si el archivo termina con un separador, este debe ser eliminado.**
+   - **Nunca debe haber dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" sin que entre ambos haya contenido relevante (ejemplo, explicación, etc.). En caso de que esto ocurra, debe eliminarse uno de los dos encabezados, permaneciendo únicamente el más descriptivo y formateándose como cualquier otro encabezado de ejemplo con `####`.**
+   - **Nunca debe haber duplicación de bloques de almohadillas (`#`) en los encabezados de cualquier nivel; si se detecta, debe corregirse para que solo quede un único bloque de almohadillas por encabezado.**
 
 ---
 
