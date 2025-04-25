@@ -91,31 +91,34 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - El nivel `####` (H4) se reserva **únicamente** para los encabezados de apartados de "Ejemplos" (ya sean ejemplos básicos o de cualquier otro tipo). **Nunca** debe utilizarse `####` para ningún encabezado que no sea de ejemplo.
      - **ATENCIÓN CRÍTICA:** Tras un encabezado de ejemplo (`####`), todos los subencabezados siguientes de la sección deben volver a utilizar **siempre** el nivel `###` (H3), salvo que sean también encabezados de ejemplo. No debe mantenerse el nivel `####` para otros apartados, ya que esto rompe la jerarquía y la coherencia del documento.
      - El agente debe mantener esta jerarquía de forma estricta y homogénea en todo el contenido generado.
-	- El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector. **Nunca** para grandes bloques de contenido, **siempre** sólo para puntos especificos.
+   - **Formato Estricto para Bloques `hint` de GitBook:**
+     - **ATENCIÓN CRÍTICA:** El uso correcto del formato para los bloques `hint` es **OBLIGATORIO** para evitar errores de renderizado en GitBook. Sigue estas reglas **estrictamente**:
+       - **SIEMPRE** debe haber una línea en blanco (vacía) inmediatamente **antes** de la línea de apertura `{% hint ... %}`.
+       - **NUNCA** deben estar indentadas (tabuladas) ni las líneas de apertura (`{% hint ... %}`) y cierre (`{% endhint %}`) del hint, ni ninguna línea del contenido dentro del hint. Todo debe estar alineado al margen izquierdo.
+       - **SIEMPRE** debe haber una línea en blanco (vacía) inmediatamente **después** de la línea de cierre `{% endhint %}`.
+
+     - **Ejemplo de formato CORRECTO:**
+
+       ```markdown
+
+       {% hint style="info" %}
+       Este es un ejemplo correcto.
+       La línea anterior al hint está en blanco.
+       Ninguna de estas líneas está indentada.
+       {% endhint %}
+
+       ```
+
+     - **Ejemplo de formato INCORRECTO (NO USAR):**
+
+       ```markdown
+       {% hint style="warning" %}  <-- ERROR: Falta línea en blanco antes
+         Este contenido está indentado. <-- ERROR: Indentación incorrecta
+       {% endhint %} <-- ERROR: Falta línea en blanco después
+       ```
+   - El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector. **Nunca** para grandes bloques de contenido, **siempre** sólo para puntos especificos.
      - Por ejemplo, puede utilizar los hints de estilo `warning` o `danger` en contextos de malas prácticas, errores, consideraciones importantes o trampas habituales, **reservándolos únicamente para los puntos de especial importancia o aquellos que requieran atención crítica** dentro de dichos contextos, y no para cualquier aspecto con connotación negativa.
      - Los hints de estilo `success` e `info` deben emplearse en contextos de recomendaciones, buenas prácticas, información relevante o tips útiles sobre el tema tratado, **reservándolos únicamente para los aspectos más destacados o beneficiosos que merezcan especial atención por parte del lector dentro de dichos contextos.**
-   - Al utilizar bloques `hint` de GitBook, deben seguirse **estrictamente** las siguientes reglas de formato para evitar errores de renderizado:
-     - **Siempre** debe haber una línea en blanco (vacía) inmediatamente antes de la línea de apertura `{% hint ... %}`.
-     - Ni las líneas de apertura (`{% hint ... %}`) y cierre (`{% endhint %}`) del hint, ni ninguna línea del contenido dentro del hint deben estar indentadas (tabuladas). Todo debe estar alineado al margen izquierdo.
-
-     **Ejemplo de formato correcto:**
-
-     ```markdown
-
-     {% hint style="info" %}
-     Este es un ejemplo correcto.
-     La línea anterior al hint está en blanco.
-     Ninguna de estas líneas está indentada.
-     {% endhint %}
-     ```
-
-     **Ejemplo de formato INCORRECTO (NO USAR):**
-
-     ```markdown
-     {% hint style="warning" %}  <-- Falta línea en blanco antes
-       Este contenido está indentado, lo cual es incorrecto. <-- Indentación incorrecta
-     {% endhint %}
-     ```
 
 5. **Resultado**
    - El archivo resultante debe contener únicamente:

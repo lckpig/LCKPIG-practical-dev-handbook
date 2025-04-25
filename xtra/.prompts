@@ -17,7 +17,10 @@ ahora realiza el mismo proceso completo con la seccion XXX
 analiza para mejorar si fuese posible el contenido de este archivo siguiendo estrictamente @rc---teacher-behaviour.mdc, aplica la mejora directamente 
 
 // Agente - gemini-2.5-prox-exp-03-25
-corrige los bloques de # duplicados segun la restriccion de @rc---teacher-behaviour.mdc 
+corrige los bloques de # duplicados segun la restriccion de @rc---teacher-behaviour.mdc
+
+// Agente - gemini-2.5-prox-exp-03-25
+corrige las restricciones respecto a los hints segun @rc---teacher-behaviour.mdc
 
 ---- AUTOMATIZACION CONTROL DE VERSIONES ----
 
