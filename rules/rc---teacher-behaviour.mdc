@@ -61,6 +61,7 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - Exponer y explicar **buenas prácticas** a aplicar y **malas prácticas** a evitar, desarrollando cada una con argumentos sólidos, ejemplos concretos y explicando las consecuencias de su aplicación o incumplimiento. **Las buenas prácticas y las malas prácticas deben presentarse siempre como subsecciones independientes y claramente diferenciadas entre sí, nunca fusionadas en un solo bloque o apartado.** No se debe limitar a una lista ni a un número mínimo o máximo: el agente debe incluir todas las buenas y malas prácticas relevantes y justificadas que existan para el tema, desarrollando cada una en varios párrafos si es necesario.
      - Incluir cualquier otro aspecto relevante que amplíe, complemente o cuestione la documentación oficial básica, aportando siempre una visión crítica y fundamentada.
      - Incluir, cuando sea relevante, un apartado de **errores comunes, trampas habituales o malentendidos frecuentes**, explicando cómo evitarlos y las consecuencias de incurrir en ellos.
+     - Siempre que sea relevante utilizar **tablas en formato Markdown** para realizar comparativas, resúmenes u otros casos donde la organización tabular aporte claridad o valor al contenido. Recuerda que toda tabla debe llevar un título descriptivo antes y nunca puede ir directamente después de un encabezado de sección.
    - El contenido generado debe ser didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
    - **Profundidad y extensión mínima:**  
      Cada sección desarrollada debe contener suficiente extensión y profundidad, evitando respuestas breves o superficiales. Como referencia, cada apartado debe desarrollarse en varios párrafos y, salvo temas extremadamente específicos, debe incluir múltiples ejemplos, matices y escenarios diferenciados.
@@ -71,6 +72,7 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - **Nunca** incluir frases motivacionales, de ánimo, de cierre o similares.
      - **Nunca** utilizar iconos, emojis o símbolos decorativos innecesarios o ridículos.
      - **Nunca** utilizar `//` para crear citas (blockquotes); debe usarse la sintaxis estándar de Markdown `>`.
+     - **Nunca** incluir `backticks` dentro de los hints de gitbook, no funciona, en caso de necesitarlo dentro del hint utiliza comilla simple.
      - **Nunca** duplicar bloques de almohadillas (`#`) en los encabezados de cualquier nivel; está estrictamente prohibido. Siempre debe revisarse y corregirse si ocurre.  
        Ejemplo incorrecto: `#### ####` — Ejemplo correcto: `####`
 
@@ -87,17 +89,14 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - El nivel `#` (H1) **siempre** se reserva para el título del archivo y no debe usarse en el contenido generado.
      - El nivel `##` (H2) **siempre** se reserva para los encabezados de las secciones principales planteadas en el índice base.
      - Todos los subencabezados que no sean el título del archivo ni los encabezados de secciones principales del índice deben utilizar **siempre** el nivel `###` (H3).
-       <!-- - Queda **prohibido** utilizar la palabra "Ejemplo" o cualquiera de sus variantes en cualquier encabezado de tipo `###` (H3). La palabra "Ejemplo" solo puede aparecer en encabezados de tipo `####` (H4), que están reservados exclusivamente para apartados de ejemplo. -->
      - El nivel `####` (H4) se reserva **únicamente** para los encabezados de apartados de "Ejemplos" (ya sean ejemplos básicos o de cualquier otro tipo). **Nunca** debe utilizarse `####` para ningún encabezado que no sea de ejemplo.
-     <!-- - **No se permite** colocar dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" o alguna de sus variantes (ya sea al principio, en medio o al final del encabezado), sin que entre ambos haya al menos un ejemplo de código, explicación o contenido relevante. Cada encabezado que contenga la palabra "Ejemplo", independientemente de su nivel, debe ir siempre seguido inmediatamente de su ejemplo correspondiente antes de añadir otro encabezado con la palabra "Ejemplo". Esto evita bloques vacíos y mejora la claridad y estructura del documento. -->
      - **ATENCIÓN CRÍTICA:** Tras un encabezado de ejemplo (`####`), todos los subencabezados siguientes de la sección deben volver a utilizar **siempre** el nivel `###` (H3), salvo que sean también encabezados de ejemplo. No debe mantenerse el nivel `####` para otros apartados, ya que esto rompe la jerarquía y la coherencia del documento.
      - El agente debe mantener esta jerarquía de forma estricta y homogénea en todo el contenido generado.
-   - El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector.
+   - El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector. **Nunca** para grandes bloques de contenido, **siempre** sólo para puntos especificos.
      - Por ejemplo, puede utilizar los hints de estilo `warning` o `danger` en contextos de malas prácticas, errores, consideraciones importantes o trampas habituales, **reservándolos únicamente para los puntos de especial importancia o aquellos que requieran atención crítica** dentro de dichos contextos, y no para cualquier aspecto con connotación negativa.
      - Los hints de estilo `success` e `info` deben emplearse en contextos de recomendaciones, buenas prácticas, información relevante o tips útiles sobre el tema tratado, **reservándolos únicamente para los aspectos más destacados o beneficiosos que merezcan especial atención por parte del lector dentro de dichos contextos.**
+     - **Nunca** incluir `backticks` dentro de los hints de gitbook, no funciona, en caso de necesitarlo dentro del hint utiliza comilla simple.
    - El agente debe poner especial atención en **no abusar del uso de citas (quotes)** y solo emplearlas cuando realmente corresponda según el contexto y el sentido didáctico. **No debe añadir citas en lugares donde no sean apropiadas**, ya que un uso excesivo o incorrecto de las mismas puede estropear el formato y dificultar la lectura.
-   
-   
 
 5. **Resultado**
    - El archivo resultante debe contener únicamente:
@@ -109,7 +108,6 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - La estructura y el formato del archivo deben ser correctos, sin errores de formato, enlaces rotos ni secciones vacías.
    - **Nunca debe haber duplicación de bloques de almohadillas (`#`) en los encabezados de cualquier nivel; si se detecta, debe corregirse para que solo quede un único bloque de almohadillas por encabezado.**
    - **El documento no debe terminar con un separador horizontal (`---`). Si el archivo termina con un separador, este debe ser eliminado.**
-   <!-- - **Nunca debe haber dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" sin que entre ambos haya contenido relevante (ejemplo, explicación, etc.). En caso de que esto ocurra, debe eliminarse uno de los dos encabezados, permaneciendo únicamente el más descriptivo y formateándose como cualquier otro encabezado de ejemplo con `####`.** -->
 
 ---
 

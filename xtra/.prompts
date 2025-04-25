@@ -1,0 +1,28 @@
+
+---- INDICE GENERACION DE ARCHIVOS ----
+
+// gemini-2.5-prox-exp-03-25
+procede ahora con la seccion XXX de @README.md de typescript en @_ES, recuerda crear las carpetas y archivos correctamente en base a @rc---files-and-folders-naming-convention.mdc , rellenarlos correctamente con su contenido como has hecho con secciones anteriores, ojo que el menu multilenguaje este correctamente implementado, y enlazalos correctamente en @README.md de typescript y a @SUMMARY.md. Despues cuando termines correctamente, replicar todo este proceso completo en @_EN siguiendo @rc---sync-carpetas-es-en.mdc
+
+// gemini-2.5-prox-exp-03-25
+ahora realiza el mismo proceso completo con la seccion XXX
+
+
+---- CREACION DE CONTENIDO DIDACTICO ----
+
+// Agente - gemini-2.5-prox-exp-03-25
+@rc---teacher-behaviour.mdc = RELLENADO DE CONTENIDO DIDACTICO DE ARCHIVOS USANDO REGLA
+
+// Agente - gemini-2.5-prox-exp-03-25
+analiza para mejorar si fuese posible el contenido de este archivo siguiendo estrictamente @rc---teacher-behaviour.mdc, aplica la mejora directamente 
+
+// Agente - gemini-2.5-prox-exp-03-25
+corrige los bloques de # duplicados segun la restriccion de @rc---teacher-behaviour.mdc 
+
+---- AUTOMATIZACION CONTROL DE VERSIONES ----
+
+// Agente - gemini-2.5-prox-exp-03-25
+rcpush = GITHUB INICIA EL PROCESO COMPLETO DE SINCRINIZACION USANDO LA REGLA rc---push-es-en.mdc
+
+
+----
