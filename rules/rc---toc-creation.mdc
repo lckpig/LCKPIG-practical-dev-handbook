@@ -26,13 +26,21 @@ Esta regla está diseñada exclusivamente para generar o actualizar la Tabla de 
 
 2.  **Generación/Actualización del ToC:**
     - Basándose en los encabezados H2 y H3 identificados, el agente generará la estructura de la ToC.
-    - Si ya existe una ToC previa (contenida dentro de `<details><summary>Índice de contenidos</summary>...</details>`), esta **será reemplazada** por la nueva ToC generada.
+    - Si ya existe una ToC previa (contenida dentro de `<details id="toc-container"><summary>Índice de contenidos</summary>...</details>`), esta **será reemplazada** por la nueva ToC generada.
     - Si no existe una ToC previa, la nueva ToC se **insertará** en la ubicación correcta.
 
 3.  **Ubicación del ToC:**
-    - La ToC **siempre** debe ubicarse inmediatamente después del bloque de menú multilenguaje (delimitado por `<!-- MULTILANGUAJE MENU START -->` y `<!-- MULTILANGUAJE MENU END -->`), si existe.
-    - Si no hay menú multilenguaje, la ToC debe ubicarse al principio del archivo.
+    - La ToC **siempre** debe ubicarse inmediatamente después del bloque de menú multilenguaje (delimitado por `<!-- MULTILANGUAJE MENU START -->` y `<!-- MULTILANGUAJE MENU END -->`) y también inmediatamente después del bloque de comentarios inicial que contiene el título y el índice base de temas, si ambos existen.
+    - Si no hay menú multilenguaje ni bloque de comentarios iniciales, la ToC debe ubicarse al principio del archivo.
+    - Si solo existe uno de los dos bloques (menú o comentarios iniciales), la ToC se colocará inmediatamente después de dicho bloque.
     - En cualquier caso, la ToC debe estar **antes** del título principal de la página (encabezado `#` / H1).
+
+4.  **Inserción de Botón "Volver al Índice":**
+    - Una vez la ToC esté generada y correctamente ubicada, el agente debe añadir un botón para volver al inicio (al índice) al final de cada sección definida por un encabezado `##` (H2) y `###` (H3) **que esté incluida explícitamente en la ToC generada**. Es **CRÍTICO** que las secciones H2 o H3 que *no* aparezcan listadas en la ToC **NO** reciban este botón.
+    - El botón debe usar la sintaxis de enlace interno de GitBook, apuntando al `id` del contenedor de la ToC (`#toc-container`).
+    - El texto del enlace debe ser `↑ Volver al Índice` para español o `↑ Back to Top` para inglés. El formato final debe ser el de un enlace Markdown que apunte al identificador `#toc-container`.
+    - **Espaciado:** Debe dejarse **una línea en blanco antes y una línea en blanco después** del botón.
+    - **Ubicación Precisa (para cada sección aplicable):** El botón debe insertarse como el último elemento del contenido perteneciente a esa sección H2/H3, justo antes de que comience la *siguiente* sección (marcada por un nuevo encabezado H2 o H3) o justo antes del final del archivo si es la última sección listada en el ToC.
 
 ---
 
@@ -40,12 +48,12 @@ Esta regla está diseñada exclusivamente para generar o actualizar la Tabla de 
 
 La ToC generada debe cumplir **estrictamente** los siguientes requisitos:
 
-- **Contenedor y Estructura Inicial:** Debe estar contenida dentro de un elemento desplegable `<details>` con el resumen (summary) "Índice de contenidos". Inmediatamente después de la etiqueta `</summary>`, debe incluirse:
+- **Contenedor y Estructura Inicial:** Debe estar contenida dentro de un elemento desplegable `<details id="toc-container">` con el resumen (summary) "Índice de contenidos". Inmediatamente después de la etiqueta `</summary>`, debe incluirse:
   1.  Una línea en blanco.
   2.  En la línea siguiente, el comentario HTML `<!-- no toc -->`. Esto es importante para evitar conflictos con extensiones como "Markdown All in One" que pueden intentar generar su propio ToC.
   3.  La lista de enlaces del ToC (generada según los puntos siguientes) comenzará en la línea posterior al comentario.
   ```html
-  <details>
+  <details id="toc-container">
   <summary>Índice de contenidos</summary>
   
   <!-- no toc -->

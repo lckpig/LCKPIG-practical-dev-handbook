@@ -219,17 +219,18 @@ alwaysApply: true
 ### 4.6 Sincronización de Tabla de Contenidos (ToC)
 
 - **Gestión Separada**: La generación y actualización de la Tabla de Contenidos (ToC) interna de cada archivo Markdown se rige por la regla específica `@rc---toc-creation.mdc`. El proceso de sincronización entre `_ES` y `_EN` **no** genera ni modifica directamente el contenido del ToC.
-- **Sincronización del Contenedor**: El bloque `<details><summary>Índice de contenidos</summary>...</details>` que contiene el ToC **sí** debe ser sincronizado como cualquier otro contenido. Si un archivo en `_ES` tiene un ToC, su correspondiente archivo en `_EN` también debe tenerlo tras la sincronización (y viceversa, asegurando la eliminación si se quita de `_ES`).
+- **Sincronización del Contenedor**: El bloque `<details id="toc-container"><summary>Índice de contenidos</summary>...</details>` que contiene el ToC **sí** debe ser sincronizado como cualquier otro contenido. Si un archivo en `_ES` tiene un ToC, su correspondiente archivo en `_EN` también debe tenerlo tras la sincronización (y viceversa, asegurando la eliminación si se quita de `_ES`).
 - **Contenido Dependiente del Idioma**: El contenido interno del ToC (los enlaces y la estructura de la lista) depende de los encabezados (`##`, `###`) presentes en cada archivo específico (`_ES` o `_EN`).
 - **Aplicación Post-Sincronización**: La regla `@rc---toc-creation.mdc` debe aplicarse *después* de que el contenido principal del archivo (incluyendo encabezados) haya sido sincronizado y traducido a `_EN`, para asegurar que el ToC refleje la estructura correcta del documento en su idioma correspondiente.
 - **Ubicación**: El proceso de sincronización debe respetar la ubicación del bloque ToC según se define en `@rc---toc-creation.mdc` (generalmente, después del menú multilenguaje y antes del titulo principal).
 
-### 4.7 Sincronización de Maquetación Markdown (Tablas, Citas, Advertencias)
+### 4.7 Sincronización de Maquetación y Formato Markdown
 
-- **Preservación Estructural**: Elementos de maquetación como tablas Markdown, bloques de cita (`>`) y advertencias/hints (usando la sintaxis `{% hint style="..." %}`) deben mantener su estructura y sintaxis intactas durante la sincronización de `_ES` a `_EN`.
+- **Preservación Estructural**: Elementos de maquetación como tablas Markdown, bloques de cita (`>`), advertencias/hints (`{% hint %}`), separadores (`---`), listas, bloques de código, y los enlaces de 'Volver al Índice' (cuyo texto debe ser `↑ Volver al Índice` para español o `↑ Back to Top` para inglés, apuntando al identificador `#toc-container`) deben mantener su estructura y sintaxis intactas durante la sincronización de `_ES` a `_EN` (solo se traduce el texto visible del enlace 'Volver al Índice' según el idioma destino).
   - **Formato Crítico de Hints**: Es **obligatorio** respetar el formato exacto de los hints de GitBook: línea vacía antes de `{% hint %}`, línea vacía después de `{% endhint %}` y **sin indentación** en ninguna línea del bloque, como se detalla en `@rc---teacher-behaviour.mdc`.
-- **Traducción del Contenido**: El *contenido textual* dentro de estos elementos (texto en celdas de tablas, texto en citas, texto en advertencias) SÍ debe ser traducido al inglés.
-- **Consistencia Visual**: El objetivo es que la presentación visual y la estructura de estos elementos sean idénticas en ambas versiones lingüísticas, cambiando únicamente el idioma del texto interno.
+- **Preservación del Espaciado**: Las líneas en blanco y la indentación (tabulaciones o espacios) utilizadas para estructurar el documento en `_ES` deben replicarse exactamente en `_EN` para mantener la legibilidad y la estructura visual.
+- **Traducción del Contenido**: El *contenido textual* dentro de estos elementos (texto en celdas de tablas, texto en citas, texto en advertencias, texto en párrafos, etc.) SÍ debe ser traducido al inglés, pero respetando la estructura y formato circundante.
+- **Consistencia Visual**: El objetivo es que la presentación visual, la estructura y el formato general del documento sean idénticos en ambas versiones lingüísticas, cambiando únicamente el idioma del texto interno.
 - **Ejemplo Tabla**:
   ```markdown
   <!-- _ES version -->
@@ -265,7 +266,7 @@ alwaysApply: true
   {% endhint %}
 
   ```
-- **Validación**: Se debe verificar que la sintaxis Markdown que define estos elementos (pipes `|`, guiones `-` para tablas; `>` para citas; `{% hint style="..." %}` para advertencias) no se altere durante la traducción del contenido.
+- **Validación**: Se debe verificar que la sintaxis Markdown que define estos elementos estructurales y de formato no se altere durante la traducción del contenido.
 
 #### 4.8 Sincronización de Comentarios Markdown
 
