@@ -275,9 +275,11 @@ let nombreUsuario: string = infoUsuario[1]; // TypeScript sabe que el elemento e
 ### Consideraciones Importantes
 
 *   **Longitud Fija (Intención vs. Realidad Histórica):** El propósito principal de las tuplas es tener una longitud fija definida por los tipos especificados. Sin embargo, debido a que se compilan a arrays de JavaScript, métodos como `push`, `pop`, `splice` *podrían* (especialmente en versiones antiguas de TS o configuraciones laxas) modificar la longitud en tiempo de ejecución. **Esto es una mala práctica y viola el contrato de la tupla**. Las versiones modernas de TypeScript y configuraciones estrictas tienden a prevenir o advertir sobre esto, especialmente si se usan con `readonly`.
-    {% hint style="danger" %}
-    Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas. Trátalas como estructuras de tamaño fijo. Si necesitas una colección de tamaño variable, usa un array (`T[]`).
-    {% endhint %}
+  
+{% hint style="danger" %}
+Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas. Trátalas como estructuras de tamaño fijo. Si necesitas una colección de tamaño variable, usa un array (`T[]`).
+{% endhint %}
+
 *   **Acceso por Índice vs. Legibilidad:** El acceso siempre se realiza mediante índices numéricos (`miTupla[0]`, `miTupla[1]`). Esto puede reducir la legibilidad si no está inmediatamente claro qué representa cada índice.
 *   **Desestructuración para Claridad:** La **desestructuración** es la forma preferida y más legible de extraer los valores de una tupla, asignando nombres significativos a cada elemento.
     ```typescript
