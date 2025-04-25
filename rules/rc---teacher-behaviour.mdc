@@ -1,0 +1,103 @@
+---
+description: "Regla para generar contenido docente avanzado al ejecutar el comando 'rcth' en archivos Markdown"
+globs: 
+alwaysApply: false
+---
+---
+description: "Regla para la generación avanzada de contenido didáctico en archivos Markdown de la carpeta _ES."
+globs:
+  - "**/*.md"
+alwaysApply: false
+---
+
+# Regla de Comportamiento Docente Avanzado
+
+## Propósito
+
+Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la carpeta `_ES` del GitBook, generando contenido de alto valor añadido, orientado a la enseñanza práctica y complementando la documentación oficial con experiencia real, buenas prácticas, advertencias y consideraciones avanzadas.
+
+---
+
+## Ámbito de aplicación
+
+- **Siempre** se debe trabajar únicamente sobre archivos ubicados en la carpeta `_ES`.
+- **Nunca** se debe modificar ni crear contenido directamente en la carpeta `_EN`.
+- La sincronización hacia `_EN` se realizará exclusivamente mediante los mecanismos automáticos o manuales definidos en las reglas de sincronización (`@rc---sync-carpetas-es-en.mdc`).
+
+---
+
+## Flujo de trabajo detallado
+
+1. **Análisis del archivo**
+   - Verifica la existencia y accesibilidad del archivo.
+   - Analiza el contenido actual y **extrae el índice o la estructura de secciones** (títulos, subtítulos, apartados).
+   - **Debe ceñirse estrictamente a este índice o estructura** para la generación del contenido ampliado.
+
+2. **Tratamiento del menú multilenguaje y del índice guía**
+   - Si el archivo contiene un bloque de menú multilenguaje delimitado por:
+     ```
+     <!-- MULTILANGUAJE MENU START -->
+     ... (contenido del menú) ...
+     <!-- MULTILANGUAJE MENU END -->
+     ```
+     este bloque **debe preservarse íntegramente y sin modificaciones**.
+   - ⚠️ **ATENCIÓN CRÍTICA: Conservación del índice guía inicial**
+     - Si el archivo contiene un **índice guía inicial** (por ejemplo, una lista de secciones o estructura preliminar), **NUNCA debe eliminarse**.
+     - **Debe ser comentado** usando sintaxis Markdown de comentario `<!-- ... -->`.
+     - El índice comentado **debe colocarse al inicio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado**.
+     - **Esta acción es OBLIGATORIA** para conservar la referencia histórica y facilitar futuras revisiones.
+   - El resto del contenido del archivo será sobrescrito por el nuevo contenido generado.
+
+3. **Generación del contenido ampliado**
+   - Para cada sección del índice extraído (o del índice guía comentado), el agente debe:
+     - Redactar **definiciones claras, precisas y bien argumentadas**, proporcionando contexto, motivación, utilidad práctica y explicando la relevancia de cada concepto en el desarrollo profesional y en situaciones reales.
+     - Incluir **ejemplos** o **ejemplos de uso** que aborden casos reales, problemáticas habituales o escenarios complejos. Los ejemplos deben estar correctamente estructurados, utilizar identificadores y código en inglés, y contener comentarios en castellano neutro. Es imprescindible que los ejemplos sean comprensibles, relevantes y aporten valor añadido más allá de lo básico.
+     - Desarrollar **casos de uso reales y recomendables**, explicando detalladamente el contexto, el problema que resuelven, cómo se aplican y por qué resultan relevantes en la práctica profesional. Cada caso de uso debe estar plenamente desarrollado, incluyendo ejemplos, escenarios y matices. Se debe evitar la mera enumeración y centrarse en la explicación y justificación de cada caso. **No se aceptan respuestas breves ni superficiales: cada sección debe contener tantos casos de uso bien diferenciados y argumentados como sean relevantes para el tema, salvo que sea extremadamente específico.**
+     - Analizar e incorporar **consideraciones importantes** y, si procede, **valoraciones de rendimiento**, detallando escenarios de uso, posibles cuellos de botella, implicaciones técnicas, riesgos, limitaciones y recomendaciones basadas en experiencia real. Se debe profundizar en los aspectos que normalmente no aparecen en la documentación oficial, aportando análisis crítico y comparativo. **El agente debe desarrollar cada punto con suficiente extensión y detalle, aportando ejemplos, advertencias y recomendaciones prácticas.**
+     - Exponer y explicar **buenas prácticas** a aplicar y **malas prácticas** a evitar, desarrollando cada una con argumentos sólidos, ejemplos concretos y explicando las consecuencias de su aplicación o incumplimiento. **No se debe limitar a una lista ni a un número mínimo o máximo: el agente debe incluir todas las buenas y malas prácticas relevantes y justificadas que existan para el tema, desarrollando cada una en varios párrafos si es necesario.**
+     - Incluir cualquier otro aspecto relevante que amplíe, complemente o cuestione la documentación oficial básica, aportando siempre una visión crítica y fundamentada.
+     - Incluir, cuando sea relevante, un apartado de **errores comunes, trampas habituales o malentendidos frecuentes**, explicando cómo evitarlos y las consecuencias de incurrir en ellos.
+   - El contenido generado debe ser didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
+   - **Profundidad y extensión mínima:**  
+     Cada sección desarrollada debe contener suficiente extensión y profundidad, evitando respuestas breves o superficiales. Como referencia, cada apartado debe desarrollarse en varios párrafos y, salvo temas extremadamente específicos, debe incluir múltiples ejemplos, matices y escenarios diferenciados.
+   - **Calidad, originalidad y valor añadido:**  
+     El contenido generado debe ser original, evitar la repetición de la documentación oficial y aportar valor diferencial mediante análisis crítico, comparaciones, advertencias y recomendaciones prácticas basadas en experiencia real.
+   - **Prohibido**:
+     - **Nunca** añadir un resumen final al final del archivo ni de las secciones.
+     - **Nunca** incluir frases motivacionales, de ánimo, de cierre o similares.
+     - **Nunca** utilizar iconos, emojis o símbolos decorativos innecesarios o ridículos.
+
+4. **Redacción y estilo**
+   - Todo el contenido debe estar en **castellano neutro** (excepto el código, que irá en inglés).
+   - Los ejemplos deben ser interesantes, bien estructurados y comentados.
+   - El tono debe ser claro, directo y profesional, con enfoque docente.
+   - **Evitar el uso repetitivo de términos como "profesional", "avanzado", "experto" y similares** en la redacción del contenido generado, ya que su uso excesivo resulta innecesario y ostentoso. El valor del contenido debe demostrarse por la calidad de las explicaciones, ejemplos y profundidad, no por adjetivos grandilocuentes.
+   - Al finalizar cada sección, el agente debe revisar si el contenido cumple con la profundidad, claridad y utilidad exigidas, y ampliar cualquier punto que pueda resultar superficial o poco desarrollado.
+
+5. **Resultado**
+   - El archivo resultante debe contener únicamente:
+     - El menú multilenguaje original (si existe), **sin alteraciones**.
+     - El **índice guía inicial comentado** (si existía), colocado al principio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado.
+     - El contenido ampliado, estructurado y desarrollado según el índice extraído o el índice guía comentado, cumpliendo todas las exigencias de profundidad, claridad, ejemplos, casos de uso, buenas y malas prácticas, y demás requisitos de esta regla.
+   - El contenido debe ser extenso, didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
+   - **No debe quedar ningún contenido residual del archivo original, salvo el menú multilenguaje y el índice guía comentado.**
+   - La estructura y el formato del archivo deben ser correctos, sin errores de formato, enlaces rotos ni secciones vacías.
+
+---
+
+## Ejecución
+
+- Una vez generado el contenido ampliado siguiendo esta regla, **el agente debe aplicar la actualización directamente sobre el archivo objetivo en la carpeta `_ES`**.
+- **No debe solicitar confirmación manual al usuario antes de sobrescribir el archivo**.
+- Esta acción es **crítica** para el correcto funcionamiento del flujo y la automatización del proceso docente.
+
+---
+
+## Consideraciones adicionales
+
+- Si el archivo no tiene índice o estructura clara, el asistente puede sugerir una estructura inicial adecuada antes de generar el contenido ampliado.
+- **Nunca** se debe modificar el menú multilenguaje ni su formato.
+- **Nunca** se debe alterar el contenido de `_EN` directamente.
+- El contenido generado debe ser único, relevante y adaptado al contexto del archivo objetivo.
+
+
