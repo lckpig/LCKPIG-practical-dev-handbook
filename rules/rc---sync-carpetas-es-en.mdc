@@ -212,6 +212,10 @@ alwaysApply: true
     - Generar alerta en `.syncbuffer/errors.log`
     - Notificar al usuario via sistema de notificaciones
 
+### 4.5 URLs inmutables
+
+- Todas las URLs presentes en el contenido deben mantenerse exactamente igual en ambas versiones (`_ES` y `_EN`). Bajo ninguna circunstancia se deben traducir, modificar ni adaptar las URLs externas durante el proceso de sincronización o traducción. Solo el texto visible del enlace puede traducirse; la URL debe permanecer intacta.
+
 ### 5. Validación y Verificación
 
 #### 5.1 Verificación de Eliminaciones

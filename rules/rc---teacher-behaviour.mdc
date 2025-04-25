@@ -41,20 +41,24 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      <!-- MULTILANGUAJE MENU END -->
      ```
      este bloque **debe preservarse íntegramente y sin modificaciones**.
+
    - ⚠️ **ATENCIÓN CRÍTICA: Conservación del índice guía inicial**
      - Si el archivo contiene un **índice guía inicial** (por ejemplo, una lista de secciones o estructura preliminar), **NUNCA debe eliminarse**.
      - **Debe ser comentado** usando sintaxis Markdown de comentario `<!-- ... -->`.
-     - El índice comentado **debe colocarse al inicio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado**.
+     - Dentro de este comentario debe incluirse tanto el **título de la página** como el **índice guía inicial**.
+     - El comentario con el título y el índice **siempre** debe colocarse **al inicio del archivo, inmediatamente después del menú multilenguaje y antes del contenido generado**.
      - **Esta acción es OBLIGATORIA** para conservar la referencia histórica y facilitar futuras revisiones.
    - El resto del contenido del archivo será sobrescrito por el nuevo contenido generado.
 
 3. **Generación del contenido ampliado**
+   - La página debe **iniciar siempre con el título de la página** utilizando el encabezado de nivel `#` (H1).
+   - El contenido generado debe estar **organizado de manera coherente y progresiva**, facilitando el aprendizaje y la comprensión del tema por parte del lector.
    - Para cada sección del índice extraído (o del índice guía comentado), el agente debe:
      - Redactar **definiciones claras, precisas y bien argumentadas**, proporcionando contexto, motivación, utilidad práctica y explicando la relevancia de cada concepto en el desarrollo profesional y en situaciones reales.
      - Incluir **ejemplos** o **ejemplos de uso** que aborden casos reales, problemáticas habituales o escenarios complejos. Los ejemplos deben estar correctamente estructurados, utilizar identificadores y código en inglés, y contener comentarios en castellano neutro. Es imprescindible que los ejemplos sean comprensibles, relevantes y aporten valor añadido más allá de lo básico.
      - Desarrollar **casos de uso reales y recomendables**, explicando detalladamente el contexto, el problema que resuelven, cómo se aplican y por qué resultan relevantes en la práctica profesional. Cada caso de uso debe estar plenamente desarrollado, incluyendo ejemplos, escenarios y matices. Se debe evitar la mera enumeración y centrarse en la explicación y justificación de cada caso. **No se aceptan respuestas breves ni superficiales: cada sección debe contener tantos casos de uso bien diferenciados y argumentados como sean relevantes para el tema, salvo que sea extremadamente específico.**
      - Analizar e incorporar **consideraciones importantes** y, si procede, **valoraciones de rendimiento**, detallando escenarios de uso, posibles cuellos de botella, implicaciones técnicas, riesgos, limitaciones y recomendaciones basadas en experiencia real. Se debe profundizar en los aspectos que normalmente no aparecen en la documentación oficial, aportando análisis crítico y comparativo. **El agente debe desarrollar cada punto con suficiente extensión y detalle, aportando ejemplos, advertencias y recomendaciones prácticas.**
-     - Exponer y explicar **buenas prácticas** a aplicar y **malas prácticas** a evitar, desarrollando cada una con argumentos sólidos, ejemplos concretos y explicando las consecuencias de su aplicación o incumplimiento. **No se debe limitar a una lista ni a un número mínimo o máximo: el agente debe incluir todas las buenas y malas prácticas relevantes y justificadas que existan para el tema, desarrollando cada una en varios párrafos si es necesario.**
+     - Exponer y explicar **buenas prácticas** a aplicar y **malas prácticas** a evitar, desarrollando cada una con argumentos sólidos, ejemplos concretos y explicando las consecuencias de su aplicación o incumplimiento. **Las buenas prácticas y las malas prácticas deben presentarse siempre como subsecciones independientes y claramente diferenciadas entre sí, nunca fusionadas en un solo bloque o apartado.** No se debe limitar a una lista ni a un número mínimo o máximo: el agente debe incluir todas las buenas y malas prácticas relevantes y justificadas que existan para el tema, desarrollando cada una en varios párrafos si es necesario.
      - Incluir cualquier otro aspecto relevante que amplíe, complemente o cuestione la documentación oficial básica, aportando siempre una visión crítica y fundamentada.
      - Incluir, cuando sea relevante, un apartado de **errores comunes, trampas habituales o malentendidos frecuentes**, explicando cómo evitarlos y las consecuencias de incurrir en ellos.
    - El contenido generado debe ser didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
@@ -66,6 +70,9 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - **Nunca** añadir un resumen final al final del archivo ni de las secciones.
      - **Nunca** incluir frases motivacionales, de ánimo, de cierre o similares.
      - **Nunca** utilizar iconos, emojis o símbolos decorativos innecesarios o ridículos.
+     - **Nunca** utilizar `//` para crear citas (blockquotes); debe usarse la sintaxis estándar de Markdown `>`.
+     - **Nunca** duplicar bloques de almohadillas (`#`) en los encabezados de cualquier nivel; está estrictamente prohibido. Siempre debe revisarse y corregirse si ocurre.  
+       Ejemplo incorrecto: `#### ####` — Ejemplo correcto: `####`
 
 4. **Redacción y estilo**
    - Todo el contenido debe estar en **castellano neutro** (excepto el código, que irá en inglés).
@@ -73,6 +80,24 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - El tono debe ser claro, directo y profesional, con enfoque docente.
    - **Evitar el uso repetitivo de términos como "profesional", "avanzado", "experto" y similares** en la redacción del contenido generado, ya que su uso excesivo resulta innecesario y ostentoso. El valor del contenido debe demostrarse por la calidad de las explicaciones, ejemplos y profundidad, no por adjetivos grandilocuentes.
    - Al finalizar cada sección, el agente debe revisar si el contenido cumple con la profundidad, claridad y utilidad exigidas, y ampliar cualquier punto que pueda resultar superficial o poco desarrollado.
+   - **Siempre** debe incluir un separador horizontal (`---`) únicamente entre las secciones principales planteadas en el índice base para generar el contenido, y **nunca** entre subsecciones o apartados que no estuvieran en dicho índice. Además, **nunca** debe añadirse un separador después de la última sección del archivo.
+   - **Utilizar siempre la sintaxis `>` para citas (blockquotes)**, nunca `//` ni otros formatos no estándar.
+   - La jerarquía de encabezados debe seguir estas reglas estrictas:
+     - **ATENCIÓN CRÍTICA:** En los encabezados de cualquier nivel, la duplicación de bloques de almohadillas (`#`) está **estrictamente prohibida**. Siempre debe revisarse que no ocurra esta situación y corregirla en caso de que hubiera ocurrido. Ejemplo incorrecto `#### ####`, ejemplo corregido `####`.
+     - El nivel `#` (H1) **siempre** se reserva para el título del archivo y no debe usarse en el contenido generado.
+     - El nivel `##` (H2) **siempre** se reserva para los encabezados de las secciones principales planteadas en el índice base.
+     - Todos los subencabezados que no sean el título del archivo ni los encabezados de secciones principales del índice deben utilizar **siempre** el nivel `###` (H3).
+       <!-- - Queda **prohibido** utilizar la palabra "Ejemplo" o cualquiera de sus variantes en cualquier encabezado de tipo `###` (H3). La palabra "Ejemplo" solo puede aparecer en encabezados de tipo `####` (H4), que están reservados exclusivamente para apartados de ejemplo. -->
+     - El nivel `####` (H4) se reserva **únicamente** para los encabezados de apartados de "Ejemplos" (ya sean ejemplos básicos o de cualquier otro tipo). **Nunca** debe utilizarse `####` para ningún encabezado que no sea de ejemplo.
+     <!-- - **No se permite** colocar dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" o alguna de sus variantes (ya sea al principio, en medio o al final del encabezado), sin que entre ambos haya al menos un ejemplo de código, explicación o contenido relevante. Cada encabezado que contenga la palabra "Ejemplo", independientemente de su nivel, debe ir siempre seguido inmediatamente de su ejemplo correspondiente antes de añadir otro encabezado con la palabra "Ejemplo". Esto evita bloques vacíos y mejora la claridad y estructura del documento. -->
+     - **ATENCIÓN CRÍTICA:** Tras un encabezado de ejemplo (`####`), todos los subencabezados siguientes de la sección deben volver a utilizar **siempre** el nivel `###` (H3), salvo que sean también encabezados de ejemplo. No debe mantenerse el nivel `####` para otros apartados, ya que esto rompe la jerarquía y la coherencia del documento.
+     - El agente debe mantener esta jerarquía de forma estricta y homogénea en todo el contenido generado.
+   - El agente debe utilizar los "hints" de GitBook siempre que sea posible para resaltar información relevante según el tipo de contenido. Los "hints" pueden ser utilizados para destacar consejos, advertencias, notas importantes o cualquier otro tipo de información que necesite ser enfatizada para mejorar la comprensión del lector.
+     - Por ejemplo, puede utilizar los hints de estilo `warning` o `danger` en contextos de malas prácticas, errores, consideraciones importantes o trampas habituales, **reservándolos únicamente para los puntos de especial importancia o aquellos que requieran atención crítica** dentro de dichos contextos, y no para cualquier aspecto con connotación negativa.
+     - Los hints de estilo `success` e `info` deben emplearse en contextos de recomendaciones, buenas prácticas, información relevante o tips útiles sobre el tema tratado, **reservándolos únicamente para los aspectos más destacados o beneficiosos que merezcan especial atención por parte del lector dentro de dichos contextos.**
+   - El agente debe poner especial atención en **no abusar del uso de citas (quotes)** y solo emplearlas cuando realmente corresponda según el contexto y el sentido didáctico. **No debe añadir citas en lugares donde no sean apropiadas**, ya que un uso excesivo o incorrecto de las mismas puede estropear el formato y dificultar la lectura.
+   
+   
 
 5. **Resultado**
    - El archivo resultante debe contener únicamente:
@@ -82,6 +107,9 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - El contenido debe ser extenso, didáctico, riguroso y aportar valor práctico real, evitando la simple repetición de la documentación oficial y asegurando profundidad en el tratamiento de cada tema.
    - **No debe quedar ningún contenido residual del archivo original, salvo el menú multilenguaje y el índice guía comentado.**
    - La estructura y el formato del archivo deben ser correctos, sin errores de formato, enlaces rotos ni secciones vacías.
+   - **Nunca debe haber duplicación de bloques de almohadillas (`#`) en los encabezados de cualquier nivel; si se detecta, debe corregirse para que solo quede un único bloque de almohadillas por encabezado.**
+   - **El documento no debe terminar con un separador horizontal (`---`). Si el archivo termina con un separador, este debe ser eliminado.**
+   <!-- - **Nunca debe haber dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" sin que entre ambos haya contenido relevante (ejemplo, explicación, etc.). En caso de que esto ocurra, debe eliminarse uno de los dos encabezados, permaneciendo únicamente el más descriptivo y formateándose como cualquier otro encabezado de ejemplo con `####`.** -->
 
 ---
 
@@ -99,5 +127,58 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
 - **Nunca** se debe modificar el menú multilenguaje ni su formato.
 - **Nunca** se debe alterar el contenido de `_EN` directamente.
 - El contenido generado debe ser único, relevante y adaptado al contexto del archivo objetivo.
+- Además de las notas estándar, el agente puede y debe utilizar los bloques `hint` de GitBook para resaltar información relevante según el tipo de contenido. Los estilos disponibles son:
+
+  ```markdown
+  {% hint style="info" %}
+  Esta es una nota informativa.
+  {% endhint %}
+
+  {% hint style="warning" %}
+  Esta es una advertencia.
+  {% endhint %}
+
+  {% hint style="danger" %}
+  Esta es una alerta de peligro.
+  {% endhint %}
+
+  {% hint style="success" %}
+  Esta es una nota de éxito.
+  {% endhint %}
+  ```
+
+- El agente debe elegir el tipo de `hint` más adecuado para cada caso, siguiendo la intención y el contexto del contenido a resaltar.
+- El agente puede y debe siempre que sea relevante utilizar **tablas en formato Markdown** para realizar comparativas, resúmenes u otros casos donde la organización tabular aporte claridad o valor al contenido. **Todas las tablas deben llevar siempre un título o encabezado descriptivo inmediatamente antes de la tabla, utilizando el nivel de encabezado adecuado según la jerarquía del documento. Nunca pueden ir dos tablas seguidas sin encabezado.** Ejemplo de tabla formateada:
+
+  ```markdown
+  ### Comparativa de métodos de arrays
+
+  | Método     | Descripción                  | Ejemplo de uso      |
+  | ---------- | ---------------------------- | ------------------- |
+  | push()     | Añade un elemento al final   | numbers.push(5)     |
+  | pop()      | Elimina el último elemento   | numbers.pop()       |
+  ```
+- **Nunca debe colocarse una tabla directamente después de un encabezado de sección principal (`##`) o de subsección (`###`), salvo el propio encabezado de la tabla (importante tener esto en cuenta para que no haya un conflicto que no permita crear tablas)** Siempre debe haber una explicación, introducción o contenido relevante entre el encabezado de la sección y la tabla, para evitar la aparición de dos encabezados seguidos y asegurar la correcta estructura del documento.
+- Si lo considera necesario para organizar mejor el contenido, el agente puede utilizar el elemento `tabs` de GitBook para agrupar información relacionada en pestañas. Por ejemplo:
+
+  ```markdown
+  {% tabs %}
+  {% tab title="First Tab" %}
+  Contenido de la primera pestaña
+  {% endtab %}
+
+  {% tab title="Second Tab" %}
+  Contenido de la segunda pestaña
+  {% endtab %}
+
+  {% tab title="Third Tab" %}
+  Contenido de la tercera pestaña
+  {% endtab %}
+  {% endtabs %}
+  ```
+
+
+
+
 
 
