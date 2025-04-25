@@ -9,7 +9,7 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 - Tuplas con etiquetas (`[id: number, nombre: string]`)
 -->
 
-<details>
+<details id="toc-container">
 <summary>Índice de contenidos</summary>
 
 <!-- no toc -->
@@ -30,6 +30,11 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 - [Tuplas con Etiquetas (`[id: number, nombre: string]`)](#tuplas-con-etiquetas-id-number-nombre-string)
   - [Definición y Sintaxis](#definicion-y-sintaxis-2)
   - [Ventajas y Casos de Uso](#ventajas-y-casos-de-uso)
+  - [Consideraciones Importantes](#consideraciones-importantes-2)
+  - [Buenas Prácticas](#buenas-practicas-2)
+  - [Malas Prácticas](#malas-practicas-2)
+  - [Errores Comunes y Trampas](#errores-comunes-y-trampas-2)
+
 </details>
 
 # Arrays y Tuplas en TypeScript
@@ -108,6 +113,8 @@ let datosSinTipo: any[] = [1, "hola", true, { clave: "valor" }, null];
 // datosSinTipo[0].toUpperCase(); // Error en tiempo de ejecución: toUpperCase is not a function
 ```
 
+[↑ Volver al Índice](#toc-container)
+
 ### Casos de Uso Reales y Recomendables
 
 Los arrays son una herramienta versátil con aplicaciones en numerosos escenarios de desarrollo:
@@ -117,6 +124,8 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
 *   **Almacenamiento de Datos de Formularios Dinámicos:** En formularios donde el usuario puede añadir múltiples entradas del mismo tipo (ej. añadir varios números de teléfono, direcciones de correo), un array es ideal para almacenar estos valores.
 *   **Procesamiento de Datos en Lote:** Realizar operaciones sobre conjuntos de datos, como calcular el promedio de una lista de puntuaciones (`number[]`), filtrar una lista de correos electrónicos (`string[]`) o transformar una lista de objetos.
 *   **Implementación de Estructuras de Datos:** Los arrays son la base para implementar otras estructuras de datos como pilas (stacks), colas (queues) o listas enlazadas (aunque estas últimas a menudo se implementan de forma diferente para optimizar inserciones/eliminaciones).
+
+[↑ Volver al Índice](#toc-container)
 
 ### Consideraciones Importantes
 
@@ -141,6 +150,8 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
     console.log(arr1 === arr3); // true (misma referencia)
     ```
 
+[↑ Volver al Índice](#toc-container)
+
 ### Buenas Prácticas
 
 *   **Especificar el tipo explícitamente:** Siempre define el tipo de los elementos (`number[]`, `Usuario[]`) para maximizar la seguridad y claridad. Evita que TypeScript infiera `any[]`.
@@ -149,6 +160,8 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
 *   **Inicializar arrays al declarar:** Evita declarar arrays sin inicializar (`let miArray: number[];`) si es posible, ya que tendrán el valor `undefined` hasta que se les asigne un array, lo cual puede llevar a errores si se intentan usar antes de tiempo. Prefiere `let miArray: number[] = [];`.
 *   **Usar métodos funcionales para transformaciones:** Prefiere métodos como `map`, `filter`, `reduce` para crear nuevos arrays basados en el original en lugar de modificarlo directamente, especialmente si buscas un estilo de programación más funcional o necesitas inmutabilidad.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Malas Prácticas
 
 *   **Abuso de `any[]`:** Usar `any[]` indiscriminadamente anula la principal ventaja de TypeScript. Si necesitas tipos mixtos, usa tipos unión (`(string | number | boolean)[]`) o define interfaces/tipos adecuados si la estructura es más compleja.
@@ -156,6 +169,8 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
 *   **Ordenar números sin función de comparación:** Depender del `sort()` por defecto para números (`[1, 10, 2].sort()`) produce un orden incorrecto (`[1, 10, 2]`) porque ordena lexicográficamente (como strings). Proporciona siempre una función de comparación: `numeros.sort((a, b) => a - b);`.
 *   **Ignorar que métodos como `map`, `filter`, `slice` devuelven *nuevos* arrays:** Esperar que `miArray.filter(...)` modifique `miArray` es un error común. Estos métodos crean y devuelven un nuevo array con los resultados. Asigna el resultado a una nueva variable o a la misma si deseas sobrescribirla: `miArrayFiltrado = miArray.filter(...)`.
 *   **Crear arrays dispersos (sparse arrays) innecesariamente:** Aunque JavaScript permite arrays con "huecos" (`let a = []; a[0] = 1; a[100] = 100;`), suelen ser menos eficientes y más propensos a errores que los arrays densos. En TypeScript, es mejor evitarlos si no hay una razón muy específica.
+
+[↑ Volver al Índice](#toc-container)
 
 ### Errores Comunes y Trampas
 
@@ -186,6 +201,8 @@ Activar la opción `noUncheckedIndexedAccess` en `tsconfig.json` puede ayudar. C
     ```
 *   **Confusión con métodos mutadores vs. no mutadores:** No recordar qué métodos modifican el array original (`push`, `pop`, `splice`, `sort`, `reverse`, `fill`, `copyWithin`) y cuáles devuelven uno nuevo (`map`, `filter`, `slice`, `concat`, `reduce`) es una fuente común de bugs. Consulta la documentación si tienes dudas.
 
+[↑ Volver al Índice](#toc-container)
+
 ---
 
 ## Uso de Tuplas (`[string, number]`)
@@ -215,6 +232,8 @@ let nombreUsuario: string = infoUsuario[1]; // TypeScript sabe que el elemento e
 // console.log(punto2D[2]); // Error: Tuple type '[number, number]' of length '2' has no element at index '2'.
 ```
 
+[↑ Volver al Índice](#toc-container)
+
 #### Características Avanzadas de Sintaxis
 
 *   **Elementos Opcionales (`?`):** Puedes marcar elementos como opcionales añadiendo `?` después de su tipo. Todos los elementos opcionales deben ir después de los elementos requeridos.
@@ -234,6 +253,8 @@ let nombreUsuario: string = infoUsuario[1]; // TypeScript sabe que el elemento e
     // console.log(concierto[1]); // "Ana" (string)
     // console.log(concierto.slice(1)); // ["Ana", "Luis", "Eva"] (string[])
     ```
+
+[↑ Volver al Índice](#toc-container)
 
 ### Casos de Uso Reales y Recomendables
 
@@ -272,6 +293,8 @@ let nombreUsuario: string = infoUsuario[1]; // TypeScript sabe que el elemento e
     ```
 *   **Representación de Registros Fijos:** Para datos con una estructura muy estable y un número pequeño de campos donde el orden es intrínseco (ej., representar una fila de un CSV simple con columnas `[string, number, boolean]`).
 
+[↑ Volver al Índice](#toc-container)
+
 ### Consideraciones Importantes
 
 *   **Longitud Fija (Intención vs. Realidad Histórica):** El propósito principal de las tuplas es tener una longitud fija definida por los tipos especificados. Sin embargo, debido a que se compilan a arrays de JavaScript, métodos como `push`, `pop`, `splice` *podrían* (especialmente en versiones antiguas de TS o configuraciones laxas) modificar la longitud en tiempo de ejecución. **Esto es una mala práctica y viola el contrato de la tupla**. Las versiones modernas de TypeScript y configuraciones estrictas tienden a prevenir o advertir sobre esto, especialmente si se usan con `readonly`.
@@ -294,6 +317,8 @@ Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas
     ```
 *   **Tuplas vs. Objetos:** Para estructuras con más de unos pocos elementos, o donde el orden no es tan intrínsecamente significativo como el nombre de la propiedad, un **objeto con propiedades nombradas** (`{ id: number; nombre: string; activo: boolean; }`) suele ser mucho más claro y mantenible que una tupla larga (`[number, string, boolean]`). Los objetos permiten el acceso por nombre (`objeto.propiedad`), lo cual es auto-documentado.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Buenas Prácticas
 
 *   **Usar tuplas para colecciones heterogéneas de longitud fija y orden significativo:** Son perfectas cuando tienes un número conocido de elementos (generalmente pocos) con tipos específicos en posiciones concretas.
@@ -306,12 +331,16 @@ Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas
     ```
 *   **Considerar objetos para claridad en estructuras complejas:** No fuerces el uso de tuplas si un objeto con propiedades nombradas haría el código más comprensible y mantenible, especialmente con 3 o más elementos.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Malas Prácticas
 
 *   **Usar tuplas para listas homogéneas o de tamaño variable:** Si todos los elementos son del mismo tipo y/o la longitud puede cambiar, un array (`T[]`) es la herramienta adecuada.
 *   **Crear tuplas excesivamente largas:** Tuplas con muchos elementos (`[string, number, boolean, string, Date, ...]`) se vuelven muy difíciles de manejar y propensas a errores por confusión de índices. Usa interfaces u objetos.
 *   **Modificar tuplas con `push`, `pop`, `splice`:** Viola el propósito fundamental de la tupla (longitud y tipos fijos por posición). Evítalo a toda costa.
 *   **Acceder a elementos solo por índice numérico sin contexto claro:** Hace el código difícil de entender. Si no usas desestructuración, asegúrate de que el contexto (nombre de variable, comentarios) aclare qué representa cada índice.
+
+[↑ Volver al Índice](#toc-container)
 
 ### Errores Comunes y Trampas
 
@@ -332,6 +361,8 @@ Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas
     let tuplaMasLarga: [string, number, boolean] = ["a", 1, true];
     let arrayDesdeTupla: (string | number | boolean)[] = tuplaMasLarga; // Asignación válida de tupla a array compatible
     ```
+
+[↑ Volver al Índice](#toc-container)
 
 ---
 
@@ -361,6 +392,8 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 // let precioIncorrecto = productoInfoEtiquetada.precio; // Error: Property 'precio' does not exist on type '[codigo: string, precio: number, stock: number]'.
 ```
 
+[↑ Volver al Índice](#toc-container)
+
 ### Ventajas y Casos de Uso
 
 *   **Mejora Exponencial de la Legibilidad:** El principal beneficio es la claridad. Al ver la definición del tipo `[codigo: string, precio: number, stock: number]`, es inmediatamente obvio qué representa cada posición, eliminando la ambigüedad de `[string, number, number]`.
@@ -377,11 +410,15 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 *   **Claridad en Tipos Complejos:** En definiciones de tipos que involucran tuplas anidadas o combinadas con otros tipos, las etiquetas son cruciales para mantener la comprensión de la estructura de datos.
 *   **Mejor Comunicación en Equipos:** Facilitan que otros desarrolladores (o tu yo futuro) entiendan rápidamente la estructura y el propósito de los datos representados por la tupla.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Consideraciones Importantes
 
 *   **Naturaleza Puramente Documental:** Es fundamental recordar que las etiquetas **no existen en tiempo de ejecución**. Son una ayuda exclusiva para el desarrollador durante la fase de codificación y análisis. No modifican el comportamiento ni permiten nuevas formas de acceso.
 *   **Acceso Siempre por Índice:** El acceso a los elementos de una tupla etiquetada sigue siendo, y siempre será, mediante índices numéricos (`tupla[0]`, `tupla[1]`, etc.).
 *   **Mantenimiento de Etiquetas:** Si la estructura de la tupla cambia (por ejemplo, se reordenan elementos o cambia el significado de una posición), es vital actualizar las etiquetas correspondientes para evitar documentación engañosa.
+
+[↑ Volver al Índice](#toc-container)
 
 ### Buenas Prácticas
 
@@ -389,11 +426,15 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 *   **Elegir nombres de etiqueta descriptivos y concisos:** Sigue las mismas convenciones que para nombres de variables (claridad, camelCase si aplica).
 *   **Combinar con desestructuración:** Aunque las etiquetas no se usan *directamente* en la sintaxis de desestructuración (`let [c, p, s] = miTuplaEtiquetada;`), definir la tupla con etiquetas mejora enormemente la comprensión de qué son `c`, `p` y `s`.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Malas Prácticas
 
 *   **Usar etiquetas genéricas o poco claras:** Nombres como `val1`, `item2`, `dato` (`[val1: string, item2: number, dato: number]`) aportan poco valor sobre `[string, number, number]`.
 *   **Asumir que las etiquetas permiten acceso por nombre:** Confiar en que `tupla.etiqueta` funcionará es un error conceptual. Si necesitas acceso por nombre, la estructura de datos correcta es un objeto (`{ etiqueta: tipo; }`).
 *   **Dejar etiquetas desactualizadas:** Si la estructura de la tupla evoluciona, no actualizar las etiquetas crea confusión y reduce la confianza en la documentación del tipo.
+
+[↑ Volver al Índice](#toc-container)
 
 ### Errores Comunes y Trampas
 
@@ -403,3 +444,5 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 {% hint style="info" %}
 En resumen, los **arrays (`T[]`)** son para listas homogéneas de tamaño variable, mientras que las **tuplas (`[T1, T2, ...]`)** son para estructuras heterogéneas de tamaño fijo y orden significativo. Las **etiquetas** en las tuplas son una excelente herramienta para mejorar la legibilidad y documentación en tiempo de desarrollo, sin afectar el comportamiento en tiempo de ejecución. Elegir la estructura correcta y usarla adecuadamente es clave para escribir código TypeScript robusto y mantenible.
 {% endhint %}
+
+[↑ Volver al Índice](#toc-container)

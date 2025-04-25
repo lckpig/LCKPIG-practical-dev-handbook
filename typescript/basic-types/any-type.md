@@ -8,7 +8,7 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 - Alternativas seguras con `unknown`
 -->
 
-<details>
+<details id="toc-container">
 <summary>Índice de contenidos</summary>
 
 <!-- no toc -->
@@ -70,6 +70,8 @@ flexible = true;
 
 Este ejemplo ilustra el peligro fundamental de `any`: oculta errores potenciales que solo se manifestarán durante la ejecución del programa, anulando la promesa principal de TypeScript de detectar errores en tiempo de compilación.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Casos de uso reales y recomendables (con extrema precaución)
 
 Aunque la recomendación general es evitar `any`, existen situaciones muy puntuales donde su uso *podría* estar justificado, siempre como último recurso y con plena conciencia de los riesgos.
@@ -107,6 +109,8 @@ trackPageView('/profile', '/home');
 
 En este caso, `any` permite la interacción, pero requiere un manejo de errores explícito (`try...catch`) porque no hay garantías del compilador.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Consideraciones importantes y rendimiento
 
 El impacto de `any` va más allá de la simple desactivación de comprobaciones:
@@ -121,6 +125,8 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 **Riesgo Crítico:** Abusar de `any` equivale a renunciar a las ventajas de TypeScript. El código se vuelve frágil, difícil de mantener y propenso a errores en tiempo de ejecución. Debe considerarse una herramienta excepcional, no una solución habitual.
 {% endhint %}
 
+[↑ Volver al Índice](#toc-container)
+
 ### Buenas prácticas (si es inevitable usar `any`)
 
 1.  **Minimizar el Alcance:** Usar `any` en el lugar más específico posible. Evitar tipar objetos completos o valores de retorno de funciones como `any` si solo una pequeña parte es desconocida.
@@ -128,6 +134,8 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 3.  **Validar en Tiempo de Ejecución:** Si una variable es `any`, añadir comprobaciones explícitas (`if (typeof flexible === 'string')`, `if (flexible && flexible.prop)`) antes de usar sus propiedades o métodos.
 4.  **Considerar Tipos Intermedios:** A veces, en lugar de `any`, se puede definir una interfaz o tipo parcial con las propiedades conocidas y dejar el resto más abierto (aunque `unknown` suele ser mejor para esto).
 5.  **Configurar Linters:** Herramientas como ESLint con plugins de TypeScript (`@typescript-eslint`) pueden configurarse para advertir o prohibir el uso explícito de `any`, ayudando a mantener la disciplina.
+
+[↑ Volver al Índice](#toc-container)
 
 ### Malas prácticas a evitar
 
@@ -137,6 +145,8 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 4.  **Dejar `any` Residual:** Olvidarse de reemplazar `any` utilizados durante la migración o el prototipado una vez que los tipos correctos son conocidos.
 5.  **Ignorar las Alternativas:** No considerar `unknown` u otras técnicas de tipado más seguras antes de recurrir a `any`.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Errores comunes y trampas habituales
 
 -   **Falsa Sensación de Seguridad:** Creer que porque el código compila, está libre de errores de tipo, cuando `any` puede estar ocultando problemas latentes.
@@ -145,6 +155,8 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 -   **Confusión con `Object` o `{}`:** `any` es mucho menos restrictivo que `Object` (que solo permite acceso a métodos de `Object.prototype`) o `{}` (similar a `Object`). `any` permite *cualquier* operación.
 
 ---
+
+[↑ Volver al Índice](#toc-container)
 
 ## Alternativas seguras con `unknown`
 
@@ -187,6 +199,8 @@ if (typeof variableUnknown === 'string') {
 }
 ```
 La diferencia clave es que `unknown` te obliga a escribir código que maneje la incertidumbre del tipo de forma segura, utilizando mecanismos de estrechamiento de tipos (type narrowing).
+
+[↑ Volver al Índice](#toc-container)
 
 ### Uso seguro de `unknown`: Estrechamiento de Tipos (Type Narrowing)
 
@@ -279,6 +293,8 @@ Para poder utilizar un valor `unknown`, debes convencer a TypeScript de su tipo 
 Las aserciones de tipo (`as Type`) son una "mentira" al compilador. Desactivan la comprobación de tipos para esa operación específica. Úsalas como último recurso absoluto, preferiblemente encapsuladas en funciones de validación seguras (type guards). Abusar de ellas introduce la misma inseguridad que `any`.
 {% endhint %}
 
+[↑ Volver al Índice](#toc-container)
+
 ### Casos de uso reales y recomendables para `unknown`
 
 `unknown` es la elección correcta siempre que trabajes con datos cuyo tipo no puedes garantizar en tiempo de compilación:
@@ -319,6 +335,8 @@ Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar 
 3.  **Contenedores de Tipos Mixtos (con Precaución):** Si necesitas una estructura que pueda contener valores de tipos muy diferentes, `unknown[]` o `Record<string, unknown>` son más seguros que `any[]` o `Record<string, any>`, ya que obligan a verificar el tipo al extraer un elemento.
 4.  **Refactorización Segura desde `any`:** Reemplazar sistemáticamente `any` por `unknown` en una base de código es un paso excelente para mejorar la seguridad. Obligará a añadir las comprobaciones de tipo necesarias que antes faltaban.
 
+[↑ Volver al Índice](#toc-container)
+
 ### Consideraciones importantes y buenas prácticas con `unknown`
 
 -   **Siempre Preferir `unknown` sobre `any`:** `unknown` es la opción por defecto cuando el tipo es incierto. `any` debe ser la excepción absoluta.
@@ -326,6 +344,6 @@ Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar 
 -   **Evitar Aserciones de Tipo (`as`) como Atajo:** Resiste la tentación de usar `as Tipo` para silenciar errores de `unknown`. Esto anula el propósito de usar `unknown`. Invierte tiempo en escribir type guards correctos.
 -   **Combinar con Genéricos:** En funciones, a menudo se puede usar genéricos (`<T>`) en lugar de `unknown` si la función debe operar sobre un tipo específico pero desconocido *a priori*, preservando el tipo original. `unknown` es mejor cuando realmente no sabes nada del tipo o necesitas manejar múltiples posibilidades explícitamente.
 
-{% hint style="success" %}
 Adoptar `unknown` en lugar de `any` representa un cambio fundamental hacia una programación TypeScript más segura y explícita. Te obliga a confrontar la incertidumbre de los tipos de manera controlada, resultando en un código más fiable, predecible y fácil de mantener a largo plazo.
-{% endhint %}
+
+[↑ Volver al Índice](#toc-container)
