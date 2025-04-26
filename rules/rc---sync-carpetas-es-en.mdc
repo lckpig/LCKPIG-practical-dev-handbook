@@ -140,6 +140,10 @@ alwaysApply: true
    }
    ```
 
+#### 3.4 Paso Final de Limpieza
+- **Eliminación de Etiqueta Residual**: Una vez completada la sincronización del contenido de un archivo de `_ES` a `_EN` (incluyendo traducción y preservación de formato), se debe verificar si el archivo resultante en `_EN` termina *exactamente* con la cadena `</rewritten_file>`.
+- Si dicha cadena existe al final del archivo, DEBE ser eliminada antes de considerar la sincronización de ese archivo como finalizada.
+
 ### 4. Manejo de Contenido Especial
 
 #### 4.1 Menú Multilenguaje

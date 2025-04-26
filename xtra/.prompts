@@ -11,7 +11,7 @@ ahora realiza el mismo proceso completo con la seccion XXX
 ---- CREACION DE CONTENIDO DIDACTICO ----
 
 // Agente - gemini-2.5-prox-exp-03-25
-@rc---teacher-behaviour.mdc = RELLENADO DE CONTENIDO DIDACTICO DE ARCHIVOS USANDO REGLA
+@rc---teacher-behaviour.mdc en este archivo = RELLENADO DE CONTENIDO DIDACTICO DE ARCHIVOS USANDO REGLA
 
 // Agente - gemini-2.5-prox-exp-03-25
 analiza para mejorar si fuese posible el contenido de este archivo siguiendo estrictamente @rc---teacher-behaviour.mdc, aplica la mejora directamente 
@@ -23,6 +23,9 @@ aplica los hints donde corresponda segun @rc---teacher-behaviour.mdc despues de 
 ---- CORRECCION DE CONTENIDO DIDACTICO ----
 
 // Agente - gemini-2.5-prox-exp-03-25
+has omitido en la parte superior el bloque comentado con el titulo principal y el indice base de contenido segun @rc---teacher-behaviour.mdc
+
+// Agente - gemini-2.5-prox-exp-03-25
 corrige los bloques de # duplicados segun la restriccion de @rc---teacher-behaviour.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
@@ -32,7 +35,7 @@ corrige las restricciones respecto a los hints segun @rc---teacher-behaviour.mdc
 ---- TOC Y VOLVER AL INDICE ----
 
 // Agente - gemini-2.5-prox-exp-03-25
-aplica @rc---toc-creation.mdc en este archivo
+aplica en este archivo @rc---toc-creation.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
 añade todos los botones volver al indice que faltan segun @rc---toc-creation.mdc 
@@ -44,7 +47,7 @@ añade todos los botones volver al indice que faltan segun @rc---toc-creation.md
 rcsync = SYNCRONIZACION COMPLETA ENTRE _ES y _EN USANDO LA REGLA rc---sync-carpetas-es-en.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
-procede con la sincronizacion de contenido aplicando @rc---sync-carpetas-es-en.mdc a este archivo
+procede con la sincronizacion de contenido en este archivo aplicando @rc---sync-carpetas-es-en.mdc
 
 
 ---- AUTOMATIZACION CONTROL DE VERSIONES ----
