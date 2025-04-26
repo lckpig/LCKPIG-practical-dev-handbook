@@ -62,6 +62,10 @@ Esta regla está diseñada exclusivamente para generar o actualizar la Tabla de 
           ## Otra Sección H2
           ```
 
+5. **Paso Final de Limpieza**
+- **Eliminación de Etiqueta Residual**: Una vez completada la generación de contenido, se debe verificar si el archivo resultante termina con la cadena `</rewritten_file>`.
+- Si dicha cadena existe al final del archivo, **DEBE ser eliminada**.
+
 ---
 
 ## Requisitos del ToC

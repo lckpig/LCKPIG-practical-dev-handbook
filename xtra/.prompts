@@ -8,16 +8,22 @@ procede ahora con la seccion XXX de @README.md de typescript en @_ES, recuerda c
 ahora realiza el mismo proceso completo con la seccion XXX
 
 
+
 ---- CREACION DE CONTENIDO DIDACTICO ----
 
 // Agente - gemini-2.5-prox-exp-03-25
-en este archivo aplica la regla @rc---teacher-behaviour.mdc = RELLENADO DE CONTENIDO DIDACTICO DE ARCHIVOS USANDO REGLA
+en este archivo aplica la regla @rc---teacher-behaviour.mdc, RECUERDA tener cuidado con no dubplicar bloques de # en los encabezados, formatear correctamente los hints teniendo en cuenta la no identacion y los saltos de linea oblogatorios, e incluir tablas si lo consideras relevante
+
 
 // Agente - gemini-2.5-prox-exp-03-25
 analiza para mejorar si fuese posible el contenido de este archivo siguiendo estrictamente la regla @rc---teacher-behaviour.mdc, recuerda añadir tablas si lo consideras relevante, aplica la mejora directamente
 
 // Agente - gemini-2.5-prox-exp-03-25
+analiza para mejorar añadiendo tablas si fuese posible el contenido de este archivo siguiendo estrictamente la regla @rc---teacher-behaviour.mdc, aplica la mejora directamente
+
+// Agente - gemini-2.5-prox-exp-03-25
 aplica los hints donde corresponda segun la regla @rc---teacher-behaviour.mdc despues de crear y rellenarcada hint recuerda eliminar los contenido de referencia del hint para no ser redundantes con el contenido
+
 
 
 ---- CORRECCION DE CONTENIDO DIDACTICO ----
@@ -38,7 +44,7 @@ corrige las restricciones de formatorespecto a los hints segun la regla @rc---te
 aplica en este archivo la regla @rc---toc-creation.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
-añade todos los botones Volver al Índice que faltan segun la regla @rc---toc-creation.mdc 
+añade todos los botones Volver al Índice que faltan junto a sus lineas vacias obligatorias segun la regla @rc---toc-creation.mdc 
 
 
 ---- SINCRINIZACION DE CONTENIDO ENTRE _ES y _EN ----

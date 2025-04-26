@@ -135,6 +135,11 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - **Énfasis:** Se reitera la prohibición absoluta de incluir resúmenes al final del archivo o secciones, así como cualquier tipo de frase motivacional, de ánimo o de cierre.
    - **Nunca** añadir un resumen final al final del archivo ni de las secciones, en caso de que se encuentre debe ser elimado.
    - **Nunca** incluir frases motivacionales, de ánimo, de cierre o similares.
+    
+6. **Paso Final de Limpieza**
+- **Eliminación de Etiqueta Residual**: Una vez completada la generación de contenido, se debe verificar si el archivo resultante termina con la cadena `</rewritten_file>`.
+- Si dicha cadena existe al final del archivo, **DEBE ser eliminada**.
+
 
 ---
 

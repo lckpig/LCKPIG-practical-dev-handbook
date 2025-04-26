@@ -140,10 +140,6 @@ alwaysApply: true
    }
    ```
 
-#### 3.4 Paso Final de Limpieza
-- **Eliminación de Etiqueta Residual**: Una vez completada la sincronización del contenido de un archivo de `_ES` a `_EN` (incluyendo traducción y preservación de formato), se debe verificar si tanto el archivo base de `_ES` como el archivo resultante en `_EN` terminan *exactamente* con la cadena `</rewritten_file>`.
-- Si dicha cadena existe al final del archivo, DEBE ser eliminada antes de considerar la sincronización de ese archivo como finalizada.
-
 ### 4. Manejo de Contenido Especial
 
 #### 4.1 Menú Multilenguaje
@@ -290,18 +286,22 @@ alwaysApply: true
 
 ### 5. Validación y Verificación
 
-#### 5.1 Verificación de Eliminaciones
+#### 5.1 Paso Final de Limpieza
+- **Eliminación de Etiqueta Residual**: Una vez completada la sincronización del contenido de un archivo de `_ES` a `_EN` (incluyendo traducción y preservación de formato), se debe verificar si tanto el archivo resultante en `_EN` termina con la cadena `</rewritten_file>`.
+- Si dicha cadena existe al final del archivo, **DEBE ser eliminada**.
+
+#### 5.2 Verificación de Eliminaciones
 - Prioridad máxima en la eliminación de contenido
 - Verificación línea por línea
 - Eliminación de espacios en blanco innecesarios
 - Confirmación de estructura intacta
 
-#### 5.2 Manejo de Errores
+#### 5.3 Manejo de Errores
 - Reintentar operaciones fallidas
 - Verificar contenido circundante
 - Asegurar eliminación completa
 
-#### 5.3 Verificación de Integridad
+#### 5.4 Verificación de Integridad
 - **Chequeo pre-sincronización**:
   ```bash
   diff -rq _ES _EN | grep -v '.syncbuffer'
@@ -310,7 +310,7 @@ alwaysApply: true
   - Reintentos automáticos con backoff exponencial
   - Notificaciones de fallos persistentes via `system-notifications.md`
 
-#### 5.4 Verificación de Huérfanos
+#### 5.5 Verificación de Huérfanos
 - **Comando obligatorio pre-sincronización**:
   ```powershell
   Compare-Object (Get-ChildItem _ES -Recurse) (Get-ChildItem _EN -Recurse) | 
