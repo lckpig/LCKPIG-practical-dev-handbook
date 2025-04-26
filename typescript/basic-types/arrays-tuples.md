@@ -22,6 +22,8 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/basic-t
   - [Common Errors and Pitfalls](#common-errors-and-pitfalls)
 - [Using Tuples (`[string, number]`)](#using-tuples-string-number)
   - [Definition and Syntax](#definition-and-syntax-1)
+  - [Advanced Syntax Features](#advanced-syntax-features)
+  - [Comparison: Arrays vs. Tuples](#comparison-arrays-vs-tuples)
   - [Real and Recommended Use Cases](#real-and-recommended-use-cases-1)
   - [Important Considerations](#important-considerations-1)
   - [Best Practices](#best-practices-1)
@@ -59,6 +61,15 @@ TypeScript offers two main and equivalent syntaxes for declaring arrays:
     *   `let identifiers: Array<string>;` // Equivalent to `string[]`.
 
 The choice between `T[]` and `Array<T>` is primarily a matter of stylistic preference, although the `T[]` syntax is more prevalent in the TypeScript community.
+
+**Array Syntax Comparison Table**
+
+| Feature         | `T[]` Syntax                 | `Array<T>` Syntax                       | Example                       | Common Preference         |
+| --------------- | ---------------------------- | --------------------------------------- | ----------------------------- | ------------------------- |
+| **Format**      | Type followed by `[]`        | `Array` type with generic `<T>`         | `number[]` vs `Array<number>` | `T[]`                     |
+| **Conciseness** | More concise                 | Slightly more verbose                   | -                             | `T[]`                     |
+| **Clarity**     | Very clear for simple types  | Can be clearer with complex/union types | `(string                      | null)[]` vs `Array<string | null>` | Subjective |
+| **Usage**       | More common in the community | Less common but valid                   | -                             | `T[]`                     |
 
 #### Detailed Examples
 
@@ -151,6 +162,7 @@ Arrays are a versatile tool with applications in numerous development scenarios:
     console.log(arr1 === arr2); // false (different objects in memory)
     console.log(arr1 === arr3); // true (same reference)
     ```
+*   **Mutating vs. Non-Mutating Methods:** It is crucial to distinguish between methods that modify the original array and those that return a new one. Not being clear about this difference is a common source of errors.
 
 [↑ Back to Top](#toc-container)
 
@@ -238,141 +250,151 @@ let userName: string = userInfo[1]; // TypeScript knows the element at index 1 i
 // console.log(point2D[2]); // Error: Tuple type '[number, number]' of length '2' has no element at index '2'.
 ```
 
+Unlike arrays, TypeScript **does** generally detect access to indices outside the defined tuple length at compile time.
+
 [↑ Back to Top](#toc-container)
 
 
-#### Advanced Syntax Features
+### Advanced Syntax Features
 
-*   **Optional Elements (`?`):** You can mark elements as optional by adding `?` after their type. All optional elements must come after required elements.
+*   **Optional Elements (`?`):** You can mark elements as optional by adding `?` after their type. All optional elements must come *after* required elements.
     ```typescript
-    let configuration: [string, number, boolean?]; // The third element is optional
-    configuration = ["host", 8080];       // Correct
-    configuration = ["host", 8080, true]; // Correct
+    // Optional third element (e.g., z-coordinate)
+    let point3D: [number, number, number?]; 
+    point3D = [10, 20];       // Correct (omitting optional z)
+    point3D = [10, 20, 5];  // Correct (providing optional z)
+    // point3D = [10]; // Error: Missing second element
     ```
-*   **Rest Elements (`...T[]`):** You can define a tuple that has a minimum number of initial elements with specific types, followed by a variable number of remaining elements of a specific type. The rest element must be an array type (`T[]`) and must be the last element in the tuple.
+*   **Rest Elements (`...T[]`):** Allows defining tuples that have a minimum number of specific initial elements followed by any number of elements of a certain type. The rest element must be an array or tuple type and must appear last.
     ```typescript
-    // A function returning the event name and a list of participants
-    type EventResult = [string, ...string[]];
-    let concert: EventResult = ["Rock Concert", "Ana", "Luis", "Eva"];
-    let talk: EventResult = ["Tech Talk"]; // Correct, zero participants
+    // Tuple representing a function name followed by any number of arguments (strings)
+    type FunctionCall = [string, ...string[]]; 
 
-    // console.log(concert[0]); // "Rock Concert" (string)
-    // console.log(concert[1]); // "Ana" (string)
-    // console.log(concert.slice(1)); // ["Ana", "Luis", "Eva"] (string[])
+    let call1: FunctionCall = ["logMessage", "Error", "Network failed"]; // Correct
+    let call2: FunctionCall = ["startProcess"];                     // Correct (no rest args)
+    // let call3: FunctionCall = []; // Error: Source has 0 element(s) but target requires 1.
+    // let call4: FunctionCall = ["setValue", 10]; // Error: Type 'number' is not assignable to type 'string'.
+    
+    // Tuple with specific start, end, and variable middle numbers
+    type RangeData = [Date, ...number[], Date];
+    let dataRange: RangeData = [new Date(), 10, 25, 15, new Date()]; // Correct
     ```
+
+[↑ Back to Top](#toc-container)
+
+
+### Comparison: Arrays vs. Tuples
+
+| Feature           | Array (`T[]` or `Array<T>`)                  | Tuple (`[T1, T2, ..., Tn]`)                      |
+| :---------------- | :------------------------------------------- | :----------------------------------------------- |
+| **Purpose**       | Homogeneous list (same type elements)        | Heterogeneous fixed-size list (different types)  |
+| **Size**          | Dynamic (can grow/shrink)                    | Fixed (defined length)                           |
+| **Type Checking** | Checks if elements match the single type `T` | Checks if element at index `i` matches type `Ti` |
+| **Order**         | Significant                                  | Significant (type depends on position)           |
+| **Use Case**      | Lists of users, products, scores, etc.       | Key-value pairs, coordinates, function returns.  |
+| **Flexibility**   | High (size, manipulation)                    | Low (fixed structure)                            |
+| **Readability**   | Type indicates content (`User[]`)            | Structure indicates content (`[string, number]`) |
+| **JS Equivalent** | Compiles directly to JS Array                | Compiles to JS Array (type info lost at runtime) |
 
 [↑ Back to Top](#toc-container)
 
 
 ### Real and Recommended Use Cases
 
-*   **Defined Key-Value Pairs:** When you need to represent a pair where the key type and value type are fixed and distinct (e.g., `[string, number]` for a property and its numeric value). Useful in internal data structures or simple configurations.
-*   **Coordinates and Geometric Points:** Representing points in 2D (`[number, number]`), 3D (`[number, number, number]`), or even geographic coordinates (`[number, number]` for latitude and longitude). The order is significant.
-*   **Multiple Return Values from Functions:** Although returning an object with named properties is often preferable for clarity, tuples can be a concise way for functions to return a small, fixed set of values with distinct types.
-    ```typescript
-    function integerDivide(dividend: number, divisor: number): [quotient: number, remainder: number] | undefined {
-      if (divisor === 0) {
-        return undefined; // Error handling
-      }
-      const quotient = Math.floor(dividend / divisor);
-      const remainder = dividend % divisor;
-      return [quotient, remainder]; // Returns a tuple
-    }
+Tuples excel in situations where you need a fixed-size structure with elements of potentially different but known types:
 
-    const result = integerDivide(10, 3);
-    if (result) {
-      const [quo, rem] = result; // Destructuring for clarity
-      console.log(`Quotient: ${quo}, Remainder: ${rem}`); // Quotient: 3, Remainder: 1
+*   **Representing Key-Value Pairs:** A common use case is representing entries in a map or dictionary, where the first element is the key (e.g., `string`) and the second is the value (e.g., `number`).
+    ```typescript
+    let entry: [string, number] = ["age", 30];
+    ```
+*   **Returning Multiple Values from a Function:** Instead of returning an object, a function can return a tuple if the number and types of return values are fixed and well-defined. This can be slightly more lightweight than an object, although objects are often more readable due to named properties.
+    ```typescript
+    function parseCoordinates(input: string): [number, number] | null {
+        const parts = input.split(",");
+        if (parts.length !== 2) return null;
+        const lat = parseFloat(parts[0]);
+        const lon = parseFloat(parts[1]);
+        if (isNaN(lat) || isNaN(lon)) return null;
+        return [lat, lon]; // Return tuple
+    }
+    
+    const coords = parseCoordinates("40.71,-74.00");
+    if (coords) {
+        const latitude: number = coords[0];
+        const longitude: number = coords[1];
+        console.log(`Lat: ${latitude}, Lon: ${longitude}`);
     }
     ```
-*   **State in React Hooks:** The canonical example is React's `useState` hook, which returns a tuple: `[stateValue, updateFunction]`. The fixed structure and distinct types for each position make a tuple an ideal choice here.
-    ```typescript
-    // Conceptual example similar to React useState
-    function myUseState<S>(initialState: S): [S, (newState: S) => void] {
-      let state = initialState;
-      const setState = (newState: S) => {
-        state = newState;
-        // Re-rendering logic...
-      };
-      return [state, setState];
-    }
-
-    const [counter, setCounter] = myUseState(0); // counter is number, setCounter is (newState: number) => void
-    ```
-*   **Representing Fixed Records:** For data with a very stable structure and a small number of fields where order is intrinsic (e.g., representing a row from a simple CSV with `[string, number, boolean]` columns).
+*   **Specific Data Records:** Representing data where each position has a distinct meaning, like RGB color values `[number, number, number]`, or status codes with messages `[number, string]`.
+*   **Working with React Hooks:** Some React hooks like `useState` return tuples. `const [count, setCount] = useState(0);` destructures the tuple `[number, (newValue: number) => void]` returned by `useState`.
 
 [↑ Back to Top](#toc-container)
 
 
 ### Important Considerations
 
-*   **Fixed Length (Intention vs. Historical Reality):** The primary purpose of tuples is to have a fixed length defined by the specified types. However, because they compile to JavaScript arrays, methods like `push`, `pop`, `splice` *could* (especially in older TS versions or loose configurations) modify the length at runtime. **This is bad practice and violates the tuple contract**. Modern TypeScript versions and strict settings tend to prevent or warn about this, especially when used with `readonly`.
-  
-{% hint style="danger" %}
-Avoid using array mutator methods (`push`, `pop`, `splice`, etc.) on tuples. Treat them as fixed-size structures. If you need a variable-size collection, use an array (`T[]`).
-{% endhint %}
-
-*   **Index Access vs. Readability:** Access is always via numeric indices (`myTuple[0]`, `myTuple[1]`). This can reduce readability if it's not immediately clear what each index represents.
-*   **Destructuring for Clarity:** **Destructuring** is the preferred and most readable way to extract values from a tuple, assigning meaningful names to each element.
+*   **Fixed Length (Mostly):** While optional (`?`) and rest (`...`) elements add some flexibility, the core idea of a tuple is a fixed structure. Standard array methods like `push`, `pop` *can* technically be called on tuples (because they compile to arrays), but this **violates the tuple's type definition** and bypasses TypeScript's compile-time checks for length and type at specific indices beyond the defined length. It's a dangerous practice and generally discouraged.
     ```typescript
-    let config: [string, number] = ["localhost", 3000];
-    // Less readable:
-    // const host = config[0];
-    // const port = config[1];
-
-    // More readable with destructuring:
-    const [host, port] = config;
-    console.log(`Server at ${host}:${port}`);
+    let point: [number, number] = [10, 20];
+    // point.push(30); // Technically works in JS, but TypeScript might complain or lead to unexpected types later.
+                      // It violates the [number, number] contract.
     ```
-*   **Tuples vs. Objects:** For structures with more than a few elements, or where the order isn't as intrinsically significant as the property name, an **object with named properties** (`{ id: number; name: string; active: boolean; }`) is usually much clearer and more maintainable than a long tuple (`[number, string, boolean]`). Objects allow access by name (`object.property`), which is self-documenting.
+    {% hint style="danger" %}
+    Mutating tuple length with methods like `push` undermines their purpose. Stick to the defined length and types for safety.
+    {% endhint %}
+*   **Readability:** Accessing tuple elements by numeric index (`tuple[0]`, `tuple[1]`) can make code harder to read compared to accessing object properties by name (`config.host`, `user.name`). This is especially true for longer tuples.
+*   **Destructuring for Readability:** Using array destructuring is highly recommended to assign meaningful names to tuple elements, improving readability significantly.
+    ```typescript
+    let userInfo: [number, string] = [42, "Bob"];
+    
+    // Less readable:
+    // const userId = userInfo[0];
+    // const userName = userInfo[1];
+    
+    // More readable (destructuring):
+    const [userId, userName] = userInfo;
+    console.log(`User ID: ${userId}, Name: ${userName}`); 
+    ```
+*   **Type Information Lost at Runtime:** Like all TypeScript type information, tuple types are erased during compilation to JavaScript. Runtime code only sees a standard JavaScript array.
 
 [↑ Back to Top](#toc-container)
 
 
 ### Best Practices
 
-*   **Use tuples for heterogeneous collections of fixed length and significant order:** They are perfect when you have a known number of elements (usually few) with specific types at specific positions.
-*   **Prefer destructuring to access elements:** Drastically improves readability by giving names to the extracted values.
-*   **Use `readonly` for immutable tuples:** If the tuple represents a value that shouldn't change (like a point or a fixed configuration), declare it as `readonly [Type1, Type2]`.
-    ```typescript
-    let fixedPoint: readonly [number, number] = [10, 5];
-    // fixedPoint[0] = 15; // Error
-    // fixedPoint.push(20); // Error
-    ```
-*   **Consider objects for clarity in complex structures:** Don't force the use of tuples if an object with named properties would make the code more understandable and maintainable, especially with 3 or more elements.
+*   **Use for Fixed, Heterogeneous Data:** Employ tuples when you have a small, fixed number of elements where the type of each element is known and matters based on its position.
+*   **Keep Tuples Short:** Tuples are most effective when they have only a few elements (typically 2-3). Longer tuples become difficult to manage and read due to reliance on numeric indices.
+*   **Prefer Destructuring:** Always use array destructuring to extract values from tuples into named variables for clarity.
+*   **Use `readonly` Tuples:** If the tuple represents a fixed value that shouldn't change, declare it as `readonly` for added safety: `let point: readonly [number, number] = [10, 20];`.
+*   **Consider Objects for Complex Structures:** If a tuple starts becoming long or if the meaning of each element isn't immediately obvious from its position, an object with named properties (defined via `interface` or `type`) is usually a more readable and maintainable alternative.
 
 [↑ Back to Top](#toc-container)
 
 
 ### Bad Practices
 
-*   **Using tuples for homogeneous or variable-size lists:** If all elements are the same type and/or the length can change, an array (`T[]`) is the appropriate tool.
-*   **Creating excessively long tuples:** Tuples with many elements (`[string, number, boolean, string, Date, ...]`) become very hard to manage and prone to errors due to index confusion. Use interfaces or objects.
-*   **Modifying tuples with `push`, `pop`, `splice`:** Violates the fundamental purpose of the tuple (fixed length and types by position). Avoid it at all costs.
-*   **Accessing elements only by numeric index without clear context:** Makes the code hard to understand. If not using destructuring, ensure the context (variable name, comments) clarifies what each index represents.
+*   **Using Tuples for Homogeneous Lists:** If all elements have the same type and the length is variable, use a regular array (`T[]`), not a tuple.
+*   **Creating Very Long Tuples:** Avoid tuples with many elements, as accessing elements by index becomes confusing and error-prone. Use an object instead.
+*   **Mutating Tuple Length:** Calling `push`, `pop`, `splice` on tuples, as it breaks the fixed-length contract enforced at compile time.
+*   **Accessing Elements Solely by Index:** Relying only on numeric indices (`tuple[3]`) without destructuring makes the code hard to understand.
 
 [↑ Back to Top](#toc-container)
 
 
 ### Common Errors and Pitfalls
 
-*   **Confusion between Tuples and Arrays:** Remembering the key difference: arrays are homogeneous (same type) variable-size lists, while tuples are heterogeneous (different types by position) fixed-size structures.
-*   **Logical Index Errors:** Although TypeScript detects access to indices outside the *defined* bounds of the tuple, it cannot prevent logical errors where you use the wrong index (e.g., `myTuple[0]` expecting the value at `myTuple[1]`). Destructuring helps mitigate this.
-*   **Behavior of `push` in Older Versions:** Historically, `push` on a tuple could allow adding elements of *any* type present in the tuple definition, not necessarily respecting the type of a specific position or the fixed length. Modern TypeScript versions are stricter, but it's good to be aware of this behavior if working with older code.
-*   **Structural Typing:** TypeScript uses structural typing. An array that *happens* to have the same types in the correct positions and the appropriate length might be assignable to a tuple type, and vice versa in some cases, which can sometimes be surprising if this concept isn't understood.
+*   **Assigning Incorrect Types or Length:** TypeScript catches these errors at compile time.
     ```typescript
-    let myArray: (string | number)[] = ["hello", 123];
-    let myTuple: [string, number] = ["hello", 123];
-
-    // myTuple = myArray; // Error: Type '(string | number)[]' is not assignable to type '[string, number]'. Target requires 2 element(s) but source may have more.
-
-    // But be careful!:
-    let anotherArray = ["world", 456]; // TypeScript infers (string | number)[]
-    // myTuple = anotherArray as [string, number]; // Possible with type assertion (dangerous if structure doesn't match!)
-
-    let longerTuple: [string, number, boolean] = ["a", 1, true];
-    let arrayFromTuple: (string | number | boolean)[] = longerTuple; // Valid assignment from tuple to compatible array
+    let record: [string, boolean] = ["active", 1]; // Error: Type 'number' is not assignable to type 'boolean'.
+    let pair: [number, number] = [1];           // Error: Source has 1 element(s) but target requires 2.
     ```
+*   **Modifying Readonly Tuples:** Attempting to change an element in a tuple declared with `readonly`.
+    ```typescript
+    const readOnlyPair: readonly [string, number] = ["key", 10];
+    // readOnlyPair[0] = "newKey"; // Error: Cannot assign to '0' because it is a read-only property.
+    ```
+*   **Off-by-One Errors with Indices:** Forgetting that indices are 0-based.
+*   **Losing Type Safety with `push`/`pop`:** As mentioned, mutating methods bypass tuple type checks beyond the initial length.
 
 [↑ Back to Top](#toc-container)
 
@@ -381,87 +403,94 @@ Avoid using array mutator methods (`push`, `pop`, `splice`, etc.) on tuples. Tre
 
 ## Tuples with Labels (`[id: number, name: string]`)
 
-To improve code readability when working with tuples, TypeScript allows adding **labels** to tuple elements. These labels act purely as **developer-time documentation**; they have no impact on the compiled JavaScript code nor do they change how elements are accessed (which remains exclusively by numeric index).
+Introduced in TypeScript 4.0, labeled tuples allow assigning names to tuple elements. This feature significantly improves the readability and self-documentation of tuples, addressing one of their main drawbacks (reliance on numeric indices).
 
 ### Definition and Syntax
 
-Labels are added by prepending a descriptive name followed by a colon (`:`) before the type of each element in the tuple definition.
+The syntax involves prefixing the type of each element with a label followed by a colon (`:`).
 
 ```typescript
-// Tuple without labels (less descriptive)
-let productInfoSimple: [string, number, number];
-productInfoSimple = ["SKU-123", 29.99, 150]; // What is each number?
+// Standard tuple (less readable)
+let userTuple: [number, string, boolean];
 
-// Tuple with labels (more descriptive)
-let productInfoLabeled: [code: string, price: number, stock: number];
-productInfoLabeled = ["SKU-456", 45.50, 75];
+// Labeled tuple (more readable)
+let labeledUserTuple: [id: number, name: string, isActive: boolean];
 
-// Access remains numeric
-let theCode: string = productInfoLabeled[0];    // "SKU-456"
-let thePrice: number = productInfoLabeled[1];    // 45.50
-let theStock: number = productInfoLabeled[2];     // 75
+labeledUserTuple = [1, "Alice", true]; // Assignment is the same
 
-// Trying to access by label does NOT work!
-// let incorrectPrice = productInfoLabeled.price; // Error: Property 'price' does not exist on type '[code: string, price: number, stock: number]'.
+// Destructuring still works and is recommended
+const [userId, userName, userStatus] = labeledUserTuple;
+
+console.log(`ID: ${userId}, Name: ${userName}, Active: ${userStatus}`);
+
+// Access by index still works, but labels improve understanding
+let extractedId: number = labeledUserTuple[0]; // Clearly corresponds to 'id'
+let extractedName: string = labeledUserTuple[1]; // Clearly corresponds to 'name'
 ```
+
+**Important:** The labels are **purely for documentation and developer experience**. They do **not** change the underlying structure (it's still an indexed array at runtime) and you **cannot** access elements using the labels like object properties (`labeledUserTuple.id` is **not** valid).
 
 [↑ Back to Top](#toc-container)
 
 
 ### Advantages and Use Cases
 
-*   **Exponential Readability Improvement:** The main benefit is clarity. Seeing the type definition `[code: string, price: number, stock: number]` makes it immediately obvious what each position represents, eliminating the ambiguity of `[string, number, number]`.
-*   **Self-Documentation:** Labels serve as documentation integrated directly into the type. Modern code editors (like VS Code) use these labels to display helpful information in tooltips and IntelliSense when working with variables of that tuple type.
-    ```typescript
-    function processProduct(product: [code: string, price: number, stock: number]) {
-        // Hovering over product[1] in a compatible editor will
-        // show something like "(parameter) product: [..., price: number, ...]"
-        const totalCost = product[1] * product[2];
-        console.log(`Total inventory cost for ${product[0]}: ${totalCost}`);
-    }
-    processProduct(productInfoLabeled);
-    ```
-*   **Clarity in Complex Types:** In type definitions involving nested tuples or combinations with other types, labels are crucial for maintaining understanding of the data structure.
-*   **Better Team Communication:** They make it easier for other developers (or your future self) to quickly understand the structure and purpose of the data represented by the tuple.
+*   **Improved Readability:** Labels make the purpose of each element in the tuple immediately clear without needing comments or relying solely on context.
+*   **Enhanced Self-Documentation:** The tuple definition itself explains the meaning of each position.
+*   **Better Editor Support:** Code editors can display the labels when hovering over tuple elements or during autocompletion, improving the development experience.
+
+Labeled tuples are beneficial in the same scenarios as regular tuples, but they enhance the clarity, especially when tuples are used in function signatures or type aliases:
+
+```typescript
+// Using labeled tuples in function parameters and return types
+type Point = [x: number, y: number];
+
+function movePoint(point: Point, dx: number, dy: number): Point {
+  const [currentX, currentY] = point; // Destructuring is still best
+  return [currentX + dx, currentY + dy]; 
+}
+
+let startPoint: Point = [10, 5];
+let endPoint = movePoint(startPoint, 3, -2); // endPoint is inferred as Point ([number, number])
+
+console.log(endPoint); // [13, 3]
+```
 
 [↑ Back to Top](#toc-container)
 
 
 ### Important Considerations
 
-*   **Purely Documentary Nature:** It's fundamental to remember that labels **do not exist at runtime**. They are solely an aid for the developer during the coding and analysis phase. They do not modify behavior or enable new ways of access.
-*   **Access Always by Index:** Accessing elements of a labeled tuple remains, and always will be, via numeric indices (`tuple[0]`, `tuple[1]`, etc.).
-*   **Label Maintenance:** If the tuple structure changes (e.g., elements are reordered, or the meaning of a position changes), it's vital to update the corresponding labels to avoid misleading documentation.
+*   **Labels are Compile-Time Only:** Remember that labels are erased during compilation and have no runtime effect.
+*   **No Access via Label:** You must still use numeric indices or destructuring to access elements.
+*   **Consistency:** If you label one element, it's good practice (though not required by the compiler) to label all elements for consistency.
 
 [↑ Back to Top](#toc-container)
 
 
 ### Best Practices
 
-*   **Use labels whenever they add clarity:** Especially for tuples with more than two elements or where the meaning of each position isn't trivially obvious from context (like `[number, number]` for coordinates, which might be clear enough).
-*   **Choose descriptive and concise label names:** Follow the same conventions as for variable names (clarity, camelCase if applicable).
-*   **Combine with destructuring:** Although labels aren't used *directly* in destructuring syntax (`let [c, p, s] = myLabeledTuple;`), defining the tuple with labels greatly improves understanding of what `c`, `p`, and `s` are.
+*   **Use Labels for Clarity:** Add labels to your tuples whenever it improves understanding of what each element represents.
+*   **Combine with Destructuring:** Use destructuring to extract values into variables with meaningful names, even if the tuple is labeled.
+*   **Keep Tuples Concise:** Labeled tuples don't change the recommendation to keep tuples relatively short. Objects remain better for structures with many elements.
 
 [↑ Back to Top](#toc-container)
 
 
 ### Bad Practices
 
-*   **Using generic or unclear labels:** Names like `val1`, `item2`, `data` (`[val1: string, item2: number, data: number]`) add little value over `[string, number, number]`.
-*   **Assuming labels allow access by name:** Trusting that `tuple.label` will work is a conceptual error. If you need access by name, the correct data structure is an object (`{ label: type; }`).
-*   **Leaving labels outdated:** If the tuple structure evolves, failing to update the labels creates confusion and reduces trust in the type documentation.
+*   **Assuming Runtime Access via Labels:** Trying to access elements using label names (`tuple.labelName`).
+*   **Inconsistent Labeling:** Labeling only some elements in a longer tuple can sometimes be more confusing than no labels at all.
 
 [↑ Back to Top](#toc-container)
 
 
 ### Common Errors and Pitfalls
 
-*   **Attempting Access by Label:** The most frequent error is trying to use the label as if it were an object property (`myTuple.myLabel`). Remember: always `myTuple[numericIndex]`.
-*   **Forgetting its Developer-Time Nature:** Not keeping in mind that labels disappear in the compiled JavaScript can lead to confusion if inspecting the transpiled code or debugging in the browser without sourcemaps.
+*   The main pitfall is expecting labels to provide runtime property access, which they don't.
+*   Syntax errors if the label format (`name: type`) is incorrect.
 
-{% hint style="info" %}
-In summary, **arrays (`T[]`)** are for homogeneous lists of variable size, while **tuples (`[T1, T2, ...]`)** are for heterogeneous structures of fixed size and significant order. **Labels** on tuples are an excellent tool to improve readability and documentation at development time, without affecting runtime behavior. Choosing the right structure and using it appropriately is key to writing robust and maintainable TypeScript code.
-{% endhint %}
+By understanding the specific characteristics and appropriate use cases for arrays, tuples, and labeled tuples, you can model your data more effectively and leverage TypeScript's type system for safer, more maintainable code.
 
 [↑ Back to Top](#toc-container)
 

@@ -13,6 +13,8 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/basic-t
 <summary>Table of Contents</summary>
 
 <!-- no toc -->
+- [Introduction: The `never` Type](#introduction-the-never-type)
+  - [Key Difference: `never` vs `void`](#key-difference-never-vs-void)
 - [Functions that throw errors (`throw`)](#functions-that-throw-errors-throw)
   - [Definition and utility](#definition-and-utility)
   - [Real and recommended use cases](#real-and-recommended-use-cases)
@@ -32,16 +34,29 @@ EN | [ES](https://lckpig.gitbook.io/es-practical-dev-handbook/typescript/basic-t
 
 # The `never` type for functions that don't return values
 
-The `never` type in TypeScript is a special type representing values that can **never** occur. It fundamentally differs from `void`, which indicates the *intentional* absence of a return value (the function finishes but returns nothing), whereas `never` means the function **never reaches its endpoint** normally.
+## Introduction: The `never` Type
 
-This scenario primarily occurs in two ways:
-1.  The function always throws an exception (`throw`).
-2.  The function enters an infinite loop that never terminates (e.g., `while (true) {}`).
+The `never` type in TypeScript is a special type representing values that can **never** occur or situations from which a function **never** returns normally. It is used to indicate that a function always throws an exception or enters an infinite loop.
 
 Understanding `never` is crucial for the **static control flow analysis** performed by TypeScript. It allows the compiler to reason about code reachability, identify impossible states, and validate exhaustive checks, leading to more precise types and safer code, especially in advanced patterns like conditional types, type guards, and robust error handling.
 
+### Key Difference: `never` vs `void`
+
+It is fundamental to distinguish `never` from `void`. While both indicate the absence of a *useful* return value, their meaning differs:
+
+| Feature           | `never`                                                       | `void`                                                     |
+| :---------------- | :------------------------------------------------------------ | :--------------------------------------------------------- |
+| **Meaning**       | The function **never** returns normally.                      | The function **returns** but without an explicit value.    |
+| **Completion**    | Terminates abruptly (error) or doesn't terminate.             | Terminates normally.                                       |
+| **Value**         | Represents the absence of *any* value.                        | Represents the absence of a *return* value.                |
+| **Assignability** | Assignable to **any** type.                                   | Assignable only to `any`, `unknown`, and `void`.           |
+| **Typical Use**   | Functions throwing errors, infinite loops, exhaustive checks. | Functions without `return`, callbacks not returning value. |
+
+This distinction is vital for the compiler's control flow analysis.
+
 [↑ Back to Top](#toc-container)
 
+---
 
 ## Functions that throw errors (`throw`)
 
@@ -62,10 +77,12 @@ This information is valuable for the compiler because:
 // This function is designed solely to throw an error.
 // Its return type is 'never' because it never returns a value normally.
 function fail(message: string): never {
+  // Throws an exception, stopping normal execution.
   throw new Error(message);
+  // Any code here would be unreachable.
 }
 
-// Example usage in input validation
+// Example usage in input validation for a union type.
 function processData(data: string | number | boolean): void {
   if (typeof data === 'string') {
     console.log(`Processing string: "${data.toUpperCase()}"`);
@@ -78,8 +95,9 @@ function processData(data: string | number | boolean): void {
     // We have covered all cases of the union (string | number | boolean).
     // TypeScript infers that 'data' here has the type 'never'.
     // Calling 'fail' is the correct way to handle this impossible state.
+    // 'never' is assignable to any type, including 'void' (implicit return).
     fail(`Unexpected data type encountered: ${typeof data}`);
-    // console.log('This will never execute'); // Unreachable code
+    // console.log('This will never execute'); // Unreachable code detected by TS
   }
 }
 
@@ -87,94 +105,151 @@ try {
   processData("example");
   processData(123.456);
   processData(false);
-  // If we were to pass an unhandled type (although typing prevents this in TS),
+  // If, hypothetically, we passed an unhandled type (e.g., an object if the type were any),
   // the 'else' branch would execute, calling 'fail' and throwing the error.
+  // processData({ kind: 'unexpected' } as any); // Uncomment to test the error
 } catch (error: any) {
+  // The error thrown by 'fail' would be caught here.
   console.error(`Caught an error: ${error.message}`);
 }
 ```
-In `processData`, the final `else` branch would only be reached if `data` were neither `string`, `number`, nor `boolean`. Given the `string | number | boolean` typing, this situation is logically impossible. TypeScript recognizes this and infers `data` as `never` in that branch. Using `fail` here not only handles the impossible case but also satisfies the compiler, as `never` is assignable to any type (including the implicit `void` of `processData`).
+In the `processData` example, the final `else` branch would only be reached if `data` were neither `string`, `number`, nor `boolean`. Given the `string | number | boolean` type definition, this situation is logically impossible under TypeScript's type system. The compiler recognizes this and infers the type of `data` within that branch as `never`. Calling `fail` here not only semantically handles the impossible case but also satisfies the compiler, as a function returning `never` can be used anywhere a return is expected, even `void`, because it guarantees that return point will never be reached.
 
 [↑ Back to Top](#toc-container)
-
 
 ### Real and recommended use cases
 
 #### Strict validation and critical failures
 
-Ideal for validation functions that check essential preconditions for execution. If a critical validation fails (e.g., missing configuration, irrecoverable inconsistent state), a `never` function can halt execution immediately, preventing operations in an invalid state.
+Ideal for validation functions that check essential preconditions for execution. If a critical validation fails (e.g., missing configuration, irrecoverable inconsistent state), a `never` function can halt execution immediately, preventing operations in an invalid state. This is common in application or module initialization.
+
+#### Example: Configuration validation at startup
 
 ```typescript
 interface ServerConfig {
   port: number;
-  host?: string; // Optional
-  apiKey: string; // Required
+  host?: string; // Optional, might have a default value
+  apiKey: string; // Required for core functionality
+  databaseUrl: string; // Required
 }
 
+// Helper function that always throws an error, returning 'never'
+function configurationError(missingField: keyof ServerConfig, value?: any): never {
+  throw new Error(`Invalid or missing configuration: Field '${missingField}' is invalid. ${value !== undefined ? `Received: ${value}` : ''}`);
+}
+
+// Assertion function that validates the configuration.
+// Uses 'asserts' to refine the type if validation passes.
 function assertConfigIsValid(config: Partial<ServerConfig>): asserts config is ServerConfig {
   if (config.port === undefined || config.port <= 0 || config.port > 65535) {
-    fail(`Invalid configuration: Port must be between 1 and 65535. Received: ${config.port}`);
+    configurationError('port', config.port); // Throws error -> never
   }
   if (config.apiKey === undefined || config.apiKey.trim() === '') {
-    fail("Invalid configuration: API Key is required and cannot be empty.");
+    configurationError('apiKey'); // Throws error -> never
   }
-  // If it reaches here, the configuration has the required properties (port, apiKey)
-  // 'asserts config is ServerConfig' acts as a type guard.
+  if (config.databaseUrl === undefined || !config.databaseUrl.startsWith('postgres://')) {
+     configurationError('databaseUrl', config.databaseUrl); // Throws error -> never
+  }
+  // If the function reaches this point without throwing an error, TypeScript knows
+  // that 'config' conforms to the 'ServerConfig' interface thanks to 'asserts'.
 }
 
-const initialConfig: Partial<ServerConfig> = { port: 8080 /* apiKey missing */ };
+// Simulate configuration read from a file or environment variables
+const initialConfig: Partial<ServerConfig> = {
+  port: 8080,
+  // apiKey intentionally missing to test the error
+  databaseUrl: 'postgres://user:pass@host:5432/db'
+};
 
 try {
   assertConfigIsValid(initialConfig);
-  // If there was no error, TypeScript knows that 'initialConfig' is now 'ServerConfig'
-  console.log(`Configuration validated. Starting server on port ${initialConfig.port} with key ${initialConfig.apiKey}.`);
-} catch (error: any) {
-  console.error(`Application startup failed: ${error.message}`);
-  // We could terminate the process here: process.exit(1);
-}
+  // If there was no error, TypeScript knows 'initialConfig' is now 'ServerConfig'
+  // and we can access its properties safely.
+  console.log(`Configuration validated successfully.`);
+  console.log(`Starting server on port ${initialConfig.port}...`);
+  console.log(`Using API Key: ${initialConfig.apiKey.substring(0, 3)}...`); // Safe access
+  console.log(`Connecting to DB: ${initialConfig.databaseUrl}`); // Safe access
 
+} catch (error: any) {
+  // Catches the error thrown by configurationError
+  console.error(`[FATAL] Application startup failed due to configuration error: ${error.message}`);
+  // In a real scenario, we might terminate the process gracefully here.
+  // process.exit(1);
+}
 ```
-Here, `assertConfigIsValid` uses `fail` (which returns `never`) to stop upon encountering invalid configuration. The use of `asserts config is ServerConfig` is an advanced TypeScript feature that informs the compiler that if the function doesn't throw an error, the type of the `config` object is refined to `ServerConfig`.
+Here, `assertConfigIsValid` uses a helper function `configurationError` (which returns `never`) to stop upon encountering invalid configuration. The use of `asserts config is ServerConfig` is a key feature informing the compiler: if this function returns normally (i.e., doesn't throw an error), then the type of the `config` object should be refined to `ServerConfig` in the code following the call. This avoids the need for redundant checks after validation.
 
 #### Exhaustiveness Checks
 
 A fundamental technique in TypeScript, especially with discriminated unions or `enum`. `never` is used in the `default` branch of a `switch` or the final `else` branch of an `if/else if` to ensure that all possible cases have been explicitly handled. If a new member is added to the union/enum and the `switch`/`if` is not updated, the compiler will detect an error because the value in the `default`/`else` branch will no longer be assignable to `never`.
 
-```typescript
-type Result<T, E> = { success: true; value: T } | { success: false; error: E };
+#### Example: Processing different event types
 
-function processResult<T, E>(result: Result<T, E>): string {
-  if (result.success) {
-    // TypeScript knows that 'result' here is { success: true; value: T }
-    return `Operation succeeded with value: ${result.value}`;
-  } else {
-    // TypeScript knows that 'result' here is { success: false; error: E }
-    return `Operation failed with error: ${result.error}`;
-  }
-  // If there were an additional 'else' branch here, 'result' would be 'never'.
-  // Example with switch:
-  // switch (result.success) {
-  //   case true: return `Success: ${result.value}`;
-  //   case false: return `Error: ${result.error}`;
-  //   default:
-  //     const exhaustiveCheck: never = result; // Error if 'result' is not 'never'
-  //     return fail(`Unhandled result state: ${exhaustiveCheck}`);
-  // }
+```typescript
+// Discriminated union to represent different event types
+type AppEvent =
+  | { type: 'USER_LOGIN'; userId: string; timestamp: Date }
+  | { type: 'USER_LOGOUT'; userId: string; timestamp: Date }
+  | { type: 'ITEM_ADDED'; itemId: string; quantity: number; timestamp: Date };
+  // | { type: 'ORDER_PLACED'; orderId: string; timestamp: Date }; // If we uncomment this, the switch will fail
+
+// Helper function to handle impossible cases
+function assertUnreachable(x: never): never {
+  throw new Error(`Unhandled case: ${JSON.stringify(x)}`);
 }
 
-const successResult: Result<string, Error> = { success: true, value: "Data fetched" };
-const errorResult: Result<string, Error> = { success: false, error: new Error("Network timeout") };
+function handleEvent(event: AppEvent): void {
+  console.log(`Handling event type: ${event.type} at ${event.timestamp.toISOString()}`);
 
-console.log(processResult(successResult));
-console.log(processResult(errorResult));
+  switch (event.type) {
+    case 'USER_LOGIN':
+      // TypeScript knows 'event' here is { type: 'USER_LOGIN'; ... }
+      console.log(`User ${event.userId} logged in.`);
+      // Specific login logic...
+      break;
+
+    case 'USER_LOGOUT':
+      // TypeScript knows 'event' here is { type: 'USER_LOGOUT'; ... }
+      console.log(`User ${event.userId} logged out.`);
+      // Specific logout logic...
+      break;
+
+    case 'ITEM_ADDED':
+      // TypeScript knows 'event' here is { type: 'ITEM_ADDED'; ... }
+      console.log(`${event.quantity} of item ${event.itemId} added.`);
+      // Specific item addition logic...
+      break;
+
+    // The 'default' branch ensures all cases are handled.
+    default:
+      // If we have handled all cases of 'AppEvent', TypeScript infers
+      // that 'event' in this branch has the type 'never'.
+      // If we added a new type to 'AppEvent' without adding a 'case',
+      // 'event' would no longer be 'never', and the assignment to 'exhaustiveCheck' would fail.
+      const exhaustiveCheck: never = event;
+      // We can call a 'never' function to throw an explicit error.
+      assertUnreachable(exhaustiveCheck);
+  }
+}
+
+// Example events
+const loginEvent: AppEvent = { type: 'USER_LOGIN', userId: 'user123', timestamp: new Date() };
+const addItemEvent: AppEvent = { type: 'ITEM_ADDED', itemId: 'itemABC', quantity: 5, timestamp: new Date() };
+
+handleEvent(loginEvent);
+handleEvent(addItemEvent);
+
+// If 'ORDER_PLACED' is added to AppEvent without updating the switch,
+// passing an event of that type would execute the default branch,
+// TypeScript would detect that 'event' is not 'never', and the call
+// to assertUnreachable(event) would cause a compile-time error.
 ```
 
 {% hint style="info" %}
-Exhaustiveness checking using `never` is a crucial safety net. It transforms logical errors (forgetting to handle a case) into compile-time errors, facilitating safe maintenance and refactoring when adding new variants to types.
+Exhaustiveness checking using `never` is a crucial safety net during development and maintenance. It transforms logical errors (forgetting to handle a new case) into compile-time detectable errors, facilitating safe refactoring and evolution of the application's data types.
 {% endhint %}
 
 [↑ Back to Top](#toc-container)
-
 
 ### Important considerations
 
@@ -184,7 +259,6 @@ Exhaustiveness checking using `never` is a crucial safety net. It transforms log
 *   **Debugging:** When a `never` function throws an error, the stack trace will point to where the exception was thrown. This facilitates debugging critical errors.
 
 [↑ Back to Top](#toc-container)
-
 
 ### Common errors and pitfalls
 
@@ -199,7 +273,6 @@ Exhaustiveness checking using `never` is a crucial safety net. It transforms log
 
 [↑ Back to Top](#toc-container)
 
-
 ### Good practices
 
 *   **Reserve `never` (with `throw`) for irrecoverable errors:** Use it for assertion failures, critical configuration errors, or to mark states that should logically never be reached.
@@ -208,7 +281,6 @@ Exhaustiveness checking using `never` is a crucial safety net. It transforms log
 *   **Create utility functions:** Define reusable helper functions like `fail(message: string): never` or `assertUnreachable(x: never): never` to centralize irrecoverable error logic.
 
 [↑ Back to Top](#toc-container)
-
 
 ### Bad practices
 
@@ -222,7 +294,6 @@ Exhaustiveness checking using `never` is a crucial safety net. It transforms log
 *   **Suppressing exhaustiveness check errors:** Don't ignore compiler errors in `default`/`else` branches with `never`. They indicate a missing case that needs handling.
 
 [↑ Back to Top](#toc-container)
-
 
 ---
 
@@ -246,153 +317,139 @@ function eventLoop(): never {
     // 1. Wait for an event (simulated with a delay)
     // In a real case, this could be I/O, timers, etc.
     const startTime = Date.now();
-    while(Date.now() - startTime < 2000) { /* Simulate busy waiting */ }
-
+    while(Date.now() - startTime < 2000) { /* Simulate busy waiting or async work */ }
+    
     // 2. Process the event (simulated)
-    const eventData = `Event at ${new Date().toLocaleTimeString()}`;
-    console.log(`Processing: ${eventData}`);
-
-    // The loop continues indefinitely, there's never a 'return' or 'break'.
+    const eventData = { type: Math.random() > 0.5 ? 'A' : 'B', value: Math.random() };
+    console.log(`Processing event: ${JSON.stringify(eventData)}`);
+    
+    // No 'break', 'return', or 'throw' - the loop never exits.
   }
-  // This code is unreachable
-  // console.log("Event loop finished.");
+  // Code here is unreachable
 }
 
-// Calling eventLoop() would block the current thread.
-// We don't execute it directly here to avoid blocking the explanation.
-// try {
-//   eventLoop();
-// } catch (error) {
-//   // This catch wouldn't trigger unless the loop threw an error.
-//   console.error("Event loop crashed:", error);
-// }
-// console.log("This line would never be reached if eventLoop() was called.");
+// Calling this function will block the main thread (if synchronous)
+// or run indefinitely (if asynchronous operations were used inside).
+console.log("Preparing to start the loop...");
+// eventLoop(); // Uncommenting this will block further execution
+// console.log("This message will never be printed if eventLoop is called.");
 ```
-The `eventLoop` function contains a `while (true)` without any exit condition. Therefore, TypeScript infers `never` as its return type.
 
 [↑ Back to Top](#toc-container)
-
 
 ### Real and recommended use cases
 
-#### Server/Daemon Entry Points
+#### Implementing Background Services or Daemons
 
-The main function that starts an HTTP server, a message queue worker, or any process intended to run continuously until terminated externally.
+Processes designed to run continuously in the background, monitoring systems, listening for connections, or performing periodic tasks.
 
 ```typescript
-import http from 'http'; // Example with Node.js module
+// Simplified example of a background monitoring service
+async function monitorSystemHealth(): never {
+  console.log("System health monitor started.");
+  while (true) {
+    try {
+      // Check system resources (CPU, memory, disk)
+      const cpuUsage = await checkCpu(); // Assume async check
+      const memoryUsage = await checkMemory();
+      console.log(`Current health - CPU: ${cpuUsage}%, Memory: ${memoryUsage}%`);
 
-function startHttpServer(port: number): never {
-  const server = http.createServer((req, res) => {
-    console.log(`Received request: ${req.method} ${req.url}`);
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.end('Hello from the never-ending server!\n');
-  });
+      if (cpuUsage > 90 || memoryUsage > 85) {
+        // Send alert (but don't stop the monitor)
+        sendAlert("High system resource usage detected!");
+      }
 
-  server.listen(port, () => {
-    console.log(`Server listening on http://localhost:${port}`);
-    // Although 'listen' returns, the 'startHttpServer' function conceptually
-    // enters an "infinite" waiting state.
-    // To make it explicitly 'never', we could add a loop.
-  });
-
-  // To be rigorously 'never', we could add a loop post-listen,
-  // although in Node.js practice this isn't usually necessary.
-  while(true) {
-     // Keep the process alive explicitly (although listen already does)
-     // Could perform status checks, etc.
-     const start = Date.now();
-     while(Date.now() - start < 60000) { /* Wait 1 minute */ }
-     console.log("Server heartbeat...");
+      // Wait for the next check interval
+      await sleep(60000); // Wait 1 minute (assume async sleep)
+    } catch (error) {
+      console.error("Error during health check:", error);
+      // Log the error but continue monitoring
+      await sleep(5000); // Shorter wait after an error
+    }
   }
-  // Note: In real Node.js, 'listen' itself keeps the process alive.
-  // The while(true) loop here is more illustrative of the 'never' concept.
 }
 
-// startHttpServer(3000); // Would start the server and never return.
+// Placeholder functions for simulation
+async function checkCpu(): Promise<number> { return Math.random() * 100; }
+async function checkMemory(): Promise<number> { return Math.random() * 100; }
+function sendAlert(message: string): void { console.warn(`ALERT: ${message}`); }
+async function sleep(ms: number): Promise<void> { return new Promise(resolve => setTimeout(resolve, ms)); }
+
+// To start the monitor (would typically run in its own process/thread)
+// monitorSystemHealth();
 ```
 
-#### Game Loops or Continuous Rendering
+#### Main Loops in Applications
 
-In graphics applications or games, a main loop might handle reading input, updating state, and rendering the screen repeatedly.
+Common in game development (the game loop), certain types of servers, or reactive systems where the application continuously waits for and processes input or events.
 
 ```typescript
-function gameEngineLoop(): never {
-  let frameCount = 0;
-  console.log("Game Engine Initialized. Starting loop...");
+// Conceptual game loop
+function gameLoop(): never {
+  let lastFrameTime = performance.now();
   while (true) {
-    const startTime = performance.now();
+    const currentTime = performance.now();
+    const deltaTime = (currentTime - lastFrameTime) / 1000; // Time in seconds
 
-    // 1. Handle Input (e.g., keyboard, mouse)
-    // const input = readGameInput();
+    // 1. Process Input
+    processInput();
 
     // 2. Update Game State
-    // updateWorld(input, frameCount);
+    updateGameState(deltaTime);
 
-    // 3. Render Graphics
-    // renderScene();
+    // 3. Render Frame
+    renderFrame();
 
-    const endTime = performance.now();
-    const elapsedTime = endTime - startTime;
-    console.log(`Frame ${frameCount++}: Rendered in ${elapsedTime.toFixed(2)} ms`);
-
-    // FPS control (simple example, not very accurate)
-    const targetFrameTime = 1000 / 60; // 60 FPS
-    const waitTime = Math.max(0, targetFrameTime - elapsedTime);
-    const waitStart = Date.now();
-    while(Date.now() - waitStart < waitTime) { /* Wait */ }
+    lastFrameTime = currentTime;
+    // Request next frame (in browser environments)
+    // await requestAnimationFramePromise(); // Assumes an async wrapper
+    // Or just continue loop for simple cases / non-browser
   }
 }
+
+// Placeholder functions
+function processInput(): void { /* Handle keyboard/mouse */ }
+function updateGameState(dt: number): void { /* Move characters, physics */ }
+function renderFrame(): void { /* Draw graphics */ }
+
+// startGameLoop(); // This would take over the execution thread
 ```
 
 [↑ Back to Top](#toc-container)
-
 
 ### Important considerations
 
-{% hint style="danger" %}
-**CRITICAL! Blocking the Main Thread with Synchronous Loops:** A synchronous `while(true)` loop in a `never` function **freezes** the execution thread. In Node.js, this stops the event loop, preventing handling of new requests or I/O. In the browser, it freezes the UI. **Never use blocking synchronous infinite loops on the main thread.**
-{% endhint %}
-
-{% hint style="info" %}
-**Prioritize Asynchronous Alternatives:** For servers, workers, or long-running tasks, asynchronous models (`async/await`, `Promises`, `EventEmitter`, Web Workers) are the standard in JS/TS. They allow concurrency and prevent blocking the main thread. A blocking `never` function is rarely the right solution.
-{% endhint %}
-
-*   **Intentionality:** Ensure the infinite loop is truly intentional and the only appropriate way to model the behavior (which is rare for synchronous blocking code).
-*   **Termination:** A `never` function of this type only terminates if the process is stopped externally (e.g., `Ctrl+C`, `kill`) or if an unhandled error occurs *inside* the loop causing it to end.
-
-{% hint style="warning" %}
-**Avoid `Busy-Waiting`:** A `while(true)` loop without pauses (I/O, `setTimeout`, `await delay`) will consume 100% CPU. This is inefficient and harmful. Always introduce appropriate waiting mechanisms.
-{% endhint %}
-
-*   **Confusion with asynchronous processes:** Don't confuse a blocking synchronous `never` function with a long-running asynchronous process (like a typical Node.js server) that does *not* block the thread.
+*   **Blocking Behavior (Synchronous):** A synchronous infinite loop (`while (true)` without `await` inside) will completely block the execution thread it runs on. In Node.js or single-threaded browser environments, this will make the application unresponsive. Use this pattern only in dedicated worker threads, separate processes, or when the blocking nature is the intended behavior (rarely the case in typical web/Node.js apps).
+*   **Asynchronous Loops:** Infinite loops containing `await` (like in the `monitorSystemHealth` example) yield control back to the event loop while waiting for the asynchronous operation to complete. This prevents blocking but still represents a process that runs indefinitely.
+*   **Resource Consumption:** Infinite loops, even asynchronous ones, consume resources. Ensure they are necessary and implement appropriate delays (`sleep`, `setTimeout`) or event-driven logic to avoid unnecessary CPU usage.
+*   **Termination:** Functions typed as `never` due to infinite loops provide no built-in way to terminate gracefully *from within*. Termination must usually be handled externally (e.g., killing the process, signaling from another thread/process, specific framework shutdown hooks).
 
 [↑ Back to Top](#toc-container)
 
+### Common errors and pitfalls
+
+*   **Accidental Infinite Loops:** Creating an infinite loop unintentionally due to a logical error in the loop condition or lack of a `break`/`return`. TypeScript might infer `never` here, but the behavior is likely a bug.
+*   **Blocking the Main Thread:** Running a synchronous infinite loop on the main thread of a Node.js application or in a browser UI thread, causing unresponsiveness.
+*   **Lack of Error Handling:** If operations inside the loop can fail, not including `try...catch` can cause the entire loop/process to crash unexpectedly.
+
+[↑ Back to Top](#toc-container)
 
 ### Good practices
 
-*   **Limit to entry points:** Use `never` functions with synchronous infinite loops *only* at the main entry point of a process specifically designed to run that way (and preferably not on the main thread if concurrency is needed).
-
-{% hint style="success" %}
-**Favor Asynchronous Models:** For almost all persistent or long-running tasks in JS/TS (servers, workers, listeners), use `async/await`, `Promises`, `EventEmitter`, or Web Workers. They are more efficient and non-blocking.
-{% endhint %}
-
-*   **Include internal error handling:** If the loop must continue despite internal errors, implement `try...catch` inside the loop.
-*   **Introduce waiting mechanisms:** Avoid `busy-waiting`. Use asynchronous I/O, `setTimeout`, `setInterval`, or appropriate waiting mechanisms to free up the thread and reduce CPU consumption.
-*   **Document:** Explain why the function never returns and its implications (e.g., `@returns {never} Enters an infinite loop to process tasks. Blocks the thread.`).
+*   **Use Only When Necessary:** Reserve infinite loops for genuine long-running processes like servers, daemons, or main event loops.
+*   **Prefer Asynchronous Loops:** If the loop involves I/O or waiting, use `async/await` to avoid blocking.
+*   **Include Error Handling:** Wrap potentially failing operations inside the loop with `try...catch` to ensure the loop can continue even if errors occur.
+*   **Implement Delays/Yielding:** Use `await sleep(...)`, `setTimeout`, or event listeners to prevent the loop from consuming 100% CPU.
+*   **Consider Termination:** While the function type is `never`, think about how the containing process *can* be terminated gracefully if needed (external signals, IPC).
 
 [↑ Back to Top](#toc-container)
 
-
 ### Bad practices
 
-{% hint style="danger" %}
-**NEVER Block the Main Thread:** synchronous `while(true)` loops are extremely dangerous on the main thread of Node.js or the browser. It's the main bad practice to avoid with `never` and infinite loops.
-{% endhint %}
+*   **Using infinite loops for tasks that should terminate:** If a task has a defined end condition, use a standard loop (`for`, `while` with a condition) or recursion.
+*   **Synchronous blocking loops on main threads:** This is almost always incorrect in UI or server applications.
+*   **Infinite loops without delays or yielding:** Leads to unnecessary resource consumption.
 
-*   **`Busy-waiting`:** Infinite loops that consume CPU without doing useful work or waiting efficiently.
-*   **Not handling errors inside the loop:** Allowing internal errors to stop a process that should be resilient.
-*   **Using it when a normal loop with an exit condition is more appropriate:** Don't force a `never` if the process has a natural termination condition.
+Understanding both facets of `never`—functions that throw and functions that loop infinitely—allows you to accurately model control flow, leverage TypeScript's exhaustiveness checking, and write safer, more predictable code.
 
 [↑ Back to Top](#toc-container)
