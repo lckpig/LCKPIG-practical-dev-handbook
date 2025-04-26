@@ -21,7 +21,7 @@
 - [Use in functions without explicit return](#use-in-functions-without-explicit-return)
   - [Type Inference for void](#type-inference-for-void)
   - [Common Use Cases](#common-use-cases)
-  - [async and Promise<void>](#async-and-promisevoid)
+  - [async and Promise](#async-and-promise)
   - [Important Considerations](#important-considerations-1)
   - [Best Practices](#best-practices-1)
   - [Bad Practices](#bad-practices-1)
