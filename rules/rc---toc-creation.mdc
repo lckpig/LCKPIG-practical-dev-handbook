@@ -36,10 +36,14 @@ Esta regla está diseñada exclusivamente para generar o actualizar la Tabla de 
     - En cualquier caso, la ToC debe estar **antes** del título principal de la página (encabezado `#` / H1).
 
 4.  **Inserción de Botón "Volver al Índice":**
-    - Una vez la ToC esté generada y correctamente ubicada, el agente debe añadir un botón para volver al inicio (al índice) al final de cada sección definida por un encabezado `##` (H2) y `###` (H3) **que esté incluida explícitamente en la ToC generada**. Es **CRÍTICO** que las secciones H2 o H3 que *no* aparezcan listadas en la ToC **NO** reciban este botón.
+    - El agente debe examinar la lista de enlaces generada dentro de la ToC.
+    - Para cada enlace en la ToC que apunte a un encabezado de nivel `##` (H2) o `###` (H3) del documento:
+        - Localizar la sección correspondiente a dicho encabezado en el cuerpo del archivo.
+        - Insertar el botón "Volver al Índice" al final del contenido de *esa* sección específica.
+    - **CRÍTICO**: Solo las secciones H2 y H3 que tengan un enlace *directamente listado* en la ToC recibirán este botón. Ninguna otra sección (H2, H3 u otras) debe tenerlo.
     - El botón debe usar la sintaxis de enlace interno de GitBook, apuntando al `id` del contenedor de la ToC (`#toc-container`).
     - El texto del enlace debe ser `↑ Volver al Índice` para español o `↑ Back to Top` para inglés. El formato final debe ser el de un enlace Markdown que apunte al identificador `#toc-container`.
-    - **Espaciado:** Debe dejarse **una línea en blanco antes y una línea en blanco después** del botón.
+    - **Espaciado:** Debe dejarse **una línea en blanco antes y dos línea en blanco después** del botón.
     - **Ubicación Precisa (para cada sección aplicable):** El botón debe insertarse como el último elemento del contenido perteneciente a esa sección H2/H3, justo antes de que comience la *siguiente* sección (marcada por un nuevo encabezado H2 o H3) o justo antes del final del archivo si es la última sección listada en el ToC.
 
 ---

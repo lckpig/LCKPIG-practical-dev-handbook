@@ -131,6 +131,7 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - **El documento no debe terminar con un separador horizontal (`---`). Si el archivo termina con un separador, este debe ser eliminado.**
    - **Nunca debe haber dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" sin que entre ambos haya contenido relevante (ejemplo, explicación, etc.). En caso de que esto ocurra, debe eliminarse uno de los dos encabezados, permaneciendo únicamente el más descriptivo y formateándose como cualquier otro encabezado de ejemplo con `####`.**
    - **Nunca debe haber duplicación de bloques de almohadillas (`#`) en los encabezados de cualquier nivel; si se detecta, debe corregirse para que solo quede un único bloque de almohadillas por encabezado.**
+   - **Énfasis:** Se reitera la prohibición absoluta de incluir resúmenes al final del archivo o secciones, así como cualquier tipo de frase motivacional, de ánimo o de cierre.
 
 ---
 
