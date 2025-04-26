@@ -21,7 +21,7 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 - [Uso en funciones sin retorno explícito](#uso-en-funciones-sin-retorno-explícito)
   - [Inferencia de Tipo void](#inferencia-de-tipo-void)
   - [Casos de Uso Comunes](#casos-de-uso-comunes)
-  - [async y Promise<void>](#async-y-promisevoid)
+  - [async y Promise](#async-y-promise)
   - [Consideraciones Importantes](#consideraciones-importantes-1)
   - [Buenas Prácticas](#buenas-practicas-1)
   - [Malas Prácticas](#malas-practicas-1)
