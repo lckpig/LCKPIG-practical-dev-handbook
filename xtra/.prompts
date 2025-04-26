@@ -17,7 +17,7 @@ ahora realiza el mismo proceso completo con la seccion XXX
 analiza para mejorar si fuese posible el contenido de este archivo siguiendo estrictamente @rc---teacher-behaviour.mdc, aplica la mejora directamente 
 
 // Agente - gemini-2.5-prox-exp-03-25
-aplica los hints donde corresponda segun @rc---teacher-behaviour.mdc 
+aplica los hints donde corresponda segun @rc---teacher-behaviour.mdc despues de crear y rellenarcada hint recuerda eliminar los contenido de referencia del hint para no ser redundantes con el contenido
 
 
 ---- CORRECCION DE CONTENIDO DIDACTICO ----

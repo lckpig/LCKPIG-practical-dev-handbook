@@ -80,6 +80,7 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - Los ejemplos deben ser interesantes, bien estructurados y comentados.
    - El tono debe ser claro, directo y profesional, con enfoque docente.
    - **Evitar el uso repetitivo de términos como "profesional", "avanzado", "experto" y similares** en la redacción del contenido generado, ya que su uso excesivo resulta innecesario y ostentoso. El valor del contenido debe demostrarse por la calidad de las explicaciones, ejemplos y profundidad, no por adjetivos grandilocuentes.
+   - **PROHIBIDO utilizar expresiones del tipo "Repetimos:", "Nuevamente:", "Una vez más:"** o similares para enfatizar o llamar la atención sobre un punto. El énfasis debe lograrse mediante la estructura, el contenido y el uso adecuado de negritas o bloques `hint` cuando sea estrictamente necesario.
    - Al finalizar cada sección, el agente debe revisar si el contenido cumple con la profundidad, claridad y utilidad exigidas, y ampliar cualquier punto que pueda resultar superficial o poco desarrollado.
    - **Siempre** debe incluir un separador horizontal (`---`) únicamente entre las secciones principales planteadas en el índice base para generar el contenido, y **nunca** entre subsecciones o apartados que no estuvieran en dicho índice. Además, **nunca** debe añadirse un separador después de la última sección del archivo.
    - **Utilizar siempre la sintaxis `>` para citas (blockquotes)**, nunca `//` ni otros formatos no estándar.
