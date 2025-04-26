@@ -194,7 +194,6 @@ La comprobación exhaustiva mediante `never` es una red de seguridad crucial. Tr
 **No uses `throw` para control de flujo normal:** Las excepciones y las funciones `never` son para errores excepcionales o irrecuperables, no para lógica de negocio habitual como validaciones simples o decisiones condicionales. Abusar de `throw` hace el código más difícil de seguir y depurar.
 {% endhint %}
 
-*   **Usar `throw` para flujo de control normal:** No uses excepciones (y por ende, funciones `never`) para manejar situaciones esperadas o como sustituto de sentencias `if`/`else` o `return`. Las excepciones son para condiciones excepcionales.
 *   **Código inalcanzable no detectado:** Si una función *podría* lanzar un error pero no *siempre* lo hace, su tipo no será `never`. Si asumes erróneamente que es `never`, podrías tener código inalcanzable que el compilador no detecta.
 *   **Olvidar el `catch`:** Si una función `never` que lanza error se llama fuera de un bloque `try...catch`, detendrá la ejecución global (en Node.js, el proceso; en el navegador, el script) si el error no se captura en un nivel superior.
 
@@ -220,7 +219,6 @@ La comprobación exhaustiva mediante `never` es una red de seguridad crucial. Tr
 **Evita código tras llamada `never`:** No coloques código ejecutable después de invocar una función `never` en el mismo bloque lógico. Es confuso y siempre será inalcanzable.
 {% endhint %}
 
-*   **Escribir código después de la llamada `never`:** Evita colocar código ejecutable después de invocar una función `never` en el mismo bloque; es confuso y siempre inalcanzable.
 *   **Suprimir errores de comprobación exhaustiva:** No ignores los errores del compilador en las ramas `default`/`else` con `never`. Indican que falta manejar un caso.
 
 [↑ Volver al Índice](#toc-container)
@@ -356,13 +354,10 @@ function gameEngineLoop(): never {
 **¡CRÍTICO! Bloqueo del Hilo Principal con Bucles Síncronos:** Un bucle `while(true)` síncrono en una función `never` **congela** el hilo de ejecución. En Node.js, esto detiene el bucle de eventos, impidiendo manejar nuevas peticiones o I/O. En el navegador, congela la UI. **Nunca uses bucles infinitos síncronos bloqueantes en el hilo principal.**
 {% endhint %}
 
-*   **Bloqueo del Hilo (Síncrono):** ¡CRÍTICO! Una función `never` síncrona con un bucle infinito **bloqueará completamente** el hilo en el que se ejecuta. En Node.js, si esto ocurre en el hilo principal, el servidor dejará de responder a cualquier otra petición o evento. En el navegador, congelará la interfaz de usuario. **Este tipo de bucle síncrono infinito es casi siempre una mala idea en el hilo principal.**
-
 {% hint style="info" %}
 **Prioriza Alternativas Asíncronas:** Para servidores, workers o tareas de larga duración, los modelos asíncronos (`async/await`, `Promises`, `EventEmitter`, Web Workers) son la norma en JS/TS. Permiten la concurrencia y evitan el bloqueo del hilo principal. Una función `never` bloqueante es raramente la solución adecuada.
 {% endhint %}
 
-*   **Alternativas Asíncronas:** En JavaScript/TypeScript moderno, los procesos de larga duración se gestionan casi siempre de forma asíncrona. Un servidor Node.js usa el bucle de eventos y callbacks/Promises/async-await. La función `server.listen()` retorna, permitiendo que otros eventos se procesen. El *proceso* sigue vivo, pero no una única función `never` bloqueante. Usa `never` con bucles infinitos síncronos con extrema precaución y generalmente fuera del hilo principal (ej: Web Workers, child processes).
 *   **Intencionalidad:** Asegúrate de que el bucle infinito sea verdaderamente intencional y la única forma adecuada de modelar el comportamiento (lo cual es raro para código síncrono bloqueante).
 *   **Terminación:** Una función `never` de este tipo solo termina si el proceso es detenido externamente (ej: `Ctrl+C`, `kill`) o si ocurre un error no capturado *dentro* del bucle que lo haga terminar.
 
@@ -370,7 +365,6 @@ function gameEngineLoop(): never {
 **Evita el `Busy-Waiting`:** Un bucle `while(true)` sin pausas (I/O, `setTimeout`, `await delay`) consumirá el 100% de CPU. Esto es ineficiente y perjudicial. Siempre introduce mecanismos de espera apropiados.
 {% endhint %}
 
-*   **Consumo de CPU:** Un bucle `while(true)` sin ninguna forma de espera (I/O, `setTimeout`, `await delay()`) consumirá el 100% de un núcleo de CPU, lo cual raramente es deseable (`busy-waiting`).
 *   **Confusión con procesos asíncronos:** No confundas una función `never` síncrona bloqueante con un proceso asíncrono de larga duración (como un servidor Node.js típico) que *no* bloquea el hilo.
 
 [↑ Volver al Índice](#toc-container)
@@ -384,7 +378,6 @@ function gameEngineLoop(): never {
 **Favorece los Modelos Asíncronos:** Para casi todas las tareas persistentes o de larga duración en JS/TS (servidores, workers, listeners), usa `async/await`, `Promises`, `EventEmitter` o Web Workers. Son más eficientes y no bloquean.
 {% endhint %}
 
-*   **Preferir modelos asíncronos:** Para tareas de larga duración, servidores, workers, etc., en Node.js y el navegador, utiliza los patrones asíncronos estándar (`async/await`, `EventEmitter`, `setInterval`, Web Workers).
 *   **Incluir manejo de errores interno:** Si el bucle debe continuar a pesar de errores internos, implementa `try...catch` dentro del bucle.
 *   **Introducir mecanismos de espera:** Evita el `busy-waiting`. Usa I/O asíncrono, `setTimeout`, `setInterval`, o mecanismos de espera apropiados para liberar el hilo y reducir el consumo de CPU.
 *   **Documentar:** Explica por qué la función nunca retorna y sus implicaciones (ej: `@returns {never} Entra en un bucle infinito para procesar tareas. Bloquea el hilo.` ).
@@ -395,10 +388,9 @@ function gameEngineLoop(): never {
 ### Malas prácticas
 
 {% hint style="danger" %}
-**NUNCA Bloquees el Hilo Principal:** Repetimos: los bucles `while(true)` síncronos son extremadamente peligrosos en el hilo principal de Node.js o del navegador. Es la principal mala práctica a evitar con `never` y bucles infinitos.
+**NUNCA Bloquees el Hilo Principal:** los bucles `while(true)` síncronos son extremadamente peligrosos en el hilo principal de Node.js o del navegador. Es la principal mala práctica a evitar con `never` y bucles infinitos.
 {% endhint %}
 
-*   **Bucles `while(true)` síncronos bloqueantes en el hilo principal:** La peor práctica en la mayoría de los casos.
 *   **`Busy-waiting`:** Bucles infinitos que consumen CPU sin realizar trabajo útil o esperar eficientemente.
 *   **No manejar errores dentro del bucle:** Permitir que errores internos detengan un proceso que debería ser resiliente.
 *   **Usarlo cuando un bucle normal con condición de salida es más apropiado:** No fuerces un `never` si el proceso tiene una condición de finalización natural.
