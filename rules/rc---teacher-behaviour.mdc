@@ -72,8 +72,8 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
      - **Nunca** incluir frases motivacionales, de ánimo, de cierre o similares.
      - **Nunca** utilizar iconos, emojis o símbolos decorativos innecesarios o ridículos.
      - **Nunca** utilizar `//` para crear citas (blockquotes); debe usarse la sintaxis estándar de Markdown `>`.
-     - **Nunca** duplicar bloques de almohadillas (`#`) en los encabezados de cualquier nivel; está estrictamente prohibido. Siempre debe revisarse y corregirse si ocurre.  
-       Ejemplo incorrecto: `#### ####` — Ejemplo correcto: `####`
+     - **Nunca** duplicar bloques de almohadillas (`### ###`) en los encabezados de cualquier nivel; está estrictamente prohibido. Siempre debe revisarse y corregirse si ocurre.  
+       Ejemplo incorrecto: `### ###` — Ejemplo correcto: `###`
 
 4. **Redacción y estilo**
    - Todo el contenido debe estar en **castellano neutro** (excepto el código, que irá en inglés).
@@ -85,7 +85,7 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - **Siempre** debe incluir un separador horizontal (`---`) únicamente entre las secciones principales planteadas en el índice base para generar el contenido, y **nunca** entre subsecciones o apartados que no estuvieran en dicho índice. Además, **nunca** debe añadirse un separador después de la última sección del archivo.
    - **Utilizar siempre la sintaxis `>` para citas (blockquotes)**, nunca `//` ni otros formatos no estándar.
    - La jerarquía de encabezados debe seguir estas reglas estrictas:
-     - **ATENCIÓN CRÍTICA:** En los encabezados de cualquier nivel, la duplicación de bloques de almohadillas (`#`) está **estrictamente prohibida**. Siempre debe revisarse que no ocurra esta situación y corregirla en caso de que hubiera ocurrido. Ejemplo incorrecto `#### ####`, ejemplo corregido `####`.
+     - **ATENCIÓN CRÍTICA:** En los encabezados de cualquier nivel, la duplicación de bloques de almohadillas (`#### ####`) está **estrictamente prohibida**. Siempre debe revisarse que no ocurra esta situación y corregirla en caso de que hubiera ocurrido. Ejemplo incorrecto `#### ####`, ejemplo corregido `####`.
      - El nivel `#` (H1) **siempre** se reserva para el título del archivo y no debe usarse en el contenido generado.
      - El nivel `##` (H2) **siempre** se reserva para los encabezados de las secciones principales planteadas en el índice base.
      - Todos los subencabezados que no sean el título del archivo ni los encabezados de secciones principales del índice deben utilizar **siempre** el nivel `###` (H3).
@@ -130,9 +130,11 @@ Esta regla está diseñada para rellenar y enriquecer archivos Markdown de la ca
    - **No debe quedar ningún contenido residual del archivo original, salvo el menú multilenguaje y el índice guía comentado.**
    - La estructura y el formato del archivo deben ser correctos, sin errores de formato, enlaces rotos ni secciones vacías.
    - **El documento no debe terminar con un separador horizontal (`---`). Si el archivo termina con un separador, este debe ser eliminado.**
-   - **Nunca debe haber dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" sin que entre ambos haya contenido relevante (ejemplo, explicación, etc.). En caso de que esto ocurra, debe eliminarse uno de los dos encabezados, permaneciendo únicamente el más descriptivo y formateándose como cualquier otro encabezado de ejemplo con `####`.**
-   - **Nunca debe haber duplicación de bloques de almohadillas (`#`) en los encabezados de cualquier nivel; si se detecta, debe corregirse para que solo quede un único bloque de almohadillas por encabezado.**
+   - **Nunca debe haber dos encabezados seguidos, de cualquier nivel, que contengan la palabra "Ejemplo" sin que entre ambos haya contenido relevante (ejemplo, explicación, etc.). En caso de que esto ocurra, debe eliminarse completamente uno de los dos encabezados (incluyendo su `####`), permaneciendo únicamente el más descriptivo y formateándose como cualquier otro encabezado de ejemplo con `####`.**
+   - **Nunca debe haber duplicación de bloques de almohadillas (`### ###`) en los encabezados de cualquier nivel; si se detecta, debe corregirse para que solo quede un único bloque de almohadillas (`###`) por encabezado.**
    - **Énfasis:** Se reitera la prohibición absoluta de incluir resúmenes al final del archivo o secciones, así como cualquier tipo de frase motivacional, de ánimo o de cierre.
+   - **Nunca** añadir un resumen final al final del archivo ni de las secciones, en caso de que se encuentre debe ser elimado.
+   - **Nunca** incluir frases motivacionales, de ánimo, de cierre o similares.
 
 ---
 
