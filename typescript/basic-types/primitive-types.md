@@ -119,9 +119,9 @@ if (esMayorDeEdad && tienePermiso) {
 
 *   **Comparaciones Imprecisas**: Ten cuidado al comparar números de punto flotante directamente debido a posibles problemas de precisión. En lugar de `a === b`, considera `Math.abs(a - b) < umbralPequeño`.
 
-    {% hint style="warning" %}
-    La comparación directa de números de punto flotante (`===`) puede fallar debido a cómo se representan internamente. Utilizar un umbral pequeño (`epsilon`) para las comparaciones es una práctica más segura para evitar errores inesperados.
-    {% endhint %}
+{% hint style="warning" %}
+La comparación directa de números de punto flotante (`===`) puede fallar debido a cómo se representan internamente. Utilizar un umbral pequeño (`epsilon`) para las comparaciones es una práctica más segura para evitar errores inesperados.
+{% endhint %}
 
 *   **Confiar Ciegamente en la Coerción de Tipos**: JavaScript realiza coerción automática de tipos en ciertas operaciones (ej. `1 == '1'`). TypeScript ayuda a prevenir esto, pero es bueno ser explícito y evitar depender de la coerción implícita.
 
@@ -156,9 +156,9 @@ Aunque ambos representan la ausencia de valor, sus usos y significados difieren:
 
 *   **Intencionalidad**: `null` es asignado intencionalmente por el programador para indicar "sin valor". `undefined` suele ser el valor por defecto de variables no inicializadas o parámetros de función omitidos.
 
-    {% hint style="warning" %}
-    El hecho de que `typeof null` devuelva `"object"` es una peculiaridad histórica de JavaScript que persiste por razones de compatibilidad. No significa que `null` sea un objeto real. Ten esto en cuenta al verificar tipos.
-    {% endhint %}
+{% hint style="warning" %}
+El hecho de que `typeof null` devuelva `"object"` es una peculiaridad histórica de JavaScript que persiste por razones de compatibilidad. No significa que `null` sea un objeto real. Ten esto en cuenta al verificar tipos.
+{% endhint %}
 
 *   **Tipo**: `typeof null` devuelve `"object"` (un error histórico en JavaScript). `typeof undefined` devuelve `"undefined"`.
 
@@ -212,9 +212,9 @@ console.log(objetoUsuario); // Salida: null
 
 *   **Habilitar `strictNullChecks`**: Esta opción del compilador de TypeScript (`tsconfig.json`) fuerza a manejar explícitamente los casos donde una variable puede ser `null` o `undefined`, previniendo errores comunes en tiempo de ejecución. Es una de las características más valiosas de TypeScript.
 
-    {% hint style="info" %}
-    Activar `strictNullChecks` es **altamente recomendable** en cualquier proyecto TypeScript. Aunque requiere un manejo más explícito de nulos y indefinidos, reduce drásticamente los errores en tiempo de ejecución relacionados con valores nulos (`null pointer exceptions`).
-    {% endhint %}
+{% hint style="info" %}
+Activar `strictNullChecks` es **altamente recomendable** en cualquier proyecto TypeScript. Aunque requiere un manejo más explícito de nulos y indefinidos, reduce drásticamente los errores en tiempo de ejecución relacionados con valores nulos (`null pointer exceptions`).
+{% endhint %}
 
 *   **Preferir `undefined` para Valores Opcionales**: En parámetros de función o propiedades de objeto opcionales, `undefined` es generalmente más idiomático en TypeScript/JavaScript.
 *   **Ser Explícito con `null`**: Usa `null` cuando quieras indicar de forma clara y deliberada la ausencia de un objeto.
@@ -227,9 +227,9 @@ console.log(objetoUsuario); // Salida: null
 *   **Usar `null` Indiscriminadamente**: Evita usar `null` donde `undefined` sería más apropiado (ej. para indicar simplemente que una variable no ha sido inicializada).
 *   **Ignorar `strictNullChecks`**: Deshabilitar esta opción o ignorar sus advertencias puede llevar a errores de `Cannot read property 'x' of null/undefined` en producción.
 
-    {% hint style="danger" %}
-    Ignorar o desactivar `strictNullChecks` introduce un riesgo significativo de errores en tiempo de ejecución que son difíciles de detectar durante el desarrollo. Es una mala práctica que compromete la seguridad de tipos que TypeScript proporciona.
-    {% endhint %}
+{% hint style="danger" %}
+Ignorar o desactivar `strictNullChecks` introduce un riesgo significativo de errores en tiempo de ejecución que son difíciles de detectar durante el desarrollo. Es una mala práctica que compromete la seguridad de tipos que TypeScript proporciona.
+{% endhint %}
 
 [↑ Volver al Índice](#toc-container)
 
@@ -277,9 +277,9 @@ console.log(negativoGrande);      // Salida: -12345678901234567890n
 *   **Sin Decimales**: `bigint` solo puede representar enteros. Operaciones como la división truncarán cualquier parte decimal (`5n / 2n` resulta en `2n`).
 *   **Compatibilidad**: `bigint` es una característica relativamente nueva (ES2020). Asegúrate de que tu entorno de ejecución (navegador, Node.js) o tu objetivo de compilación (`target` en `tsconfig.json`) sea compatible si necesitas usarlo. Para entornos más antiguos, podrías necesitar polyfills o librerías externas.
 
-    {% hint style="warning" %}
-    Antes de usar `bigint`, verifica la compatibilidad con los navegadores o versiones de Node.js objetivo. Si necesitas soportar entornos más antiguos, considera usar librerías como `jsbi` o ajusta tu `target` de compilación si es posible, aunque esto puede implicar polyfills.
-    {% endhint %}
+{% hint style="warning" %}
+Antes de usar `bigint`, verifica la compatibilidad con los navegadores o versiones de Node.js objetivo. Si necesitas soportar entornos más antiguos, considera usar librerías como `jsbi` o ajusta tu `target` de compilación si es posible, aunque esto puede implicar polyfills.
+{% endhint %}
 
 *   **Uso Específico**: Utiliza `bigint` solo cuando necesites trabajar con enteros que excedan `Number.MAX_SAFE_INTEGER`. Para la mayoría de los casos numéricos, `number` es suficiente y más performante.
 
@@ -300,9 +300,9 @@ console.log(negativoGrande);      // Salida: -12345678901234567890n
 *   **Mezclar Tipos Implícitamente**: Intentar sumar, restar, etc., `bigint` y `number` sin conversión explícita generará errores.
 *   **Usarlo para Decimales**: `bigint` no es adecuado para números con partes fraccionarias.
 
-    {% hint style="warning" %}
-    Si intentas usar `bigint` para representar números con decimales, perderás la parte fraccionaria. Para números decimales de alta precisión, considera librerías específicas como `decimal.js`.
-    {% endhint %}
+{% hint style="warning" %}
+Si intentas usar `bigint` para representar números con decimales, perderás la parte fraccionaria. Para números decimales de alta precisión, considera librerías específicas como `decimal.js`.
+{% endhint %}
 
 *   **Ignorar Límites de `number`**: No usar `bigint` cuando se opera cerca o más allá de `Number.MAX_SAFE_INTEGER` puede llevar a errores de precisión sutiles y difíciles de depurar con el tipo `number`.
 

@@ -14,6 +14,7 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 <!-- no toc -->
 - [Cuándo usar `any` y sus riesgos](#cuando-usar-any-y-sus-riesgos)
   - [Definición, Contexto y Motivación](#definicion-contexto-y-motivacion)
+  - [Analogía: El Pase Universal vs. La Caja Misteriosa](#analogia-el-pase-universal-vs-la-caja-misteriosa)
   - [Casos de uso reales y recomendables (con extrema precaución)](#casos-de-uso-reales-y-recomendables-con-extrema-precaucion)
   - [Consideraciones importantes y rendimiento](#consideraciones-importantes-y-rendimiento)
   - [Buenas prácticas (si es inevitable usar `any`)](#buenas-practicas-si-es-inevitable-usar-any)
@@ -21,6 +22,7 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
   - [Errores comunes y trampas habituales](#errores-comunes-y-trampas-habituales)
 - [Alternativas seguras con `unknown`](#alternativas-seguras-con-unknown)
   - [Explicación detallada de `unknown`](#explicacion-detallada-de-unknown)
+  - [Tabla Comparativa: `any` vs `unknown`](#tabla-comparativa-any-vs-unknown)
   - [Uso seguro de `unknown`: Estrechamiento de Tipos (Type Narrowing)](#uso-seguro-de-unknown-estrechamiento-de-tipos-type-narrowing)
   - [Casos de uso reales y recomendables para `unknown`](#casos-de-uso-reales-y-recomendables-para-unknown)
   - [Consideraciones importantes y buenas prácticas con `unknown`](#consideraciones-importantes-y-buenas-practicas-con-unknown)
@@ -68,10 +70,14 @@ flexible = true;
 // ¡ERROR EN TIEMPO DE EJECUCIÓN! -> TypeError: flexible.toFixed is not a function
 ```
 
-Este ejemplo ilustra el peligro fundamental de `any`: oculta errores potenciales que solo se manifestarán durante la ejecución del programa, anulando la promesa principal de TypeScript de detectar errores en tiempo de compilación.
+### Analogía: El Pase Universal vs. La Caja Misteriosa
 
-[↑ Volver al Índice](#toc-container)
+Para entender la diferencia fundamental entre `any` y `unknown`, podemos usar una analogía:
 
+*   **`any` es como un Pase Universal:** Te permite entrar a cualquier sitio y hacer cualquier cosa (acceder a cualquier propiedad, llamar a cualquier método) sin que nadie te pida identificación ni verifique si tienes permiso. Es conveniente al principio, pero increíblemente inseguro. Puedes intentar hacer algo para lo que no estás autorizado (llamar a un método inexistente) y solo te darás cuenta del problema cuando ya sea demasiado tarde (error en tiempo de ejecución).
+*   **`unknown` es como una Caja Misteriosa Cerrada:** Sabes que hay *algo* dentro, pero no qué es. Puedes recibir la caja (asignar cualquier valor a `unknown`), pero no puedes usar lo que hay dentro (acceder a propiedades o métodos) hasta que la abras y verifiques su contenido (realices una comprobación de tipo). Una vez que has verificado qué hay dentro (por ejemplo, confirmas que es una herramienta específica mediante `typeof` o `instanceof`), TypeScript te permite usarla de forma segura sabiendo lo que es. Te obliga a ser explícito y cuidadoso, garantizando la seguridad.
+
+Esta analogía ilustra por qué `unknown` es la opción preferida: impone una disciplina de verificación que `any` ignora por completo, previniendo errores.
 
 ### Casos de uso reales y recomendables (con extrema precaución)
 
@@ -171,6 +177,20 @@ Introducido en TypeScript 3.0, `unknown` es la alternativa segura y preferida a 
 ### Explicación detallada de `unknown`
 
 `unknown` es el "tipo superior" seguro en la jerarquía de tipos de TypeScript. Esto significa que cualquier valor puede ser asignado a una variable de tipo `unknown`, pero una variable `unknown` no puede ser asignada a ninguna otra variable con un tipo específico (excepto `any` y `unknown` mismo) sin una comprobación de tipo explícita.
+
+### Tabla Comparativa: `any` vs `unknown`
+
+La siguiente tabla resume las diferencias clave entre `any` y `unknown`:
+
+| Característica         | `any`                                  | `unknown`                                      |
+| :--------------------- | :------------------------------------- | :--------------------------------------------- |
+| **Seguridad de Tipos** | Ninguna (desactiva comprobaciones)     | Alta (obliga a verificar tipos)                |
+| **Operaciones**        | Permite cualquier operación (inseguro) | No permite operaciones sin verificación previa |
+| **Asignación (Hacia)** | Se puede asignar a cualquier tipo      | Solo se puede asignar a `any` o `unknown`      |
+| **Asignación (Desde)** | Acepta cualquier tipo                  | Acepta cualquier tipo                          |
+| **Uso Recomendado**    | Migración, JS Interop (último recurso) | APIs, datos externos, tipos inciertos          |
+| **Necesidad**          | Flexibilidad (a costa de seguridad)    | Seguridad (requiere comprobaciones)            |
+| **Alternativa a**      | -                                      | `any`                                          |
 
 #### Ejemplo Comparativo: `any` vs `unknown`
 
@@ -322,21 +342,31 @@ Las aserciones de tipo (`as Type`) son una "mentira" al compilador. Desactivan l
     }
 
     async function cargarConfiguracion(): Promise<ConfiguracionUsuario> {
-        const datosRaw: unknown = await fetch('/api/user-config').then(res => res.json());
+        try {
+            const response = await fetch('/api/user-config');
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const datosRaw: unknown = await response.json();
 
-        if (esConfiguracionUsuario(datosRaw)) {
-            // Validación exitosa, podemos devolver el tipo específico
-            return datosRaw;
-        } else {
-            console.error("Datos de configuración inválidos recibidos:", datosRaw);
-            // Devolver una configuración por defecto o lanzar un error
-            return { tema: 'claro', notificaciones: true }; 
+            if (esConfiguracionUsuario(datosRaw)) {
+                // Validación exitosa, podemos devolver el tipo específico
+                return datosRaw;
+            } else {
+                console.error("Datos de configuración inválidos recibidos:", datosRaw);
+                // Devolver una configuración por defecto o lanzar un error más específico
+                throw new Error("Formato de configuración inválido.");
+            }
+        } catch (error) {
+             console.error("Error al cargar la configuración:", error);
+             // Devolver una configuración por defecto en caso de error de red o validación
+             return { tema: 'claro', notificaciones: true }; 
         }
     }
     ```
 
 {% hint style="info" %}
-Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar datos `unknown` de forma declarativa y segura, simplificando enormemente este proceso.
+Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar datos `unknown` de forma declarativa y segura, simplificando enormemente este proceso y proporcionando mensajes de error más detallados.
 {% endhint %}
 
 2.  **Funciones Genéricas de Alto Nivel:** Funciones que operan sobre diversos tipos de datos pero necesitan inspeccionarlos de forma segura.
