@@ -72,6 +72,7 @@ Este ejemplo ilustra el peligro fundamental de `any`: oculta errores potenciales
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Casos de uso reales y recomendables (con extrema precaución)
 
 Aunque la recomendación general es evitar `any`, existen situaciones muy puntuales donde su uso *podría* estar justificado, siempre como último recurso y con plena conciencia de los riesgos.
@@ -111,6 +112,7 @@ En este caso, `any` permite la interacción, pero requiere un manejo de errores 
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Consideraciones importantes y rendimiento
 
 El impacto de `any` va más allá de la simple desactivación de comprobaciones:
@@ -127,6 +129,7 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Buenas prácticas (si es inevitable usar `any`)
 
 1.  **Minimizar el Alcance:** Usar `any` en el lugar más específico posible. Evitar tipar objetos completos o valores de retorno de funciones como `any` si solo una pequeña parte es desconocida.
@@ -136,6 +139,7 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 5.  **Configurar Linters:** Herramientas como ESLint con plugins de TypeScript (`@typescript-eslint`) pueden configurarse para advertir o prohibir el uso explícito de `any`, ayudando a mantener la disciplina.
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Malas prácticas a evitar
 
@@ -147,6 +151,7 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Errores comunes y trampas habituales
 
 -   **Falsa Sensación de Seguridad:** Creer que porque el código compila, está libre de errores de tipo, cuando `any` puede estar ocultando problemas latentes.
@@ -157,6 +162,7 @@ El impacto de `any` va más allá de la simple desactivación de comprobaciones:
 ---
 
 [↑ Volver al Índice](#toc-container)
+
 
 ## Alternativas seguras con `unknown`
 
@@ -201,6 +207,7 @@ if (typeof variableUnknown === 'string') {
 La diferencia clave es que `unknown` te obliga a escribir código que maneje la incertidumbre del tipo de forma segura, utilizando mecanismos de estrechamiento de tipos (type narrowing).
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Uso seguro de `unknown`: Estrechamiento de Tipos (Type Narrowing)
 
@@ -295,6 +302,7 @@ Las aserciones de tipo (`as Type`) son una "mentira" al compilador. Desactivan l
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Casos de uso reales y recomendables para `unknown`
 
 `unknown` es la elección correcta siempre que trabajes con datos cuyo tipo no puedes garantizar en tiempo de compilación:
@@ -337,6 +345,7 @@ Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar 
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Consideraciones importantes y buenas prácticas con `unknown`
 
 -   **Siempre Preferir `unknown` sobre `any`:** `unknown` es la opción por defecto cuando el tipo es incierto. `any` debe ser la excepción absoluta.
@@ -347,3 +356,5 @@ Bibliotecas como `zod` o `io-ts` son excelentes para definir esquemas y validar 
 Adoptar `unknown` en lugar de `any` representa un cambio fundamental hacia una programación TypeScript más segura y explícita. Te obliga a confrontar la incertidumbre de los tipos de manera controlada, resultando en un código más fiable, predecible y fácil de mantener a largo plazo.
 
 [↑ Volver al Índice](#toc-container)
+
+

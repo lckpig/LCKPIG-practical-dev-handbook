@@ -115,6 +115,7 @@ let datosSinTipo: any[] = [1, "hola", true, { clave: "valor" }, null];
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Casos de Uso Reales y Recomendables
 
 Los arrays son una herramienta versátil con aplicaciones en numerosos escenarios de desarrollo:
@@ -126,6 +127,7 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
 *   **Implementación de Estructuras de Datos:** Los arrays son la base para implementar otras estructuras de datos como pilas (stacks), colas (queues) o listas enlazadas (aunque estas últimas a menudo se implementan de forma diferente para optimizar inserciones/eliminaciones).
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Consideraciones Importantes
 
@@ -152,6 +154,7 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Buenas Prácticas
 
 *   **Especificar el tipo explícitamente:** Siempre define el tipo de los elementos (`number[]`, `Usuario[]`) para maximizar la seguridad y claridad. Evita que TypeScript infiera `any[]`.
@@ -162,6 +165,7 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Malas Prácticas
 
 *   **Abuso de `any[]`:** Usar `any[]` indiscriminadamente anula la principal ventaja de TypeScript. Si necesitas tipos mixtos, usa tipos unión (`(string | number | boolean)[]`) o define interfaces/tipos adecuados si la estructura es más compleja.
@@ -171,6 +175,7 @@ Los arrays son una herramienta versátil con aplicaciones en numerosos escenario
 *   **Crear arrays dispersos (sparse arrays) innecesariamente:** Aunque JavaScript permite arrays con "huecos" (`let a = []; a[0] = 1; a[100] = 100;`), suelen ser menos eficientes y más propensos a errores que los arrays densos. En TypeScript, es mejor evitarlos si no hay una razón muy específica.
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Errores Comunes y Trampas
 
@@ -203,6 +208,7 @@ Activar la opción `noUncheckedIndexedAccess` en `tsconfig.json` puede ayudar. C
 
 [↑ Volver al Índice](#toc-container)
 
+
 ---
 
 ## Uso de Tuplas (`[string, number]`)
@@ -234,6 +240,7 @@ let nombreUsuario: string = infoUsuario[1]; // TypeScript sabe que el elemento e
 
 [↑ Volver al Índice](#toc-container)
 
+
 #### Características Avanzadas de Sintaxis
 
 *   **Elementos Opcionales (`?`):** Puedes marcar elementos como opcionales añadiendo `?` después de su tipo. Todos los elementos opcionales deben ir después de los elementos requeridos.
@@ -255,6 +262,7 @@ let nombreUsuario: string = infoUsuario[1]; // TypeScript sabe que el elemento e
     ```
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Casos de Uso Reales y Recomendables
 
@@ -295,6 +303,7 @@ let nombreUsuario: string = infoUsuario[1]; // TypeScript sabe que el elemento e
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Consideraciones Importantes
 
 *   **Longitud Fija (Intención vs. Realidad Histórica):** El propósito principal de las tuplas es tener una longitud fija definida por los tipos especificados. Sin embargo, debido a que se compilan a arrays de JavaScript, métodos como `push`, `pop`, `splice` *podrían* (especialmente en versiones antiguas de TS o configuraciones laxas) modificar la longitud en tiempo de ejecución. **Esto es una mala práctica y viola el contrato de la tupla**. Las versiones modernas de TypeScript y configuraciones estrictas tienden a prevenir o advertir sobre esto, especialmente si se usan con `readonly`.
@@ -319,6 +328,7 @@ Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Buenas Prácticas
 
 *   **Usar tuplas para colecciones heterogéneas de longitud fija y orden significativo:** Son perfectas cuando tienes un número conocido de elementos (generalmente pocos) con tipos específicos en posiciones concretas.
@@ -333,6 +343,7 @@ Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Malas Prácticas
 
 *   **Usar tuplas para listas homogéneas o de tamaño variable:** Si todos los elementos son del mismo tipo y/o la longitud puede cambiar, un array (`T[]`) es la herramienta adecuada.
@@ -341,6 +352,7 @@ Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas
 *   **Acceder a elementos solo por índice numérico sin contexto claro:** Hace el código difícil de entender. Si no usas desestructuración, asegúrate de que el contexto (nombre de variable, comentarios) aclare qué representa cada índice.
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Errores Comunes y Trampas
 
@@ -363,6 +375,7 @@ Evita usar métodos mutadores de array (`push`, `pop`, `splice`, etc.) en tuplas
     ```
 
 [↑ Volver al Índice](#toc-container)
+
 
 ---
 
@@ -394,6 +407,7 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Ventajas y Casos de Uso
 
 *   **Mejora Exponencial de la Legibilidad:** El principal beneficio es la claridad. Al ver la definición del tipo `[codigo: string, precio: number, stock: number]`, es inmediatamente obvio qué representa cada posición, eliminando la ambigüedad de `[string, number, number]`.
@@ -412,6 +426,7 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Consideraciones Importantes
 
 *   **Naturaleza Puramente Documental:** Es fundamental recordar que las etiquetas **no existen en tiempo de ejecución**. Son una ayuda exclusiva para el desarrollador durante la fase de codificación y análisis. No modifican el comportamiento ni permiten nuevas formas de acceso.
@@ -419,6 +434,7 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 *   **Mantenimiento de Etiquetas:** Si la estructura de la tupla cambia (por ejemplo, se reordenan elementos o cambia el significado de una posición), es vital actualizar las etiquetas correspondientes para evitar documentación engañosa.
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Buenas Prácticas
 
@@ -428,6 +444,7 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 
 [↑ Volver al Índice](#toc-container)
 
+
 ### Malas Prácticas
 
 *   **Usar etiquetas genéricas o poco claras:** Nombres como `val1`, `item2`, `dato` (`[val1: string, item2: number, dato: number]`) aportan poco valor sobre `[string, number, number]`.
@@ -435,6 +452,7 @@ let elStock: number = productoInfoEtiquetada[2];     // 75
 *   **Dejar etiquetas desactualizadas:** Si la estructura de la tupla evoluciona, no actualizar las etiquetas crea confusión y reduce la confianza en la documentación del tipo.
 
 [↑ Volver al Índice](#toc-container)
+
 
 ### Errores Comunes y Trampas
 
@@ -446,3 +464,4 @@ En resumen, los **arrays (`T[]`)** son para listas homogéneas de tamaño variab
 {% endhint %}
 
 [↑ Volver al Índice](#toc-container)
+
