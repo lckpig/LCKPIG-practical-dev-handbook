@@ -72,6 +72,7 @@ This example illustrates the fundamental danger of `any`: it hides potential err
 
 [↑ Back to Top](#toc-container)
 
+
 ### Real and recommended use cases (with extreme caution)
 
 Although the general recommendation is to avoid `any`, there are very specific situations where its use *might* be justified, always as a last resort and with full awareness of the risks.
@@ -111,6 +112,7 @@ In this case, `any` allows interaction but requires explicit error handling (`tr
 
 [↑ Back to Top](#toc-container)
 
+
 ### Important considerations and performance
 
 The impact of `any` goes beyond simply disabling checks:
@@ -127,6 +129,7 @@ The impact of `any` goes beyond simply disabling checks:
 
 [↑ Back to Top](#toc-container)
 
+
 ### Best practices (if using `any` is unavoidable)
 
 1.  **Minimize Scope:** Use `any` in the most specific place possible. Avoid typing entire objects or function return values as `any` if only a small part is unknown.
@@ -136,6 +139,7 @@ The impact of `any` goes beyond simply disabling checks:
 5.  **Configure Linters:** Tools like ESLint with TypeScript plugins (`@typescript-eslint`) can be configured to warn against or prohibit the explicit use of `any`, helping to maintain discipline.
 
 [↑ Back to Top](#toc-container)
+
 
 ### Bad practices to avoid
 
@@ -147,6 +151,7 @@ The impact of `any` goes beyond simply disabling checks:
 
 [↑ Back to Top](#toc-container)
 
+
 ### Common errors and pitfalls
 
 -   **False Sense of Security:** Believing that because the code compiles, it's free of type errors, when `any` might be hiding latent issues.
@@ -157,6 +162,7 @@ The impact of `any` goes beyond simply disabling checks:
 ---
 
 [↑ Back to Top](#toc-container)
+
 
 ## Safe alternatives with `unknown`
 
@@ -201,6 +207,7 @@ if (typeof variableUnknown === 'string') {
 The key difference is that `unknown` forces you to write code that handles type uncertainty safely, using type narrowing mechanisms.
 
 [↑ Back to Top](#toc-container)
+
 
 ### Safe use of `unknown`: Type Narrowing
 
@@ -295,6 +302,7 @@ Type assertions (`as Type`) are a "lie" to the compiler. They disable type check
 
 [↑ Back to Top](#toc-container)
 
+
 ### Real and recommended use cases for `unknown`
 
 `unknown` is the correct choice whenever you work with data whose type you cannot guarantee at compile time:
@@ -337,6 +345,7 @@ Libraries like `zod` or `io-ts` are excellent for defining schemas and validatin
 
 [↑ Back to Top](#toc-container)
 
+
 ### Important considerations and best practices with `unknown`
 
 -   **Always Prefer `unknown` over `any`:** `unknown` is the default choice when the type is uncertain. `any` should be the absolute exception.
@@ -347,3 +356,4 @@ Libraries like `zod` or `io-ts` are excellent for defining schemas and validatin
 Adopting `unknown` instead of `any` represents a fundamental shift towards safer and more explicit TypeScript programming. It forces you to confront type uncertainty in a controlled manner, resulting in more reliable, predictable, and maintainable code in the long run.
 
 [↑ Back to Top](#toc-container)
+

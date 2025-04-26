@@ -115,6 +115,7 @@ let untypedData: any[] = [1, "hello", true, { key: "value" }, null];
 
 [↑ Back to Top](#toc-container)
 
+
 ### Real and Recommended Use Cases
 
 Arrays are a versatile tool with applications in numerous development scenarios:
@@ -126,6 +127,7 @@ Arrays are a versatile tool with applications in numerous development scenarios:
 *   **Implementing Data Structures:** Arrays are the foundation for implementing other data structures like stacks, queues, or linked lists (although the latter are often implemented differently to optimize insertions/deletions).
 
 [↑ Back to Top](#toc-container)
+
 
 ### Important Considerations
 
@@ -152,6 +154,7 @@ Arrays are a versatile tool with applications in numerous development scenarios:
 
 [↑ Back to Top](#toc-container)
 
+
 ### Best Practices
 
 *   **Specify the type explicitly:** Always define the element type (`number[]`, `User[]`) to maximize safety and clarity. Prevent TypeScript from inferring `any[]`.
@@ -162,6 +165,7 @@ Arrays are a versatile tool with applications in numerous development scenarios:
 
 [↑ Back to Top](#toc-container)
 
+
 ### Bad Practices
 
 *   **Overusing `any[]`:** Using `any[]` indiscriminately defeats the main advantage of TypeScript. If you need mixed types, use union types (`(string | number | boolean)[]`) or define appropriate interfaces/types if the structure is more complex.
@@ -171,6 +175,7 @@ Arrays are a versatile tool with applications in numerous development scenarios:
 *   **Creating sparse arrays unnecessarily:** Although JavaScript allows arrays with "holes" (`let a = []; a[0] = 1; a[100] = 100;`), they are often less efficient and more error-prone than dense arrays. In TypeScript, it's better to avoid them unless there's a very specific reason.
 
 [↑ Back to Top](#toc-container)
+
 
 ### Common Errors and Pitfalls
 
@@ -203,6 +208,7 @@ Enabling the `noUncheckedIndexedAccess` option in `tsconfig.json` can help. With
 
 [↑ Back to Top](#toc-container)
 
+
 ---
 
 ## Using Tuples (`[string, number]`)
@@ -234,6 +240,7 @@ let userName: string = userInfo[1]; // TypeScript knows the element at index 1 i
 
 [↑ Back to Top](#toc-container)
 
+
 #### Advanced Syntax Features
 
 *   **Optional Elements (`?`):** You can mark elements as optional by adding `?` after their type. All optional elements must come after required elements.
@@ -255,6 +262,7 @@ let userName: string = userInfo[1]; // TypeScript knows the element at index 1 i
     ```
 
 [↑ Back to Top](#toc-container)
+
 
 ### Real and Recommended Use Cases
 
@@ -295,6 +303,7 @@ let userName: string = userInfo[1]; // TypeScript knows the element at index 1 i
 
 [↑ Back to Top](#toc-container)
 
+
 ### Important Considerations
 
 *   **Fixed Length (Intention vs. Historical Reality):** The primary purpose of tuples is to have a fixed length defined by the specified types. However, because they compile to JavaScript arrays, methods like `push`, `pop`, `splice` *could* (especially in older TS versions or loose configurations) modify the length at runtime. **This is bad practice and violates the tuple contract**. Modern TypeScript versions and strict settings tend to prevent or warn about this, especially when used with `readonly`.
@@ -319,6 +328,7 @@ Avoid using array mutator methods (`push`, `pop`, `splice`, etc.) on tuples. Tre
 
 [↑ Back to Top](#toc-container)
 
+
 ### Best Practices
 
 *   **Use tuples for heterogeneous collections of fixed length and significant order:** They are perfect when you have a known number of elements (usually few) with specific types at specific positions.
@@ -333,6 +343,7 @@ Avoid using array mutator methods (`push`, `pop`, `splice`, etc.) on tuples. Tre
 
 [↑ Back to Top](#toc-container)
 
+
 ### Bad Practices
 
 *   **Using tuples for homogeneous or variable-size lists:** If all elements are the same type and/or the length can change, an array (`T[]`) is the appropriate tool.
@@ -341,6 +352,7 @@ Avoid using array mutator methods (`push`, `pop`, `splice`, etc.) on tuples. Tre
 *   **Accessing elements only by numeric index without clear context:** Makes the code hard to understand. If not using destructuring, ensure the context (variable name, comments) clarifies what each index represents.
 
 [↑ Back to Top](#toc-container)
+
 
 ### Common Errors and Pitfalls
 
@@ -363,6 +375,7 @@ Avoid using array mutator methods (`push`, `pop`, `splice`, etc.) on tuples. Tre
     ```
 
 [↑ Back to Top](#toc-container)
+
 
 ---
 
@@ -394,6 +407,7 @@ let theStock: number = productInfoLabeled[2];     // 75
 
 [↑ Back to Top](#toc-container)
 
+
 ### Advantages and Use Cases
 
 *   **Exponential Readability Improvement:** The main benefit is clarity. Seeing the type definition `[code: string, price: number, stock: number]` makes it immediately obvious what each position represents, eliminating the ambiguity of `[string, number, number]`.
@@ -412,6 +426,7 @@ let theStock: number = productInfoLabeled[2];     // 75
 
 [↑ Back to Top](#toc-container)
 
+
 ### Important Considerations
 
 *   **Purely Documentary Nature:** It's fundamental to remember that labels **do not exist at runtime**. They are solely an aid for the developer during the coding and analysis phase. They do not modify behavior or enable new ways of access.
@@ -419,6 +434,7 @@ let theStock: number = productInfoLabeled[2];     // 75
 *   **Label Maintenance:** If the tuple structure changes (e.g., elements are reordered, or the meaning of a position changes), it's vital to update the corresponding labels to avoid misleading documentation.
 
 [↑ Back to Top](#toc-container)
+
 
 ### Best Practices
 
@@ -428,6 +444,7 @@ let theStock: number = productInfoLabeled[2];     // 75
 
 [↑ Back to Top](#toc-container)
 
+
 ### Bad Practices
 
 *   **Using generic or unclear labels:** Names like `val1`, `item2`, `data` (`[val1: string, item2: number, data: number]`) add little value over `[string, number, number]`.
@@ -435,6 +452,7 @@ let theStock: number = productInfoLabeled[2];     // 75
 *   **Leaving labels outdated:** If the tuple structure evolves, failing to update the labels creates confusion and reduces trust in the type documentation.
 
 [↑ Back to Top](#toc-container)
+
 
 ### Common Errors and Pitfalls
 
@@ -446,3 +464,4 @@ In summary, **arrays (`T[]`)** are for homogeneous lists of variable size, while
 {% endhint %}
 
 [↑ Back to Top](#toc-container)
+
