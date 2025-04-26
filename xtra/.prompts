@@ -11,34 +11,34 @@ ahora realiza el mismo proceso completo con la seccion XXX
 ---- CREACION DE CONTENIDO DIDACTICO ----
 
 // Agente - gemini-2.5-prox-exp-03-25
-@rc---teacher-behaviour.mdc en este archivo = RELLENADO DE CONTENIDO DIDACTICO DE ARCHIVOS USANDO REGLA
+en este archivo aplica la regla @rc---teacher-behaviour.mdc = RELLENADO DE CONTENIDO DIDACTICO DE ARCHIVOS USANDO REGLA
 
 // Agente - gemini-2.5-prox-exp-03-25
-analiza para mejorar si fuese posible el contenido de este archivo siguiendo estrictamente @rc---teacher-behaviour.mdc, aplica la mejora directamente 
+analiza para mejorar si fuese posible el contenido de este archivo siguiendo estrictamente la regla @rc---teacher-behaviour.mdc, recuerda añadir tablas si lo consideras relevante, aplica la mejora directamente
 
 // Agente - gemini-2.5-prox-exp-03-25
-aplica los hints donde corresponda segun @rc---teacher-behaviour.mdc despues de crear y rellenarcada hint recuerda eliminar los contenido de referencia del hint para no ser redundantes con el contenido
+aplica los hints donde corresponda segun la regla @rc---teacher-behaviour.mdc despues de crear y rellenarcada hint recuerda eliminar los contenido de referencia del hint para no ser redundantes con el contenido
 
 
 ---- CORRECCION DE CONTENIDO DIDACTICO ----
 
 // Agente - gemini-2.5-prox-exp-03-25
-has omitido en la parte superior el bloque comentado con el titulo principal y el indice base de contenido segun @rc---teacher-behaviour.mdc
+has omitido en la parte superior el bloque comentado con el titulo principal y el indice base de contenido segun la regla @rc---teacher-behaviour.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
-corrige los bloques de # duplicados segun la restriccion de @rc---teacher-behaviour.mdc
+corrige todos los bloques de # duplicados segun la restriccion de la regla @rc---teacher-behaviour.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
-corrige las restricciones respecto a los hints segun @rc---teacher-behaviour.mdc
+corrige las restricciones de formatorespecto a los hints segun la regla @rc---teacher-behaviour.mdc
 
 
 ---- TOC Y VOLVER AL INDICE ----
 
 // Agente - gemini-2.5-prox-exp-03-25
-aplica en este archivo @rc---toc-creation.mdc
+aplica en este archivo la regla @rc---toc-creation.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
-añade todos los botones Volver al Índice que faltan segun @rc---toc-creation.mdc 
+añade todos los botones Volver al Índice que faltan segun la regla @rc---toc-creation.mdc 
 
 
 ---- SINCRINIZACION DE CONTENIDO ENTRE _ES y _EN ----
@@ -47,7 +47,7 @@ añade todos los botones Volver al Índice que faltan segun @rc---toc-creation.m
 rcsync = SYNCRONIZACION COMPLETA ENTRE _ES y _EN USANDO LA REGLA rc---sync-carpetas-es-en.mdc
 
 // Agente - gemini-2.5-prox-exp-03-25
-procede con la sincronizacion de contenido en este archivo aplicando @rc---sync-carpetas-es-en.mdc
+procede con la sincronizacion de contenido en este archivo aplicando la regla @rc---sync-carpetas-es-en.mdc
 
 
 ---- AUTOMATIZACION CONTROL DE VERSIONES ----

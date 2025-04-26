@@ -1,5 +1,5 @@
 ---
-description: 
+description: "Regla para generar o actualizar la Tabla de Contenidos (ToC) interna en archivos Markdown."
 globs: 
 alwaysApply: false
 ---
