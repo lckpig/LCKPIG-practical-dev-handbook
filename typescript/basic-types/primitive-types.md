@@ -299,5 +299,3 @@ console.log(num + Number(big)); // Convert bigint to number -> 150 (safe here, b
 *   **Ignoring Precision Loss**: Converting large `bigint` values to `number` without considering the potential loss of precision.
 
 [↑ Back to Top](#toc-container)
-
-</rewritten_file> 
