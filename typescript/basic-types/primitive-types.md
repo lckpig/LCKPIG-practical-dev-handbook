@@ -10,6 +10,8 @@ ES | [EN](https://lckpig.gitbook.io/practical-dev-handbook/typescript/basic-type
 - Uso de `bigint` para operaciones con grandes números
 -->
 
+// TODO: HAY QUE HACER ALGO AQUI PORQUE NO SE HA SINCRONIZADO EN GITBOOK Y NO FORMATEA BIEN LOS HINTS
+
 <details id="toc-container">
 <summary>Índice de contenidos</summary>
 
@@ -307,4 +309,3 @@ Si intentas usar `bigint` para representar números con decimales, perderás la 
 *   **Ignorar Límites de `number`**: No usar `bigint` cuando se opera cerca o más allá de `Number.MAX_SAFE_INTEGER` puede llevar a errores de precisión sutiles y difíciles de depurar con el tipo `number`.
 
 [↑ Volver al Índice](#toc-container)
-
